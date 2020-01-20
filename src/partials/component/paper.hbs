@@ -1,0 +1,35 @@
+{{#is type 'post'}}
+<div class="c-post-it
+{{~#if mod}} c-post-it--{{mod}}{{/if}} {{class}}">
+  <div class="c-post-it__body">
+  {{#if @partial-block}}
+  {{> @partial-block}}
+  {{/if}}
+  </div>
+</div>
+{{/is}}
+
+{{~#is type 'notebook'}}
+<div class="c-notebook
+{{~#if mod}} c-notebook--{{mod}}{{/if}} {{class}}">
+  <div class="c-notebook__body">
+  {{#if @partial-block}}
+  {{> @partial-block}}
+  {{/if}}
+  </div>
+</div>
+{{/is}}
+
+{{~#is type 'paper'}}
+<div class="c-paper-stack-wrap {{paper-wrap}}">
+  <div class="c-paper-stack
+  {{~#is mod ''}} c-paper-stack--up{{/is}}
+  {{~#isnt mod ''}} c-paper-stack--{{mod}}{{/isnt}} {{class}}">
+    <div class="o-pad-box">
+    {{#if @partial-block}}
+    {{> @partial-block}}
+    {{/if}}
+    </div>
+  </div>
+</div>
+{{/is}}

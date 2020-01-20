@@ -1,0 +1,148 @@
+///////////////////////////////////////////////////////////////////////
+//
+// AUDIO / VIDEO MEDIA PLAYERS
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Vendor : https://github.com/johndyer/mediaelement
+// Version : see package.json
+// Notes: Only use 'px' when setting units
+
+// ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+// Quick Styles
+// ------------------------------------------------------------------
+// Basic changes to the default players. Go to the individual files
+// for more involved changes
+// ------------------------------------------------------------------
+
+// general
+$mejs-radius:       0;
+$mejs-space-after:  spacing(1); // margin-bottom
+
+// Control bar
+$mejs-bar-height:   48px;
+$mejs-bar-bg-start: rgba(find-color(black), 0); // top color
+$mejs-bar-bg-end:   rgba(find-color(black), 0.7); // bottom & fallback color;
+
+// typography - default
+$mejs-fs: font-size(xs);
+$mejs-fw: weight(normal);
+$mejs-ff: 'inherit'; // use 'inherit' if no change is needed
+$mejs-fc: find-color(white);
+
+// icons
+$mejs-icon-play-lg:          'play-lg-alt';
+$mejs-icon-load:             'loading-alt';
+$mejs-icon-play:             'play-alt';
+$mejs-icon-pause:            'pause-alt';
+$mejs-icon-stop:             'stop-alt';
+$mejs-icon-replay:           'replay-alt';
+$mejs-icon-fullscreen:       'fullscreen-alt';
+$mejs-icon-fullscreen-exit:  'fullscreen-exit-alt';
+$mejs-icon-mute:             'vol-on-alt';
+$mejs-icon-unmute:           'vol-off-alt';
+$mejs-icon-cc:               'cc-alt';
+
+// buttons
+$mejs-btn-height:         $base-icon-size;
+$mejs-btn-width:          $mejs-btn-height;
+$mejs-btn-radius:         2px;
+$mejs-btn-bg:             transparent;
+$mejs-btn-bg-hov:         find-color(gray, darkest);
+$mejs-btn-bg-opacity:     0; //0;
+$mejs-btn-bg-opacity-hov: 0.5;
+
+// spacing
+$mejs-space-tb:  px(pad-height($mejs-bar-height, 1, 0));
+$mejs-space-lr:  0.25;
+
+// progress bar
+$mejs-rail-height:  6px;
+$mejs-rail-radius:  $mejs-rail-height;
+$mejs-rail-bg:      find-color(white);
+$mejs-rail-bg-buff: $mejs-rail-bg;
+$mejs-rail-bg-prog: $mejs-rail-bg;
+$mejs-rail-bg-load: $mejs-rail-bg;
+$mejs-rail-bg-cur:  find-color(secondary) !default;
+
+// Time hover
+$mejs-idx-bg:       find-color(black) !default;
+$mejs-idx-opacity:  0.7 !default;
+$mejs-idx-width:    spacing(2) !default;
+$mejs-idx-height:   spacing(1) !default;
+$mejs-idx-radius:   0 !default;
+$mejs-idx-color:    find-color(white) !default;
+$mejs-tri-height:   spacing(5px) !default;
+
+// overlay
+$mejs-over-bg:          find-color(primary, darkest) !default;
+$mejs-over-play-bg:     find-color(primary, darkest) !default;
+$mejs-over-play-bg-hov: find-color(primary) !default;
+$mejs-over-radius:      50% !default;
+
+// vol slider
+$mejs-slider-width:                 $mejs-btn-width !default;
+$mejs-slider-height:                120px !default;
+$mejs-slider-bg:                    $mejs-idx-bg !default;
+$mejs-slider-opacity:               $mejs-idx-opacity !default;
+$mejs-slider-radius:                $mejs-idx-radius !default;
+
+$mejs-slider-rail-mar:              10px;
+$mejs-slider-rail-width:            $mejs-rail-height !default;
+$mejs-slider-rail-height:           $mejs-slider-height - ($mejs-slider-rail-mar * 2) !default;
+$mejs-slider-rail-bg:               $mejs-rail-bg !default;
+$mejs-slider-rail-bg-cur:           $mejs-rail-bg-cur !default;
+
+$mejs-slider-handle-bg:             $mejs-slider-rail-bg !default;
+$mejs-slider-handle-width:          16px !default;
+$mejs-slider-handle-height:         6px !default;
+$mejs-slider-handle-radius:         0 !default;
+
+// vol slider - horizontal
+$mejs-slider-width-hor:             48px;
+$mejs-slider-height-hor:            $mejs-rail-height;
+$mejs-slider-bg-hor:                $mejs-rail-bg;
+$mejs-slider-bg-cur-hor:            $mejs-slider-bg-hor;
+$mejs-slider-radius-hor:            $mejs-slider-height-hor;
+
+// Closed Captions
+$mejs-cc-space:                    5px; // distance between caption and player
+$mejs-cc-sel-bg:                   $mejs-idx-bg;
+$mejs-cc-sel-bg-hov:               find-color(secondary);
+$mejs-cc-sel-opacity:              $mejs-idx-opacity;
+$mejs-cc-sel-radius:               $mejs-idx-radius;
+$mejs-cc-sel-width:                72px;
+$mejs-cc-sel-fc:                   $mejs-idx-color;
+
+$mejs-cc-bg-active:                find-color(secondary);
+
+$mejs-cc-fs:                       size(sm);
+$mejs-cc-fc:                       find-color(white);
+$mejs-cc-fw:                       light;
+$mejs-cc-bg-opacity:               0.7;
+$mejs-cc-bg:                       $mejs-cc-sel-bg;
+
+
+// ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+// imports
+// ------------------------------------------------------------------
+
+@import 'mejs.overlay';
+@import 'mejs.menus';
+@import 'mejs.cc';
+@import 'mejs.video';
+@import 'mejs.audio';
+@import 'mejs.course';
+
+
+.mejs__controls--disabled {
+  &.mejs__container {
+    box-shadow: none;
+  }
+  .mejs__controls {
+    background: find-color(primary, darkest) !important;
+    box-shadow: none;
+  }
+}

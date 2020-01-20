@@ -1,0 +1,464 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Knowledge Check
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// -------------------------------------------------------------------------
+// Variable
+// -------------------------------------------------------------------------
+
+$kc-crd-shift: 12px;
+$kc-crd-bg: find-color(white);
+$kc-crd-mh: rem(388px);
+
+
+
+// -------------------------------------------------------------------------
+// KC Card Wrap
+// -------------------------------------------------------------------------
+
+.kc-cards {
+  position: relative;
+
+  @include breakpoint(medium) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+
+// -------------------------------------------------------------------------
+// KC Card modification
+// -------------------------------------------------------------------------
+
+.c-kcard__btn {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.c-kc-card {
+  position: relative;
+  width: 100%;
+  margin-bottom: 0;
+  background-color: $kc-crd-bg;
+  transition: .3s ease;
+  z-index: 3;
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.35);
+  // transform: translateY($kc-crd-shift * -1);
+
+  @include breakpoint(medium) {
+    min-height: $kc-crd-mh;
+  }
+
+  &:nth-of-type(n+2) {
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: 100%;
+  }
+
+  &:nth-of-type(2) {
+    background-color: darken($kc-crd-bg, 1%);
+      z-index: 2;
+      box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.35);
+  }
+
+  &:nth-of-type(n+3) {
+    background-color: darken($kc-crd-bg, 2%);
+      z-index: 1;
+      box-shadow: none;
+  }
+
+  &:last-child {
+    box-shadow: 0 40px 30px -30px rgba(0, 0, 0, 0.25);
+  }
+
+  &__section {
+    padding: get-spacing(base) get-spacing(lg) get-spacing(lg);
+    min-height: $kc-crd-mh - rem(66px);
+  }
+
+  &__footer {
+    overflow: auto;
+    padding: get-spacing(sm) get-spacing(lg);
+    background-color: find-color(gray, lightest);
+  }
+
+
+  // question
+  &__question {
+    @include typeset(type-lg);
+    font-weight: weight(light);
+    color: find-color(accent);
+  }
+
+
+  &__correct{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    // color: find-color(type, text);
+    color: find-color(white);
+    border: 1px solid find-color(gray, border);
+    background-color: find-color(secondary, dark);
+    // border-bottom: 12px solid find-color(secondary);
+
+    h4 {
+      // color: find-color(success);
+      color: find-color(white);
+      @include typeset(type-xxxl);
+      font-weight: weight(light);
+      margin-bottom: get-spacing(sm);
+    }
+
+    p {
+      max-width: rem(600px);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+  }
+
+  &__incorrect {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    // color: find-color(type, text);
+    color: find-color(white);
+    border: 1px solid find-color(gray, border);
+    background-color: find-color(alert);
+    // border-bottom: 12px solid find-color(secondary);
+
+    h4 {
+      // color: find-color(success);
+      color: find-color(white);
+      @include typeset(type-xxxl);
+      font-weight: weight(light);
+      margin-bottom: get-spacing(sm);
+    }
+
+    p {
+      max-width: rem(600px);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+  }
+
+
+  &__feedback {
+    position: absolute;
+    top: 9px;
+    right: 2%;
+    left: 2%;
+    display: table-cell;
+    height: 1px;
+    width: 1px;
+    background-color: find-color(white);
+    text-align: center;
+    transform: translateY(40%);
+    transition: opacity 0.2s, transform 0.3s ease-out, box-shadow 0.3s ease-out;
+
+    &.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      width: 96%;
+      height: $kc-crd-mh - rem(87px);
+      box-shadow: 0 40px 30px -30px rgba(0, 0, 0, 0.25);
+    }
+
+  }
+
+
+
+  &__inner {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    padding: get-spacing(lg);
+    transform: translateY(-50%);
+  }
+
+  &__btns {
+    @include breakpoint(medium) {
+      float: left;
+    }
+  }
+
+ &__count {
+    @include breakpoint(medium) {
+      float: right;
+
+      > span {
+        display: inline-block;
+        padding-left: rem(6px);
+        position: relative;
+        top: 6px;
+        // transform: translateY(-50%);
+      }
+    }
+  }
+
+}
+
+
+#strResetTxt {
+  position: absolute;
+  top:0;
+  bottom:0;
+  left: 0;
+  right: 0;
+  color: find-color(white);
+  // border: 1px solid find-color(gray, border);
+  background-color: find-color(accent);
+  // border-bottom: 12px solid find-color(accent, dark);
+
+  h4 {
+    color: find-color(white);
+    @include typeset(type-xxl);
+    font-weight: weight(light);
+    margin-bottom: get-spacing(sm);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: rem(700px);
+    position: relative;
+    top: 50%;
+    padding: get-spacing(lg);
+    transform: translateY(-50%);
+  }
+
+
+}
+
+
+
+// -------------------------------------------------------------------------
+// KC Card Avatar
+// -------------------------------------------------------------------------
+
+  .kc-cards--avatar {
+    margin-top: 12px;
+
+    .c-kc-card__content {
+      overflow: auto;
+    }
+
+    .c-kc {
+      padding: 0 get-spacing(base) get-spacing(sm);
+      margin-top: 0;
+
+      // @include breakpoint(medium) {
+      //   float: right;
+      //   @include grid-column-size(9);
+      // }
+
+    }
+
+    .c-kc-card__question {
+      padding: get-spacing(base) get-spacing(base) 0;
+
+      // @include breakpoint(medium) {
+      //   float: left;
+      //   @include grid-column-size(3);
+      // }
+
+    }
+
+    .c-kc-card__section {
+      padding: 0;
+    }
+
+    .c-kc__fieldset {
+      border: 0;
+    }
+
+    .c-kc__label {
+      background-color: find-color(white);
+      margin-bottom: get-spacing(xxs);
+      @include typeset(type-sm);
+      border: 1px solid find-color(accent, light);
+      // border-radius: 24px;
+      @include transition;
+      // box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.35);
+
+      &:not(:last-child) {
+        border: 1px solid find-color(accent, light);
+      }
+
+      &:hover {
+        border-color: find-color(primary, darkest);
+        background-color: find-color(primary, darkest);
+        color: find-color(white);
+
+      }
+
+      @include breakpoint(medium) {
+        float: left;
+        width: 32%;
+        margin-right: 0.5%;
+        margin-left: 0.5%;
+        white-space: nowrap;
+        overflow: hidden;
+
+        &.c-kc-expand {
+          width: 65%;
+        }
+
+      }
+
+    }
+
+  }
+
+
+///////////////////////////////////////////////////////////////////////
+//
+// Jeopardy
+//
+// ///////////////////////////////////////////////////////////////////
+
+.c-jeopardy {
+  @include breakpoint(medium) {
+    min-height: rem(466px);
+  }
+
+  &__host {
+
+    vertical-align: middle;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(3);
+      background-image: url(../img/jeopardy-host.png);
+      background-repeat: no-repeat;
+      background-position: center bottom;
+    }
+
+  }
+
+  &__score {
+    display: block;
+    text-align: center;
+    max-width: 80%;
+    min-height: 100px;
+    margin-top: 24px;
+    padding: get-spacing(sm);
+    border-radius: 6px;
+    background-color: find-color(white);
+    box-shadow: 0 20px 20px -15px rgba(0,0,0,0.5);
+    border: 1px solid find-color(gray, lightest);
+    margin: get-spacing(base) auto;
+  }
+
+  &__score-title {
+    display: block;
+    @include typeset(type-lg);
+    font-weight: weight(bold);
+    color: find-color(accent);
+    margin-bottom: get-spacing(sm);
+    border-radius: 3px;
+  }
+
+  &__total {
+    display: block;
+    padding: get-spacing(sm);
+    border: 1px solid find-color(gray, border);
+    background-color: find-color(gray, lightest);
+    @include typeset(type-xl);
+    font-weight: weight(bold);
+    margin-bottom: 0;
+  }
+
+  &__buttons {
+
+    @include breakpoint(medium) {
+      @include grid-column-size(2.5);
+      vertical-align: bottom;
+    }
+
+  }
+
+  &__amounts {
+    margin: 0 auto;
+  }
+
+  &__amt {
+    @include typeset(type-xxl);
+    font-weight: weight(bold);
+    width: 200px;
+    height: 92px;
+    color: find-color(gray, darkest);
+    background-image: url(../img/box-pattern.jpg);
+    background-repeat: repeat-x;
+    border: 1px solid #3f2b1f;
+    border-bottom: 0;
+    cursor: pointer;
+
+    &:disabled {
+      text-decoration: line-through;
+      color: rgba(#3f2b1f, 0.6);
+    }
+  }
+
+  &__content-wrap {
+    padding: get-spacing(base);
+    vertical-align: middle;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(6.5);
+    }
+
+  }
+
+  &__content {
+    position: relative;
+    padding: get-spacing(base);
+    background-color: find-color(white);
+    box-shadow: 0 20px 20px -15px rgba(0,0,0,0.5);
+    border-radius: 6px;
+    width: 100%;
+    @include gts-box-stripe;
+
+    @include breakpoint(medium) {
+      min-height: rem(418px);
+    }
+
+  }
+
+  &__inst {
+    @include typeset(type-xxl);
+    font-weight: weight(light);
+    text-align: center;
+    position: relative;
+    margin-top: get-spacing(md);
+    color: find-color(accent);
+  }
+
+
+  &__fb-hdr {
+    @include typeset(type-lg);
+    margin-bottom: get-spacing(sm);
+  }
+
+
+
+  &__correct {
+    color: find-color(success, dark);
+    margin-bottom: get-spacing(1);
+  }
+
+  &__incorrect {
+    color: find-color(alert);
+    margin-bottom: get-spacing(1);
+  }
+
+}

@@ -1,0 +1,48 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE PROGRESS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$crs-progress-mh: get-height(36px);
+$crs-progress-fs: font-size(sm);
+$crs-progress-fc: find-color(white);
+
+$crs-percent-mh: rem(30px);
+$crs-percent-bg: find-color(primary, dark);
+$crs-percent-fw: weight(light);
+$crs-percent-lr: rem(9px);
+$crs-percent-tb: pad-height($crs-percent-mh,$crs-progress-fs,0);
+
+$crs-progress-tb: (rem($crs-progress-mh) - rem($crs-percent-mh)) / 2;
+
+
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.c-course-progress {
+  position: relative;
+  display: block;
+  padding: $crs-progress-tb;
+  font-size: $crs-progress-fs;
+  line-height: $crs-progress-fs;
+  letter-spacing: 0.075em;
+  color: $crs-progress-fc;
+
+  &__percent {
+    display: inline-block;
+    padding: $crs-percent-tb $crs-percent-lr;
+    margin-right: rem(3px);
+    font-style: normal;
+    font-weight: $crs-percent-fw;
+    background-color: $crs-percent-bg;
+    border-top-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+  }
+
+}

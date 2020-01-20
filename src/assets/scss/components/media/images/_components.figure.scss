@@ -1,0 +1,56 @@
+///////////////////////////////////////////////////////////////////////
+//
+// FIGURE STYLES
+//
+// ///////////////////////////////////////////////////////////////////
+
+$fig-bg: find-color(white);
+$fig-bw: spacing(xxs);
+$fig-bc: find-color(secondary);
+$fig-fc: null;
+$fig-fs: font-size(sm);
+$fig-lh: spacing(0.75);
+$fig-mar: $fig-bw;
+
+// ------------------------------------------------------------------
+// Figure
+// ------------------------------------------------------------------
+.c-figure {
+  position: relative;
+  height: 100%;
+  margin-bottom: $paragraph-margin-bottom;
+  display: inline-block;
+
+  @include breakpoint(medium) {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__caption {
+    @include set-height(base,$fig-lh);
+    font-size: $fig-fs;
+    color: $fig-fc;
+
+    &--uncover,
+    &--cover {
+      background-color: $fig-bg;
+      padding-left: spacing(0.5);
+      padding-right: spacing(0.5);
+      border-top: $fig-bw solid $fig-bc;
+    }
+
+    &--cover {
+      position: absolute;
+      bottom: $fig-mar;
+      left: $fig-mar;
+      right: $fig-mar;
+    }
+
+  }
+
+  > img {
+    width: 100%;
+  }
+
+}

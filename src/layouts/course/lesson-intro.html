@@ -1,0 +1,28 @@
+{{> course-html-head main="u-bg-truck-1" lesson="" }}
+
+<article class="o-box o-mh-pad l-lesson-intro u-bs-common">
+
+  <aside class="o-box__cell l-lesson-intro__media">
+
+    <div class="l-lesson-intro__sub" data-lsn="{{> course-titles type='lesson-number'}}">
+      Lesson {{> course-titles type="lesson-number"}}
+    </div>
+    <h3 class="l-lesson-intro__heading">
+      {{> course-titles type="lesson"}}
+    </h3>
+
+  </aside>
+  <section class="o-box__cell l-lesson-intro__body">
+    {{> page-title type="lsn"}}
+    <div class="o-pad-box">
+      {{> body}}
+    <div class="l-lesson-intro__avatar">
+      <img src="{{root}}assets/img/206-avatar-corner.png" alt="Female avatar pointer to content.">
+    </div>
+    </div>
+  </section>
+</article>
+
+
+{{> course-html-footer }}
+

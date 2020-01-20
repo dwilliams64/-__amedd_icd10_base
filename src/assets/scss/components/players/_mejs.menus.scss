@@ -1,0 +1,59 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Time Hover
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Variables
+// -------------------------------------------------------------------
+// change in components/components.media-player
+
+// Time Float
+// -------------------------------------------------------------------
+.mejs__time-float {
+  position: absolute;
+  top: (($mejs-tri-height * 2) + $mejs-idx-height) * -1;
+  display: none;
+  width:  $mejs-idx-width;
+  height: $mejs-idx-height;
+  margin-left: ($mejs-idx-width / 2) * -1;
+  color: $mejs-idx-color;
+  text-align: center;
+  background: rgba($mejs-idx-bg, $mejs-idx-opacity);
+  border-radius: $mejs-idx-radius;
+}
+
+.mejs__time-float-current {
+  position: absolute;
+  left: 0;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: $mejs-idx-height;
+}
+
+.mejs__time-float-corner {
+    position: absolute;
+    top: $mejs-idx-height;
+    left: 50%;
+    margin-left: $mejs-tri-height * -1;
+    display: block;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    @include css-triangle($mejs-tri-height, rgba($mejs-idx-bg,$mejs-idx-opacity), down);
+}
+
+.mejs__long-video .mejs__time-float {
+    width: $mejs-idx-width;
+}
+
+.mejs__long-video .mejs__time-float-current {
+    width: $mejs-idx-width;
+}
+
+.mejs__long-video .mejs__time-float-corner {
+    left: 50%;
+}

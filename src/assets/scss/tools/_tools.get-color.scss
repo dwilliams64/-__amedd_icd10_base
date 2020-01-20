@@ -1,0 +1,23 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Colors - get color
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// -------------------------------------------------------------------------
+// Summary:   A function to define a color, a variation of that color and the opcity of that color.
+// Map used:  $course-colors in _gts
+// -------------------------------------------------------------------------
+
+@function find-color( $name: primary, $variant: default) {
+  $color: null;
+  // Get the color spectrum
+  $color-spectrum: map-get($course-palette, $name);
+  // Get the color variant
+  @if $color-spectrum {
+    $color: map-get($color-spectrum, $variant);
+  }
+  @return $color;
+}

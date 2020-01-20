@@ -1,0 +1,43 @@
+{{> course-html-head }}
+<iframe src="04/04_011.html" style="
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #42134a;
+  z-index: 999998;"
+  title="Content Frame" 
+  allowtransparency="true"
+  id="contentframe">
+    Your browser doesn't support iframes
+</iframe>
+<input
+  id="autoplay"
+  name="course-settings"
+  title="Toggle AutoPlay"
+  type="checkbox"
+  aria-hidden="true" style="display: none">
+<input
+  id="cc-auto"
+  name="course-settings"
+  title="Toggle closed captions"
+  type="checkbox"
+  aria-hidden="true" style="display: none">
+
+{{> course-html-footer }}
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/frame.js"></script>
+<script src="assets/js/scormfunctions.js"></script>
+<script>
+window.onload = function() { doStart(); }
+window.onunload = function() { doUnload(); }
+window.onbeforeunload = function() { doUnload(); }
+</script>

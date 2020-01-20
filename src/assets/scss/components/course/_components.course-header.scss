@@ -1,0 +1,32 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE HEADER
+//
+// ///////////////////////////////////////////////////////////////////
+
+.c-course-header {
+  @include grid-row($size:null);
+  // background-color: find-color(primary,darkest);
+
+  // &__nav { overflow: hidden; }
+
+  &__modules {
+    overflow: hidden;
+    background-color: find-color(primary, dark);
+  }
+
+  @include breakpoint(medium) {
+
+    &__nav {
+      @include grid-column-size(4);
+      float: left;
+    }
+
+    &__modules {
+      @include grid-column-size(8);
+      float: right;
+    }
+
+  }
+
+}

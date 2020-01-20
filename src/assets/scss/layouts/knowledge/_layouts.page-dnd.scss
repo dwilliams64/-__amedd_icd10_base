@@ -1,0 +1,278 @@
+///////////////////////////////////////////////////////////////////////
+//
+// DRAG AND DROP
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+$dnd-dir-fs:  font-size(sm);
+$dnd-dir-lh:  line-height(spacing(24px));
+$dnd-dir-fc:  find-color(text,light);
+$dnd-dir-mb:  0;
+
+$dnd-drag-mh: rem(42px);
+$dnd-drag-lh: line-height(1);
+$dnd-drag-bw: 2px;
+$dnd-drag-bc: find-color(secondary,lighter);
+$dnd-drag-bg: find-color(white);
+$dnd-drag-mb: spacing(0.25);
+$dnd-drag-tb: pad-height($dnd-drag-mh,$dnd-drag-lh,$dnd-drag-bw);
+$dnd-drag-lr: spacing(0.75);
+
+$dnd-drag-bc-h: find-color(secondary);
+$dnd-drag-bg-h: null;
+
+$dnd-drop-mh: rem(42px);
+$dnd-drop-lh: line-height(1);
+$dnd-drop-bw: 2px;
+$dnd-drop-bc: find-color(gray,lightest);
+$dnd-drop-bg: find-color(white);
+$dnd-drop-mb: spacing(0.25);
+$dnd-drop-tb: pad-height($dnd-drop-mh,$dnd-drop-lh,$dnd-drop-bw);
+$dnd-drop-lr: spacing(0.75);
+
+$dnd-drop-bc-h: find-color(secondary);
+$dnd-drop-bg-h: find-color(white);
+
+$dnd-drag-is: rem(30px);
+$dnd-drag-is-fc: inherit;
+$dnd-drag-is-bg: find-color(gray,lightest);
+$dnd-drag-is-fc-h: inherit;
+$dnd-drag-is-bg-h: $dnd-drag-bc-h;
+$dnd-drag-is-space: (($dnd-drag-mh - rem($dnd-drag-bw * 2) ) - $dnd-drag-is) / 2;
+
+
+
+.l-dnd {
+  display: block;
+  background-color: find-color(white);
+
+  &__directions {
+    @include gts-box-common(
+      $pt: spacing(0.75),
+      $pb: 0
+    );
+    margin-bottom: $dnd-dir-mb;
+    font-size: $dnd-dir-fs;
+    line-height: $dnd-dir-lh;
+    color: $dnd-dir-fc;
+    .c-label { margin-right: 4px; }
+    // border-bottom: 1px solid find-color(border);
+  }
+
+
+  &__body {}
+
+
+  &__choices {
+    list-style: none;
+    margin: 0;
+    @include gts-box-common();
+    counter-reset: dndchoice;
+  }
+
+
+  &__drag {
+    position: relative;
+    padding: $dnd-drag-tb $dnd-drag-lr $dnd-drag-tb (($dnd-drag-lr - $dnd-drag-is-space) + $dnd-drag-is);
+    margin-bottom: $dnd-drag-mb;
+    border: $dnd-drag-bw solid $dnd-drag-bc;
+    border-radius: $dnd-drag-mh;
+    background-color: $dnd-drag-bg;
+    cursor: pointer;
+    // transition: all .3s;
+    z-index: 1;
+
+    &:before {
+      counter-increment: dndchoice;
+      content: counter(dndchoice);
+      position: absolute;
+      top: $dnd-drag-is-space;
+      left: $dnd-drag-is-space;
+      height: $dnd-drag-is;
+      width: $dnd-drag-is;
+      line-height: px($dnd-drag-is);
+      text-align: center;
+      border-radius: 50%;
+      background-color: $dnd-drag-is-bg;
+      // transition: all .3s;
+    }
+
+    &:hover {
+      background-color: $dnd-drag-bg-h;
+      border-color: $dnd-drag-bc-h;
+      box-shadow: $base-shadow-common;
+      // transform: translateY(-6px);
+
+      &:before {
+        color: $dnd-drag-is-fc-h;
+        background-color: $dnd-drag-is-bg-h;
+      }
+
+    }
+
+  }
+
+
+  &__answers {
+    @include gts-box-common(lr);
+
+    @include breakpoint(medium) {
+      padding-left: 0;
+    }
+
+  }
+
+  &__drop {
+    @include clearfix;
+    position: relative;
+    padding: $dnd-drop-tb $dnd-drop-lr;
+    margin-bottom: $dnd-drop-mb;
+    background-color: $dnd-drop-bg;
+    border: $dnd-drop-bw solid $dnd-drop-bc;
+    border-radius: 12px;
+    transition: all .3s;
+
+    &:hover {
+      background-color: $dnd-drop-bg-h;
+      border-color: $dnd-drop-bc-h;
+    }
+
+  }
+
+  &__drop-text {
+
+    @include breakpoint(medium) {
+      float: left;
+      width: 75%;
+      padding-right: spacing(0.25);
+    }
+
+  }
+
+  [data-dd-form] {
+    text-align: right;
+    // margin-top: $dnd-drop-tb;
+    counter-reset: dndanswer;
+
+    @include breakpoint(medium) {
+      float: right;
+      text-align: right;
+      width: 33%;
+    }
+  }
+
+
+  &__footer {
+    @include clearfix;
+    @include gts-box-common($pt:0);
+  }
+
+  &__btn {
+    margin-bottom: 0;
+    float: right;
+    margin-left: spacing(0.5);
+  }
+
+
+}
+
+.resetdrop {
+  // border: 2px solid red;
+  &:before { content: none; }
+}
+
+
+
+.ui-droppable {
+  &.is-hovered {
+    border-color: find-color(secondary);
+  }
+
+}
+
+
+
+.l-dnd__answers--tf {
+  @include breakpoint(medium) {
+    .l-dnd__drop-text {
+      width: 67%;
+    }
+    [data-dd-form] {
+      width: 13%;
+    }
+  }
+}
+
+
+// DO NO DROP CONTROLS
+
+[data-dd-form] {
+  @include clearfix;
+  // background-color: find-color(white);
+  border-radius: 6px;
+  // padding: spacing(0.25);
+  @include breakpoint(medium) {
+  }
+}
+
+.l-dnd__label {
+  position: relative;
+  display: block;
+  float: left;
+  text-align: right;
+  padding-left: spacing(0.125);
+  font-size: font-size(base);
+  line-height: line-height(1);
+  transition: all .25s ease;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+}
+
+.l-dnd__input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+
+  &:checked ~ .l-dnd__control {
+    color: find-color(secondary,darkest);
+    box-shadow: inset 0 0 0 12px find-color(secondary);
+    // background-color: find-color(secondary);
+  }
+
+}
+
+.l-dnd__control {
+  position: relative;
+  display: table-cell;
+  width: spacing(1);
+  height: spacing(1);
+  // background-color: find-color(white);
+  box-shadow: inset 0 0 0 2px find-color(border);
+  border-radius: 50%;
+  transition: all .3s ease;
+
+  &:before {
+    counter-increment: dndanswer;
+    content: counter(dndanswer);
+    list-style-type: alpha;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    color: inherit;
+    font-size: font-size(sm);
+    line-height: 24px;
+    text-align: center;
+    display: block;
+    transition: all .3s ease;
+  }
+
+  // background-color: red;
+
+}
+

@@ -1,0 +1,78 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MEJS Overlay styles
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Variables
+// -------------------------------------------------------------------
+// change in components/components.media-player
+
+// Styles
+// -------------------------------------------------------------------
+
+.mejs__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: $mejs-radius;
+  z-index: 1;
+}
+
+.mejs__layer { z-index: 1; }
+
+.mejs__overlay-play { cursor: pointer; }
+
+.mejs__overlay-button {
+  @include sprite-image;
+  @include sprite-center($mejs-icon-play-lg);
+  @include sprite($mejs-icon-play-lg);
+  background-repeat: no-repeat;
+  background-color: rgba($mejs-over-play-bg, 0.4);
+  border-radius: $mejs-over-radius;
+  overflow: hidden;
+  z-index: 1;
+  @include transition();
+}
+
+.mejs__overlay:hover > .mejs__overlay-button {
+  background-color:rgba($mejs-over-play-bg-hov, 0.7);
+}
+
+.mejs__overlay-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include sprite-width($mejs-icon-load);
+  @include sprite-height($mejs-icon-load);
+  @include sprite-center($mejs-icon-load);
+}
+
+.mejs__overlay-loading-bg-img {
+  display: block;
+  @include sprite-image;
+  @include sprite($mejs-icon-load);
+  z-index: 1;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  animation: mejs-loading-spinner 1s linear infinite;
+}
+
+@-moz-keyframes mejs-loading-spinner {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes mejs-loading-spinner {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes mejs-loading-spinner {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

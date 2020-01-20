@@ -1,0 +1,118 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE LESSON COVERS AND OBJECTIVES ETC...
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+  $lsn-circ-mh: spacing(3);
+  $lsn-img-w:   96px;
+  $lsn-img-h:   54px;
+  $lsn-class:   l-lesson-intro;
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.#{$lsn-class} {
+  background-color: rgba(find-color(accent, dark), 0.75);
+
+
+  &__body {
+    background-color: $box-background;
+    @include breakpoint(medium) {
+      @include grid-column-size(8);
+    }
+  }
+
+
+  &__media {
+    padding: spacing(2.5) spacing(1);
+    color: find-color(white);
+    text-align: center;
+    z-index: 0;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(4);
+      vertical-align: middle;
+    }
+  }
+
+
+  &__sub {
+    position: relative;
+    font-size: font-size(md);
+    line-height: line-height(1.25);
+    margin-bottom: 0;
+    color: find-color(secondary,light);
+
+
+    &:before {
+      content: attr(data-lsn);
+      display: block;
+      width: $lsn-circ-mh;
+      height: $lsn-circ-mh;
+      margin: 0 auto spacing(xs);
+      font-size: font-size(36px);
+      font-weight: weight(normal);
+      padding: pad-height($lsn-circ-mh,1,6px) 0;
+      // line-height: $lsn-circ-mh - rem(4px);
+      color: find-color(white);
+      border-radius: 50%;
+      border: 4px solid find-color(secondary);
+    }
+
+  }
+
+
+  &__heading {
+    font-size: font-size(24px);
+    line-height: line-height(1.25);
+    font-weight: weight(light);
+    color: find-color(white);
+  }
+
+
+  &__avatar {
+    display: none;
+
+    @include breakpoint(medium) {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+
+}
+
+
+
+// KEY OBJECTIVES
+// -------------------------------------------------------------------
+.#{$lsn-class} {
+
+  &--key {
+
+    // .#{$lsn-class}__body {}
+
+    .#{$lsn-class}__media {
+
+    }
+    .#{$lsn-class}__sub {
+
+      &:before {
+        content:'';
+        background-image: url(../img/lsn-key-icon.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto;
+      }
+
+    }
+  }
+
+}

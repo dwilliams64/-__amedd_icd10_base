@@ -1,0 +1,633 @@
+///////////////////////////////////////////////////////////////////////
+//
+// LISTS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$list-bg-color:     $body-background;
+$list-class:        'c-list';
+$list-child-item:   'c-list__item';
+$list-child-target: 'c-list__target';
+$list-sub-name:     'c-list__sub';
+
+
+
+// STYLES
+// -------------------------------------------------------------------
+$list-mh: get-height(base); //default height
+$list-bg: null;
+
+$list-bc: find-color(border);
+$list-bw: 1px;
+$list-br: 2px;
+
+$list-fs: null;
+$list-fc: null;
+$list-fw: null;
+
+$list-lh: spacing(1);
+$list-lr: spacing(sm); // left/right padding, top/bottom padding is auto generated
+
+$list-bg-h: find-color(primary);//find-color(gray, bg);
+$list-bc-h: $list-bg-h;
+$list-fc-l: null;
+$list-fc-h: find-color(white);
+
+// bullets
+$list-bul-mh:       6px;
+$list-bul-mr:       9px;
+$list-bul-bg:       find-color(secondary);
+
+// icons
+$list-i-mh:     $base-icon-size; //min-height
+$list-i-mr:     9px; //margin-right
+
+$allow-list-sizes: (md lg xl xxl huge);
+
+
+//lesson list
+$list-lsn-mh: 48px;
+$list-lsn-is: $base-icon-size;
+$list-lsn-mr: spacing(0.5);
+$list-lsn-fs: font-size(md);
+$list-lsn-fw: null;//weight(normal);
+$list-lsn-fc: find-color(primary);
+$list-lsn-space: (rem($list-lsn-mh) - rem($list-lsn-is)) / 2;
+$list-lsn-lr: rem($list-lsn-mh) + rem($list-lsn-mr);
+
+
+// -------------------------------------------------------------------
+// Mixins
+// -------------------------------------------------------------------
+
+// Bare list styles
+// -------------------------------------------------------------------
+@mixin list-bare {
+  list-style: none;
+  margin-left: 0;
+
+}
+
+
+// Base list styles
+// -------------------------------------------------------------------
+@mixin list-base(
+  $bg: $list-bg,
+  $br: $list-br
+) {
+  @include list-bare;
+  @if $bg != transparent {
+    background-color: $bg;
+  }
+  border-radius: $br
+}
+
+
+
+// list item
+// -------------------------------------------------------------------
+@mixin list-block-item (
+  $mh: $list-mh,
+  $bw: $list-bw,
+  $bc: transparent,
+  $fs: $list-fs,
+  $fc: $list-fc,
+  $fw: $list-fw,
+  $lh: null,
+  $lr: null
+) {
+
+  $tb: px(pad-height($mh, $lh, $bw));
+  position: relative;
+  padding-top: $tb;
+  padding-bottom: $tb;
+  padding-left: $lr;
+  padding-right: $lr;
+  font-size: $fs;
+  font-weight: $fw;
+  color: $fc;
+  line-height: $lh;
+  border-width: $bw;
+  border-style: solid;
+  border-color: $bc;
+
+  &:not(:first-child) {
+    margin-top: $bw * -1;
+  }
+
+}
+
+
+
+// list target
+// -------------------------------------------------------------------
+@mixin list-block-target (
+  $mh:   $list-mh,
+  $bw:   $list-bw,
+  $bg:   $list-bg,
+  $bg-h: $list-bg-h,
+  $fc-l: $list-fc-l,
+  $fc-h: $list-fc-h,
+  $lh:   $list-lh,
+  $lr:   $list-lr,
+  $sub-list: $list-sub-name
+) {
+
+  $tb: pad-height($mh, $lh, $bw);
+
+  display: block;
+  padding-top: $tb;
+  padding-bottom: $tb;
+  padding-left: $lr;
+  padding-right: $lr;
+  margin-left: $lr * -1;
+  margin-right: $lr * -1;
+  margin-top: $tb * -1;
+  margin-bottom: $tb * -1;
+  color: $fc-l;
+  background-color: $bg;
+
+  &:before { display: none; }
+
+  &:hover,
+  &:focus {
+    color: $fc-h;
+    background-color: $bg-h;
+  }
+
+}
+
+
+
+// list - lined
+// -------------------------------------------------------------------
+
+@mixin list-lined (
+  $type: lined,
+  $bc: $list-bc,
+  $lr: null,
+  $type: lined,
+  $child-item: $list-child-item
+) {
+
+  padding-left: $lr;
+  padding-right: $lr;
+
+  border-bottom-color: $bc;
+  border-top-color: $bc;
+  border-left: 0;
+  border-right: 0;
+
+  @if $type == divided {
+    &:first-child {
+      border-top-color: transparent;
+    }
+    &:last-child {
+      border-bottom-color: transparent;
+    }
+  }
+
+}
+
+
+
+// list modifier - Circled Numbers
+// -------------------------------------------------------------------
+
+@mixin list-circled-number (
+  $mh: 28px,
+  $lmh: $list-mh,
+  $bg: find-color(secondary,light),
+  $bw: 2px,
+  $bc: $bg,
+  $fs: font-size(sm),
+  $fc: find-color(secondary, dark),
+  $fw: weight(medium),
+  $mr: $mh / 2,
+  $connect-bg: $bc,
+  $connect-mh: 2px,
+  $show: hollow,
+  $child-item: $list-child-item
+) {
+
+  $connect-calc: rem($mh) - rem($bw * 2);
+  $connect-height: percentage($connect-calc/rem($lmh));//em($connect-calc, $lmh);
+
+  @if $show == hollow {
+
+    counter-increment: circ-num;
+    padding-left: rem($mh) + rem($mr) !important;
+
+    // circled number
+    &:before {
+      content: counter(circ-num);
+      position: relative;
+      top: rem($bw / 2) * -1;
+      margin-left: rem(($mh + $mr) * -1);
+      margin-right: rem($mr);
+      display: inline-block;
+      height: rem($mh);
+      width: rem($mh);
+      font-size: $fs;
+      line-height: rem($mh) - rem(($bw * 2));
+      font-weight: $fw;
+      color: $fc;
+      border-width: $bw;
+      border-style: solid;
+      border-color: $bc;
+      border-radius: 50%;
+      text-align: center;
+      // top: -1px;
+    }
+
+  }
+
+  @if $show == fill {
+
+    &:before { background-color: $bg; }
+
+  }
+
+  @if $show == connect {
+
+    &:not(:last-child) {
+      &:after {
+        content:'';
+        position: absolute;
+        top: 100%;
+        transform: translateY(-50%);
+        // top: calc(100% - #{$connect-height / 2});
+        left: $mh / 2;
+        display: block;
+        margin-left: ($connect-mh / 2) * -1;
+        height: $connect-height;
+        width: $connect-mh;
+        background-color: $connect-bg;
+      }
+    }
+
+  }
+
+  @if $show == boxed {
+    padding-left: rem($mh) + rem($mr * 2) !important;
+  }
+
+}
+
+
+
+// list modifier - bordered
+// -------------------------------------------------------------------
+
+@mixin list-border(
+  $bc: $list-bc,
+  $lr: $list-lr,
+  $br: $list-br,
+  $child-item: $list-child-item
+) {
+
+  padding-left: $lr;
+  padding-right: $lr;
+  border-color: $bc;
+
+  &[class*='c-list__item--'] {
+    padding-left: rem($list-i-mh) + rem($list-i-mr) + rem(0.5);
+  }
+
+  &:first-child {
+    border-top-left-radius: $br;
+    border-top-right-radius: $br;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: $br;
+    border-bottom-right-radius: $br;
+  }
+
+  &.#{$child-item}[class*="-icon"] {
+    padding-left: rem($list-i-mh + ($list-i-mr * 2) );
+  }
+
+}
+
+
+
+// list modifier - icon
+// -------------------------------------------------------------------
+
+@mixin list-icon (
+  $icon-name: 'check',
+  $bg: null, //find-color(gray,lightest),
+  $imh: $list-i-mh,
+  $imr: $list-i-mr,
+  $opacity: 1,
+  $parent: lined
+) {
+
+  $icon-pad: rem($imh) + rem($imr);
+
+  padding-left: $icon-pad;
+
+  &:before {
+    content: '';
+    position: absolute;
+    margin-left: $icon-pad * -1;
+    display: inline-block;
+    @include sprite-image;
+    @include sprite(#{$icon-name});
+    background-color: $bg;
+    border-radius: $imh;
+
+    @if $opacity < 1 {
+      opacity: $opacity;
+    }
+    vertical-align: middle;
+  }
+
+}
+
+
+
+// list modifier - striped
+// -------------------------------------------------------------------
+
+@mixin list-striped (
+  $bg-odd: find-color(gray,bg),
+  $bg-even: null,
+  $lr: $list-lr,
+  $bc: find-color(gray,lightest)
+) {
+
+  @include list-lined($lr: $list-lr, $bc: $bc);
+
+  &:nth-child(odd) {
+    background-color: $bg-odd;
+  }
+
+  &:nth-child(even) {
+    background-color: $bg-even;
+  }
+
+  &[class*="-icon"] {
+    padding-left: rem($list-i-mh + ($list-i-mr * 1.5) );
+  }
+
+}
+
+
+
+// combine items
+// -------------------------------------------------------------------
+@mixin gts-lists (
+  // $lh: $base-line-height,
+  // $bw: $list-border-width,
+  // $mh: md,
+  // $lh: $base-line-height,
+  $child-item: $list-child-item,
+  $child-target: $list-child-target,
+  $sub-list: $list-sub-name
+){
+
+  .#{$list-class} {
+    @include list-base;
+
+    // list lined modifier
+    &--lined {
+      .#{$child-item} {
+        @include list-lined;
+      }
+    }
+
+    // list circled number modifier
+    &--circled,
+    &--circled-fill {
+      .#{$child-item} {
+        @include list-circled-number();
+      }
+    }
+
+    // fills circle
+    &--circled-fill {
+      .#{$child-item} {
+        @include list-circled-number($show:fill);
+      }
+    }
+
+    // add connecting line between circles
+    &.-connect {
+      .#{$child-item} {
+        @include list-circled-number($show:connect);
+      }
+    }
+
+    // large circle
+    &--circled-lg {
+      font-size: font-size(md);
+      .#{$child-item} {
+        @include list-circled-number($mh:36px,$fs:font-size(md));
+      }
+    }
+
+    // list divided modifier
+    &--divided {
+      .#{$child-item} {
+        @include list-lined($type: divided);
+      }
+    }
+
+    // list border modifier
+    &--border {
+      .#{$child-item} {
+        @include list-border;
+      }
+
+      &[class*="-icon-"] {
+        .#{$child-item} {
+          @include list-circled-number($show:boxed);
+        }
+      }
+
+      &.#{$list-class}--circled {
+        .#{$child-item} {
+          @include list-circled-number($show:boxed);
+        }
+      }
+
+    }
+
+    // Alternating stripes
+    &--striped {
+      .#{$child-item} {
+        @include list-striped;
+      }
+    }
+
+    // alternative stripes
+    &--striped-inverse {
+      .#{$child-item} {
+        @include list-striped(
+          $bg-odd: darken(find-color(primary,darker),3%),
+          $bg-even:find-color(primary,darker),
+          $bc: darken(find-color(primary,darker),3%)
+        );
+        color: find-color(white);
+      }
+    }
+
+    // alternative
+    &--inverse {
+      .#{$child-item} {
+        border-color: lighten(find-color(primary,darker),10%);
+        color: find-color(white);
+      }
+    }
+
+    // Lessons
+
+    &--lessons,
+    &--lesson-check,
+    &--lesson-check-fill {
+      counter-reset:lessons-counter;
+      .#{$child-item} {
+        @include list-border($lr: $list-lsn-lr);
+        // acts as bg color
+        box-shadow: inset $list-lsn-mh 0 0 find-color(gray,bg);
+        &:before {
+          content: counter(lessons-counter);
+          counter-increment:lessons-counter;
+          position: absolute;
+          top: 50%;//$list-lsn-space;
+          left: $list-lsn-space;
+          height: $base-icon-size;
+          width: $base-icon-size;
+          font-size: $list-lsn-fs;
+          font-weight: $list-lsn-fw;
+          line-height: $base-icon-size;
+          text-align: center;
+          color: $list-lsn-fc;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    &--lesson-check {
+      .#{$child-item} {
+        &:before {
+          content:'';
+          @include sprite-image;
+          @include sprite(correct);
+        }
+      }
+    }
+
+    &--lesson-check-fill {
+      .#{$child-item} {
+        &:before {
+          content:'';
+          @include sprite-image;
+          @include sprite(check);
+        }
+      }
+    }
+
+    // item
+    &__item {
+      @include list-block-item;
+    }
+
+    // link
+    &__target {
+      @include list-block-target;
+    }
+
+    // generate sizes
+    @include gts-height-mods (
+      $prefix: class,
+      $nest: $child-item,
+      $dir: tb,
+      $allow: $allow-list-sizes,
+      $bw: $list-bw
+    );
+
+  }
+}
+
+@include gts-lists;
+
+
+
+// Icon decorators
+// -------------------------------------------------------------------
+
+// check mark
+.#{$list-class} > .-icon-checked,
+.-icon-checked > .#{$list-child-item} {
+  @include list-icon(check-correct);
+}
+
+.#{$list-class} > .-icon-checkbox,
+.-icon-checkbox > .#{$list-child-item} {
+  @include list-icon(checkbox-dis);
+}
+
+.#{$list-class} > .-icon-checkbox-cir,
+.-icon-checkbox-cir > .#{$list-child-item} {
+  @include list-icon(radio);
+}
+
+.#{$list-class} > .-icon-selected,
+.-icon-selected > .#{$list-child-item} {
+  @include list-icon(checkbox-chk);
+}
+
+.#{$list-class} > .-icon-selected-cir,
+.-icon-selected-cir > .#{$list-child-item} {
+  @include list-icon(check);
+}
+
+
+
+// Definition List
+// -------------------------------------------------------------------
+
+.c-dlist {
+  margin-bottom: 0;
+  // @include media-object-container( $mb: 0 );
+
+  &__dt {
+    // @include media-object-body;
+    // width: 25%;
+    display: block;
+    // padding-right: spacing(.5);
+    vertical-align: top;
+    // text-align: right;
+    color: find-color(text,dark);
+    font-weight: weight(medium);
+    margin-top: 0;
+  }
+
+  &__dd {
+    // @include media-object-body;
+    // padding-left: spacing(.5);
+    display: block;
+    // width: 75%;
+    vertical-align: top;
+    margin-bottom: 0;
+  }
+
+}
+
+
+// LIST STYLE TYPE MODIFIERS
+// ------------------------------------------------------------------
+.-lower-roman {
+  list-style-type: lower-roman;
+}
+
+.-upper-roman {
+  list-style-type: lower-roman;
+}

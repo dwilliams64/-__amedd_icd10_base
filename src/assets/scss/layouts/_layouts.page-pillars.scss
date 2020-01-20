@@ -1,0 +1,27 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MODULE PILLARS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+
+.l-module-pillar {
+  background-color: find-color(gray,lightest);
+  box-shadow: 0px 20px 48px -9px rgba(0,0,0,0.43);
+
+  &__body {
+    @include gts-box-common(lg);
+    vertical-align: middle;
+
+    @include breakpoint(medium) {
+      &:after {
+        @include stripe-edge(right);
+      }
+    }
+
+  }
+
+}

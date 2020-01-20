@@ -1,0 +1,72 @@
+<div
+  class="reveal c-course-settings"
+  id="settings-reveal"
+  data-reveal
+  data-v-in="expandIn"
+  data-v-out="expandOut"
+  aria-labelledby="settings-reveal">
+    <h4 class="c-course-settings__title u-mb-sm">
+      Course Settings
+    </h4>
+    <div class="c-course-settings__text">
+
+      <ul class="c-list c-list--lined">
+        <li class="c-list__item">
+
+          <div class="c-switch-wrap c-switch-wrap--small c-switch-wrap--right u-m-0">
+
+            <div class="c-switch">
+              <input
+                class="c-switch__input"
+                id="crs-set-auto"
+                name="autoPlayToggle"
+                title="Toggle Autoplay"
+                type="checkbox"
+              >
+              <label class="c-switch__paddle" for="crs-set-auto">
+                <span class="show-for-sr">Autoplay</span>
+                <span class="c-switch__active" aria-hidden="true">On</span>
+                <span class="c-switch__inactive" aria-hidden="false">Off</span>
+              </label>
+
+            </div>
+            <div class="c-switch-text">
+              Auto Play Audio.
+            </div>
+
+          </div>
+
+        </li>
+        <li class="c-list__item">
+
+          <div class="c-switch-wrap c-switch-wrap--small c-switch-wrap--right u-m-0">
+
+            <div class="c-switch">
+              <input
+                class="c-switch__input"
+                id="crs-set-cc"
+                name="captionsToggle"
+                title="Toggle closed captions"
+                type="checkbox"
+              >
+              <label class="c-switch__paddle" for="crs-set-cc">
+                <span class="show-for-sr">Closed Captions</span>
+                <span class="c-switch__active" aria-hidden="true">On</span>
+                <span class="c-switch__inactive" aria-hidden="false">Off</span>
+              </label>
+
+            </div>
+            <div class="c-switch-text">
+              Closed Captions.
+            </div>
+
+          </div>
+
+        </li>
+      </ul>
+
+
+
+    </div>
+    {{> close-button close="" label="Close description"  }}
+</div>

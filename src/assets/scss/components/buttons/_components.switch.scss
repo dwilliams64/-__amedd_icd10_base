@@ -1,0 +1,221 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SWITCH
+//
+// ///////////////////////////////////////////////////////////////////
+
+$switch-background: rgba(black,0.15);//find-color(gray,lighter);
+$switch-color: find-color(text,dark);
+$switch-background-active: find-color(warning);
+$switch-color-active: find-color(white);
+$switch-font-weight: weight(normal);
+$switch-font-size: font-size(13px);
+$switch-height: rem(30px);
+$switch-height-tiny: rem(24px);
+$switch-height-small: rem(27px);
+$switch-height-large: rem(36px);
+$switch-radius: rem(48px);
+$switch-margin: $global-margin;
+$switch-paddle-background: $white;
+$switch-paddle-offset: rem(3px);
+$switch-paddle-radius: rem(48px);
+$switch-paddle-transition: all 0.25s ease-out;
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.c-switch {
+  @include switch-container;
+
+  &__input {
+    @include switch-input;
+  }
+
+  &__paddle {
+    @include switch-paddle;
+
+    &:after {
+      box-shadow: inset 0 -16px 16px -8px rgba(black, 0.025),
+      0 1px 2px 0 rgba(black,0.1);
+    }
+
+  }
+
+  &__active,
+  &__inactive {
+    @include switch-text;
+    font-size: $switch-font-size;
+    font-weight: $switch-font-weight;
+  }
+
+  &__active {
+    @include switch-text-active;
+    color: $switch-color-active;
+  }
+
+  &__inactive {
+    @include switch-text-inactive;
+    color: $switch-color;
+  }
+
+}
+
+
+// SWITCH TEXT POSITION
+// -------------------------------------------------------------------
+
+.c-switch-wrap {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  margin-bottom: spacing(1);
+
+  &--top {
+    .c-switch { margin-top: spacing(6px); }
+  }
+
+  &--bottom {
+    .c-switch-text { margin-top: spacing(6px); }
+  }
+
+  &--left,
+  &--right {
+    display: table;
+    table-layout: fixed;
+
+    .c-switch {
+      display: table-cell;
+      vertical-align: top;
+      width: $switch-height * 2;
+    }
+
+    .c-switch-text {
+      display: table-cell;
+      padding: pad-height($switch-height,1,0) spacing(9px);
+      vertical-align: top;
+    }
+
+  }
+
+  .c-switch,
+  .c-switch-text { margin-bottom: 0; }
+
+}
+
+
+
+// SWITCH SIZE MIXIN
+// -------------------------------------------------------------------
+
+@mixin c-switch-size(
+  $font-size: 1rem,
+  $switch-height: 2rem,
+  $paddle-offset: 0.25rem
+) {
+
+  $switch-width: $switch-height * 2;
+  $paddle-width: $switch-height - ($paddle-offset * 2);
+  $paddle-height: $switch-height - ($paddle-offset * 2);
+  $paddle-active-offest: $switch-width - $paddle-width - $paddle-offset;
+
+  height: $switch-height;
+
+  .c-switch__paddle {
+    width: $switch-width;
+    height: $switch-height;
+    font-size: $font-size;
+  }
+
+  .c-switch__paddle::after {
+    top: $paddle-offset;
+    #{$global-left}: $paddle-offset;
+    width: $paddle-width;
+    height: $paddle-height;
+  }
+
+  input:checked ~ .c-switch__paddle::after {
+    #{$global-left}: $paddle-active-offest;
+  }
+}
+
+
+// SWITCH SIZE MODIFIERS
+// -------------------------------------------------------------------
+
+.c-switch-wrap {
+
+  // tiny
+  &--tiny {
+
+    .c-switch-text {
+      padding: pad-height($switch-height-tiny,1,0) spacing(9px);
+      @include typeset(small);
+    }
+    .c-switch {
+      @include c-switch-size(
+        font-size(xs),
+        $switch-height-tiny,
+        $switch-paddle-offset
+      );
+    }
+
+  }
+
+  // small
+  &--small {
+
+    .c-switch-text {
+      padding: pad-height($switch-height-small,1,0) spacing(9px);
+      font-size: font-size(sm);
+    }
+    .c-switch {
+      @include c-switch-size(
+        font-size(sm),
+        $switch-height-small,
+        $switch-paddle-offset
+      );
+    }
+
+  }
+
+  // small
+  &--large {
+
+    .c-switch-text {
+      padding: pad-height($switch-height-large,1,0) spacing(12px);
+      @include typeset(base);
+    }
+    .c-switch {
+      @include c-switch-size(
+        font-size(base),
+        $switch-height-large,
+        $switch-paddle-offset
+      );
+    }
+
+  }
+
+}
+
+
+// SWITCH STYLE  MODIFIERS
+// -------------------------------------------------------------------
+
+.c-switch-wrap--fill {
+  background-color: find-color(gray,lightest);
+  padding: spacing(6px);
+  border-radius: $switch-height;
+}
+
+.c-switch-wrap--attention {
+  background-color: find-color(gray,dark);
+  padding: spacing(6px);
+  border-radius: $switch-height;
+  // box-shadow: $base-shadow-common;
+  color: find-color(white);
+
+  .c-switch__paddle {
+    background: rgba(black, 0.5);
+  }
+}

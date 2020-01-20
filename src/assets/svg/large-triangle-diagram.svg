@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1110 436">
+    <defs>
+        <style>
+        .cls-1 {
+            fill: #0f393a;
+        }
+
+        .cls-2 {
+            fill: #205052;
+        }
+
+        .cls-3 {
+            fill: #d4441c;
+        }
+
+        .cls-19,
+        .cls-4 {
+            font-size: 20px;
+            font-family: Roboto-Medium, Roboto;
+        }
+
+        .cls-16,
+        .cls-4,
+        .cls-8,
+        .cls-9 {
+            fill: #fff;
+        }
+
+        .cls-19,
+        .cls-5 {
+            fill: #f9cb40;
+        }
+
+        .cls-6 {
+            fill: #8ec33f;
+        }
+
+        .cls-7 {
+            letter-spacing: 0.01em;
+        }
+
+        .cls-16,
+        .cls-9 {
+            font-size: 15px;
+        }
+
+        .cls-9 {
+            font-family: Roboto-Light, Roboto;
+        }
+
+        .cls-10 {
+            letter-spacing: -0.02em;
+        }
+
+        .cls-11 {
+            letter-spacing: -0.01em;
+        }
+
+        .cls-12 {
+            letter-spacing: 0em;
+        }
+
+        .cls-13 {
+            letter-spacing: -0.01em;
+        }
+
+        .cls-14 {
+            letter-spacing: -0.01em;
+        }
+
+        .cls-15 {
+            fill: #bc3644;
+        }
+
+        .cls-16 {
+            font-family: Roboto-Regular, Roboto;
+        }
+
+        .cls-17 {
+            letter-spacing: -0.01em;
+        }
+
+        .cls-18 {
+            letter-spacing: -0.04em;
+        }
+
+        .cls-20 {
+            letter-spacing: -0.01em;
+        }
+
+        .cls-21 {
+            letter-spacing: -0.06em;
+        }
+
+        .cls-22 {
+            letter-spacing: 0em;
+        }
+
+        .cls-23 {
+            letter-spacing: 0.02em;
+        }
+
+        .cls-24 {
+            letter-spacing: -0.11em;
+        }
+
+        .cls-25 {
+            letter-spacing: -0.01em;
+        }
+        </style>
+    </defs>
+    <title>large-triangle-diagram</title>
+    <g id="ltd-triangle">
+        <polygon class="cls-1" points="555.58 48 365.63 377 745.53 377 555.58 48" />
+    </g>
+    <g id="ltd-nca">
+        <path class="cls-2" d="M672.58,386a45,45,0,1,1,45-45A45.05,45.05,0,0,1,672.58,386Z" />
+        <path class="cls-3" d="M672.58,299a42,42,0,1,1-42,42,42,42,0,0,1,42-42m0-6a48,48,0,1,0,48,48,48,48,0,0,0-48-48Z" /><text class="cls-4" transform="translate(653.39 347.85)">NCA</text></g>
+    <g id="ltd-vba">
+        <path class="cls-2" d="M558.58,386a45,45,0,1,1,45-45A45.05,45.05,0,0,1,558.58,386Z" />
+        <path class="cls-5" d="M558.58,299a42,42,0,1,1-42,42,42,42,0,0,1,42-42m0-6a48,48,0,1,0,48,48,48,48,0,0,0-48-48Z" /><text class="cls-4" transform="translate(539.39 347.85)">VBA</text></g>
+    <g id="ltd-vha">
+        <path class="cls-2" d="M438.58,386a45,45,0,1,1,45-45A45.05,45.05,0,0,1,438.58,386Z" />
+        <path class="cls-6" d="M438.58,299a42,42,0,1,1-42,42,42,42,0,0,1,42-42m0-6a48,48,0,1,0,48,48,48,48,0,0,0-48-48Z" /><text class="cls-4" transform="translate(419.39 347.85)">V<tspan class="cls-7" x="12.94" y="0">H</tspan>
+            <tspan x="27.32" y="0">A</tspan>
+        </text></g>
+    <g id="ltd-arr-right">
+        <circle class="cls-2" cx="756.59" cy="302.5" r="18" />
+        <path class="cls-8" d="M756.59,310.5l-1.41-1.41,5.58-5.59H748.59v-2h12.17l-5.58-5.59,1.41-1.41,8,8Z" />
+    </g>
+    <g id="ltd-arr-left">
+        <circle class="cls-2" cx="354.57" cy="302.5" r="18" />
+        <path class="cls-8" d="M354.57,310.5l1.41-1.41-5.58-5.59h12.17v-2H350.4l5.58-5.59-1.41-1.41-8,8Z" />
+    </g>
+    <g id="ltd-drive">
+        <rect class="cls-1" x="786.59" y="228" width="230" height="6" /><text class="cls-9" transform="translate(804.59 263.25)">St<tspan class="cls-10" x="13.7" y="0">r</tspan>
+            <tspan x="18.46" y="0">ategic plans drive ope</tspan>
+            <tspan class="cls-10" x="161.13" y="0">r</tspan>
+            <tspan x="165.88" y="0">a</tspan>
+            <tspan x="173.91" y="0">-</tspan>
+            <tspan x="0" y="24">tions at the stations l</tspan>
+            <tspan class="cls-11" x="136.89" y="24">e</tspan>
+            <tspan class="cls-12" x="144.54" y="24">vel </tspan>
+            <tspan class="cls-13" x="166.52" y="24">t</tspan>
+            <tspan x="171.19" y="24">o </tspan>
+            <tspan x="0" y="48">ensure Vete</tspan>
+            <tspan class="cls-10" x="77.83" y="48">r</tspan>
+            <tspan x="82.59" y="48">ans receive the </tspan>
+            <tspan x="0" y="72">best possible care. </tspan>
+        </text>
+        <rect class="cls-1" x="786.59" y="371" width="230" height="6" />
+    </g>
+    <g id="ltd-responsible">
+        <rect class="cls-1" x="94.57" y="228" width="230" height="6" /><text class="cls-9" transform="translate(114.39 263.25)">Each l<tspan class="cls-14" x="39.54" y="0">e</tspan>
+            <tspan x="47.19" y="0">vel of the organization </tspan>
+            <tspan x="20.91" y="24">is responsible for different </tspan>
+            <tspan x="2.88" y="48">aspects of the st</tspan>
+            <tspan class="cls-10" x="112.24" y="48">r</tspan>
+            <tspan x="116.99" y="48">ategic plan.</tspan>
+        </text>
+        <rect class="cls-1" x="94.57" y="371" width="230" height="6" />
+    </g>
+    <g id="ltd-procedure">
+        <path class="cls-15" d="M968.09,66l41.57,72-41.57,72H792.59V66h175.5m3.46-6h-185V216h185l45-78-45-78Z" /><text class="cls-16">
+            <tspan x="804.59" y="104.25">P</tspan>
+            <tspan class="cls-17" x="814.05" y="104.25">r</tspan>
+            <tspan x="818.98" y="104.25">og</tspan>
+            <tspan class="cls-10" x="835.95" y="104.25">r</tspan>
+            <tspan x="840.74" y="104.25">am offices’ policies, </tspan>
+            <tspan x="804.59" y="128.25">p</tspan>
+            <tspan class="cls-17" x="813.01" y="128.25">r</tspan>
+            <tspan x="817.93" y="128.25">ocedures, and initiatives </tspan>
+            <tspan x="804.59" y="152.25">are required </tspan>
+            <tspan class="cls-17" x="888.14" y="152.25">t</tspan>
+            <tspan x="892.89" y="152.25">o be aligned </tspan>
+            <tspan class="cls-17" x="977.49" y="152.25">t</tspan>
+            <tspan x="982.24" y="152.25">o </tspan>
+            <tspan x="804.59" y="176.25">the </tspan>
+            <tspan class="cls-18" x="829.41" y="176.25">V</tspan>
+            <tspan x="838.41" y="176.25">A st</tspan>
+            <tspan class="cls-10" x="864.54" y="176.25">r</tspan>
+            <tspan x="869.32" y="176.25">ategic plan.</tspan>
+        </text></g>
+    <g id="ltd-plan">
+        <rect class="cls-1" x="398.69" y="114" width="314" height="6" />
+        <rect class="cls-2" x="400.19" y="121.5" width="311" height="105" />
+        <path class="cls-2" d="M709.69,123V225h-308V123h308m3-3h-314V228h314V120Z" /><text class="cls-19" transform="translate(477.63 156.58)">
+            <tspan class="cls-18">V</tspan>
+            <tspan x="12.21" y="0">A St</tspan>
+            <tspan class="cls-20" x="49.22" y="0">r</tspan>
+            <tspan x="55.96" y="0">ategic Plan</tspan>
+            <tspan class="cls-16">
+                <tspan class="cls-21" x="-66.43" y="24">T</tspan>
+                <tspan class="cls-22" x="-58.3" y="24">asks, Repo</tspan>
+                <tspan class="cls-23" x="13.74" y="24">r</tspan>
+                <tspan x="19.18" y="24">ting, Budget, Capital Assets, I</tspan>
+                <tspan class="cls-24" x="212.03" y="24">T</tspan>
+                <tspan class="cls-12" x="219.38" y="24">, </tspan>
+                <tspan x="16.71" y="48">Human Resou</tspan>
+                <tspan class="cls-25" x="110.71" y="48">r</tspan>
+                <tspan x="115.65" y="48">ces </tspan>
+            </tspan>
+        </text>
+        <rect class="cls-1" x="398.69" y="228" width="314" height="6" />
+    </g>
+    <g id="ltd-hexagon">
+        <path class="cls-5" d="M251.14,66l41.57,72-41.57,72H168l-41.57-72L168,66h83.14m3.46-6H164.53l-45,78,45,78H254.6l45-78-45-78Z" /><text class="cls-16">
+            <tspan x="179.82" y="106.25">St</tspan>
+            <tspan class="cls-10" x="193.62" y="106.25">r</tspan>
+            <tspan x="198.4" y="106.25">ategic </tspan>
+            <tspan x="164.96" y="130.25">planning may </tspan>
+            <tspan x="148.59" y="154.25">result in a p</tspan>
+            <tspan class="cls-17" x="225.79" y="154.25">r</tspan>
+            <tspan x="230.72" y="154.25">ocess </tspan>
+            <tspan x="183.14" y="178.25">change. </tspan>
+        </text></g>
+</svg>

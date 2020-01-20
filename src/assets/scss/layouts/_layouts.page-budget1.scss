@@ -1,0 +1,90 @@
+///////////////////////////////////////////////////////////////////////
+//
+// BUDGET 1
+//
+// ///////////////////////////////////////////////////////////////////
+
+$lb1-mh: rem(36px);
+$lb1-lh: line-height(27px);
+$lb1-tb: pad-height($lb1-mh,$lb1-lh,0);
+$lb1-lr: spacing(0.75);
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-budget1 {
+
+  &__title {
+    @include typeset(base);
+    font-weight: weight(normal);
+    text-align: center;
+    margin:0;
+    padding: rem(5px) spacing(0.75);
+  }
+
+  &__subtitle {
+    padding: $lb1-tb $lb1-lr;
+    color: find-color(white);
+    text-align: center;
+
+    &--md {
+      background-color: find-color(accent,dark);
+    }
+
+    &--da {
+      background-color: find-color(info,dark);
+    }
+
+  }
+
+  &__pres { @include clearfix; }
+
+  &__col {
+    @include gts-box-common();
+    vertical-align: middle;
+    text-align: center;
+    background-color: find-color(primary,darkest);
+
+    p {
+      @include typeset(2);
+      font-weight: weight(bold);
+      color: find-color(white);
+    }
+
+    small {
+      display: block;
+      font-size: font-size();
+      font-weight: weight(normal);
+      color: find-color(primary,lightest);
+    }
+
+    @include breakpoint(medium) {
+      @include grid-column-size(4);
+    }
+
+  }
+
+  &__button {
+    position: absolute;
+    bottom: spacing(.5);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+}
+
+
+.l-budget__da {
+  background-color: find-color(white);
+  transition: all .3s ease;
+
+  > img {
+    min-height: rem(275px);
+  }
+
+  &:hover {
+    background-color: find-color(gray,bg);
+    cursor: pointer;
+  }
+
+}

@@ -1,0 +1,57 @@
+ {{> course-html-head main="u-bg-dark-blue" lesson="Course Tutorial" }}
+
+<div
+  data-tuts
+  class="l-course-tutorial">
+<div
+  class="c-card c-card--tutorial"
+  role="region"
+  aria-label="Course Tutorial"
+  data-orbit
+  data-use-m-u-i="false"
+  data-options="
+    autoPlay:false; ">
+
+  <ul class="orbit-container">
+    {{#each tutorial}}
+    <li class="orbit-slide">
+      <div class="c-card__media">
+        <img src="../assets/img/{{img}}" alt="{{alt}}">
+      </div>
+      <div class="c-card__body">
+        <h3 class="c-card__title">
+          {{title}}
+        </h3>
+        {{{body}}}
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+
+  <div class="c-card__section orbit-tut-nav">
+
+    <button class="orbit-previous">
+      Back <span class="show-for-sr"> a Slide</span>
+    </button>
+
+    <nav class="orbit-bullets">
+      {{#each tutorial}}
+      <button class="{{#lte @index 0}}is-active{{/lte}} orbit-bullet" data-slide="{{@index}}">
+        <span class="show-for-sr">Slide {{@index}} details.</span>
+        {{#lt @index 1}}
+        <span class="show-for-sr">Current Slide</span>
+        {{/lt}}
+      </button>
+      {{/each}}
+    </nav>
+
+    <button class="orbit-next">
+      Next <span class="show-for-sr"> Slide</span>
+    </button>
+
+  </div>
+
+</div> 
+</div>
+
+{{> course-html-footer }}

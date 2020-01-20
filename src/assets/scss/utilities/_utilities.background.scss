@@ -1,0 +1,62 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Background Utitlity Classes
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// Background Color Utilities
+// -------------------------------------------------------------------
+@include gts-prototype-classes (
+  $property: bg,
+  $map: $course-palette
+);
+
+
+// Background Image Styles
+// -------------------------------------------------------------------
+.u-bg {
+  &-dark-blue { @include bg-dark-blue; }
+  &-blue      { @include bg-blue; }
+  &-green     { @include bg-green; }
+  &-dark-teal { @include bg-dark-teal; }
+  &-light     { @include bg-light; }
+  &-office-1  { @include bg-office-1; }
+  &-office-2  { @include bg-office-2; }
+  &-office-3  { @include bg-office-3; }
+  &-office-4  { @include bg-office-4; }
+  &-office-5  { @include bg-office-5; }
+  &-warehouse-1  { @include bg-warehouse-1; }
+  &-warehouse-2  { @include bg-warehouse-2; }
+  &-warehouse-4  { @include bg-warehouse-4; }
+  &-outside-1 { @include bg-outside-1; }
+  &-truck-1   { @include bg-truck-1; }
+  &-train-1   { @include bg-train-1; }
+  &-pattern-2 { @include bg-pattern-2; }
+  &-content   { @include bg-content; }
+  &-dnd       { @include bg-dnd; }
+  &-wood      { @include bg-wood; }
+  &-wood-2    { @include bg-wood-2; }
+  &-paper     { @include bg-paper; }
+  &-paper-2   { @include bg-paper2; }
+  &-side-tab-1  { @include bg-side-tab-1; }
+  &-fade  { @include bg-fade; }
+  &-links   { @include bg-links; }
+  &-robot-doctor   { @include bg-robot-doctor; }
+  &-woman-bus   { @include bg-woman-bus; }
+  &-scanner-1 { @include bg-scanner-1; }
+  &-conveyor-1 { @include bg-conveyor-1; }
+}
+
+
+
+// Add Color Stripe
+// -------------------------------------------------------------------
+
+.u-stripe {
+  &-top:after { @include stripe-edge(top); }
+  &-right:after { @include stripe-edge(right); }
+  &-bottom:after { @include stripe-edge(bottom); }
+  &-left:after { @include stripe-edge(left); }
+}
+

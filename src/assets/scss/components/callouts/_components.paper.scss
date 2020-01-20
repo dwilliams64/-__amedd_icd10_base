@@ -1,0 +1,616 @@
+///////////////////////////////////////////////////////////////////////
+//
+// PAPER
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// POST IT
+// ------------------------------------------------------------------
+
+@mixin gts-post-it (
+  // body
+  $type: null,
+  $bg: find-color(gray,lightest),
+  $fc: null,
+  // heading
+  $hc: null,
+  $hs: null,
+  $hlh: null,
+  $hw: weight(medium),
+  $hmb: 0,
+  // corner
+  $dir: up-left,
+  $cs: 18px,
+  $cc: $bg,
+  $tb: spacing(1),
+  $tb-prop: padding-bottom,
+  $scale: 10%,
+  $mb: spacing(0.75),
+  // classes
+  $class: 'c-post-it',
+  $body:  '__body'
+) {
+
+
+
+  // Allowed types
+  // ----------------------------------------------------------------
+  $allowed-types: (
+    note: true,
+    tip: true,
+  );
+
+
+
+  // Base styles
+  // ----------------------------------------------------------------
+
+  // subtract corner element from padding top/bottom
+  @if rem($tb) > rem($cs) {
+    @if $dir == up-left or $dir == up-right {
+      $tb-prop: padding-bottom;
+      $tb: rem($tb) - rem($cs);
+    } @else {
+      $tb-prop: padding-top;
+      $tb: rem($tb) - rem($cs);
+    }
+  }
+
+
+  // base
+  .#{$class} {
+
+    @include clearfix;
+    color: $fc;
+    margin-bottom: $mb;
+
+    &__body {
+      position: relative;
+      @include gts-box-common (
+        $bg: $bg
+      );
+
+      #{$tb-prop}: $tb;
+
+      @include breakpoint(medium) {
+        #{$tb-prop}: $tb;
+      }
+
+      // add corner
+      @include gts-corner-fold(
+        $dir: $dir,
+        $size: $cs,
+        $bg: $bg,
+        $scale: $scale,
+        $corner: $cc,
+        $mod: false
+      );
+
+    }
+
+    &__title {
+      font-size: $hs;
+      font-weight: $hw;
+      line-height: $hlh;
+      color: $hc;
+      margin-bottom: $hmb;
+    }
+
+  }
+
+
+
+  // Post-it types
+  // ----------------------------------------------------------------
+  @each $key, $value in $allowed-types {
+
+    @if $key == note {
+      // body
+      $bg: find-color(highlight, lighter);
+      $fc: find-color(highlight, darker);
+      // heading
+      $hc: null;
+      // corner
+      $cc: $bg;
+      $scale: 30%;
+    }
+
+    @if $key == tip {
+      // body
+      $bg: find-color(secondary, lightest);
+      $fc: find-color(secondary, darker);
+      // heading
+      $hc: null;
+      // corner
+      $cc: $bg;
+      $scale: 30%;
+    }
+
+
+
+    // Post-it modifiers
+    // ----------------------------------------------------------------
+    .#{$class}--#{$key} {
+
+      color: $fc;
+
+      .#{$class}#{$body} {
+        background-color: $bg;
+
+        @include gts-corner-fold(
+          $dir: $dir,
+          $bg: $bg,
+          $size: $cs,
+          $scale: $scale,
+          $corner: $cc,
+          $mod: true
+        );
+
+      }
+
+    }
+
+  // ----------------------------------------------------------------
+  }
+
+} @include gts-post-it;
+
+
+
+// NOTEBOOK PAPER
+// ------------------------------------------------------------------
+@mixin gts-notebook (
+  $type: page,
+  // body
+  $bg: find-color(white),
+  $fs: null,
+  $fc: null,
+  $lh: $base-line-height,
+  // title
+  $fsh: null,
+  $fch: null,
+  $lhh: null,
+  $fwh: weight(medium),
+  $mbh: null,
+  // stripes
+  $sh: $lh,
+  $sc: rgba(205,220,243,1), //rgba(#00b0d7,0.3),
+  $sw: 1px,
+  // padding/margin
+  $tb: $lh,
+  $lr: $tb,
+  $mb: spacing(0.75)
+) {
+
+
+  @if $type == page {
+    position: relative;
+    margin-bottom: $mb;
+    padding-top: $lh;
+    padding-bottom: $lh;
+    color: $fc;
+    font-size: $fs;
+    line-height: $lh;
+    background-color: $bg;
+    box-shadow:
+      inset 0 -1px 0 0 rgba(255,255,255,0.5),
+      0 3px 6px -3px rgba(0,0,0,.15),
+      0 1px 1px 0 rgba(0,0,0,.1);
+  }
+
+
+  // Notebook body and lines
+  @if $type == body {
+    padding: $tb $lr $tb (rem($lh) + rem($lr));
+    background: linear-gradient(to bottom,transparent (rem($sh) - rem($sw)),$sc $sw);
+    background-size: 100% $sh;
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    > p,ul,ol,dl { margin-bottom: $lh; }
+
+    &:before {
+      content:'';
+      position: absolute;
+      left: $lh;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 3px;
+      border-left: 1px solid rgba(240,214,213,1);
+      border-right: 1px solid rgba(240,214,213,1);
+    }
+
+  }
+
+
+  // Notebook Heading
+  @if $type == title {
+    margin-bottom: $mbh;
+    font-size: $fsh;
+    line-height: $lhh;
+    font-weight: $fwh;
+    color: $fch;
+  }
+
+
+}
+
+// Create notebook styles
+.c-notebook {
+  @include gts-notebook(page);
+
+  &__body {
+    @include gts-notebook(body);
+  }
+
+  &__title {
+    @include gts-notebook(title);
+  }
+
+}
+
+
+
+// PAPER STACK
+// ------------------------------------------------------------------
+@mixin gts-paper-stack (
+  $type: base,
+  $distance: 3px,
+  $bg: find-color(white),
+  $hover: false,
+  $darken: 1%
+) {
+
+  // Set depth levels
+  $level1: 0;
+  $level2: $distance * 1;
+  $level3: $distance * 2;
+
+  $level1bg: $bg;
+  $level2bg: darken($level1bg, $darken);
+  $level3bg: darken($level2bg, $darken);
+
+  $animation-timing: 0.2s;
+  $animation-ease: ease-in-out;
+  $animation-ease-bounce: cubic-bezier(0.175,  0.885, 0.320, 1.275);
+
+
+  // Create wrapper
+  // ----------------------------------------------------------------
+  @if $type == wrap {
+    position: relative;
+    z-index: 0;
+  }
+
+
+  // Create base styles
+  // ----------------------------------------------------------------
+  @if $type == base {
+    position: relative;
+    background-color: $bg;
+
+    &:before,
+    &:after {
+      content:'';
+      position: absolute;
+      top:0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: $bg;
+      transform-origin: center top;
+    }
+
+    &:before {
+      z-index: -1;
+      background-color: $level2bg;
+    }
+
+    &:after  {
+      z-index: -2;
+      background-color: $level3bg;
+    }
+
+    @if $hover {
+      &:before,
+      &:after {
+        transition: all $animation-timing $animation-ease;
+        will-change: transform;
+      }
+    }
+
+  }
+
+
+  // Create up stack
+  // ----------------------------------------------------------------
+  @if $type == up {
+    box-shadow:
+      inset 0 -1px 0 0 rgba(255,255,255,0.8),
+      0 1px 1px 0 rgba(0,0,0,0.12),
+      0 6px 8px -6px rgba(0,0,0,.125);
+
+    &:before,
+    &:after {
+      transform-origin: center top;
+    }
+
+    &:before {
+      transform: translate(0, $level2) scaleX(0.995);
+      box-shadow:
+        inset 0 -1px 0 0 rgba(255,255,255,0.8),
+        0 1px 1px 0 rgba(0,0,0,0.1),
+        0 6px 8px -6px rgba(0,0,0,.12);
+    }
+
+    &:after  {
+      transform: translate(0, $level3) scaleX(0.99);
+      box-shadow:
+        inset 0 -1px 0 0 rgba(255,255,255,0.8),
+        0 1px 1px 0 rgba(0,0,0,0.1),
+        0 6px 8px -6px rgba(0,0,0,.12);
+    }
+
+    @if $hover {
+      &:hover {
+        &:before {
+          transform: translate(0, ($level2 * 2)) scaleX(0.995);
+        }
+        &:after {
+          transform: translate(0, ($level3 * 2)) scaleX(0.999);
+        }
+      }
+    }
+
+  }
+
+
+  // Create down stack
+  // ----------------------------------------------------------------
+  @if $type == down {
+    box-shadow:
+      inset 0 1px 0 0 rgba(255,255,255,0.8),
+      0 -2px 1px -1px rgba(0,0,0,0.125),
+      0 1px 1px 0 rgba(0,0,0,0.12),
+      0 6px 8px -6px rgba(0,0,0,.125);
+
+    &:before,
+    &:after {
+      background-color: $bg;
+      transform-origin: center bottom;
+    }
+
+    &:before {
+      transform: translate(0, -$level2) scaleX(0.995);
+      box-shadow:
+        inset 0 1px 0 0 rgba(255,255,255,0.8),
+        0 -1px 1px 0 rgba(0,0,0,0.125),
+        0 -6px 8px -6px rgba(0,0,0,.12);
+    }
+
+    &:after  {
+      transform: translate(0, -$level3) scaleX(0.99);
+      box-shadow:
+        inset 0 1px 0 0 rgba(255,255,255,0.8),
+        0 -1px 1px 0 rgba(0,0,0,0.125),
+        0 6px 8px -6px rgba(0,0,0,.12);
+    }
+
+    @if $hover {
+      &:hover {
+        &:before {
+          transform: translate(0, (-$level2 * 2)) scaleX(0.995);
+        }
+        &:after {
+          transform: translate(0, (-$level3 * 2)) scaleX(0.999);
+        }
+      }
+    }
+
+  }
+
+
+  // Create mix stack
+  // ----------------------------------------------------------------
+  @if $type == mix {
+    box-shadow:
+      inset 0 -1px 0 0 rgba(255,255,255,0.8),
+      0 1px 1px 0 rgba(0,0,0,0.12),
+      0 6px 8px -6px rgba(0,0,0,.125);
+
+    &:before,
+    &:after {
+      transform-origin: right center;
+    }
+
+    &:before {
+      transform:  translateX(3px) translateY(0px) scaleX(1) rotate(-1.15deg);
+      box-shadow:
+        inset 0 -1px 0 0 rgba(255,255,255,0.8),
+        0 1px 1px 0 rgba(0,0,0,0.1),
+        0 6px 8px -6px rgba(0,0,0,.12);
+    }
+
+    &:after  {
+      transform: translateX(-3px) translateY(6px) scaleX(1) rotate(0.5deg);
+      box-shadow:
+        inset 0 -1px 0 0 rgba(255,255,255,0.8),
+        0 0 1px 0 rgba(0,0,0,0.125),
+        0 1px 1px 0 rgba(0,0,0,0.1),
+        0 6px 8px -6px rgba(0,0,0,.12);
+    }
+
+    @if $hover {
+      &:hover {
+        &:before {
+          transform: translate(0, ($level2)) scaleX(1) rotate(0);
+        }
+        &:after {
+          transform: translate(0, ($level3)) scaleX(1) rotate(0) ;
+        }
+      }
+    }
+
+  }
+
+  // Create left stack
+  // ----------------------------------------------------------------
+  @if $type == left {
+    box-shadow:
+      inset 1px 0 0 0 rgba(255,255,255,0.8),
+      -2px 0 2px -1px rgba(0,0,0,0.125),
+      1px 0 1px 0 rgba(0,0,0,0.08),
+      0 1px 1px 0 rgba(0,0,0,0.02);
+
+    &:before,
+    &:after {
+      transform-origin: right center;
+    }
+
+    &:before {
+      transform: translate(-$level2, 0) scaleX(1);
+      box-shadow:
+        inset 1px 0 0 0 rgba(255,255,255,0.8),
+        -2px 0 2px -1px rgba(0,0,0,0.125),
+        0 1px 1px 0 rgba(0,0,0,0.02);
+    }
+
+    &:after  {
+      transform: translate(-$level3, 0) scaleX(1);
+      box-shadow:
+          inset 1px 0 0 0 rgba(255,255,255,0.8),
+          -2px 0 2px -1px rgba(0,0,0,0.125),
+          0 1px 1px 0 rgba(0,0,0,0.02);
+    }
+
+    @if $hover {
+      &:hover {
+        &:before {
+          transform: translate((-$level2 * 2), 0) scaleX(1);
+        }
+        &:after {
+          transform: translate((-$level3 * 2), 0) scaleX(1);
+        }
+      }
+    }
+
+  }
+
+  // Create right stack
+  // ----------------------------------------------------------------
+  @if $type == right {
+    box-shadow:
+      inset -1px 0 0 0 rgba(255,255,255,0.8),
+      2px 0 2px -1px rgba(0,0,0,0.125),
+      -1px 0 1px 0 rgba(0,0,0,0.08),
+      0 1px 1px 0 rgba(0,0,0,0.02);
+
+    &:before,
+    &:after {
+      transform-origin: left center;
+    }
+
+    &:before {
+      transform: translate($level2, 0) scaleX(1);
+      box-shadow:
+        inset -1px 0 0 0 rgba(255,255,255,0.8),
+        2px 0 2px -1px rgba(0,0,0,0.125),
+        0 1px 1px 0 rgba(0,0,0,0.02);
+    }
+
+    &:after  {
+      transform: translate($level3, 0) scaleX(1);
+      box-shadow:
+          inset -1px 0 0 0 rgba(255,255,255,0.8),
+          2px 0 2px -1px rgba(0,0,0,0.125),
+          0 1px 1px 0 rgba(0,0,0,0.02);
+    }
+
+    @if $hover {
+      &:hover {
+        &:before {
+          transform: translate(($level2 * 2), 0) scaleX(1);
+        }
+        &:after {
+          transform: translate(($level3 * 2), 0) scaleX(1);
+        }
+      }
+    }
+
+  }
+
+}
+
+// Create paper stack styles
+.c-paper-stack {
+  &-wrap {
+    // deals with z-index issue.
+    @include gts-paper-stack(wrap);
+  }
+
+  @include gts-paper-stack(base);
+
+  &--up {
+    @include gts-paper-stack(up);
+  }
+
+  &--down {
+    @include gts-paper-stack(down);
+  }
+
+  &--left {
+    @include gts-paper-stack(left);
+  }
+
+  &--right {
+    @include gts-paper-stack(right);
+  }
+
+  &--mix {
+    @include gts-paper-stack(mix);
+  }
+
+}
+
+// SERRATED EDGE
+// ------------------------------------------------------------------
+
+@mixin gts-serrated-page (
+  $bg:   find-color(white),
+  $size: 12,
+  $loc:  bottom,
+  $type: fill,
+  $side: outside
+) {
+
+  background-color: $bg;
+  @include gts-box-common();
+
+  @include gts-serrated-edge($bg,$size,$loc,$type,$side);
+
+}
+
+
+// Serrated edge styles
+// ------------------------------------------------------------------
+
+.c-serrated-paper {
+  @include gts-serrated-page;
+}
+
+.c-serrated-paper-top {
+  @include gts-serrated-page($loc:top);
+}
+
+.c-serrated-paper-left {
+  @include gts-serrated-page($loc:left);
+}
+
+.c-serrated-paper-right {
+  @include gts-serrated-page($loc:right);
+}

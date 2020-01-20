@@ -1,0 +1,19 @@
+<audio
+  class='mejs__player mejs-player mejs-player--audio {{class}}'
+  data-mejsoptions='{
+    "stretching": "responsive",
+    "toggleCaptionsButtonWhenOnlyOne": "true",
+    "defaultAudioHeight": "36"
+  }'>
+  {{#startsWith 'http://' source }}
+    <source src='{{source}}' type='audio/mp3'>
+  {{else}}
+    <source src='{{root}}assets/media/audio/{{source}}' type='audio/mp3'>
+  {{/startsWith}}
+  {{#startsWith 'http://' track }}
+    <track src='{{track}}' srclang='en' label='English' kind='subtitles' type='text/vtt'>
+  {{else}}
+    <track src='{{root}}assets/media/cc/{{track}}' srclang='en' label='English' kind='subtitles' type='text/vtt'>
+  {{/startsWith}}
+
+</audio>

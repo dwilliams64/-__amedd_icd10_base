@@ -1,0 +1,127 @@
+---
+layout: title-full
+title: Check Your Knowledge 2 - Sequende of Code
+main: u-bg-border
+wrap: o-box--float l-dnd
+video: yes
+dd: yes
+---
+
+{{!-- Directions --}}
+<div class="l-dnd__directions">
+ <p><span class="c-label c-label--accent">Note</span> While in a deployed setting a Service member arrives at the aid station for a follow-up visit after a concussion was not diagnosed at the initial visit.</p>
+<p>Assuming you need to use all the codes for this encounter, arrange the codes in the correct order, and then select the <strong>Submit</strong> button. You will have three attempts to arrange the codes in the correct order.</p>
+</div>
+
+{{!-- Body --}}
+<div class="o-box l-dnd__body">
+
+  {{#> column col="4" class="" }}
+
+    <ol class="l-dnd__choices js-choice-container" data-dd-type="matching" data-dd-attempt="2">
+
+      <li data-sort-rsp="3" class="l-dnd__drag js-drag-choice ui-draggable">
+        <span class="js-drag-choice-p">
+          External cause of morbidity code
+        </span>
+      </li>
+
+      <li data-sort-rsp="4" class="l-dnd__drag js-drag-choice ui-draggable">
+        <span class="js-drag-choice-p">
+          Additional symptom(s)
+        </span>
+      </li>
+
+      <li data-sort-rsp="1" class="l-dnd__drag js-drag-choice ui-draggable">
+        <span class="js-drag-choice-p">
+          Most significant symptom code
+        </span>
+      </li>
+
+      <li data-sort-rsp="2" class="l-dnd__drag js-drag-choice ui-draggable">
+        <span class="js-drag-choice-p">
+          Deployment status code
+        </span>
+      </li>
+    </ol>
+
+  {{/column}}
+  {{#> column col="8" class="" }}
+
+    <div class="l-dnd__answers l-dnd__answers--alpha" id="dd_container" dd_container>
+
+      <div data-sort-id="1" data-drop data-answer="3" class="l-dnd__drop ui-droppable">
+        <div class="l-dnd__drop-text">
+          A. 1st
+        </div>
+      </div>
+
+      <div data-sort-id="2" data-drop data-answer="4" class="l-dnd__drop ui-droppable">
+        <div class="l-dnd__drop-text">
+          B. 2nd
+        </div>
+      </div>
+
+      <div data-sort-id="3" data-drop data-answer="1" class="l-dnd__drop ui-droppable">
+        <div class="l-dnd__drop-text">
+          C. 3rd
+        </div>
+      </div>
+
+      <div data-sort-id="4" data-drop data-answer="2" class="l-dnd__drop ui-droppable">
+        <div class="l-dnd__drop-text">
+          D. 4th
+        </div>
+      </div>
+   </div>
+
+    {{/column}}
+
+</div>
+
+{{!-- Buttons --}}
+<div data-dd_button class="l-dnd__footer">
+  <button data-dd-submit class="c-btn c-btn--accent -rounded -md l-dnd__btn l-dnd__btn--submit" aria-label="{{#if label}}{{label}}{{else}}Submit{{/if}}" type="button" value="Submit">Submit</button>
+  <button data-dd-reset class="c-btn c-btn--quiet -outline -rounded -md l-dnd__btn l-dnd__btn--reset" aria-label="{{#if label}}{{label}}{{else}}Reset{{/if}}" type="button" value="Reset">Clear Answers</button>
+</div>
+
+{{!-- feedback --}}
+<div class="c-feedback-wrap" id="feedback">
+
+  <div data-closable class='c-feedback is-fb-correct' data-dd-feedback>
+    <div class='c-feedback__inner' data-dd-correct>
+      <h4 class='c-feedback__heading'>Great Work!</h4>
+      <p>You correctly identified the descriptions of the VA Strategic plan components.</p>
+      <p class='c-feedback__next-msg'>Select 'Next' to continue.</p>
+      {{> close-button }}
+    </div>
+  </div>
+
+  <div data-closable class='c-feedback is-fb-incorrect' data-dd-feedback>
+    <div class='c-feedback__inner' data-dd-incorrect>
+      <h4 class='c-feedback__heading'>That's Incorrect!</h4>
+      <p>The correct sequence is: 1=B, 2=E, 3=D, 4=A, 5=C</p>
+      <p>Return to the <a href='01_01_002.html'>“Key Components of a Strategic Plan”</a> page to review.</p>
+      <p class='c-feedback__next-msg'>Select 'Next' to continue.</p>
+      {{> close-button }}
+    </div>
+  </div>
+
+  <div data-closable  class='c-feedback is-fb-retry' data-dd-feedback>
+    <div class='c-feedback__inner' data-dd-warning>
+      <h4 class='c-feedback__heading'>Warning!</h4>
+      <p>Not All Targets Are Answered.</p>
+      {{> close-button }}
+    </div>
+  </div>
+
+  <div class='c-feedback is-fb-retry' data-dd-feedback>
+    <div class='c-feedback__inner' data-dd-retry>
+      <h4 class='c-feedback__heading'>Try Again!</h4>
+      <p>That was incorrect. Select the 'Try Again' button to continue.</p>
+      <button data-dd-try class="l-kc1__btn c-btn c-btn--warning -md -outline u-mb-base" aria-label="{{#if label}}{{label}}{{else}}Reset{{/if}}" type="button" value="Try Again">Try Again</button>
+    </div>
+  </div>
+
+</div>
+

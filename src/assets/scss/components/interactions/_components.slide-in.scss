@@ -1,0 +1,26 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SLIDE IN ANIMATIONS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.slide-in {
+  transition: all .5s ease;
+
+  &.is-active {
+
+  }
+
+}
+
+.lightbulb-appear {
+  // transform: translateX(280%) translateY(-30%);
+  position: absolute;
+  top: -30px;
+  right: 50px;
+  width: 140px;
+}

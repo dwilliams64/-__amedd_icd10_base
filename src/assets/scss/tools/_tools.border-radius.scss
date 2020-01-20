@@ -1,0 +1,41 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Border Radius
+//
+// ///////////////////////////////////////////////////////////////////
+
+// -------------------------------------------------------------------------
+// Summary:   Quick receipes for border radius
+// -------------------------------------------------------------------------
+
+@mixin border-radius($direction: all, $radius: $base-bdr-radius) {
+
+  @if ($direction == all) {
+    border-radius: $radius;
+  }
+  @if ($direction == top) {
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+  }
+  @if ($direction == bottom) {
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+  @if ($direction == left) {
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+  }
+  @if ($direction == right) {
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+  @if ($direction == 'diagnol-left') {
+    border-top-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+  @if ($direction == 'diagnol-right') {
+    border-top-right-radius: $radius;
+    border-bottom-left-radius: $radius;
+  }
+
+}

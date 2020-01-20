@@ -1,0 +1,48 @@
+///////////////////////////////////////////////////////////////////////
+//
+// BOTOM LINE
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// Styles
+// -------------------------------------------------------------------
+
+.l-bottom-line {
+  background-color: find-color(white);
+  @include gts-box-common(lg);
+
+  &__title {
+    font-family: 'arial black';
+    font-size: font-size(72px);
+    line-height: 1;
+    font-weight: weight(bold);
+    text-transform: uppercase;
+    color: find-color(alert);
+    letter-spacing: -0.03em;
+
+    @include breakpoint(medium) {
+      position: absolute;
+      bottom: spacing(0.4);
+      left: spacing(0.5);
+      font-size: font-size(174px);
+    }
+
+  }
+
+  &__content {
+    position: relative;
+    background-color: rgba(find-color(white), 0.85);
+
+    @include breakpoint(medium) {
+      @include grid-column-size(6);
+      @include grid-column-offset(6);
+      @include gts-box-common();
+      box-shadow: $base-shadow-common;
+      z-index: 1;
+      min-height: spacing(10);
+    }
+
+  }
+
+}

@@ -1,0 +1,120 @@
+///////////////////////////////////////////////////////////////////////
+//
+// CLIPBOARD
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// *Requires _components.tabs.scss
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$cb-item-mh: 36px;
+
+$cb-item-fs: null;
+$cb-item-fc: null;
+$cb-item-lh: $base-line-height;
+
+$cb-item-bw: 1px;
+$cb-item-bc: find-color(border,light);
+
+$cb-item-tb: pad-height($cb-item-mh,$cb-item-lh,$cb-item-bw);
+$cb-item-lr: spacing(0);
+
+// STYLES
+// -------------------------------------------------------------------
+
+.#{$tabs}-clipboard {
+  background-color: find-color(white);
+  border-radius: 12px 0 0 12px;
+  @include get-shadow(1);
+}
+
+
+.#{$tabs}-clipboard-wrap {
+  padding: rem(12px);
+  background-image: url(../img/bg-dust.png);
+  background-color: find-color(gray,darker); //#6f5238;
+  border-radius: 12px;
+  box-shadow: $base-shadow-common;
+
+  &:after {
+    content:'';
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    display: block;
+    width: 196px;
+    height: 50px;
+    background-image: url(../img/clipboard-top.png);
+    background-repeat: no-repeat;
+    background-position: center top;
+    transform: translateX(-50%);
+  }
+
+}
+
+
+.#{$tabs}-clipboard-paper {
+  display: block;
+  width: 100%;
+  height: 100%;
+  @include gts-box-common(
+    $pt: spacing(2.5)
+  );
+  background-color: find-color(white);
+  @include get-shadow(1);
+}
+
+.#{$tabs}-clipboard {
+
+
+.#{$tabs} {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.#{$tabs}#{$tabs-item} {
+  &:not(:last-child) {
+    margin-bottom: $cb-item-bw * -1;
+  }
+}
+
+.#{$tabs}#{$tabs-title} {
+  padding: $cb-item-tb $cb-item-lr $cb-item-tb (rem($base-icon-size) + rem(6px * 2));
+  border-top: $cb-item-bw solid $cb-item-bc;
+  border-bottom: $cb-item-bw solid $cb-item-bc;
+
+  &:before {
+    content:'';
+    display: block;
+    @include sprite-common;
+    @include sprite(check-small-dark);
+    // box-sizing: content-box;
+    margin: 2px;
+    margin-right: 6px;
+    margin-left: (rem($base-icon-size) + rem(6px)) * -1;
+    opacity: 0;
+  }
+
+  &:hover {
+    color: find-color(accent);
+    background-color: find-color(gray,bg);
+    &:before {
+      opacity: 0.3;
+    }
+  }
+
+  &[aria-selected="true"] {
+    &:before {
+      @include sprite-position(check-small);
+      opacity: 1;
+    }
+  }
+
+}
+
+
+}

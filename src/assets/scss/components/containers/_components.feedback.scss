@@ -1,0 +1,218 @@
+///////////////////////////////////////////////////////////////////////
+//
+// FEEDBACK CARDS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+$fb-br: 6px;
+$fb-bg: find-color(white);
+$fb-is: 60px;
+$fb-bc-correct: find-color(secondary);
+$fb-bc-incorrect: lighten(find-color(alert),5%);
+$fb-bc-retry: find-color(warning);
+$fb-bc-directions: find-color(primary,light);
+$fb-bc-summary: find-color(secondary);
+$fb-mw: rem(540px);
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.c-feedback-wrap {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-60%) translateX(-50%);
+  z-index: 1000;
+
+  &.is-open {
+    display: block;
+  }
+
+}
+
+.c-feedback,
+.reveal--feedback {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  display: table;
+  width: 100%;
+  min-width: $fb-mw;
+  min-height: rem(300px);
+  text-align: center;
+  vertical-align: middle;
+  background-color: $fb-bg;
+  border-radius: $fb-br;
+  box-shadow: $base-shadow-common;
+  z-index: 1000;
+
+  &__inner {
+    background-color: find-color(white);
+    display: table-cell;
+    @include gts-box-common(lg);
+    vertical-align: middle;
+    text-align: center;
+  }
+
+
+  &__heading {
+    @include typeset(2);
+    font-weight: weight(light);
+    margin-bottom: spacing(0.5);
+
+    &:before {
+      content:'';
+      display: block;
+      width: spacing($fb-is);
+      height: spacing($fb-is);
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: spacing(0.5);
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+  }
+
+  &__next-msg {
+    font-size: font-size(sm);
+    font-style: italic;
+    color: find-color(text,light);
+  }
+
+  &.is-fb-correct {
+    @include gts-box-stripe(
+      $br: 0 0 $fb-br $fb-br,
+      $bc: $fb-bc-correct
+    );
+    .c-feedback__heading {
+      &:before { background-image: url(../img/thumbs-up.svg); }
+    }
+    .c-btn:disabled {
+      display: none;
+    }
+  }
+
+  &.is-fb-incorrect {
+    @include gts-box-stripe(
+      $br: 0 0 $fb-br $fb-br,
+      $bc: $fb-bc-incorrect
+    );
+    .c-feedback__heading {
+      &:before { background-image: url(../img/thumbs-down.svg); }
+    }
+    .c-btn:disabled {
+      display: none;
+    }
+
+
+  }
+
+  &.is-fb-retry {
+    @include gts-box-stripe(
+      $br: 0 0 $fb-br $fb-br,
+      $bc: $fb-bc-retry
+    );
+    .c-feedback__heading {
+      &:before { background-image: url(../img/retry.svg); }
+    }
+  }
+
+  // Lesson Summary Complete
+  &.is-fb-summary {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: none;
+    padding-bottom: 0; //spacing(0.75);
+    @include get-shadow(1);
+
+    p { margin-bottom: spacing(0.5); }
+    // @include gts-box-stripe(
+    //   $br: 0 0 $fb-br $fb-br,
+    //   $bc: $fb-bc-summary
+    // );
+
+    .c-feedback__heading {
+      &:before { background-image: url(../img/correct-lg.svg); }
+    }
+  }
+
+
+  &.is-fb-directions {
+    @include gts-box-stripe(
+      $br: 0 0 $fb-br $fb-br,
+      $bc: $fb-bc-directions
+    );
+    .c-feedback__heading {
+      &:before { background-image: url(../img/directions.svg); }
+    }
+    .c-btn:disabled {
+      display: none;
+    }
+  }
+
+
+}
+
+
+.is-feedback-open {
+    &:before {
+      content:'';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      overflow: hidden;
+      background-color: rgba(find-color(gray,lightest),0.8);
+      z-index: 1;
+    }
+  }
+
+
+
+// REMEDIATION
+// ------------------------------------------------------------------
+
+.c-remediation-bar {
+  position: fixed;
+  top: spacing(0.5);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: find-color(black);
+  color: find-color(white);
+  border-radius: 100px;
+  @include set-height(42px);
+  padding-left: spacing(1.25);
+  padding-right: spacing(2);
+  z-index: 100;
+  box-shadow: $base-shadow-common;
+  transition: all .3s ease;
+
+  &:hover {
+    background-color: find-color(gray,darker);
+    @include get-shadow(3);
+  }
+
+  > a {
+    display: block;
+    text-decoration: none;
+    color: find-color(white);
+  }
+
+  .o-close-btn {
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+  }
+
+}

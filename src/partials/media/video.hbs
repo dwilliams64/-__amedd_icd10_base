@@ -1,0 +1,18 @@
+<video
+  class='mejs__player mejs-player mejs-player--video {{class}}'
+  data-mejsoptions='{
+    "showPosterWhenEnded": "true",
+    "stretching": "responsive",
+    "toggleCaptionsButtonWhenOnlyOne": "false"
+  }'
+
+    poster='{{root}}assets/img/poster_icd10_01.png'
+ >
+
+    <source src='{{root}}assets/media/video/{{page}}.mp4' type='video/mp4'>
+
+    <track src='{{root}}assets/media/cc/{{page}}.vtt' srclang='en' label='English' kind='subtitles' type='text/vtt'>
+</video>
+
+
+

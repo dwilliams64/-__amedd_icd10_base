@@ -1,0 +1,113 @@
+///////////////////////////////////////////////////////////////////////
+//
+// AUDIO PLAYER : REQUIRES VIDEO PLAYER
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Vendor : https://github.com/johndyer/mediaelement
+// Version : see package.json
+// Notes: Only use 'px' when setting units
+
+$mejs-space-after-a:  $mejs-space-after; // margin-bottom
+// audio
+$mejs-bar-height-a:   36px;
+$mejs-bar-bg-start-a: find-color(primary, darkest); // top color
+$mejs-bar-bg-end-a:   find-color(primary, darkest); // bottom & fallback color;
+$mejs-radius-a:       3px;
+
+// spacing
+$mejs-space-tb-a:  px(pad-height($mejs-bar-height-a, 1, 0));
+$mejs-space-lr-a:  0.25;
+
+// typography - audio
+$mejs-fs-a: $mejs-fs;
+$mejs-fw-a: $mejs-fw;
+$mejs-ff-a: $mejs-ff; // use 'inherit' if no change is needed
+$mejs-fc-a: $mejs-fc;
+
+// icons
+$mejs-icon-play-a:     $mejs-icon-play;
+$mejs-icon-pause-a:    $mejs-icon-pause;
+$mejs-icon-replay-a:   $mejs-icon-replay;
+$mejs-icon-mute-a:     $mejs-icon-mute;
+$mejs-icon-unmute-a:   $mejs-icon-unmute;
+$mejs-icon-cc-a:       $mejs-icon-cc;
+
+// horizontal slider
+$mejs-slider-radius-hor-a:  $mejs-slider-radius-hor;
+$mejs-slider-bg-hor-a:      $mejs-slider-bg-hor;
+$mejs-slider-bg-cur-hor-a:      $mejs-slider-bg-hor;
+
+// ------------------------------------------------------------------
+
+.mejs-player--audio,
+ audio {
+// do not delete above here
+// -------------------------------------------
+
+@if $mejs-space-after-a != $mejs-space-after {
+  &.mejs__player {
+    margin-bottom: $mejs-space-after-a;
+  }
+}
+
+.mejs__controls {
+  min-height: spacing($mejs-bar-height-a);
+  padding:spacing($mejs-space-tb-a) spacing($mejs-space-lr-a);
+  font-size: $mejs-fs-a;
+  font-weight: $mejs-fw-a;
+  color: $mejs-fc-a;
+}
+
+.mejs__controls:not([style*="display: none"]) {
+  background: $mejs-bar-bg-end-a;
+  @if $mejs-bar-bg-start-a != $mejs-bar-bg-end-a {
+    background: linear-gradient(
+      $mejs-bar-bg-start-a 0%,
+      $mejs-bar-bg-end-a 100%
+    );
+  }
+  // border-radius: $mejs-radius-a;
+}
+
+// audio icons
+.mejs__play > button {
+  @include sprite-position($mejs-icon-play-a);
+}
+.mejs__pause > button {
+  @include sprite-position($mejs-icon-pause-a);
+}
+.mejs__replay > button {
+  @include sprite-position($mejs-icon-replay-a);
+}
+.mejs__mute > button {
+  @include sprite-position($mejs-icon-mute-a);
+}
+.mejs__unmute > button {
+  @include sprite-position($mejs-icon-unmute-a);
+}
+.mejs__captions-button > button {
+  @include sprite-position($mejs-icon-cc-a);
+}
+
+// horizontal slider bar
+.mejs__horizontal-volume-total {
+  border-radius: $mejs-slider-radius-hor-a;
+  background: rgba($mejs-slider-bg-hor-a, 0.3);
+}
+
+.mejs__horizontal-volume-current {
+  border-radius: $mejs-slider-radius-hor-a;
+  background: rgba($mejs-slider-bg-cur-hor-a, 1);
+}
+
+.mejs__horizontal-volume-handle { display: none; }
+
+// captions
+.mejs__captions-position-hover {
+  bottom: spacing(px($mejs-bar-height-a) + px($mejs-cc-space));
+}
+
+// -------------------------------------------
+// do not delete below here
+}

@@ -1,0 +1,66 @@
+///////////////////////////////////////////////////////////////////////
+//
+//  FULL PAGE IMAGE OVERLAY
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+
+// Set-up
+$img-ov-bg:        find-color(black);
+$img-ov-bg-o:      0.6;
+$img-ov-bs-o:      0.65;
+$img-ov-bs-bg:     find-color(black);
+$img-ov-bs-dis:    52em;
+
+$img-ov-bs-bg-light:    find-color(border);
+$img-ov-bs-o-light:      0.7;
+
+$img-ov-bs-bg-accent:   find-color(accent,darker);
+$img-ov-bs-o-accent:      0.8;
+
+$img-ov-bs-bg-primary:  find-color(primary,darkest);
+$img-ov-bs-o-primary:      0.75;
+
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.l-image-overlay {
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  vertical-align: middle;
+
+  &__body {
+    vertical-align: middle;
+    height: 100%;
+    color: find-color(white);
+    text-align: center;
+    box-shadow: inset 0 ($img-ov-bs-dis * -1) $img-ov-bs-dis (($img-ov-bs-dis / 2) * -1) rgba($img-ov-bs-bg,$img-ov-bs-o);
+
+    &--light {
+      color: find-color(accent,dark);
+      background-color: rgba($img-ov-bs-bg-light,$img-ov-bs-o-light);
+      box-shadow: inset 0 0 0 transparent;
+      // box-shadow: inset 0 ($img-ov-bs-dis * -1) $img-ov-bs-dis (($img-ov-bs-dis / 2) * -1) rgba();
+    }
+
+    &--accent {
+      box-shadow: inset 0 ($img-ov-bs-dis * -1) $img-ov-bs-dis (($img-ov-bs-dis / 2) * -1) rgba($img-ov-bs-bg-accent,$img-ov-bs-o-accent);
+    }
+
+    &--primary {
+      box-shadow: inset 0 ($img-ov-bs-dis * -1) $img-ov-bs-dis (($img-ov-bs-dis / 2) * -1) rgba($img-ov-bs-bg-primary,$img-ov-bs-o-primary);
+    }
+
+  }
+
+
+}
+

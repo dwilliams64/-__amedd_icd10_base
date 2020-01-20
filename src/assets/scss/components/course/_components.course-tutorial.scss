@@ -1,0 +1,101 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE TUTORIAL
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$tut-arrow-h: 42px;
+$tut-pad-tb: pad-height(($tut-arrow-h), 1, 0);
+$tut-title-fc: find-color(secondary, dark);
+$tut-br: rem(9px);
+
+$tut-card: c-card;
+
+
+// STYLES
+// -------------------------------------------------------------------
+.#{$tut-card}--tutorial {
+  position: relative;
+  margin-bottom: 0;
+  text-align: center;
+  background-color: find-color(gray,lightest);
+  border-radius: $tut-br *  1.3;
+
+
+  .#{$tut-card}__media {
+    background-color: find-color(secondary, dark);
+    background-image: url(../img/tuts-bg-object.png);
+    background-repeat: no-repeat;
+    border-radius: $tut-br $tut-br 0 0;
+  }
+
+
+  .#{$tut-card}__title {
+    font-size: font-size(28px);
+    font-weight: weight(light);
+    color: $tut-title-fc;
+    margin-bottom: spacing(0.375);
+  }
+
+
+  .#{$tut-card}__section {
+    padding: 0;
+    background-color: find-color(white);
+    border-radius: 0 0 $tut-br $tut-br;
+    // @include get-shadow(1,true,bottom);
+  }
+
+
+}
+
+
+
+// TUTORIAL SLIDER
+// -------------------------------------------------------------------
+.orbit-tut-nav {
+
+
+  .orbit-previous,
+  .orbit-next {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    padding: 0 4.5%;
+    line-height: 1;
+    height: $tut-arrow-h !important;
+    width: auto !important;
+    font-size: font-size(sm);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $tut-title-fc;
+    background-color: transparent;
+    @include transition;
+    transform: translateY(0);
+
+    &:focus,
+    &:hover {
+      cursor: pointer;
+      // color: find-color(primary);
+      background-color: find-color(gray,lightest);
+    }
+
+  }
+
+  .orbit-previous { border-radius: 0 0 0 $tut-br; }
+  .orbit-next { border-radius: 0 0 $tut-br 0; }
+
+  .orbit-bullets {
+    margin: 0;
+    padding: $tut-pad-tb 0;
+
+    > button {
+      @include transition;
+      cursor: pointer;
+    }
+  }
+
+
+}

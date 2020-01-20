@@ -1,0 +1,20 @@
+<svg id="Designs" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="142" height="142" viewBox="0 0 142 142">
+    <defs>
+        <linearGradient id="linear-gradient" x1="71" y1="123.67" x2="71" y2="6.25" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#d68ee2" />
+            <stop offset="1" stop-color="#671d73" />
+        </linearGradient>
+    </defs>
+    <title>button_selection</title>
+    <g id="Base">
+        <circle id="n_bk_cir" cx="71" cy="71" r="64.75" fill="#671d73" stroke="#d68ee2" stroke-miterlimit="10" stroke-width="2" />
+        <circle id="n_fnt_bg_cir" cx="71" cy="64.96" r="58.71" fill="url(#linear-gradient)" /><text transform="translate(34.42 51.89)" font-size="14" fill="#f5f6f6" font-family="ArialMT, Arial">Concussion<tspan x="5.06" y="16.8">Screening</tspan>
+            <tspan x="16.34" y="33.6">Codes</tspan>
+        </text>
+        <g id="n_fnt_sm_circ">
+            <path d="M71,134a10,10,0,1,1,10-10A10,10,0,0,1,71,134Z" fill="#f5f6f6" />
+            <path d="M71,114.49A9.51,9.51,0,1,1,61.49,124,9.51,9.51,0,0,1,71,114.49m0-1A10.51,10.51,0,1,0,81.51,124,10.53,10.53,0,0,0,71,113.49Z" fill="#671d73" />
+        </g>
+        <path id="n_txt_num" d="M71.58,117.76l0,.08a5.21,5.21,0,0,1-1.43,1.85A8,8,0,0,1,67.52,121l-.1,0v3l.19-.06a11.85,11.85,0,0,0,1.94-.74,10.06,10.06,0,0,0,1.37-.85v7.84h3.66V117.76Z" fill="#671d73" />
+    </g>
+</svg>

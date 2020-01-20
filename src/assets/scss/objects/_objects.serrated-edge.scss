@@ -1,0 +1,24 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SERRATED EDGE OBJECT
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+.o-serrated-edge-bottom {
+  @include gts-serrated-edge(find-color(white), 12, bottom);
+}
+
+.o-serrated-edge-top {
+  @include gts-serrated-edge(find-color(white), 12, top);
+}
+
+.o-serrated-edge-right {
+  @include gts-serrated-edge(find-color(white), 12, right);
+}
+
+.o-serrated-edge-left {
+  @include gts-serrated-edge(find-color(white), 12, left);
+}
+
+

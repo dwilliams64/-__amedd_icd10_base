@@ -1,0 +1,38 @@
+///////////////////////////////////////////////////////////////////////
+//
+// CONFETTI
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.c-fetti {
+  position: relative;
+  margin-bottom: spacing(0.5);
+  z-index: 100;
+
+  &__btn {
+    position: relative;
+    background-color: find-color(white);
+    transition: all .2s ease;
+    z-index: 99;
+    &:hover,
+    &:focus {
+      box-shadow: $base-shadow-common;
+    }
+  }
+
+  &__area {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    display: block;
+    transform: translate(-50%, -70%);
+    pointer-events: none;
+    z-index: 98;
+  }
+
+
+}

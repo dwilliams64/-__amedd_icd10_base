@@ -1,0 +1,20 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Font Weight
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+@function weight($weight) {
+  @if type-of($weight) == "string" {
+    @if map-has-key($font-weight, $weight) {
+      @return map-get($font-weight, $weight);
+    }
+    @else {
+      @error "'#{$weight}' not found in $font-weight map";
+    }
+  }
+  @else {
+    @error "Weight specified for weight() is not a string";
+  }
+}

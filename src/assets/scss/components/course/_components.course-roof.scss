@@ -1,0 +1,42 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SCMS ROOF
+//
+// ///////////////////////////////////////////////////////////////////
+
+$rtr-bg: find-color(primary, darkest);
+
+.c-scms-roof {
+  position: relative;
+
+  // add the roof
+  &:before {
+    content:'';
+    display: block;
+    height: 48px;
+    background-position: center 1px;
+    background-image: url(../img/scms-roof.svg);
+    background-repeat: no-repeat;
+    background-size: 1148px auto;
+  }
+
+  &__title {
+    position: relative;
+    padding: 0 spacing(base) spacing(xxs);
+    margin: 0;
+    font-size: font-size(xl);
+    font-weight: weight(light);
+    color: find-color(white);
+    text-align: center;
+    background-color: $rtr-bg;
+  }
+
+  &__section {
+    padding: spacing(xs);
+    background-color: $rtr-bg;
+  }
+
+}
+
+
+

@@ -1,0 +1,84 @@
+///////////////////////////////////////////////////////////////////////
+//
+// AVATAR
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-avatar {
+
+
+  &__body {
+    position: relative;
+    background-color: $box-background;
+    vertical-align: top;
+    box-shadow: $base-shadow-common;
+  }
+
+
+  &__inner {
+    @include gts-box-common;
+  }
+
+
+  &__media {
+    position: static;
+    text-align: center;
+    vertical-align: bottom;
+    z-index: 0;
+  }
+
+
+  &__img {
+    z-index: 1;
+    padding-top: spacing(1);
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    height: auto;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(4);
+      position: absolute;
+      bottom: 0;
+    }
+
+    &--left {
+      @include breakpoint(medium) { left: spacing(0.75); }
+    }
+
+    &--right {
+      @include breakpoint(medium) { right: spacing(0.75); }
+    }
+
+    > img {
+      min-width: 387px;
+      max-width: 387px;
+      @include breakpoint(medium) {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+  }
+
+  &--intro {
+    &.l-avatar {
+      box-shadow: $base-shadow-common;
+    }
+
+    .l-avatar {
+      &__body { box-shadow: 0 0 0 0 transparent; }
+
+      &__media {
+        // background-color: rgba(find-color(gray,lightest),0.8);
+        background-color: rgba(find-color(primary,darkest),0.4);
+      }
+
+    }
+  }
+
+}

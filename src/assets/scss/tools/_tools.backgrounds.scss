@@ -1,0 +1,390 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Background Images
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// Background Base
+// -------------------------------------------------------------------
+@mixin bg-base(
+  $bg:  null,
+  $bgi: null,
+  $bgp: null,
+  $bgr: null,
+  $bga: null
+) {
+  background-color: $bg;
+  @if $bgi {
+    background-image: url(../img/#{$bgi});
+  } @else {
+    background-image: none;
+  }
+  background-position: $bgp;
+  background-attachment: $bga;
+  background-repeat: $bgr;
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-content (
+  $bg:  null,
+  $bgi: 'bg-content.png',
+  $bgp:  center -6px,
+  $bgr:  no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-dark-blue (
+  $bg:  find-color(primary, darkest),
+  $bgi: 'bg-content-blue.png',
+  $bgp:  center -6px,
+  $bgr:  no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-blue (
+  $bg:  find-color(primary, dark),
+  $bgi: null,
+  $bgp: null,
+  $bgr: null
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-green (
+  $bg:  null, //find-color(secondary, dark),
+  $bgi: 'bg-content-green.png',
+  $bgp:  center -6px,
+  $bgr:  no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-dark-teal (
+  $bg:  find-color(accent, dark),
+  $bgi: 'bg-content-purple.png',
+  $bgp: center -6px,
+  $bgr: no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-light (
+  $bg:  null, //find-color(white),
+  $bgi: 'bg-content-gray.png',
+  $bgp: center -6px,
+  $bgr: no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-office-1 (
+  $bg:  null,
+  $bgi: 'bg-office-1.jpg',
+  $bgp: center 0,
+  $bgr: no-repeat,
+  $bga: local
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+@mixin bg-office-2 (
+  $bg:  null,
+  $bgi: 'bg-office-2.jpg',
+  $bgp: right top,
+  $bgr: no-repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+@mixin bg-office-3 (
+  $bg:  null,
+  $bgi: 'bg-office-3.jpg',
+  $bgp: right top,
+  $bgr: no-repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+@mixin bg-office-4 (
+  $bg:  null,
+  $bgi: 'bg-office-4.jpg',
+  $bgp: right top,
+  $bgr: no-repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+@mixin bg-office-5 (
+  $bg:  null,
+  $bgi: 'bg-office-5.png',
+  $bgp: left top,
+  $bgr: repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-outside-1 (
+  $bg:  find-color(black),
+  $bgi: 'bg-outside-1.jpg',
+  $bgp: center top,
+  $bgr: no-repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+
+// -------------------------------------------------------------------
+
+@mixin bg-warehouse-1 (
+  $bg:  find-color(gray),
+  $bgi: 'bg-warehouse-1.jpg',
+  $bgp: center top,
+  $bgr: no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+@mixin bg-warehouse-2 (
+  $bg:  find-color(white),
+  $bgi: 'bg-warehouse-2.jpg',
+  $bgp: center top,
+  $bgr: no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+@mixin bg-warehouse-3 (
+  $bg:  null,
+  $bgi: 'bg-warehouse-3.jpg',
+  $bgp: center top,
+  $bgr: no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+@mixin bg-warehouse-4 (
+  $bg:  null,
+  $bgi: 'bg-warehouse-4.jpg',
+  $bgp: center top,
+  $bgr: no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-pattern-2 (
+  $bg:  find-color(white),
+  $bgi: 'bg-course-pattern-light.png',
+  $bgp: left top,
+  $bgr: repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-wood (
+  $bg:  null,
+  $bgi: 'bg-wood-pattern.jpg',
+  $bgp: left top,
+  $bgr: repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+@mixin bg-wood-2 (
+  $bg:  null,
+  $bgi: 'bg-wood-pattern-1.jpg',
+  $bgp: left top,
+  $bgr: repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-paper (
+  $bg:  null,
+  $bgi: 'bg-paper.png',
+  $bgp: left top,
+  $bgr: repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+
+// -------------------------------------------------------------------
+
+@mixin bg-paper2 (
+  $bg:  null,
+  $bgi: 'bg-paper-texture.png',
+  $bgp: left top,
+  $bgr: repeat
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-dnd (
+  $bg:  $body-background,
+  $bgi: 'dnd-bg.jpg',
+  $bgp:  center px,
+  $bgr:  no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-truck-1 (
+  $bg:  find-color(primary, darkest),
+  $bgi: 'bg-truck-1.jpg',
+  $bgp: center 80px,
+  $bgr: no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+
+// -------------------------------------------------------------------
+
+@mixin bg-train-1 (
+  $bg:  find-color(primary, darkest),
+  $bgi: 'bg-train-1.jpg',
+  $bgp: center 80px,
+  $bgr: no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-scanner-1 (
+  $bg:  $body-background,
+  $bgi: 'bg-scanner-1.jpg',
+  $bgp:  center top,
+  $bgr:  no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-conveyor-1 (
+  $bg:  $body-background,
+  $bgi: 'bg-conveyor-1.jpg',
+  $bgp:  center top,
+  $bgr:  no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-side-tab-1 (
+  $bg:  null,
+  $bgi: 'bg-side-tab-1.png',
+  $bgp:  left 0,
+  $bgr:  no-repeat
+  // $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-side-tab-2 (
+  $bg:  null,
+  $bgi: 'bg-side-tab-2.png',
+  $bgp:  center bottom,
+  $bgr:  no-repeat
+  // $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr)
+}
+
+
+// -------------------------------------------------------------------
+
+@mixin bg-fade (
+  $bg:  null,
+  $bgi: 'bg-curve.png',
+  $bgp:  left top,
+  $bgr:  no-repeat,
+  $bga: null
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-links (
+  $bg:  null,
+  $bgi: 'bg-links.png',
+  $bgp:  right top,
+  $bgr:  no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-robot-doctor (
+  $bg:  null,
+  $bgi: 'bg-robot-doctor.jpg',
+  $bgp:  center -6px,
+  $bgr:  no-repeat,
+  $bga: fixed
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------
+
+@mixin bg-woman-bus (
+  $bg:  null,
+  $bgi: 'woman-on-bus.jpg',
+  $bgp:  right center,
+  $bgr:  no-repeat,
+  $bga: initial
+){
+  @include bg-base($bg, $bgi, $bgp, $bgr, $bga)
+}
+
+// -------------------------------------------------------------------

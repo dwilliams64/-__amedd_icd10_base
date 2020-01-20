@@ -1,0 +1,330 @@
+///////////////////////////////////////////////////////////////////////
+//
+// KNOWLEDGE CHECK 1
+//
+// ///////////////////////////////////////////////////////////////////
+
+$kc1-card-bg: find-color(white);
+$kc1-card-bc: find-color(border);
+$kc1-card-bw: 1px;
+$kc1-card-br: 3px;
+
+$kc1-dir-fs:  font-size(sm);
+$kc1-dir-lh:  line-height(spacing(24px));
+$kc1-dir-fc:  find-color(text,light);
+$kc1-dir-mb:  0;
+
+$kc1-qlab-fs: font-size(sm);
+$kc1-qlab-lh: line-height(spacing(1.25));
+$kc1-qlab-fw: weight(normal);
+$kc1-qlab-fc: find-color(accent);
+$kc1-qlab-mb: 0;
+
+$kc1-ques-fs: font-size(lg);
+$kc1-ques-lh: line-height(spacing(1.25));
+$kc1-ques-fc: find-color(text,dark);
+$kc1-ques-mb: spacing(0.75);
+
+$kc1-label-mh: get-height(base);
+$kc1-label-fs: font-size(md);
+$kc1-label-lh: line-height(spacing(1));
+$kc1-label-fc: find-color(text,dark);
+$kc1-label-bw: $kc1-card-bw;
+$kc1-label-bc: $kc1-card-bc;
+$kc1-label-bg: null;
+$kc1-label-tb: pad-height($kc1-label-mh,$kc1-label-lh,$kc1-label-bw);
+$kc1-label-lr: $kc1-label-tb;
+$kc1-label-fc-h: find-color(secondary,dark);
+$kc1-label-bg-h: darken($kc1-card-bg,2%);
+
+$kc1-retry-bg: find-color(warning);
+$kc1-retry-bc: find-color(warning);
+$kc1-retry-fc: find-color(white);
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.l-kc1 {
+  // position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $kc1-card-bg;
+  border-radius: $kc1-card-br;
+  @include get-shadow(1);
+  vertical-align: middle;
+
+
+  &__section {
+    min-height: rem(348px);
+  }
+
+
+  &__directions {
+    margin-bottom: $kc1-dir-mb;
+    padding-bottom: spacing(0.75);
+    font-size: $kc1-dir-fs;
+    line-height: $kc1-dir-lh;
+    color: $kc1-dir-fc;
+    .c-label { margin-right: 4px; }
+  }
+
+
+  &__body {
+    @include gts-box-common ($pb:0);
+    padding-top: spacing(0.25);
+    // padding-bottom: spacing(0.5);
+  }
+
+
+  &__question-label {
+    text-transform: uppercase;
+    font-size: $kc1-qlab-fs;
+    line-height: $kc1-qlab-lh;
+    font-weight: $kc1-qlab-fw;
+    color: $kc1-qlab-fc;
+    letter-spacing: 0.06em;
+    margin-bottom: $kc1-qlab-mb;
+  }
+
+
+  &__question {
+    margin-bottom: $kc1-ques-mb;
+    font-size: $kc1-ques-fs;
+    line-height: $kc1-ques-lh;
+    color: $kc1-ques-fc;
+
+    &--small { @include typeset(lgp); }
+
+  }
+
+
+  // FORM
+  &__fieldset {
+    padding: 0;
+    border: 0;
+    border: $kc1-card-bw solid $kc1-card-bc;
+    border-left: 0;
+    border-right: 0;
+  }
+
+
+  // question row
+  &__label {
+    position: relative;
+    display: table;
+    width: 100%;
+    padding: $kc1-label-tb $kc1-label-lr $kc1-label-tb  0;
+    margin-bottom: 0;
+    font-size: $kc1-label-fs;
+    line-height: $kc1-label-lh;
+    color: $kc1-label-fc;
+    border: 0;
+    cursor: pointer;
+    transition: all .25s ease;
+
+    &:focus,
+    &:hover {
+      background-color: $kc1-label-bg-h;
+      color: $kc1-label-fc-h
+    }
+
+    &:not(:last-child) {
+      border-bottom: $kc1-card-bw solid $kc1-card-bc;
+    }
+
+  }
+
+  // hidden input
+  &__input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+
+    // checked state
+    &:checked ~ .l-kc1__text {
+      color: find-color(accent, dark);
+    }
+
+    &:checked ~ .l-kc1__control {
+      &--ms {@include sprite-position(checkbox-chk);}
+      &--mc {@include sprite-position(check);}
+    }
+
+  }
+
+  // fake input
+  &__control {
+    position: relative;
+    @include sprite-common;
+    float: left;
+
+    &--ms { @include sprite(checkbox-dis); }
+    &--mc { @include sprite(radio); }
+
+  }
+
+
+  &__text {
+    display: inline-block;
+    width: calc(100% - #{$base-icon-size});
+    float: left;
+    padding-left: $kc1-label-lr;
+  }
+
+
+  &__fieldset--alpha {
+
+    .l-kc1__text {
+      padding-left: $kc1-label-lr * 3;
+      text-indent: -$kc1-label-lr * 2;
+      &:first-letter {
+        font-size: font-size(sm);
+        // font-weight: weight(medium);
+        color:find-color(accent);
+      }
+    }
+
+  }
+
+  &--wide {
+    width: 100%;
+  }
+
+
+
+  // FOOTER
+  &__footer {
+    position: relative;
+    overflow: hidden;
+    @include gts-box-common(
+      // $pb: spacing(0.5)
+    );
+  }
+
+
+  &__buttons {
+    float: right;
+  }
+
+
+  &__btn {
+    border-radius: 60px;
+    transition: all .25s ease;
+
+    &:disabled {
+      background-color: find-color(gray,bg);
+      border-color: find-color(gray,bg);
+    }
+
+    &.is-retry {
+      position: relative;
+      z-index: 1001;
+      background-color: $kc1-retry-bg;
+      border-color: $kc1-retry-bc;
+      color: $kc1-retry-fc;
+
+      &:hover,
+      &:focus {
+        background-color: lighten($kc1-retry-bg,10%) !important;
+        border-color: lighten($kc1-retry-bc,10%);
+      }
+
+    }
+
+  }
+
+
+  // question count
+  &__count {
+    float: left;
+    display: inline-block;
+    font-size: font-size(sm);
+    padding: rem(6px) rem(18px);
+    margin: rem(2px);
+    background-color: find-color(gray,bg);
+    border-radius: 48px;
+
+    span:first-child { font-weight: weight(bold); }
+    span:last-child { font-weight: weight(bold); }
+
+  }
+
+
+}
+
+// MATCHING
+
+.l-kc1__match {
+  padding: 0;
+  margin: 0;
+  border-top: $kc1-card-bw solid $kc1-card-bc;
+  border-bottom: $kc1-card-bw solid $kc1-card-bc;
+  list-style-type: none;
+}
+
+.l-kc1__item {
+  @include clearfix;
+  // background-color: find-color(gray,bg);
+
+  @include breakpoint(medium) {
+    display: table;
+    width: 100%;
+  }
+
+  &:not(:last-child) {
+    border-bottom: $kc1-card-bw solid $kc1-card-bc;
+  }
+
+}
+
+.l-kc1__match-text {
+  padding:$kc1-label-tb $kc1-label-lr;
+  font-size: font-size(base);
+  line-height: $kc1-ques-lh;
+  color: $kc1-ques-fc;
+  margin-bottom: 0;
+
+  @include breakpoint(medium) {
+    @include grid-column-size(3);
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  &--small {
+    @include typeset(lgp);
+  }
+
+}
+
+.l-kc1__match-choice {
+
+  @include breakpoint(medium) {
+    @include grid-column-size(9);
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+}
+
+.l-kc1__select {
+  width: 100%;
+  color: $kc1-label-fc;
+  font-weight: weight(light);
+  line-height: $kc1-label-lh;
+  padding:pad-height(38px,$kc1-label-lh,0) $kc1-label-lr;
+  background-color: find-color(gray,bg);
+  border: $kc1-card-bw solid find-color(border);
+  // @include get-shadow(1);
+}
+
+.l-kc1__option {
+  display: block;
+  padding:$kc1-label-tb $kc1-label-lr;
+  color: find-color(text);
+
+  > span {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}

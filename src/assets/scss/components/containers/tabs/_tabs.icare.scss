@@ -1,0 +1,123 @@
+///////////////////////////////////////////////////////////////////////
+//
+// TABS ICARE
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// *Requires _components.tabs.scss
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+
+.icare-pos {
+  display: inline-block;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+}
+
+.icare-wrap {
+  text-align: center;
+  background-color: find-color(primary,darkest);
+  vertical-align: middle;
+}
+
+.icare-img {
+  position: relative;
+  z-index: 0;
+}
+
+.icare-content {
+  text-align: center;
+  @include typeset(lgp);
+  background-color: find-color(white);
+  color: find-color(primary,darker);
+  vertical-align: middle;
+}
+
+.icare-title {
+  font-size: font-size(huge);
+  line-height: line-height(2);
+  font-weight: weight(medium);
+  margin-bottom: spacing(0.5);
+}
+
+.icare-highlight {
+  color: find-color(warning);
+}
+
+.#{$tabs}-icare {
+
+
+  .#{$tabs} {
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .#{$tabs}#{$tabs-item} {
+    position: absolute;
+    top: 44%;
+    height: 28%;
+    display: block;
+    transition: all .3s;
+    z-index: 2;
+
+    &:nth-child(2) {
+      left: 15.5%;
+      width: 10%;
+    }
+
+    &:nth-child(3) {
+      left: 28%;
+      width: 15%;
+    }
+
+    &:nth-child(4) {
+      left: 43%;
+      width: 15%;
+    }
+
+    &:nth-child(5) {
+      left: 58%;
+      width: 14%;
+    }
+
+    &:nth-child(6) {
+      left: 72%;
+      width: 12%;
+    }
+
+    &:hover {
+      box-shadow: $base-shadow-common;
+      border-bottom:3px solid find-color(secondary);
+    }
+
+  }
+
+  .#{$tabs}#{$tabs-title} {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: find-color(primary,darkest);
+    opacity: 0.01;
+    transition: all .3s;
+    z-index: 2;
+  }
+
+  .#{$tabs}#{$tabs-panel} {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+}
+
+

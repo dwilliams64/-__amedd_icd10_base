@@ -1,0 +1,41 @@
+{{#is type 'ms'}}
+<label class='l-kc1__label'>
+  <input class='l-kc1__input' type='checkbox' value='{{choice-text}}'>
+  <span class='l-kc1__control l-kc1__control--ms'></span>
+  <span class='l-kc1__text'>
+    {{#if abv}}
+      <abbr title='{{{choice-text}}}'>{{abv}}</abbr>
+    {{else}}
+      {{{choice-text}}}
+    {{/if}}
+  </span>
+</label>
+{{/is}}
+
+
+{{#is type 'mc'}}
+<label class='l-kc1__label'>
+  <input class='l-kc1__input' type='radio' value='{{choice-text}}'>
+  <span class='l-kc1__control l-kc1__control--mc'></span>
+  <span class='l-kc1__text'>
+    {{{choice-text}}}
+  </span>
+</label>
+{{/is}}
+
+
+{{#is type 'match'}}
+<li class='l-kc1__item'>
+<div class='l-kc1__match-text'>
+  {{choice-text}}
+</div>
+<div class='l-kc1__match-choice'>
+  <select id='{{id}}' class='l-kc1__select'>
+    <option class='l-kc1__option' value='{{choice-text}}'>
+      Select an Answer
+    </option>
+    {{> question-option-wrap }} test
+</select>
+</div>
+</li>
+{{/is}}

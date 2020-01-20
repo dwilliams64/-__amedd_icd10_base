@@ -1,0 +1,186 @@
+
+// CHART 1
+// ------------------------------------------------------------------
+
+.cls3-1 { fill: none; }
+.cls3-10,
+.cls3-11,
+.cls3-12,
+.cls3-13,
+.cls3-14,
+.cls3-15,
+.cls3-16,
+.cls3-17,
+.cls3-18,
+.cls3-19,
+.cls3-2,
+.cls3-20,
+.cls3-21,
+.cls3-22,
+.cls3-23,
+.cls3-24,
+.cls3-25,
+.cls3-26,
+.cls3-27,
+.cls3-28,
+.cls3-29,
+.cls3-3,
+.cls3-30,
+.cls3-31,
+.cls3-32,
+.cls3-33,
+.cls3-34,
+.cls3-35,
+.cls3-36,
+.cls3-37,
+.cls3-4,
+.cls3-5,
+.cls3-6,
+.cls3-7,
+.cls3-8,
+.cls3-9 { fill: #9a9a9a; }
+.cls3-2 { opacity: 0; }
+.cls3-3 { opacity: 0.02; }
+.cls3-4 { opacity: 0.04; }
+.cls3-5 { opacity: 0.05; }
+.cls3-6 { opacity: 0.07; }
+.cls3-7 { opacity: 0.09; }
+.cls3-8 { opacity: 0.11; }
+.cls3-9 { opacity: 0.13; }
+.cls3-10 { opacity: 0.15; }
+.cls3-11 { opacity: 0.16; }
+.cls3-12 { opacity: 0.18; }
+.cls3-13 { opacity: 0.2; }
+.cls3-14 { opacity: 0.22; }
+.cls3-15 { opacity: 0.24; }
+.cls3-16 { opacity: 0.25; }
+.cls3-17 { opacity: 0.27; }
+.cls3-18 { opacity: 0.29; }
+.cls3-19 { opacity: 0.31; }
+.cls3-20 { opacity: 0.33; }
+.cls3-21 { opacity: 0.35; }
+.cls3-22 { opacity: 0.36; }
+.cls3-23 { opacity: 0.38; }
+.cls3-24 { opacity: 0.4; }
+.cls3-25 { opacity: 0.43; }
+.cls3-26 { opacity: 0.46; }
+.cls3-27 { opacity: 0.49; }
+.cls3-28 { opacity: 0.52; }
+.cls3-29 { opacity: 0.55; }
+.cls3-30 { opacity: 0.58; }
+.cls3-31 { opacity: 0.62; }
+.cls3-32 { opacity: 0.65; }
+.cls3-33 { opacity: 0.68; }
+.cls3-34 { opacity: 0.71; }
+.cls3-35 { opacity: 0.74; }
+.cls3-36 { opacity: 0.77; }
+.cls3-37 { opacity: 0.8; }
+.cls3-38 { isolation: isolate; }
+.cls3-39 { fill: #0f3b3e; }
+.cls3-40 { clip-path: url(#clip-path); }
+.cls3-41 { fill: #0f3c3f; }
+.cls3-42 { fill: #0f3d3f; }
+.cls3-43 { fill: #0f3c3e; }
+.cls3-44 { fill: #144e51; }
+.cls3-45 { clip-path: url(#clip-path-2); }
+.cls3-46 { fill: #679337; }
+.cls3-47 { fill: #679236; }
+.cls3-48 { fill: #669236; }
+.cls3-49 { fill: #86c047; }
+.cls3-50 { fill: #88c248; }
+.cls3-51 { fill: #144f52; }
+.cls3-52 {
+font-size: 15px; fill: #434a4f;
+font-family: Ro oto-Light, Roboto;
+}
+
+.cls3-53 {
+letter-spacing: -0.01em;
+}
+
+
+// BUDGET DIAGRAM 1
+// ------------------------------------------------------------------
+
+.cls4-1 { fill: #babfc3; }
+.cls4-2 { fill: #fff; }
+.cls4-3 { fill: #8ec33f; }
+.cls4-4 {
+font-size: font-size(base);
+fill: find-color(text);
+font-family: Ro oto-Regular, Roboto;
+}
+.cls4-5 { letter-spacing: -0.04em; }
+.cls4-6 { letter-spacing: 0.01em; }
+.cls4-7 { letter-spacing: -0.01em; }
+.cls4-8 { letter-spacing: -0.02em; }
+.cls4-9 { fill: #f9cb40; }
+.cls4-10 { fill: #d4441c; }
+.cls4-11 { fill: #225da5; }
+.cls4-12 { letter-spacing: 0.02em; }
+.cls4-13 { fill: #4c2775; }
+
+.bd-start {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  // border: 2px solid find-color(secondary);
+  // border-radius: 24px;
+  line-height: 24px;
+  padding: rem(6px) rem(18px);
+  // background-color: find-color(white);
+}
+
+.bd-paths,
+.bd-all-visns,
+.bd-visn-budget,
+.bd-vamc-budget,
+.bd-slb,
+.bd-vaco-budget,
+.bd-vha,
+.bd-vba,
+.bd-nca,
+.bd-dpo,
+.bd-nca,
+.bd-dpo,
+.bd-secva,
+.bd-omb,
+.bd-va-seal,
+.bd-exec-seal,
+.bd-wh-seal,
+.bd-uc-seal {
+  opacity: 0;
+}
+
+
+
+// BUDGET DIAGRAM 1
+// ------------------------------------------------------------------
+.cd-sigma,
+.cd-bg,
+.cd-arrows,
+.cd-measure,
+.cd-define,
+.cd-control,
+.cd-improve,
+.cd-analyze {
+  opacity: 0;
+}
+
+.cls5-1 { fill: #fff; }
+.cls5-2,
+.cls5-9 { fill: #0e2947; }
+.cls5-3 { fill: #164f51; }
+.cls5-4 { fill: #336c4f; }
+.cls5-5 { fill: #50894c; }
+.cls5-6 { fill: #6ca54a; }
+.cls5-7 { fill: #89c247; }
+.cls5-8 { fill: #dee1e2; }
+.cls5-9 {
+font-size: 15px;
+font-family: Roboto-Bold, Roboto;
+font-weight: 700;
+}
+.cls5-10 { letter-spacing: -0.01em; }
+.cls5-11 { letter-spacing: -0.14em; }

@@ -1,0 +1,49 @@
+
+  <div class="l-kc1__body">
+
+    <p class="l-kc1__directions">
+      <span class="c-label c-label--accent">Scenario</span>
+      {{> question-directions}}
+    </p>
+
+    <p class="l-kc1__question-label">
+      Question <span data-q-num="">1</span>
+    </p>
+
+    <p class="l-kc1__question {{#is text 'small'}}l-kc1__question--small{{/is}}">
+      {{~#if @partial-block~}}
+      {{> @partial-block}}
+      {{/if}}
+    </p>
+
+    <form
+      class="l-kc1__form"
+      data-q-name="{{id}}"
+      data-q-type="{{type}}"
+      data-q-answer="{{answer}}"
+      data-q-attempt ="{{#if attempts}}{{attempts}}{{else}}1{{/if}}"
+      data-q-retry = "{{> question-fb-retry}}"
+      data-q-correct = "{{> question-fb-correct}}"
+      data-q-incorrect = "{{> question-fb-incorrect}}">
+
+      {{#is type 'ms'}}
+      <fieldset class="l-kc1__fieldset l-kc1__fieldset--alpha">
+        {{> question-choice-wrap }}
+      </fieldset>
+      {{/is}}
+
+      {{#is type 'mc' }}
+      <fieldset class="l-kc1__fieldset">
+        {{> question-choice-wrap }}
+      </fieldset>
+      {{/is}}
+
+      {{#is type 'match' }}
+      <ol class="l-kc1__match  {{#if col}}l-kc1__match--reverse{{/if}}">
+        {{> question-choice-wrap }}
+      </ol>
+      {{/is}}
+
+    </form>
+
+  </div>

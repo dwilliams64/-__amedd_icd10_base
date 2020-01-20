@@ -1,0 +1,199 @@
+///////////////////////////////////////////////////////////////////////
+//
+// KID PYRAMID
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.test {
+  position: relative;
+}
+
+.l-kid-instruct {
+  @include breakpoint(medium) {
+    position: absolute;
+    left: 50%;
+    top: spacing(1); //100%;
+    padding: pad-height(36px,1,0) rem(18px);
+    background-color: find-color(white);
+    font-size: font-size(sm);
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 24px;
+    z-index: 3;
+
+    &--left {
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    &--right {
+      left: auto;
+      right: 0;
+      transform: translateY(-50%);
+    }
+
+  }
+}
+
+.l-kid {
+  position: relative;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+
+  &__row {
+    display: table-row;
+  }
+
+  &__cell {
+    position: relative;
+    display: table-cell;
+    // text-align: center;
+    vertical-align: middle;
+    background-image: url(../img/kid-pyramid.png);
+    background-repeat: no-repeat;
+    z-index: 0;
+    height: 129px;
+
+    &--1 {
+      background-color: find-color(secondary,lightest);
+      background-position: center 0;
+      border-radius: 6px 6px 0 0;
+    }
+
+    &--2 {
+      background-color: find-color(secondary,lighter);
+      background-position: center -129px;
+    }
+
+    &--3 {
+      background-color: find-color(secondary,light);
+      background-position: center -258px;
+      border-radius: 0 0 6px 36px;
+    }
+
+    @include breakpoint(medium) {
+      &--1 {
+        background-position: 0 0;
+      }
+      &--2 {
+        background-position: 0 -129px;
+      }
+      &--3 {
+        background-position: 0 -258px;
+      }
+    }
+
+  }
+
+  &__pill {
+    position: relative;
+    display: block;
+    margin: 6px auto;
+    padding: pad-height(36px,1,0) rem(12px);
+    color: find-color(secondary,darker);
+    font-size: font-size(md);
+    line-height: spacing(1);
+    text-align: center;
+    background-color: find-color(white);
+    border-radius: 24px;
+    min-width: 136px;
+    width: 90%;
+    z-index: 1;
+
+    &--1 {
+      box-shadow:
+        0 0 0 2px find-color(secondary),
+        0 6px 6px 0 rgba(find-color(black), 0.5);
+
+      &:hover,
+      &:focus {
+        color: find-color(warning,dark);
+        box-shadow:
+        0 0 0 2px find-color(warning),
+        0 12px 12px 0 rgba(find-color(black), 0.5);
+      }
+
+    }
+
+    &--static {
+      box-shadow: 0 0 0 transparent;
+
+      &:hover,
+      &:focus {
+        color: intial;
+        box-shadow: 0 0 0 transparent;
+      }
+
+    }
+
+    &--2 {
+      background-color: find-color(secondary,lightest);
+    }
+
+    @include breakpoint(medium) {
+      display: inline-block;
+      width: auto;
+
+      &--1 {
+        left: 218px;
+        transform: translateX(-50%);
+      }
+
+      &--2 {
+        position: absolute;
+        right: 10%;
+        text-align: right;
+        color: darken(find-color(secondary,dark), 10%);
+        font-weight: weight(normal);
+        background-color: transparent;
+        font-size: font-size(xxl);
+        // letter-spacing: -0.03em;
+
+        &:before {
+          content:'';
+
+        }
+
+      }
+
+    }
+
+
+  }
+
+  &__img {
+    position: absolute;
+    top:0;
+    left: 6px;
+    // width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+
+}
+
+
+
+.l-kid--center {
+
+  .l-kid__cell {
+    @include breakpoint(medium) {
+      &--1 { background-position: center 0; }
+      &--2 { background-position: center -129px; }
+      &--3 { background-position: center -258px; border-radius: 0 0 6px 6px }
+    }
+  }
+
+  .l-kid__pill {
+    @include breakpoint(medium) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+}

@@ -1,0 +1,80 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE MODULE
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$crs-mod-mh: get-height(base);
+$crs-mod-fs: font-size(base);
+$crs-mod-lh: line-height(1);
+$crs-mod-fc: lighten(find-color(primary, lighter), 2.5%);
+
+$crs-mod-bg: find-color(primary,darker);
+
+$crs-mod-fc-a: find-color(white);
+$crs-mod-bg-a: find-color(primary, dark);
+
+
+$crs-mod-tb: pad-height($crs-mod-mh,$crs-mod-lh,0);
+$crs-mod-lr: spacing(0.75);
+
+
+// STYLES
+// -------------------------------------------------------------------
+.c-module-list {
+  list-style-type: none;
+  display: table;
+  width: 100.5%;
+  padding: 0;
+  margin: 0;
+  color: $crs-mod-fc;
+  // background-color: $crs-mod-bg;
+  background-color: #42134a;
+
+  // module name
+  &__item {
+    position: relative;
+    display: table-cell;
+    padding: $crs-mod-tb $crs-mod-lr;
+
+    // active item
+    &.is-active {
+      color: $crs-mod-fc-a;
+      background-color: $crs-mod-bg-a;
+
+      &:after, &:before {
+        border-left-color: $crs-mod-bg-a !important;
+      }
+
+    }
+
+    &:not(:last-child) {
+      border-right: 2px solid $crs-mod-bg-a;
+
+      &:after,
+      &:before {
+        content:'';
+        position: absolute;
+        top: 0;
+      }
+
+      &:before {
+        @include triangle($crs-mod-mh 12px, $crs-mod-bg-a, right);
+        right: -14px;
+      }
+
+      &:after {
+        @include triangle($crs-mod-mh 12px, $crs-mod-bg, right);
+        right: -12px;
+      }
+
+    }
+
+  }
+
+
+
+}

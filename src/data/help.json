@@ -1,0 +1,48 @@
+{
+"menu": {
+    "title": "Course Menu",
+    "number": "1",
+    "description": "Allows navigation throughout the course"
+  },
+"help": {
+    "title": "Help",
+    "number": "2",
+    "description": "Helpful explanations of the course interface"
+  },
+"references": {
+    "title": "Resources",
+    "number": "3",
+    "description": "Links to additional course materials"
+  },
+"progress": {
+    "title": "Course Progress",
+    "number": "4",
+    "description": "Shows percentage of course completed"
+  },
+"player": {
+    "title": "Course Audio Player",
+    "number": "5",
+    "description": "Controls audio associated with the page. When audio is not present an empty bar is shown."
+  },
+"back": {
+    "title": "Back Button",
+    "number": "6",
+    "description": "Select this to navigate to the previous page"
+  },
+"page": {
+    "title": "Current Page",
+    "number": "7",
+    "description": "Show current and total pages in lesson"
+  },
+"next": {
+    "title": "Next Button",
+    "number": "8",
+    "description": "Select this to navigate to the next page"
+  },
+  "instructions": {
+    "badge":  "Using Help",
+    "title": "How to use help",
+    "number": "9",
+    "description": "Select a <i class='help-dot help-dot--num'>numbered circle</i> to reveal the function of the associated interface element. When you're done select the <i class='help-dot help-dot--close'>'Close Help'</i> button to exit the help section."
+  }
+}

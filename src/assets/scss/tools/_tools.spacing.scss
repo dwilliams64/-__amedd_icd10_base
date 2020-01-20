@@ -1,0 +1,124 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SPACING FUNCTION
+//
+// ///////////////////////////////////////////////////////////////////
+
+// -------------------------------------------------------------------
+// Summary:  A function to pull spacing from the $base-spacing map or
+//           multiply baseline all converted to rem
+// Map used: $base-spacing in _gts
+// -------------------------------------------------------------------
+
+@function spacing($x, $unit:rem, $context:$base-font-size, $lh:$base-line-height, $map:$base-spacing) {
+
+  $output: output-rem($x,$lh,$unit,$map,$context);
+
+  @return $output;
+
+}
+
+// -------------------------------------------------------------------------
+// Margins and paddings
+// -------------------------------------------------------------------------
+@mixin padmar($property, $spacing, $context: $base-line-height) {
+
+  // $val-list: ();
+  $val-list: join( () ,$spacing);
+  $val-length: null;
+
+  $a: null;
+  $b: null;
+  $c: null;
+  $d: null;
+
+  @for $i from 1 through length($spacing) {
+
+    // get list length
+    $val-length: length($val-list);
+
+    @if $val-length >= 1 {
+      $a: spacing(nth($val-list, 1));
+    }
+
+    @if $val-length >= 2 {
+      $b: spacing(nth($val-list, 2));
+    }
+
+    @if $val-length >= 3 {
+      $c: spacing(nth($val-list, 3));
+    }
+
+    @if $val-length >= 4 {
+      $d: spacing(nth($val-list, 4));
+    }
+
+  }
+
+  @if ends-with($property, '-top') {
+    #{$property}: $a;
+  } @else if ends-with($property, '-right') {
+    #{$property}: $a;
+  } @else if ends-with($property, '-bottom') {
+    #{$property}: $a;
+  } @else if ends-with($property, '-left') {
+    #{$property}: $a;
+  } @else {
+    @if $val-length == 1 {
+      #{$property}-top: $a;
+      #{$property}-right: $a;
+      #{$property}-bottom: $a;
+      #{$property}-left: $a;
+    } @else if $val-length == 2 {
+      #{$property}-top: $a;
+      #{$property}-right: $b;
+      #{$property}-bottom: $a;
+      #{$property}-left: $b;
+    } @else if $val-length == 3 {
+      #{$property}-top: $a;
+      #{$property}-right: $b;
+      #{$property}-bottom: $c;
+      #{$property}-left: $b;
+    } @else if $val-length == 4 {
+      #{$property}-top: $a;
+      #{$property}-right: $b;
+      #{$property}-bottom: $c;
+      #{$property}-left: $d;
+    }
+  }
+
+}
+
+// MIXINS
+@mixin mar($n) {
+  @include padmar(margin, $n);
+}
+@mixin mar-top($n) {
+  @include padmar(margin-top, $n);
+}
+@mixin mar-right($n) {
+  @include padmar(margin-right, $n);
+}
+@mixin mar-bottom($n) {
+  @include padmar(margin-bottom, $n);
+}
+@mixin mar-left($n) {
+  @include padmar(margin-left, $n);
+}
+
+@mixin pad($n) {
+  @include padmar(padding, $n);
+}
+@mixin pad-top($n) {
+  @include padmar(padding-top, $n);
+}
+@mixin pad-right($n) {
+  @include padmar(padding-right, $n);
+}
+@mixin pad-bottom($n) {
+  @include padmar(padding-bottom, $n);
+}
+@mixin pad-left($n) {
+  @include padmar(padding-left, $n);
+}
+

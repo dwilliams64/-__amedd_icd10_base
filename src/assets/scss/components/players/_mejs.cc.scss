@@ -1,0 +1,172 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MEJS Closed Captions
+//
+// ///////////////////////////////////////////////////////////////////
+
+/* Start: Track (Captions and Chapters) */
+.mejs__captions-button,
+.mejs__chapters-button {
+  position: relative;
+}
+
+.mejs__captions-button > button {
+  @include sprite-position($mejs-icon-cc);
+
+  &:after {
+    content:'';
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 3px;
+    right: 3px;
+    height: 3px;
+    background-color: transparent;
+  }
+
+}
+
+.mejs__captions-enabled > button {
+  &:after { background-color: $mejs-cc-bg-active; }
+}
+
+.mejs__chapters-button > button {
+  // ADD ICON FOR THIS
+  background-position: -302px 0;
+}
+
+.mejs__captions-button > .mejs__captions-selector,
+.mejs__chapters-button > .mejs__chapters-selector {
+  visibility: hidden;
+  position: absolute;
+  bottom: $mejs-bar-height / 2;
+  left: (($mejs-cc-sel-width - $mejs-btn-width) / 2) * -1;
+  width: $mejs-cc-sel-width;
+  border: solid 1px transparent;
+  padding: 0 0 6px;
+  overflow: hidden;
+  border-radius: $mejs-cc-sel-radius;
+  display: none;
+}
+
+.mejs__chapters-button > .mejs__chapters-selector {
+  width: 110px;
+}
+
+.mejs__captions-button > .mejs__captions-selector,
+.mejs__chapters-button > .mejs__chapters-selector {
+  visibility: visible;
+}
+
+.mejs__captions-selector-list,
+.mejs__chapters-selector-list {
+  margin: 0;
+  padding: 0;
+  display: block;
+  list-style-type: none;
+  overflow: hidden;
+  &:first-child {
+    border-top-left-radius: $mejs-cc-sel-radius;
+    border-top-right-radius: $mejs-cc-sel-radius;
+  }
+  &:last-child {
+    border-bottom-left-radius: $mejs-cc-sel-radius;
+    border-bottom-right-radius: $mejs-cc-sel-radius;
+  }
+}
+
+.mejs__captions-selector-list-item,
+.mejs__chapters-selector-list-item {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba($mejs-cc-sel-bg, $mejs-cc-sel-opacity);
+}
+
+.mejs__captions-selector-list-item:hover,
+.mejs__chapters-selector-list-item:hover {
+  background-color: $mejs-cc-sel-bg-hov !important;
+}
+
+.mejs__captions-selector-input,
+.mejs__chapters-selector-input {
+  @include element-invisible;
+}
+
+.mejs__captions-selector-label,
+.mejs__chapters-selector-label {
+  width: 100%;
+  float: left;
+  margin: 0 !important;
+  padding: spacing(6px) 0;
+  line-height: 1;
+  font-size: $mejs-cc-fs;
+  font-weight: $mejs-cc-fw;
+  color: $mejs-cc-fc;
+  text-align: center;
+  cursor: pointer;
+}
+
+.mejs__captions-selected,
+.mejs__chapters-selected {
+  color: $mejs-cc-sel-bg;
+  background-color: $mejs-cc-sel-bg-hov;
+}
+
+.mejs__captions-translations {
+  font-size: $mejs-cc-fs;
+  font-weight: $mejs-cc-fw;
+  margin: 0 0 0 0;
+}
+
+.mejs__captions-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 80%;
+  font-weight: $mejs-cc-fw;
+  letter-spacing: 0.05em;
+  text-align: center;
+  line-height: $base-line-height;
+  color: $mejs-cc-fc;
+  @include breakpoint(medium) {
+    font-size: $mejs-cc-fs;
+  }
+}
+
+.mejs__captions-layer a {
+  color: $mejs-cc-fc;
+  text-decoration: none;
+}
+
+.mejs__captions-layer[lang=ar] {
+  font-size: $mejs-cc-fc;
+  font-weight: $mejs-cc-fw;
+}
+
+.mejs__captions-position {
+  position: absolute;
+  width: 100%;
+  bottom:  spacing(12px);
+  left: 0;
+  @include transition(all, 0.3s, ease-in-out);
+}
+
+.mejs__captions-position-hover {
+  bottom: spacing(px($mejs-bar-height) + px($mejs-cc-space));
+}
+
+.mejs__captions-text,
+.mejs__captions-text * {
+  padding: 3px 3px 4px;
+  background-color: rgba($mejs-cc-sel-bg, $mejs-cc-bg-opacity);
+  white-space: pre-wrap;
+  box-shadow:
+   5px 0 0 rgba($mejs-cc-sel-bg, $mejs-cc-bg-opacity),
+  -5px 0 0 rgba($mejs-cc-sel-bg, $mejs-cc-bg-opacity);
+}
+
+/* End: Track (Captions and Chapters) */

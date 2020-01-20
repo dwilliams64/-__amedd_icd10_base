@@ -1,0 +1,40 @@
+///////////////////////////////////////////////////////////////////////
+//
+// IMAGE STACK
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+$img-stack-bg: find-color(white);
+$img-stack-darken: 1%;
+
+$img-stack-1bg: $img-stack-bg;
+$img-stack-2bg: darken($img-stack-1bg, $img-stack-darken);
+$img-stack-3bg: darken($img-stack-2bg, $img-stack-darken);
+
+$img-stack-ani-timing: 0.2s;
+$img-stack-ani-ease: ease-in-out;
+$img-stack-ani-ease-bounce: cubic-bezier(0.175,  0.885, 0.320, 1.275);
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.c-img-stack {
+  @include gts-paper-stack(wrap);
+  display: inline-block;
+  // transform: rotate(-3deg);
+
+  &__frame { border: 6px solid $img-stack-1bg; }
+
+  &__inner {
+    @include gts-paper-stack(base,$hover:false);
+    @include gts-paper-stack(mix,$hover:false);
+  }
+
+}
+
+
+

@@ -1,0 +1,208 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MODS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// -------------------------------------------------------------------
+// Used to get modifier classes
+// -------------------------------------------------------------------
+@mixin gts-prototype-classes (
+  $property: bs,
+  $map: $base-shadow,
+  $allowed-bp: small medium large,
+  $allowed-dir: t r l b,
+  $allowed-var: 0 1 2 3 4 5,
+  $allowed-alt: null,
+  $prefix: util
+) {
+
+  // Prep Variables
+  // -----------------------------------------------------------------
+  $state: '';
+  $pro-k: $property;
+  $pro-v: '';
+  $dir-k: '';
+  $dir-v: '';
+  $alt-k: '';
+  $alt-v: null;
+  $var-k: '';
+  $var-v: '';
+  $mq: $util-prefix-bp;
+  $pass: skip;
+  $color-name:'';
+  $color-variant:'';
+  $only: '';
+
+  @if $prefix == 'util' {
+    $state: !important;
+  }
+
+
+  // Get Maps and Merge
+  // -----------------------------------------------------------------
+  $map-skip: ($pass:null);
+  $map-var:  map-merge($map, $map-skip); // variations
+  $map-bp:   map-merge($breakpoints, $map-skip); // breakpoints
+  $map-dir:  map-merge($util-directions, $map-skip); // directions
+  $map-pro:  map-merge($util-properties, $map-skip); // properties
+  $map-pre:  map-merge($util-prefix, $map-skip); // prefix
+
+
+  // Allowed Properties
+  // -----------------------------------------------------------------
+  $allow-bp:  append($breakpoint-classes, $pass);  // breakpoints
+  $allow-dir: $allowed-dir; // directions
+  $allow-var: $allowed-var; // variations
+  $allow-pro: to-list($map-pro, 'keys'); // properties
+  $allow-alt: $allowed-alt; // alternates in mixin
+
+  @if ($pro-k == 'bg') or ($pro-k == 'fc') {
+    $allow-bp:  $pass; // breakpoints
+    $allow-dir: $pass; // directions
+    $allow-var: $pass; // variations
+    $allow-alt: $pass; // alternates in mixin
+  }
+
+
+  // Make sure specified prefix exists in map and get it
+  // -----------------------------------------------------------------------
+  @if map-has-key($map-pre, $prefix) {
+    $prefix: map-get($map-pre, $prefix);
+  } @else {
+    @error "Item in '$prefix': [ #{$prefix} ] is not in found in '$util-prefix': [ #{$util-prefix} ] map";
+  }
+
+  // Make sure specified property exists in map and get it
+  // -----------------------------------------------------------------------
+  @if map-has-key($map-pro, $pro-k) {
+    $pro-v: map-get($map-pro, $pro-k);
+  } @else {
+    @error "Item in '$pro': [ #{$pro} ] is not in found in '$util-properties': [ #{$util-properties} ] map";
+  }
+
+  // -----------------------------------------------------------------
+  // loop breakpoints
+  // -----------------------------------------------------------------
+  @each $bp in $allow-bp {
+    @if map-has-key($map-bp, $bp) {
+      @if $bp == 'small' { $only: only; }
+      @if $bp == 'skip' { $mq: null; $bp: 0; $only:''; }
+
+      @include breakpoint($bp $only) {
+        @if $bp == 0 { $bp: null; }
+
+  // -----------------------------------------------------------------
+  // loop directions
+  // -----------------------------------------------------------------
+      @each $dir-k in $allow-dir {
+        @if map-has-key($map-dir, $dir-k) {
+          $dir-v: map-get($map-dir, $dir-k);
+          @if $dir-k == skip { $dir-k: ''; }
+
+  // -----------------------------------------------------------------
+  // loop variations
+  // -----------------------------------------------------------------
+          @each $var-k in $allow-var {
+            @if map-has-key($map-var, $var-k) {
+
+  // -----------------------------------------------------------------
+  // loop alternate variations
+  // -----------------------------------------------------------------
+              @each $alt-k in $allow-alt {
+
+  // -----------------------------------------------------------------
+  // font sizes
+  // -----------------------------------------------------------------
+
+                @if ($pro-k == 'fs') {
+                  $pro-k-new: 'type';
+                  #{$prefix}#{$pro-k-new}-#{$var-k}#{$mq}#{$bp} {
+                    #{$pro-v}: font-size($var-k);
+                  }
+                } // if font size
+
+  // -----------------------------------------------------------------
+  // Backgrounds and font colors
+  // -----------------------------------------------------------------
+
+                @if ($pro-k == 'bg') or ($pro-k == 'fc') {
+                  @each $color-name, $names in $map-var {
+                    @each $color-variant, $variant in $names {
+                      @if $color-variant == default {
+                        $var-k: #{$color-name};
+                      } @else {
+                        $var-k: #{$color-name}-#{$color-variant};
+                      }
+                      @if $pro-k == 'fc' {
+                        $pro-k: 'type';
+                      }
+                      #{$prefix}#{$pro-k}#{$dir-k}-#{$var-k}#{$alt-v}#{$mq}#{$bp} {
+                        #{$pro-v}: find-color($color-name, $color-variant) $state;
+                      }
+                    } // bg/fc loop
+                  } // bg/fc loop
+                } // bg/fc if
+
+  // -----------------------------------------------------------------
+  // Box Shadows
+  // -----------------------------------------------------------------
+
+                @if ($pro-k == 'bs') {
+                  @if $alt-k == true {
+                    $alt-v: -in;
+                    $alt-k: true;
+                  } @else if $alt-k == false {
+                    $alt-v: '';
+                    $alt-k: false;
+                  }
+                  @if $dir-k == 'all' {$dir-k: null; $dir-v: all; }
+                  // Create box shadow classes
+                  #{$prefix}#{$pro-k}#{$dir-k}-#{$var-k}#{$alt-v}#{$mq}#{$bp} {
+                    @include get-shadow($var-k,$alt-k,$dir-v,$state:$state);
+                  }
+                }
+
+  // -----------------------------------------------------------------
+  // Margin and Padding
+  // -----------------------------------------------------------------
+
+                @if ($pro-k == 'm') or ($pro-k == 'p') {
+                  @if $dir-k == 'all' {$dir-k: null; }
+                  #{$prefix}#{$pro-k}#{$dir-k}-#{$var-k}#{$alt-v}#{$mq}#{$bp} {
+                    @each $test in $dir-v {
+                      #{$pro-v}-#{$test}: spacing($var-k) $state;
+                    }
+                  }
+                }
+
+  // -----------------------------------------------------------------
+
+              } // alt loop
+
+  // -----------------------------------------------------------------
+
+            } @else {
+              @error "Item in '$allow-var': [ #{$allow-var} ] is not in found in '$map-var': [ #{$map-var} ] map";
+            } // var if
+          } // var loop
+
+  // -----------------------------------------------------------------
+
+        } @else {
+          @error "Item in '$allow-dir': [ #{$allow-dir} ] is not in found in '$map-dir': [ #{$map-dir} ] map";
+        } // dir if
+      } // dir loop
+
+  // -----------------------------------------------------------------
+
+      } // bp include
+    } @else {
+      @error "Item in '$allow-bp': [ #{$allow-bp} ] is not in found in '$map-bp': [ #{$map-bp} ] map";
+    } // bp if
+  } // bp loop
+
+  // -----------------------------------------------------------------
+
+} // end mixin

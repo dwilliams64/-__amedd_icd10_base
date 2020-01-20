@@ -1,0 +1,23 @@
+///////////////////////////////////////////////////////////////////////
+//
+// STRIPE EDGE
+//
+// ///////////////////////////////////////////////////////////////////
+
+// DIRECTIONS
+// -------------------------------------------------------------------
+
+.u-stripe {
+  &-left {
+    &:after { @include stripe-edge(left); }
+  }
+  &-right {
+    &:after { @include stripe-edge(right); }
+  }
+  &-top {
+    &:after { @include stripe-edge(top); }
+  }
+  &-bottom {
+    &:after { @include stripe-edge(bottom); }
+  }
+}

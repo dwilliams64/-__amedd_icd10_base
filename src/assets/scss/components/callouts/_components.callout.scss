@@ -1,0 +1,679 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE CALLOUTS
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Don't use foundations callout
+// @include foundation-callout;
+
+// Callout Type Map
+// ------------------------------------------------------------------
+// simple: no icon only text
+// action: icon, rounded, one line
+// block: multi-line, seperate icon area
+$callouts: (
+  note:(
+    simple: true,
+    action: true,
+    // block:  true,
+  ),
+  tip:(
+    simple: true,
+    action: true,
+    // block:  true,
+  ),
+  best:(
+    simple: false,
+    action: true,
+    // block:  true,
+  ),
+  app:(
+    simple: false,
+    action: true,
+    // block:  true,
+  ),
+  resource:(
+    simple: false,
+    action: true,
+    // block:  true,
+  ),
+  next:(
+    simple: false,
+    action: true,
+    // block:  true,
+  ),
+  warning:(
+    simple: true,
+    action: true,
+    // block:  true,
+  ),
+  error:(
+    simple: true,
+    action: true,
+    // block:  true,
+  ),
+  remediate:(
+    // simple: true,
+    action: true,
+    // block:  true,
+  ),
+  correct:(
+    simple: true,
+    action: true,
+    // block:  true,
+  ),
+  cover:(
+    simple: false,
+    action: true,
+    // block:  false,
+  ),
+  instruct:(
+    simple: false,
+    action: true,
+    // block:  true,
+
+  ),
+);
+
+// Create various callouts types
+// ------------------------------------------------------------------
+@mixin gts-callouts (
+  // classes
+  $co-class: 'c-callout',
+  $co-media: '__media',
+  $co-body:  '__body',
+  $co-icon:  '__icon',
+  // general
+  $co-mh:   get-height(base), //get-height(lg)
+  $co-scale: 10%,
+  $co-bw:   1px,
+  $co-br:   3px,
+  $co-fs:   null,
+  $co-fc:   null,
+  $co-lh:   null,
+  $co-mb:   spacing(1),
+  $co-mt:   null,
+  // media
+  $co-bg-m: find-color(gray,lightest),
+  $co-bc-m: find-color(border),
+  $co-lr-m: null,
+  $co-tb-m: null,
+  $co-va-m: middle,
+  // body
+  $co-bg-b: find-color(white),
+  $co-bc-b: $co-bc-m,
+  $co-lr-b: spacing(0.625),
+  $co-tb-b: spacing(1),
+  $co-va-b: middle,
+  // icon
+  $co-mh-i: 34px, //36px
+  $co-in-i: correct,
+  $co-bg-i: find-color(white),
+  $co-br-i: 50%,
+  // title
+  $co-fs-t: null,
+  $co-fc-t: null,
+  $co-fw-t: weight(medium),
+  $co-mb-t: 0,
+  // action style
+  $co-mh-action: $co-mh,
+  $co-mr-ba: rem(12px),
+  $co-bg-ma: find-color(white),
+  $co-bc-ma: null,
+  $co-bg-ba: $co-bg-ma,
+  $co-bc-ba: null,
+  $co-bg-mi: null,
+  $co-br-ma: ($co-mh / 2),
+  $co-br-ba: $co-br-ma,
+  // solid
+  $co-fc-s: null,
+  $co-bg-s: $co-bg-b,
+  $co-bc-s: $co-bg-b
+) {
+
+  // Set-up Callouts base
+  // ------------------------------------------------------------------
+
+  // Establish padding based on $co-mh
+  $co-tb-b: px(pad-height($co-mh,$co-lh,$co-bw));
+  $co-tb-m: px(pad-height($co-mh-action,$co-mh-i,$co-bw));
+  $co-lr-m: $co-tb-m * 2;
+
+  // default
+  .#{$co-class} {
+    display: table;
+    width: 100%;
+    margin-top: $co-mt;
+    margin-bottom: $co-mb;
+    font-size: $co-fs;
+    line-height: $co-lh;
+    color: $co-fc;
+    border-spacing: 0;
+
+    &#{$co-media},
+    &#{$co-body} {
+      display: table-cell;
+      border-width: $co-bw;
+      border-style: solid;
+      vertical-align: middle;
+    }
+
+    &#{$co-media} {
+      width: 1px;
+      padding: $co-tb-m $co-lr-m;
+      border-color: $co-bc-m;
+      border-right: 0;
+      line-height: 1;
+      background-color: $co-bg-m;
+      border-radius: $co-br 0 0 $co-br;
+    }
+
+    &#{$co-body} {
+      width: auto;
+      padding: $co-tb-b $co-lr-b;
+      border-color: $co-bc-b;
+      background-color: $co-bg-b;
+      border-radius: $co-br;
+
+      > :last-child {
+        margin-bottom: 0;
+      }
+
+    }
+
+    // Fix border and radius when 'media' is 'next' to body
+    &#{$co-media} + .#{$co-class}#{$co-body} {
+      border-left: 0;
+      border-radius: 0 $co-br $co-br 0;
+    }
+
+    // Icon container
+    &#{$co-icon} {
+      @include icon-circle(
+        $mh: $co-mh-i,
+        $bg: $co-bg-i,
+        $br: $co-br-i
+      );
+
+      > i {
+        @include sprite(#{$co-in-i});
+      }
+
+    }
+
+  }
+
+
+  // ACTION
+  .#{$co-class}--action {
+
+    .#{$co-class}#{$co-media} {
+      padding-left: ($co-lr-m / 2);
+      padding-right: 0;
+      border-color: $co-bc-ma;
+      background-color: $co-bg-ma;
+      border-radius: $co-br-ma 0 0 $co-br-ma;
+    }
+
+    .#{$co-class}#{$co-icon} {
+      background-color: $co-bg-m;
+    }
+
+    .#{$co-class}#{$co-body} {
+      padding-left: $co-mr-ba;
+      border-color: $co-bc-ba;
+      background-color: $co-bg-ba;
+      border-radius: 0 $co-br-ba $co-br-ba 0;
+    }
+
+  }
+
+
+  // TITLE
+  .#{$co-class}__title {
+    font-size: $co-fs-t;
+    font-weight: $co-fw-t;
+    color: $co-fc-t;
+    margin-bottom: $co-mb-t;
+  }
+  // loop through $callouts map
+  // ------------------------------------------------------------------
+  @each $key, $value in $callouts {
+
+    // Set variables for each type of callout
+    // ----------------------------------------------------------------
+
+    @if $key == note {
+      // general
+      $co-fc:   find-color(highlight, darker);
+      // media
+      $co-bg-m: darken(find-color(highlight, lightest), 5%);
+      $co-bc-m: scale-color($co-bg-m, $lightness: -$co-scale);
+      // body
+      $co-bg-b: find-color(white);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: note-alt;
+      $co-bg-i: darken(find-color(highlight),5%);
+      // title
+      $co-fc-t: null;
+      // action styles
+      $co-bg-ma: find-color(highlight, lightest);
+      $co-bc-ma: null;
+      $co-bg-ba: $co-bg-ma;
+      $co-bc-ba: null;
+      $co-bg-mi: null;
+      $co-br-ma: null;
+      $co-br-ba: null;
+      // solid
+      $co-fc-s: null;
+      $co-bg-s: lighten(find-color(highlight, lightest),5%);
+      $co-bc-s: null;
+    }
+
+    @if $key == tip {
+      // general
+      $co-fc:   find-color(secondary,dark);
+      // media
+      $co-bg-m: find-color(secondary, lightest);
+      $co-bc-m: find-color(secondary, lighter);
+      // body
+      $co-bg-b: find-color(white);
+      $co-bc-b: find-color(secondary, lighter);
+      // icon
+      $co-in-i: bulb-light;
+      $co-bg-i: find-color(secondary);
+      // title
+      $co-fc-t: null;
+      // action styles
+      $co-bg-ma: find-color(white);
+      $co-bc-ma: null;
+      $co-bg-ba: $co-bg-ma;
+      $co-bc-ba: null;
+      $co-bg-mi: null;
+      $co-br-ma: null;
+      $co-br-ba: null;
+      // solid
+      $co-fc-s: null;
+      $co-bg-s: null;
+      $co-bc-s: null;
+    }
+
+    @if $key == best {
+      // general
+      $co-fc:   darken(find-color(info), 6%);
+      // media
+      $co-bg-m: find-color(info, lightest);
+      $co-bc-m: scale-color($co-bg-m, $lightness: -$co-scale);
+      // body
+      $co-bg-b: lighten(find-color(info, lightest), 7%);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: star-alt;
+      $co-bg-i: find-color(info, light);
+      // title
+      $co-fc-t: null;
+      // action
+      $co-bg-ma: lighten(find-color(info, lightest), 7%);
+      $co-bc-ma: null;
+      $co-bg-ba: $co-bg-ma;
+      $co-bc-ba: null;
+      $co-bg-mi: null;
+      $co-br-ma: null;
+      $co-br-ba: null;
+      // solid
+      $co-fc-s: null;
+      $co-bg-s: null;
+      $co-bc-s: null;
+    }
+
+    @if $key == app {
+      // general
+      $co-fc:   darken(find-color(primary,dark), 6%);
+      // media
+      $co-bg-m: find-color(primary, lightest);
+      $co-bc-m: scale-color($co-bg-m, $lightness: -$co-scale);
+      // body
+      $co-bg-b: find-color(white); //lighten(find-color(primary, lightest), 9%);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: app-alt;
+      $co-bg-i: find-color(primary, light);
+      // title
+      $co-fc-t: null;
+      // action
+      $co-bg-ma: lighten(find-color(primary, lightest), 9%);
+      $co-bc-ma: null;
+      $co-bg-ba: $co-bg-ma;
+      $co-bc-ba: null;
+      $co-bg-mi: null;
+      $co-br-ma: null;
+      $co-br-ba: null;
+      // solid
+      $co-fc-s: null;
+      $co-bg-s: null;
+      $co-bc-s: null;
+    }
+
+    @if $key == resource {
+      // general
+      $co-fc:   darken(find-color(accent), 6%);
+      // media
+      $co-bg-m: find-color(accent, lightest);
+      $co-bc-m: scale-color($co-bg-m, $lightness: -$co-scale);
+      // body
+      $co-bg-b: lighten(find-color(accent, lightest), 11%);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: link-alt;
+      $co-bg-i: find-color(accent, light);
+      // title
+      $co-fc-t: null;
+      // action
+      $co-bg-ma: lighten(find-color(accent, lightest), 11%);
+      $co-bc-ma: null;
+      $co-bg-ba: $co-bg-ma;
+      $co-bc-ba: null;
+      $co-bg-mi: null;
+      $co-br-ma: null;
+      $co-br-ba: null;
+      // solid
+      $co-fc-s: null;
+      $co-bg-s: null;
+      $co-bc-s: null;
+    }
+
+    @if $key == next {
+      // general
+      $co-fc:   find-color(secondary,dark);
+      // media
+      $co-bg-m: lighten(find-color(secondary, lightest),0%);
+      $co-bc-m: find-color(secondary, lighter);
+      // body
+      $co-bg-b: lighten(find-color(secondary, lightest), 7%);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: arrow-fwd-hov;
+      $co-bg-i: find-color(secondary);
+      // title
+      $co-fc-t: null;
+      // action
+      $co-bg-ma: $co-bg-b;
+      $co-bc-ma: null;
+      $co-bg-ba: null;
+      $co-bc-ba: null;
+      $co-bg-mi: null;
+      $co-br-ma: null;
+      $co-br-ba: null;
+      // solid
+      $co-fc-s: null;
+      $co-bg-s: null;
+      $co-bc-s: null;
+    }
+
+    @if $key == warning {
+      // general
+      $co-fc:   darken(find-color(warning), 8%);
+      // media
+      $co-bg-m: find-color(warning, lightest);
+      $co-bc-m: scale-color($co-bg-m, $lightness: -$co-scale);
+      // body
+      $co-bg-b: find-color(white);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: warning;
+      $co-bg-i: $co-bg-m;
+      // title
+      $co-fc-t: null;
+      // action
+      $co-bg-ma: $co-bg-m;
+      $co-bc-ma: null;
+      $co-bg-ba: $co-bg-ma;
+      $co-bc-ba: null;
+      $co-bg-mi: null;
+      $co-br-ma: 0;
+      $co-br-ba: 0;
+      // solid
+      $co-fc-s: darken(find-color(warning), 15%);
+      $co-bg-s: lighten(find-color(warning, lighter),0%);
+      $co-bc-s: $co-bg-s;
+    }
+
+    @if $key == error {
+      // general
+      $co-fc:   find-color(alert);
+      // media
+      $co-bg-m: find-color(alert, lightest);
+      $co-bc-m: scale-color($co-bg-m, $lightness: -$co-scale);
+      // body
+      $co-bg-b: find-color(white);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: error;
+      $co-bg-i: find-color(alert, lightest);
+      // title
+      $co-fc-t: null;
+      // action
+      $co-bg-ma: lighten(find-color(alert, lightest),5%);
+      $co-bc-ma: scale-color($co-bg-ma, $lightness: -$co-scale);
+      $co-bg-ba: $co-bg-ma;
+      $co-bc-ba: $co-bc-ma;
+      $co-bg-mi: transparent;
+      $co-br-ma: 0;
+      $co-br-ba: 0;
+      // solid
+      $co-fc-s: find-color(white);
+      $co-bg-s: lighten(find-color(alert),0%);
+      $co-bc-s: $co-bg-s;
+    }
+
+    @if $key == correct {
+      // general
+      $co-fc:   find-color(success, darker);
+      // media
+      $co-bg-m: darken(find-color(success, lightest),5%);
+      $co-bc-m: scale-color($co-bg-m, $lightness: -$co-scale);
+      // body
+      $co-bg-b: find-color(white);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: check;
+      $co-bg-i: $co-bg-m;
+      // title
+      $co-fc-t: null;
+      // action
+      $co-bg-ma: lighten(find-color(success, lightest),5%);
+      $co-bc-ma: null;
+      $co-bg-ba: $co-bg-ma;
+      $co-bc-ba: $co-bc-ma;
+      $co-bg-mi: transparent;
+      $co-br-ma: 0;
+      $co-br-ba: 0;
+      // solid
+      $co-fc-s: null;
+      $co-bg-s: lighten(find-color(success,lightest),0%);
+      $co-bc-s: $co-bg-s;
+    }
+
+    @if $key == remediate {
+      // general
+      $co-fc:   find-color(alert);
+      // media
+      $co-bg-m: find-color(alert, lightest);
+      $co-bc-m: scale-color($co-bg-m, $lightness: -$co-scale);
+      // body
+      $co-bg-b: find-color(white);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: edit-alt;
+      $co-bg-i: find-color(alert, lightest);
+      // title
+      $co-fc-t: null;
+      // action
+      $co-bg-ma: lighten(find-color(alert, lightest),5%);
+      $co-bc-ma: scale-color($co-bg-ma, $lightness: -$co-scale);
+      $co-bg-ba: $co-bg-ma;
+      $co-bc-ba: $co-bc-ma;
+      $co-bg-mi: transparent;
+      $co-br-ma: 0;
+      $co-br-ba: 0;
+      // solid
+      $co-fc-s: find-color(white);
+      $co-bg-s: lighten(find-color(alert),0%);
+      $co-bc-s: $co-bg-s;
+    }
+
+    @if $key == cover {
+      // general
+      $co-fc:   find-color(white);
+      // media
+      $co-bg-m: find-color(primary, darkest);
+      $co-bc-m: scale-color($co-bg-m, $lightness: $co-scale);
+      // body
+      $co-bg-b: $co-bg-m;
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: label;
+      $co-bg-i: transparent;
+      // title
+      $co-fc-t: null;
+      // action
+      $co-bg-ma: null;
+      $co-bc-ma: null;
+      $co-bg-ba: null;
+      $co-bc-ba: null;
+      $co-bg-mi: null;
+      $co-br-ma: rem(6px) 0 0 rem(6px);
+      $co-br-ba: 0 rem(6px) rem(6px) 0;
+      // solid
+      $co-fc-s: null;
+      $co-bg-s: lighten(find-color(success,lightest),0%);
+      $co-bc-s: $co-bg-s;
+    }
+
+    @if $key == instruct {
+      // general
+      $co-fc:   null;
+      // media
+      $co-bg-m: find-color(secondary, lightest);
+      $co-bc-m: find-color(secondary, lighter);
+      // body
+      $co-bg-b: null;//find-color(white);
+      $co-bc-b: $co-bc-m;
+      // icon
+      $co-in-i: instruct;
+      $co-bg-i: find-color(secondary, lightest);
+      // title
+      $co-fc-t: null;
+      // action
+      $co-mr-ba: $co-lr-m;
+      $co-bg-ma: null;
+      $co-bc-ma: null;
+      $co-bg-ba: null;
+      $co-bc-ba: null;
+      $co-bg-mi: null;
+      $co-br-ma: 0;
+      $co-br-ba: 0;
+      // solid
+      $co-fc-s: null;
+      $co-bg-s: lighten(find-color(success,lightest),0%);
+      $co-bc-s: $co-bg-s;
+    }
+
+
+    // Callouts modifier
+    // ----------------------------------------------------------------
+
+    .#{$co-class}--#{$key} {
+
+
+      &.#{$co-class} { color: $co-fc; }
+
+      .#{$co-class}#{$co-media} {
+        border-color: $co-bc-m;
+        background-color: $co-bg-m;
+        @if $key == cover {
+          padding: 2px 0;
+        }
+      }
+
+      .#{$co-class}#{$co-body} {
+        border-color: $co-bc-b;
+        background-color: $co-bg-b;
+        @if $key == cover {
+          padding-top: 8px;
+          padding-bottom: 8px;
+        }
+      }
+
+      .#{$co-class}#{$co-icon} {
+        background-color: $co-bg-i;
+        > i { @include sprite(#{$co-in-i}); }
+        @if $key == cover {
+          transform: translateX(6px);
+        }
+      }
+
+      // SOLID BLOCK
+      @if map-deep-get($callouts, $key, simple) {
+
+        &:not(.#{$co-class}--action, .#{$co-class}--block) {
+
+          color: $co-fc-s;
+
+          .#{$co-class}#{$co-body} {
+            background-color: $co-bg-s;
+            border-color:$co-bc-s;
+          }
+
+        }
+
+      }
+
+      // ACTION
+      @if map-deep-get($callouts, $key, action) {
+
+        &.#{$co-class}--action {
+
+          .#{$co-class}#{$co-media} {
+            background-color: $co-bg-ma;
+            border-color: $co-bc-ma;
+            border-radius: $co-br-ma;
+            @if $key == instruct {
+              padding-right: $co-lr-m / 2;
+            }
+          }
+
+          .#{$co-class}#{$co-body} {
+            background-color: $co-bg-ma;
+            border-color: $co-bc-ma;
+            border-radius: $co-br-ba;
+          }
+
+          .#{$co-class}#{$co-icon} {
+            background-color: $co-bg-mi;
+          }
+
+        }
+
+      }
+
+      // ACTION
+      @if map-deep-get($callouts, $key, paper) {
+
+      }
+
+      .#{$co-class}__title {
+        font-size: $co-fs-t;
+        font-weight: $co-fw-t;
+        color: $co-fc-t;
+        margin-bottom: $co-mb-t;
+      }
+
+    }
+
+  } // each
+} //mixin
+
+@include gts-callouts;

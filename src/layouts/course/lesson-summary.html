@@ -1,0 +1,27 @@
+{{> course-html-head main="u-bg-truck-1" lesson="" }}
+
+<article class="o-box o-mh-pad l-lesson-intro l-lesson-intro--key u-bs-common v-hide">
+
+  <section class="o-box__cell l-lesson-intro__body {{lsn-body}} v-hide">
+    {{#isnt pg-hdr 'hide'}}
+    {{> page-title type="lsn"}}
+    {{/isnt}}
+    <div class="o-pad">
+      {{> body}}
+    </div>
+  </section>
+  <aside class="o-box__cell l-lesson-intro__media v-hide">
+
+    <div class="l-lesson-intro__sub v-hide" data-lsn="{{> course-titles type='lesson-number'}}">
+      Lesson {{> course-titles type="lesson-number"}}
+    </div>
+    <h3 class="l-lesson-intro__heading v-hide">
+      {{> course-titles type="lesson"}}
+    </h3>
+
+  </aside>
+</article>
+
+
+{{> course-html-footer }}
+

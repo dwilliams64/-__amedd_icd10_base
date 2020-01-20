@@ -1,0 +1,50 @@
+<div class='c-course-help
+{{~#is type 'close'}} c-course-help close{{/is}}'>
+  {{#is type 'close'}} 
+    <div
+      data-help-toggle
+      class='c-help-badge c-help-badge--close'>
+      Close Help
+      {{> close-button label='Close description'}}
+    </div>
+  {{else}}
+
+    <!-- Number -->
+    {{#each @root.help}}
+     {{#is @key ../type}}
+      {{#is @key 'instructions'}}
+    {{else}}
+
+      <a href='#'
+        data-help-badge
+        class='c-help-badge c-help-badge--{{@key}}'
+        data-open='help-{{@key}}'
+        title='Select this item to learn what {{title}} does'>
+          {{number}}
+      </a>
+     {{/is}}
+      {{/is}}
+
+    {{/each}}
+
+    <!-- Description -->
+    {{#each @root.help}}
+       {{#is @key ../type}}
+      <div
+        data-help-modal
+        class='reveal c-help-card'
+        id='help-{{@key}}'
+        data-reveal
+        data-v-in='expandIn'
+        data-v-out='expandOut'
+        aria-labelledby='help-{{@key}}'>
+          <h4 class='c-help-card__title'>
+            {{title}}
+          </h4>
+          <p class='c-help-card__text'>{{{description}}}</p>
+          {{> close-button close='' label='Close description'  }}
+      </div>
+      {{/is}}
+    {{/each}}
+       {{/is}}
+</div>

@@ -1,0 +1,118 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MEDIA OBJECT
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Don't import foundations callout
+// @include foundation-media-object;
+
+// ------------------------------------------------------------------
+// callout defaults
+// ------------------------------------------------------------------
+$mo-mb:      spacing(1);
+$mo-va:      middle;
+$mo-bp:      small;
+$mo-spacing: spacing(0.5);
+
+// Media Object Container
+// ------------------------------------------------------------------
+@mixin media-object-container (
+  $mb: $mo-mb,
+  $bp: $mo-mb
+) {
+  display: block;
+  margin-bottom: $mb;
+
+  @include breakpoint($bp) {
+    display: table;
+    width: 100%;
+    border-spacing: 0;
+  }
+
+}
+
+// Media Object Common
+// ------------------------------------------------------------------
+@mixin media-object-sections (
+  $va: $mo-va,
+  $bp: $mo-bp
+) {
+  display: block;
+
+  @include breakpoint($bp) {
+    display: table-cell;
+    vertical-align: $va;
+
+    &--top    { vertical-align: top; }
+    &--middle { vertical-align: middle; }
+    &--bottom { vertical-align: bottom; }
+
+  }
+}
+
+// Media Object Media
+// ------------------------------------------------------------------
+@mixin media-object-media (
+  $pr: $mo-spacing,
+  $va: $mo-va
+) {
+
+  @include media-object-sections($va);
+
+  width: 1px;
+  padding-right: $pr;
+
+  > img {
+    max-width: none;
+  }
+
+  > .icon {
+    position: relative;
+    top: -2px;
+  }
+
+}
+
+// Media Object body
+// ------------------------------------------------------------------
+@mixin media-object-body (
+  $va: $mo-va
+) {
+
+  @include media-object-sections($va);
+  width: auto;
+
+  &, > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Media Object Combined
+// ------------------------------------------------------------------
+@mixin gts-media-object {
+
+  .o-media-object,
+  .o-mo {
+    @include media-object-container;
+
+    &__media {
+      @include media-object-media;
+    }
+
+    &__body {
+      @include media-object-body;
+
+      + .o-mo__media,
+      + .o-media-object__media {
+        padding-right: 0;
+        padding-left: $mo-spacing;
+      }
+
+    }
+
+  }
+
+}
+
+@include gts-media-object;

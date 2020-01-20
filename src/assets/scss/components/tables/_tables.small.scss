@@ -1,0 +1,23 @@
+///////////////////////////////////////////////////////////////////////
+//
+// tables-small
+//
+//////////////////////////////////////////////////////////////////////
+
+.c-table--sm {
+
+caption {
+  border-bottom: 2px solid find-color(accent,light);
+  border-top: 1px solid find-color(border);
+  font-weight:  weight(normal);
+}
+
+font-size: font-size(sm);
+& tbody th, & tbody td{
+
+padding: 0.4rem;
+
+
+}
+
+}

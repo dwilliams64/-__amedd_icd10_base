@@ -1,0 +1,23 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Generic Elements
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Fonts
+// ------------------------------------------------------------------
+// Directions for setting up files
+// [1] Use https://google-webfonts-helper.herokuapp.com/fonts to download
+//     fonts from google fonts and generate scss
+// [2] Fix scss file to include proper paths
+// [3] Replace generic/_generic.* with scss with proper file names and paths
+// [4] Add files of weights you will be using into proper folder in fonts/
+// ------------------------------------------------------------------
+
+@import 'fonts.sans';
+@import 'fonts.serif';
+@import 'fonts.mono';
+
+
+// Other
+// ------------------------------------------------------------------

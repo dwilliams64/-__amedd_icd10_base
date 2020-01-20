@@ -1,0 +1,558 @@
+///////////////////////////////////////////////////////////////////////
+//
+// BUTTONS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$btn-class: c-btn;
+$btn-transition: all 0.25s ease-out,
+color 0.25s ease-out;
+$btn-mh: get-height(base);
+$btn-mb: spacing(md);
+$btn-fs: null;
+$btn-fw: $global-weight-normal;
+$btn-lh: line-height(1);
+$btn-bw: 2px;
+$btn-br: 3px;
+$btn-lr: spacing(base);
+
+
+// get types from $course-palette
+$allow-btn-sizes: (xs sm md lg xl xxl);
+$allow-btn-colors: (accent secondary alert warning success info quiet disabled);
+
+
+// Button Circles
+//--------------------------------------------------------------------
+$cir-dir-fs:  font-size(sm);
+$cir-dir-lh:  line-height(spacing(24px));
+$cir-dir-fc:  find-color(text,light);
+$cir-dir-mb:  0;
+
+$cir-drag-mh: rem(42px);
+$cir-drag-lh: line-height(1);
+$cir-drag-bw: 2px;
+$cir-drag-bc: find-color(secondary,lighter);
+$cir-drag-bg: find-color(white);
+$cir-drag-mb: spacing(0.25);
+$cir-drag-tb: pad-height($cir-drag-mh,$cir-drag-lh,$cir-drag-bw);
+$cir-drag-lr: spacing(0.75);
+
+$cir-drag-bc-h: find-color(secondary);
+$cir-drag-bg-h: null;
+
+$cir-drop-mh: rem(42px);
+$cir-drop-lh: line-height(1);
+$cir-drop-bw: 2px;
+$cir-drop-bc: find-color(gray,lightest);
+$cir-drop-bg: find-color(white);
+$cir-drop-mb: spacing(0.25);
+$cir-drop-tb: pad-height($cir-drop-mh,$cir-drop-lh,$cir-drop-bw);
+$cir-drop-lr: spacing(0.75);
+
+$cir-drop-bc-h: find-color(secondary);
+$cir-drop-bg-h: find-color(white);
+
+$cir-drag-is: rem(30px);
+$cir-drag-is-fc: inherit;
+$cir-drag-is-bg: find-color(gray,lightest);
+$cir-drag-is-fc-h: inherit;
+$cir-drag-is-bg-h: $cir-drag-bc-h;
+$cir-drag-is-space: (($cir-drag-mh - rem($cir-drag-bw * 2) ) - $cir-drag-is) / 2;
+
+
+
+// BUTTON STYLES
+// -------------------------------------------------------------------
+@mixin btn-base ($mh: $btn-mh,
+$mb: $btn-mb,
+$tb: null,
+$lr: $btn-lr,
+// styles
+// font styles
+$fs: $btn-fs,
+$fw: $btn-fw,
+$lh: $btn-lh,
+$fc: find-color(white),
+// border/bg styles
+$bg: find-color(primary, dark),
+$bw: $btn-bw,
+$bc: $bg,
+$br: $btn-br) {
+
+    $tb: pad-height($mh, $lh, $bw);
+
+    @include disable-mouse-outline;
+    display: inline-block;
+    margin-bottom: $mb;
+    padding: $tb $lr;
+    vertical-align: middle;
+
+    font-size: $fs;
+    line-height: $lh;
+    font-weight: $fw;
+    text-align: center;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+    border-width: $bw;
+    border-style: solid;
+    border-color: $bc;
+    border-radius: $br;
+    transition: $btn-transition;
+}
+
+
+
+// Button Styles
+// -------------------------------------------------------------------
+@mixin btn-style($bg: find-color(primary),
+$bg-h: auto,
+$fc: auto, //find-color(white),
+
+$scale: 20%) {
+
+    @if $fc==auto {
+        // $fc: color-pick-contrast($bg, (find-color(white), $header-color));
+    }
+
+    @if $bg-h==auto {
+        $bg-h: scale-color($bg, $lightness: $scale);
+    }
+
+    background-color: $bg;
+    border-color: $bg;
+    color: $fc;
+
+    &:hover,
+    &:focus {
+        background-color: $bg-h !important;
+        border-color: $bg-h;
+        color: $fc !important;
+    }
+
+    >.o-icon {
+        margin-bottom: -2px;
+        vertical-align: top;
+    }
+
+}
+
+
+
+// Button Expand
+// -------------------------------------------------------------------
+@mixin btn-expand($expand: true) {
+    @if $expand {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+
+
+// Button Disabled Styles
+// -------------------------------------------------------------------
+@mixin btn-disabled ($bg: map-get($button-palette, disabled),
+$fc: find-color(text, light),
+$opacity: 1) {
+    opacity: $opacity;
+    pointer-events: none;
+    cursor: not-allowed;
+    color: $fc;
+    // text-decoration: line-through;
+    background-color: $bg;
+    border-color: $bg;
+
+    &:hover,
+    &:focus {
+        color: $fc;
+        border-color: $bg;
+        background-color: $bg;
+    }
+
+    &.-outline {
+        color: $fc;
+    }
+
+}
+
+
+
+// Button Rounded Styles
+// -------------------------------------------------------------------
+@mixin btn-rounded ($br: 100px) {
+    border-radius: $br !important;
+}
+
+
+
+// Button Outline Styles
+// -------------------------------------------------------------------
+@mixin btn-outline ($fc: inherit) {
+    color: $fc;
+    background-color: transparent;
+
+    &.-disabled,
+    &[disabled] {
+
+        &:focus,
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+}
+
+
+
+// Button w/ icon
+// -------------------------------------------------------------------
+@mixin btn-icon($mh: $btn-mh,
+$lh: $btn-lh,
+$bw: $btn-bw,
+$lr: $btn-lr,
+$class: o-icon,
+$el: span) {
+
+    $tb: pad-height($mh, $lh, $bw);
+
+    padding-left: $tb;
+    padding-right: $tb;
+
+    #{$el}:first-child {
+        margin-left: $lr;
+        margin-right: $lr;
+    }
+
+    #{$el}:last-child {
+        margin-right: $lr;
+        margin-left: $tb * 2;
+    }
+
+    @each $size,
+    $key in $base-height {
+        $tb: pad-height($size, $lh, $bw);
+
+        &.-#{$size} {
+            padding-left: $tb;
+            padding-right: $tb;
+
+            > :last-child:not(:first-child) {
+                margin-left: $tb;
+            }
+
+        }
+    }
+
+}
+
+@mixin btn-colors {
+
+    @each $key,
+    $value in $gts-palette {
+        @if index($allow-btn-colors, $key) {
+            &--#{$key} {
+                @include btn-style($value, auto, auto);
+            }
+        }
+    }
+
+}
+
+
+@mixin btn-sizes($mh: $btn-mh,
+$lh: $btn-lh,
+$bw: $btn-bw,
+$lr: $btn-lr) {
+
+    @each $size,
+    $key in $base-height {
+        @if index($allow-btn-sizes, $size) {
+            // @debug 'SIZES:' $key;
+            $tb: pad-height($key, $lh, $bw);
+
+            &.-#{$size} {
+                padding-top: $tb;
+                padding-bottom: $tb;
+                padding-left: $lr;
+                padding-right: $lr;
+            }
+        }
+    }
+}
+
+
+
+// Button Classes
+// -------------------------------------------------------------------
+.#{$btn-class} {
+    @include btn-base;
+    @include btn-style;
+
+    &.-expand {
+        @include btn-expand;
+    }
+
+    &.-disabled,
+    &[disabled] {
+        @include btn-disabled;
+    }
+
+    &.-rounded {
+        @include btn-rounded;
+    }
+
+    &.-outline {
+        @include btn-outline;
+    }
+
+    &.-icon {
+        @include btn-icon;
+    }
+
+    @include btn-colors;
+
+    @include btn-sizes;
+
+}
+
+.base_circle {
+    background-color: #42134a;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 200px;
+    float: left;
+    display: block;
+    // margin-left: 1%;
+    font-size: 14px;
+    line-height: 1.25;
+    font-weight: 200;
+    cursor: pointer;
+    margin: .5rem;
+}
+
+.code_text {
+    position: relative;
+    margin-top: 4rem;
+    margin-left: 3.25rem;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    text-align: center;
+}
+
+.sub_circle {
+  display: block;
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    padding-top: 3rem;
+  background-position: center; 
+}
+
+.sub_circle_01 {
+    position: absolute;
+    background-image: url(../img/cirCode_01_base.png);
+    top: 8rem;
+    left: 6rem;
+}
+
+.sub_circle_02 {
+    position: inherit;
+    background-image: url(../img/cirCode_02_base.png);
+    top: 12rem;
+    left: 16rem;
+}
+
+.sub_circle_03 {
+    position: inherit;
+    background-image: url(../img/cirCode_03_base.png);
+    top: 9rem;
+    left: 26rem;
+}
+
+.sub_code_reveal {
+  display: none;
+}
+
+.code-list-hide {
+  display: none;
+  visibility: hidden;
+}
+
+.code-list-show {
+  display: block;
+  visibility: visible;
+}
+
+[data-codes] {
+  width:300px;
+  background-color: white;
+    @include breakpoint(medium) {
+       width: 25%rem;
+    }
+  }
+
+ .sub-hdr{
+  color: white;
+  background-color: find-color(primary)
+ } 
+
+ .hide_obj {
+    visibility: hidden;
+    display: none;
+ }
+
+ .show-obj {
+  visibility: visible;
+ }
+
+ .l-cir {
+  display: block;
+  background-color: find-color(white);
+
+  &__directions {
+    @include gts-box-common(
+      $pt: spacing(0.75),
+      $pb: 0
+    );
+    margin-bottom: $cir-dir-mb;
+    font-size: $cir-dir-fs;
+    line-height: $cir-dir-lh;
+    color: $cir-dir-fc;
+    .c-label { margin-right: 4px; }
+    // border-bottom: 1px solid find-color(border);
+  }
+
+
+  &__body {}
+
+
+  &__choices {
+    list-style: none;
+    margin: 0;
+    @include gts-box-common();
+    // counter-reset: circhoice;
+  }
+
+
+  &__drag {
+    position: relative;
+    padding: $cir-drag-tb $cir-drag-lr $cir-drag-tb .93rem;
+    margin-bottom: $cir-drag-mb;
+    border: $cir-drag-bw solid $cir-drag-bc;
+    border-radius: $cir-drag-mh;
+    background-color: $cir-drag-bg;
+    cursor: pointer;
+    // transition: all .3s;
+    z-index: 1;
+
+    // &:before {
+    //   // counter-increment: circhoice;
+    //   // content: counter(circhoice);
+    //   // position: absolute;
+    //   // top: $cir-drag-is-space;
+    //   // left: $cir-drag-is-space;
+    //   // height: $cir-drag-is;
+    //   // width: $cir-drag-is;
+    //   // line-height: px($cir-drag-is);
+    //   // text-align: center;
+    //   // border-radius: 50%;
+    //   // background-color: $cir-drag-is-bg;
+    //   // transition: all .3s;
+    // }
+
+    &:hover {
+      background-color: $cir-drag-bg-h;
+      border-color: $cir-drag-bc-h;
+      box-shadow: $base-shadow-common;
+      // transform: translateY(-6px);
+
+      &:before {
+        color: $cir-drag-is-fc-h;
+        background-color: $cir-drag-is-bg-h;
+      }
+
+    }
+
+  }
+
+
+  &__answers {
+    @include gts-box-common(lr);
+
+    @include breakpoint(medium) {
+      padding-left: 0;
+    }
+
+  }
+
+  &__drop {
+    @include clearfix;
+    position: relative;
+    padding: $cir-drop-tb $cir-drop-lr;
+    margin-bottom: $cir-drop-mb;
+    background-color: $cir-drop-bg;
+    border: $cir-drop-bw solid $cir-drop-bc;
+    border-radius: 12px;
+    transition: all .3s;
+
+    &:hover {
+      background-color: $cir-drop-bg-h;
+      border-color: $cir-drop-bc-h;
+    }
+
+  }
+
+  &__drop-text {
+
+    @include breakpoint(medium) {
+      float: left;
+      width: 75%;
+      padding-right: spacing(0.25);
+    }
+
+  }
+
+  [data-dd-form] {
+    text-align: right;
+    // margin-top: $cir-drop-tb;
+    counter-reset: ciranswer;
+
+    @include breakpoint(medium) {
+      float: right;
+      text-align: right;
+      width: 33%;
+    }
+  }
+
+
+  &__footer {
+    @include clearfix;
+    @include gts-box-common($pt:0);
+  }
+
+  &__btn {
+    margin-bottom: 0;
+    float: right;
+    margin-left: spacing(0.5);
+  }
+
+}
+
+.c-drg-code
+{
+  width: 20rem;
+  float: left;
+}
+
+.c-drp-code
+{
+  width: 52rem;
+  float: left;
+}

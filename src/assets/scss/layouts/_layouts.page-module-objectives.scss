@@ -1,0 +1,22 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MODULE OBJECTIVES
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-module-objectives {
+  position: relative;
+  @include gts-box-common;
+  @include bg-content;
+  background-color: $box-background;
+
+  @include breakpoint(medium) {
+    &:after {
+      @include stripe-edge(right);
+    }
+  }
+
+}

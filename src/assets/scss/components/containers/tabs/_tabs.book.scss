@@ -1,0 +1,234 @@
+///////////////////////////////////////////////////////////////////////
+//
+// TABS BOOKS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// *Requires _components.tabs.scss
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$book1-mh: spacing(2.75);
+
+$book1-fc: find-color(text);
+$book1-fs: font-size(md);
+$book1-fw: weight(normal);
+$book1-lh: $base-line-height;
+
+$book1-bg: rgba(find-color(gray,darker),0.5);
+
+$book1-tb: pad-height($book1-mh,$book1-lh,0);
+$book1-lr: spacing(0.75);
+
+
+
+// STYLES - SIGN 1
+// -------------------------------------------------------------------
+
+.#{$tabs}-books {
+
+
+  .#{$tabs} {
+    counter-reset: booklist;
+    padding-bottom: spacing(1);
+  }
+
+
+  .#{$tabs}#{$tabs-item} {
+    margin-bottom: 1px;
+
+    @include breakpoint(medium) {
+      margin-left: spacing(0.5);
+      margin-right: spacing(1);
+
+      &.#{$tabs-active} {
+        margin-left: spacing(1);
+        margin-right: spacing(0.5);
+      }
+
+    }
+
+    &:first-child {
+      .#{$tabs}#{$tabs-title} {
+        box-shadow:
+          inset 0 16px 16px -16px rgba(find-color(black),0.6),
+          inset 0 -54px 27px -27px rgba(find-color(black),0.12),
+          inset 0 16px 8px -8px rgba(find-color(white),0.2),
+          inset 0 -12px 12px -12px rgba(find-color(black),0.5),
+          inset 0 -18px 9px -9px rgba(find-color(white),0.2),
+          inset 0 0 6px 0 rgba(find-color(black),0.2),
+          0 24px 24px -12px rgba(find-color(black),0.3),
+          0 45px 24px -12px rgba(find-color(black),0.3);
+      }
+    }
+
+    &:nth-child(2) {
+      .#{$tabs}#{$tabs-title} {
+        &:after {
+          border-left-color: rgba(find-color(accent),0.5);
+          border-right-color: rgba(find-color(accent),0.5);
+        }
+      }
+    }
+
+    &:nth-child(3) {
+      .#{$tabs}#{$tabs-title} {
+        &:after {
+          border-left-color: rgba(find-color(info),0.5);
+          border-right-color: rgba(find-color(info),0.5);
+        }
+      }
+    }
+
+  }
+
+
+  .#{$tabs}#{$tabs-title} {
+    position: relative;
+    padding: $book1-tb $book1-lr $book1-tb ($book1-lr * 1.5);
+    font-size: $book1-fs;
+    color: $book1-fc;
+    line-height: $book1-lh;
+    font-weight: $book1-fw;
+    text-align: left;
+    background-image: url(../img/bg-texture-1.jpg);
+    background-color: find-color(white);
+    box-shadow:
+      inset 0 3px 3px -3px rgba(find-color(black),0.3),
+      inset 0 16px 16px -16px rgba(find-color(black),0.6),
+      inset 0 -54px 27px -27px rgba(find-color(black),0.12),
+      inset 0 16px 8px -8px rgba(find-color(white),0.2),
+      inset 0 -12px 12px -12px rgba(find-color(black),0.5),
+      inset 0 -18px 9px -9px rgba(find-color(white),0.2),
+      inset 0 0 6px 0 rgba(find-color(black),0.2),
+      0 24px 24px -12px rgba(find-color(black),0.3),
+      0 45px 24px -12px rgba(find-color(black),0.3);
+    border-radius: 3px;
+
+    &:hover,
+    &:focus {
+      color: find-color(accent);
+    }
+
+    &[aria-selected='true'] {
+      color: find-color(warning);
+      &:before {
+        border-left-color: find-color(warning);
+      }
+      &:after {
+        border-left-color: rgba(find-color(warning),0.5) !important;
+        border-right-color: rgba(find-color(warning),0.5) !important;
+      }
+    }
+
+    &:before {
+      counter-increment: booklist;
+      content:counter(booklist);
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: block;
+      width: spacing(2);
+      height: spacing(1.5);
+      line-height: px(spacing(1.5));
+      font-size: font-size(lg);
+      font-weight: weight(medium);
+      text-align: center;
+      border-left: 1px solid find-color(border,dark);
+    }
+
+    &:after {
+      content:'';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 9px;
+      display: block;
+      height: 100%;
+      width: 6px;
+      border-left: 2px solid rgba(find-color(secondary), 0.7);
+      border-right: 2px solid rgba(find-color(secondary), 0.7);
+    }
+
+  }
+
+
+  .#{$tabs}#{$tabs-text} {}
+
+
+  .#{$tabs}#{$tabs-content} {
+    padding:  spacing(0.5) 0 spacing(0.5) spacing(0.5);
+    background-image: url(../img/bg-texture-1.jpg);
+    background-color: find-color(white);
+    border-radius: 6px 0 0 6px;
+    box-shadow:
+      inset 0 0 6px 0 rgba(find-color(black), 0.3),
+      inset -54px 0 54px -54px rgba(find-color(black), 0.5),
+      inset 0 -6px 12px 0 rgba(find-color(black), 0.15),
+      $base-shadow-common;
+
+    &:after {
+      content:'';
+      position: absolute;
+      top: 18px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 6px;
+      border-top: 2px solid rgba(find-color(warning), 0.5);
+      border-bottom: 2px solid rgba(find-color(warning), 0.5);
+      z-index: 0;
+    }
+
+    &:before {
+      content:'';
+      background-color: rgba(find-color(warning), 0.9);
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      display: block;
+      height: calc(100% - 12px);
+      width: calc(100% - 6px);
+      z-index: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+  }
+
+
+  .#{$tabs}#{$tabs-panel} {
+    position: relative;
+    background-color: find-color(white);
+    box-shadow:
+      inset -8px 0 8px -8px rgba(find-color(black),0.5),
+      inset -27px 0 27px -27px rgba(find-color(white), 0.7),
+      inset -54px 0 54px -54px rgba(find-color(black), 0.7),
+      0 2px 4px 0 rgba(find-color(black), 0.15);
+    z-index: 1;
+
+    @include breakpoint(medium) {
+      min-height: rem($base-mh-pad-w-title) - spacing(1);
+    }
+
+  }
+
+}
+
+
+// SLIM BOOKS
+// -------------------------------------------------------------------
+
+.#{$tabs}-books--slim {
+
+  $book1-mh-slim: spacing(2);
+  $book1-tb-slim: pad-height($book1-mh-slim,$book1-lh,0);
+
+  .#{$tabs}#{$tabs-title} {
+    padding-top: $book1-tb-slim;
+    padding-bottom: $book1-tb-slim;
+  }
+
+}

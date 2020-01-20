@@ -1,0 +1,29 @@
+///////////////////////////////////////////////////////////////////////
+//
+// PULSE ANIMATION
+//
+// ///////////////////////////////////////////////////////////////////
+
+@mixin gts-pulse-dot (
+  $bg: find-color(secondary),
+  $opacity: 0.6,
+  $duration: 3s,
+  $timing: ease,
+  $delay: 1s,
+  $count: 12,
+  $distance: 12px
+) {
+  box-shadow: 0 0 0 rgba($bg, $opacity);
+  animation: pulse $duration $timing $delay $count;
+
+  @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba($bg, $opacity); }
+     // 50% { box-shadow: 0 0 0 5px rgba($bg, 0.3);}
+    100% { box-shadow: 0 0 0 $distance rgba($bg, 0); }
+  }
+
+}
+
+.u-pulse-dot {
+  @include gts-pulse-dot;
+}

@@ -1,0 +1,87 @@
+# Your project's server will run on localhost:xxxx at this port
+PORT: 8000
+
+# Autoprefixer will make sure your CSS works with these browsers
+COMPATIBILITY:
+  - "last 4 versions"
+  - "ie >= 9"
+  - "ios >= 7"
+
+# UnCSS will use these settings
+UNCSS_OPTIONS:
+  html:
+    - "dist/**/**/*.html"
+  ignore:
+    - !!js/regexp .foundation-mq
+    - !!js/regexp ^\[data-*
+    - !!js/regexp ^.*\[data-*
+    - !!js/regexp ^\[aria-*
+    - !!js/regexp ^.*\[aria-*
+    - !!js/regexp ^\.is-.*
+    - !!js/regexp ^.*\.is-.*
+    - !!js/regexp ^\.has-.*
+    - !!js/regexp ^.*\.has-.*
+    - !!js/regexp ^\.js-.*
+    - !!js/regexp ^.*\.js-.*
+    - !!js/regexp ^\.ui-.*
+    - !!js/regexp ^.*\.ui-.*
+    - !!js/regexp ^\.reveal-.*
+    - !!js/regexp ^.*\.reveal-.*
+    - !!js/regexp ^\.v-.*
+    - !!js/regexp ^.*\.v-.*
+    - !!js/regexp ^\.no-.*
+    - !!js/regexp ^.*\.no-.*
+    - !!js/regexp ^\.c-dnd__.*
+    - !!js/regexp ^.*\.c-dnd__.*
+    - !!js/regexp ^\.l-dnd__.*
+    - !!js/regexp ^.*\.l-dnd__.*
+    - !!js/regexp ^\.mejs* #ignores all mediaelement js classes
+    - !!js/regexp .c-remediation-bar
+  timeout:
+    - 1000
+
+# Gulp will reference these paths when it copies files
+PATHS:
+  # Path to dist folder
+  dist: "dist"
+  # Paths to static assets that aren't images, CSS, or JavaScript
+  assets:
+    - "src/assets/**/*"
+    - "!src/assets/{img,js,scss,svg}/**/*"
+    - "!src/assets/svg"
+    - "!src/assets/scss"
+    - "!src/assets/media"
+  # Paths to Sass libraries, which can then be loaded with @import
+  sass:
+    - "node_modules/foundation-sites/scss"
+    # - "node_modules/motion-ui/src"
+  # Paths to JavaScript entry points for webpack to bundle modules
+  entries:
+    - "src/assets/js/app.js"
+
+  # Files located in this list will be bundled
+  # coursejs:
+    # - "node_modules/jquery/dist/jquery.slim.min.js"
+    # - "src/assets/js/course/frame.js"
+    # - "src/assets/js/course/scormfunctions.js"
+    # - "src/assets/js/course/course.js"
+
+  # Solojs is temporary fix until we can get webpack to work with our scripts
+  solojs:
+    - "node_modules/jquery/dist/jquery.min.js"
+    - "src/assets/js/course/frame.js"
+    - "src/assets/js/course/scormfunctions.js"
+    - "src/assets/js/course/remediate.js"
+    - "src/assets/js/lib/interactions/multiknowChk.js"
+    - "src/assets/js/lib/interactions/jquery-ui.min.js"
+    - "src/assets/js/lib/interactions/dragDrop.js"
+    - "src/assets/js/lib/interactions/doOrDoNot.js"
+    - "src/assets/js/lib/interactions/ddMulti.js"
+    - "src/assets/js/lib/interactions/jeopSolo.js"
+    - "src/assets/js/lib/interactions/anim-sync.js"
+    - "src/assets/js/lib/interactions/time-ani.js"
+    - "src/assets/js/lib/interactions/keepFocus.js"
+    - "src/assets/js/lib/interactions/codeBranch.js"
+    - "src/assets/js/lib/interactions/terms-sort.js"
+    - "src/assets/js/lib/interactions/pgVideo.js"
+    - "src/assets/js/lib/pages/link-disclaimer.js"

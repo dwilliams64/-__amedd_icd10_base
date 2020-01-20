@@ -1,0 +1,33 @@
+{{> course-html-head main=main }}
+
+<article class="o-box o-mh-pad l-avatar {{#is ava-type 'intro'}}l-avatar--intro{{/is}}">
+
+  {{!-- Avatar Left Side --}}
+  {{#is ava-dir 'left'}}
+  <aside class="o-box__cell l-avatar__media {{~#if ava-col}} medium-{{minus global.columns ava-col}}{{else}} medium-3{{/if}} v-hide">
+    {{> figure type="" src=ava-img alt=ava-alt class="l-avatar__img l-avatar__img--left v-hide"}}
+  </aside>
+  {{/is}}
+
+  {{!-- Body --}}
+  <section class="o-box__cell l-avatar__body {{~#if ava-col}} medium-{{ava-col}}{{else}} medium-9{{/if}} v-hide">
+    {{#is ava-type 'intro'}}
+      {{> page-title type="dark" class="" }}
+    {{else}}
+      {{> page-title type="lsn" class="" }}
+    {{/is}}
+    <div class="l-avatar__inner v-hide">
+      {{> body }}
+    </div>
+  </section>
+
+  {{!-- Avatar Right Side --}}
+  {{#isnt ava-dir 'left'}}
+  <aside class="o-box__cell l-avatar__media {{~#if ava-col}} medium-{{minus global.columns ava-col}}{{else}} medium-3{{/if}} v-hide">
+    {{> figure type="" src=ava-img alt=ava-alt class="l-avatar__img l-avatar__img--right v-hide"}}
+  </aside>
+  {{/isnt}}
+
+</article>
+
+{{> course-html-footer }}

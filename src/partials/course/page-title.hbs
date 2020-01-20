@@ -1,0 +1,26 @@
+{{#isnt type 'page'}}
+<header
+  class='c-header
+  {{~#if type}} c-header--{{type}}
+  {{else}} c-header--{{page-hdr}}
+  {{/if}}
+  {{~#if height~}} c-header--{{height}}{{/if}} {{class}}
+  {{~#if pad}} pad-lr-{{pad}}{{/if}}'>
+  <h3 class=' {{heading-class}} c-header__title'>
+    {{#if prefix}}
+      <span class='c-header__lsn'>{{{prefix}}}</span>
+    {{/if}}
+    {{{title}}}
+  </h3>
+</header>
+
+{{else}}
+
+  <h3 class='c-page-title'>
+    {{#if prefix}}
+      <span class='c-header__lsn'>{{{prefix}}}</span>
+    {{/if}}
+    {{{title}}}
+  </h3>
+
+{{/isnt}}

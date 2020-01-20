@@ -1,0 +1,76 @@
+</main>
+</div>
+
+
+{{#unlesspage 'index'}}
+  {{> course-references }}
+  {{> course-footer}}
+{{/unlesspage}}
+
+{{#ifpage 'index'}}
+{{!-- <script src="{{root}}assets/js/jquery.min.js"></script>
+<script src="{{root}}assets/js/frame.js"></script>
+<script src="{{root}}assets/js/scormfunctions.js"></script> --}}
+{{/ifpage}}
+
+{{#unlesspage 'index'}}
+
+<script src="{{root}}assets/js/app.js"></script>
+<script src="{{root}}assets/js/remediate.js"></script>
+<script src="{{root}}assets/js/link-disclaimer.js"></script>
+
+{{~#if dd}}
+  <script src="{{root}}assets/js/jquery-ui.min.js"></script>
+  <script src="{{root}}assets/js/dragDrop.js"></script>
+  <script src="{{root}}assets/js/ddMulti.js"></script>
+  <script src="{{root}}assets/js/keepFocus.js"></script>
+{{/if}}
+
+{{~#if kc}}
+  <script src="{{root}}assets/js/multiknowChk.js"></script>
+  <script src="{{root}}assets/js/keepFocus.js"></script>
+{{/if}}
+
+{{!-- {{~#if final }}
+  <script src="{{root}}assets/js/confetti.js"></script>
+{{/if}} --}}
+
+{{~#if time }}
+  <script src="{{root}}assets/js/anim-sync.js"></script>
+  <script src="{{root}}assets/js/time-ani.js"></script>
+{{/if}}
+
+{{~#if sg }}
+  {{> sg-scripts}}
+{{/if}}
+
+{{~#if sort }}
+<script src="{{root}}assets/js/jquery-ui.min.js"></script>
+<script src="{{root}}assets/js/dragDrop.js"></script>
+  <script src="{{root}}assets/js/terms-sort.js"></script>
+{{/if}}
+
+{{~#if pgVideo }}
+<script src="{{root}}assets/js/jquery-ui.min.js"></script>
+<script src="{{root}}assets/js/pgVideo.js"></script>
+{{/if}}
+
+{{!-- {{~#if jeopardy}}
+<script src="{{root}}assets/js/jeopSolo.js"></script>
+{{/if}} --}}
+
+{{~#if dnd}}
+<script src="{{root}}assets/js/jquery-ui.min.js"></script>
+<script src="{{root}}assets/js/dragDrop.js"></script>
+<script src="{{root}}assets/js/doOrDoNot.js"></script>
+  <script src="{{root}}assets/js/keepFocus.js"></script>
+{{/if}}
+
+{{~#if codeBranch}}
+  <script src="{{root}}assets/js/codeBranch.js"></script>
+{{/if}}
+
+{{/unlesspage}}
+
+</body>
+</html>

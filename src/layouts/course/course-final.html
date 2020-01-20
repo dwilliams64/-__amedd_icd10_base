@@ -1,0 +1,58 @@
+{{> course-html-head main="u-bg-warehouse-2" lesson="Course Completion" }}
+
+{{> body}}
+
+{{!-- Congratulations Message --}}
+<div class="o-box o-mh-pad l-final u-mh-pad js-kc-comp">
+
+  <div class="o-box__cell l-final__body v-hidex">
+    <div class="l-final__icon v-hidex"></div>
+    <h4 class="l-final__heading v-hidex">
+      Congratulations!
+    </h4>
+    <p class="l-final__text v-hidex">
+      You have now completed the web-based portion of this training. <br>Close this window to record your completion.
+    </p>
+    <div class="c-fetti">
+      <div class="c-fetti__area js-fetti-area"></div>
+    </div>
+  </div>
+
+  <div class="o-box__cell l-final__media">
+    <img class="l-final__img v-hidex" src="{{root}}assets/img/excited-woman.png" alt="An excited woman.">
+  </div>
+
+</div>
+
+{{!-- Course Review --}}
+<div class="o-box l-final l-final--review is-hidden u-mh-pad js-kc-incomp">
+  <div class="o-box__cell l-final__body v-hidex">
+    <h4 class="l-final__heading v-hidex">
+      Almost Done.
+    </h4>
+    <p>
+      You must view <strong>all pages</strong> and complete <strong>all Knowledge Checks</strong> before the web-based course is complete.
+      <br>
+      You can access outstanding pages from the list below. Repeat this process until done.
+    </p>
+    <p class="l-final__stats">
+      You've completed <b class="l-final__num js-kc-done"></b> of <b class="l-final__num js-kc-amt"></b> Knowledge Checks
+    </p>
+    <div class="js-kc-list">
+      <div class="l-review">
+        <h4 class="l-review__module-title">Module 1</h4>
+        <div class="l-review__lsn-group">
+          <h5 class="l-review__lesson">Lesson 1</h5>
+          <ol class="l-review__list c-list c-list--sm c-list--lined">
+            <li class="c-list__item"><a href="">Pages</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="o-box__cell l-final__media">
+    <img class="l-final__img v-hidex" src="{{root}}assets/img/thoughtful-woman.png" alt="A thoughtful woman.">
+  </div>
+</div>
+
+{{> course-html-footer }}

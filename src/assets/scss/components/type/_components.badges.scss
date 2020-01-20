@@ -1,0 +1,53 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Labels
+//
+// ///////////////////////////////////////////////////////////////////
+
+// get types from $course-palette
+$allow-badge-colors: (alert warning success);
+
+@mixin badge-base (
+  $bg: $badge-background,
+  $mw: $badge-minwidth,
+  $tb: $badge-padding,
+  $fs: $badge-font-size,
+  $fc: $badge-color,
+  $fc-alt: $badge-color-alt,
+  $br: $mw
+) {
+  position: relative;
+  top: -1px;
+  background-color: $bg;
+  min-width: $mw;
+  padding: $tb;
+  font-size: $fs;
+  line-height: 1;
+  text-align: center;
+  color: color-pick-contrast($bg, ($fc, $fc-alt));
+  display: inline-block;
+  border-radius: $mw;
+  vertical-align: middle;
+}
+
+@mixin badge-color (
+  $fc: $label-color,
+  $fc-alt: $label-color-alt
+) {
+  @each $key, $value in $badge-palette {
+    @if index($allow-badge-colors, $key) {
+      @if map-has-key($badge-palette, $key) {
+        &--#{$key} {
+          background-color: $value;
+          color: color-pick-contrast($value, ($fc, $fc-alt));
+        }
+      }
+    }
+  }
+}
+
+.c-badge {
+  @include badge-base;
+  @include badge-color;
+}
+

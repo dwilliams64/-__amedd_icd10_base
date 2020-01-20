@@ -1,0 +1,169 @@
+{{#is type 'module'}}
+
+
+  {{!-- Get Module Title --}}
+  {{#if module }}
+    {{module}}
+  {{else}}
+  {{!-- Step through pages folder --}}
+  {{#each (readdir 'src/pages/')}}
+    {{!-- Look for folders that match current location --}}
+    {{#startsWith (append (basename this) '_') @root.page}}
+      {{!-- Step through global.json --}}
+      {{#each @root.global.module}}
+        {{!-- Do they indices match --}}
+        {{#is @index @../index}}
+          {{name}}
+        {{/is}}
+      {{/each}}
+    {{/startsWith}}
+  {{/each}}
+  {{/if}}
+
+
+{{/is}}
+{{#is type 'module-number'}}
+
+
+  {{!-- Get Module Number --}}
+  {{#each (readdir 'src/pages/')}}
+    {{#startsWith (append (basename this) '_') @root.page}}
+      {{#each @root.global.module}}
+        {{#is @index @../index}}
+          {{@index}}
+          {{!-- {{add @index 1}} --}}
+        {{/is}}
+      {{/each}}
+    {{/startsWith}}
+  {{/each}}
+
+
+{{/is}}
+{{#is type 'module-group'}}
+
+
+  {{!-- Get Modules as steps for nav list --}}
+  <ul class='c-module-list'>
+    {{!-- Step through pages folder --}}
+    {{#each (readdir 'src/pages/')}}
+      {{!-- Look for folders that match current location --}}
+      {{#startsWith (append (basename this) '_') @root.page}}
+        {{!-- Limit result to first folder --}}
+        {{#is @index 0}}
+          {{!-- Step through global.json --}}
+          {{#each @root.global.module}}
+            {{!-- Get the first module result --}}
+            {{#is @index 0}}
+              <li
+                class='c-module-list__item
+                {{#is @index @../index}}is-active{{/is}}'>
+                {{name}}
+              </li>
+            {{/is}}
+          {{/each}}
+          {{!-- If the result is not from the first folder --}}
+          {{else}}
+            {{!-- Step through global.json --}}
+            {{#each @root.global.module}}
+              {{!-- If it's not the first result --}}
+              {{#isnt @index 0}}
+                <li
+                  class='c-module-list__item u-type-center
+                  {{#is @index @../index}}is-active{{/is}}'>
+                  {{name}}
+                </li>
+              {{/isnt}}
+            {{/each}}
+        {{/is}}
+      {{/startsWith}}
+    {{/each}}
+  </ul>
+
+
+{{/is}}
+{{#is type 'module-pillars'}}
+
+
+  {{!-- Get Module progress list --}}
+  <ol class='c-multi-step c-multi-step--expand'>
+  {{#each (readdir "src/pages/")}}
+    {{#startsWith (append (basename this) '_') @root.page}}
+      {{!-- Limit result to first folder --}}
+      {{#isnt @index 0}}
+      {{!-- Show everything outside of the first folder --}}
+        {{#each @root.global.module}}
+          {{#isnt @index 0}}
+            <li class='c-multi-step__col {{#is @index @../index}}is-active{{/is}}'>
+              <span class='c-step-arrow' {{#is @index @../index}}aria-selected='true'{{/is}}>
+                <span class='c-step-arrow__text'>{{name}}</span>
+              </span>
+            </li>
+          {{/isnt}}
+        {{/each}}
+      {{/isnt}}
+    {{/startsWith}}
+  {{/each}}
+  </ol>
+
+
+{{/is}}
+{{#is type 'lesson'}}
+
+
+  {{!-- Get Lesson --}}
+  {{#if lesson}}
+    {{lesson}}
+  {{else}}
+    {{#each (apr (readdir 'src/pages'))}}
+      {{#startsWith (basename this) @root.page }}
+        {{#each (apr (readdir this))}}
+         {{#startsWith (basename this) @root.page }}
+             {{#with (lookup @root.global.module @../index)}}
+              {{lookup lesson @index}}
+            {{/with}}
+          {{/startsWith}}
+        {{/each}}
+      {{/startsWith}}
+    {{/each}}
+  {{/if}}
+
+
+{{/is}}
+{{#is type 'lesson-number'}}
+
+
+  {{!-- Get Lesson number --}}
+  {{#each (apr (readdir 'src/pages'))}}
+    {{#startsWith (basename this) @root.page }}
+      {{#each (apr (readdir this))}}
+        {{#startsWith (basename this) @root.page }}
+          {{#with (lookup @root.global.module @../index)}}
+            {{add @index 1}}
+          {{/with}}
+        {{/startsWith}}
+      {{/each}}
+    {{/startsWith}}
+  {{/each}}
+
+
+{{/is}}
+{{#is type 'lesson-list'}}
+
+
+  <ul class='c-list c-list--border c-list--circled {{#if class}}{{class}}{{/if}}'>
+    {{!-- Get Lesson --}}
+    {{#each (apr (readdir 'src/pages'))}}
+      {{#startsWith (basename this) @root.page }}
+        {{#each (apr (readdir this))}}
+          {{#with (lookup @root.global.module @../index)}}
+            <li class='c-list__item' title=''>
+              {{lookup lesson @index}}
+            </li>
+          {{/with}}
+        {{/each}}
+      {{/startsWith}}
+    {{/each}}
+  </ul>
+
+
+{{/is}}

@@ -1,0 +1,281 @@
+///////////////////////////////////////////////////////////////////////
+//
+// TIMELINE HORIZONTAL
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// TEMPORARY FIX !!!
+
+// CLASSES
+// ------------------------------------------------------------------
+$tlh-class: c-tlh;
+$tlh-bg: find-color(white);
+$tlh-bw: 1px;
+$tlh-bc: lighten(find-color(accent,dark),5%);
+
+// dot
+$tlh-dmh: rem(24px);
+$tlh-dbw: rem(3px);
+$tlh-dbg: find-color(white);
+$tlh-dbc: find-color(secondary);
+
+$tlh-expand: 140%;
+$tlh-line-pos: 45%;
+$tlh-text-pos: 25%;
+
+
+
+// STYLES
+// ----------------------------------------------------------------
+.#{$tlh-class} {
+  background-color: find-color(white);
+  // background-image: url(../img/bg-paper-texture.png);
+
+  box-shadow: $base-shadow-common;
+
+
+  // column
+  // --------------------------------------------------------------
+  &__col {
+    border-bottom: $tlh-bw solid find-color(border);
+
+    @include breakpoint(medium) {
+      border-bottom: 0;
+      transition: background-color .3s;
+
+      &:hover {
+        cursor: pointer;
+        background-color: find-color(gray,bg);
+      }
+
+    }
+
+    // position every other date at bottom
+    &:nth-child(even) {
+      .#{$tlh-class}__body {
+        &:before { top: (100% - $tlh-text-pos); }
+      }
+    }
+
+    &:first-child,
+    &:nth-child(2) {
+      .#{$tlh-class}__inner {
+        left: 0;
+        transform: translateX(0);
+      }
+    }
+
+    &:last-child {
+      .#{$tlh-class}__inner {
+        left: -50%;
+        transform: translateX(0);
+      }
+    }
+
+  }
+
+
+  // body
+  // --------------------------------------------------------------
+  &__body {
+    position: relative;
+    height: 100%;
+    @include gts-box-common;
+
+    // line - vertical
+    &:after {
+      content:'';
+      position: absolute;
+      top: 0;
+      left: spacing(1);
+      right: 0;
+      box-sizing: content-box;
+      display: block;
+      height: 100%;
+      width: $tlh-dbw;
+      background-color: $tlh-dbc;
+      transform: translateX(-50%);
+    }
+
+    @include breakpoint(small only) { padding-left: spacing(2); }
+
+    @include breakpoint(medium) {
+
+      // line - horizontal
+      &:after {
+        top: 50%;
+        left: 0;
+        height: $tlh-dbw;
+        width: 100%;
+        transform: translateY(-50%) translateX(0);
+      }
+
+      // fake date
+      &:before {
+        content:attr(data-date);
+        position: absolute;
+        top: $tlh-text-pos;
+        left: 50%;
+        @include typeset(3);
+        // padding-bottom: spacing(7px);
+        margin-bottom: 0;
+        transform: translateY(-50%) translateX(-50%);
+        border-bottom: 1px solid $tlh-dbc;
+      }
+
+    }
+
+  }
+
+
+  // dot
+  // --------------------------------------------------------------
+  &__dot {
+    position: absolute;
+    top: spacing(.875);
+    left: spacing(1);
+    display: block;
+    width: $tlh-dmh;
+    height: $tlh-dmh;
+    background-color: $tlh-dbg;
+    // background-image: url(../img/bg-paper-texture.png);
+    border: $tlh-dbw solid $tlh-dbc;
+    border-radius: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+
+    @include breakpoint(medium) {
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+
+      // &:before {
+      //   content:'';
+      //   position: absolute;
+      //   top: -100%;
+      //   left: 50%;
+      //   display: block;
+      //   width: $tlh-dbw;
+      //   height: 100%;
+      //   background-color: $tlh-dbc;
+      //   transform: translateX(-50%);
+      // }
+
+
+    }
+
+  }
+
+
+  // inner
+  // --------------------------------------------------------------
+  &__inner {
+
+    .o-close-btn {display: none;}
+
+    @include breakpoint(medium) {
+      display: none;
+      // opacity: 0;
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      width: 100%;
+      height: 90%;
+      @include gts-box-common(lg);
+      background-color: white;
+      transform: translateX(-50%);
+      z-index: 2;
+      box-shadow: 0 0 0 transparent;
+      @include gts-box-stripe(bottom);
+
+      &:before {
+        content:'';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        box-shadow: $base-shadow-common;
+        // opacity: 0;
+      }
+
+      .o-close-btn {display: block;}
+
+    }
+
+  }
+
+
+  // title
+  // --------------------------------------------------------------
+  &__title {
+    @include typeset(3);
+    font-weight: weight(normal);
+
+    @include breakpoint(medium) {}
+
+  }
+
+
+  // text
+  // --------------------------------------------------------------
+  &__text {
+
+    @include breakpoint(medium) {
+
+    }
+
+  }
+
+
+}
+
+
+
+// EXPANDED
+// ----------------------------------------------------------------
+.#{$tlh-class}__col.is-expanded {
+  background-color: find-color(secondary);
+
+  // body
+  // --------------------------------------------------------------
+  .#{$tlh-class}__body {
+    @include breakpoint(medium) {
+
+    }
+  }
+
+
+  // inner
+  // --------------------------------------------------------------
+  .#{$tlh-class}__inner {
+
+    @include breakpoint(medium) {
+      display: block;
+      // opacity: 0;
+      width: 150%;
+      z-index: 2;
+    }
+
+  }
+
+
+}
+
+
+
+// EXPANDED
+// ----------------------------------------------------------------
+.#{$tlh-class}.is-tl-expanded {
+
+  @include breakpoint(medium) {
+    .#{$tlh-class}__col,
+    .#{$tlh-class}__dot {
+      // background-color: find-color(gray,lightest);
+    }
+  }
+
+}
+

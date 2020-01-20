@@ -1,0 +1,76 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Flip an Object
+//
+// ///////////////////////////////////////////////////////////////////
+
+%o-flip-section {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1.25);
+  font-smoothing: antialiased;
+}
+
+.o-flip {
+  position: relative;
+  perspective: 800px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  font-smoothing: antialiased;
+
+  &__front {
+    @extend %o-flip-section;
+    display: inline-block;
+    margin: 0;
+    transform: rotateY(0deg);
+    z-index: 2;
+    vertical-align: top;
+  }
+
+  &__back {
+    position: absolute;
+    @extend %o-flip-section;
+    transform: rotateY(180deg);
+    z-index: 1;
+  }
+
+  &__content {
+    display: table;
+    width: 100%;
+    height: 100%;
+    @include gts-box-common;
+    background-color: find-color(white);
+    color: find-color(text);
+  }
+
+  &__inner {
+    position: relative;
+    display: table-cell;
+    vertical-align: top;
+    text-align: left;
+    z-index: 1;
+  }
+
+}
+
+.is-flipped {
+  .o-flip__front {
+    transform: rotateY(-180deg);
+    z-index: 1;
+  }
+
+  .o-flip__back {
+    transform: rotateY(0deg);
+    z-index: 2;
+  }
+
+}
+
+
+
+// , translateY(-6px)

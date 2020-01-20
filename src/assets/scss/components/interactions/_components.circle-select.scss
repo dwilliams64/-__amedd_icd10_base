@@ -1,0 +1,40 @@
+///////////////////////////////////////////////////////////////////////
+//
+// CIRCLE SELECT
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.c-circ-select {
+  height: spacing(8);
+  width: spacing(8);
+  @include typeset(2);
+  font-weight: weight(normal);
+  color: find-color(white);
+  background-color: find-color(white);
+  border: 6px solid find-color(secondary);
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all .25s ease-in-out;
+
+  @include breakpoint(medium) {
+    height: spacing(10);
+    width: spacing(10);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: find-color(secondary);
+    cursor: pointer;
+  }
+
+  &__label {
+    display: block;
+    @include typeset(6);
+    margin-bottom: 0;
+  }
+
+}

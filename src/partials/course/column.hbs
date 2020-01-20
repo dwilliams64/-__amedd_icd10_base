@@ -1,0 +1,30 @@
+{{!--   Short hand to build columns
+  Options include:
+    - set column width using col="X"
+    - add a class using class="X"
+ --}}
+{{#if hdr}}
+
+  <div class="o-box__cell {{class}} medium-{{col}}">
+
+    {{#if hdr}}
+      {{> page-title type=hdr class=hdr-class }}
+    {{/if}}
+
+    {{#if @partial-block}}
+      {{> @partial-block}}
+    {{/if}}
+
+  </div>
+
+{{else}}
+
+  <div class="o-box__cell {{class}} medium-{{col}}">
+
+    {{#if @partial-block}}
+      {{> @partial-block}}
+    {{/if}}
+
+  </div>
+
+{{/if}}

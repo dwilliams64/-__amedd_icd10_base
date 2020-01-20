@@ -1,0 +1,187 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Process Down
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// *Requires _components.tabs.scss
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$proc-item-mh: spacing(3);
+$proc-item-lh: line-height(0.75);
+$proc-item-fs: font-size(sm);
+$proc-item-fc: find-color(text);
+
+$proc-item-i: 1;
+$proc-item-start: find-color(primary,darkest);
+$proc-item-end: find-color(secondary);
+$proc-item-total: 6;
+$proc-item-mix: 100% / $proc-item-total;
+
+$proc-item-bw: 3px;
+$proc-item-bc: find-color(white);
+
+$proc-item-bg: $proc-item-start;
+$proc-item-bg-h: find-color(accent);
+$proc-item-bc-h: find-color(accent);
+$proc-item-fc-h: find-color(accent);
+
+$proc-item-bg-a: find-color(white);
+$proc-item-bc-a: find-color(warning);
+$proc-item-fc-a: find-color(text,dark);
+
+$proc-lbl-pad: spacing(0.125);
+$proc-item-tb: pad-height($proc-item-mh,$proc-item-lh,$proc-lbl-pad);
+$proc-item-lr: spacing(0.75);
+
+$proc-item-skew: 9deg;
+
+
+
+// PLACEHOLDERS
+// -------------------------------------------------------------------
+%process-arrow-down {
+  &:before,
+  &:after {
+    content:'';
+    position: absolute;
+    bottom: 0;
+    display: block;
+    height: 100%;
+    width: 50%;
+    // border-bottom: $proc-item-bw solid $proc-item-bc;
+    background-color: $proc-item-bg;
+    z-index: 2;
+    transition: all .2s ease;
+  }
+
+  &:before {
+    left: 0;
+    // border-right-width: 0;
+    transform: skewY($proc-item-skew);
+  }
+
+  &:after {
+    left: 50%;
+    // border-left-width: 0;
+    transform: skewY(-$proc-item-skew);
+  }
+
+}
+
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.#{$tabs}-process-down {
+// ----------------------------
+
+.#{$tabs} {
+  display: block;
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+  // @include get-shadow(2);
+  border: $proc-item-bw solid $proc-item-bc;
+  // border-radius: 3px;
+}
+
+
+.#{$tabs}#{$tabs-item} {
+  position: relative;
+
+  &:first-child {
+    .#{$tabs}#{$tabs-title} {
+      padding-top: $proc-item-tb * .75;
+    }
+  }
+
+  &:last-child {
+    .#{$tabs}#{$tabs-title} {
+      padding-bottom: $proc-item-tb * 1.25;
+      &:after,
+      &:before {
+        border-bottom: 0;
+      }
+    }
+  }
+
+}
+
+
+.#{$tabs}#{$tabs-title} {
+  padding: $proc-item-tb $proc-item-lr;
+  background-color: $proc-item-bg;
+
+  @extend %process-arrow-down;
+
+  &[aria-selected="true"] {
+    .#{$tabs}#{$tabs-text} {
+      background-color: $proc-item-bg-a;
+      color: $proc-item-fc-a;
+      box-shadow:
+        0 0 0 2px $proc-item-bc-a,
+        inset 0 0 0 1px $proc-item-bg-a,
+        inset 0 -36px 36px -36px rgba($proc-item-bc-a,0.7),
+        0 2px 4px 0px rgba(0,0,0,0.3);
+    }
+  }
+
+}
+
+
+.#{$tabs}#{$tabs-text} {
+  position: relative;
+  top:50%;
+  display: block;
+  background-color: find-color(white);
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: $proc-item-fs;
+  line-height: $proc-item-lh;
+  color: $proc-item-fc;
+  padding: $proc-lbl-pad;
+  border-radius: 1px;
+  border: 0px solid find-color(white);
+  box-shadow:
+    0 0 0 2px find-color(white),
+    inset 0 0 0 1px find-color(white),
+    // inset 0 -36px 36px -36px rgba(0,0,0,0.10),
+    0 2px 4px 0px rgba(0,0,0,0.3);
+  transform: translateY($proc-lbl-pad);
+  z-index: 4;
+}
+
+// Arrow Colors
+@for $i from ($proc-item-i + 1) through $proc-item-total {
+  $color-mix: ($proc-item-mix * ($i - 1));
+  $proc-item-bgc: mix($proc-item-end, $proc-item-start, $color-mix);
+  .#{$tabs}#{$tabs-item} {
+    &:nth-child(#{$i}) {
+      .#{$tabs}#{$tabs-title},
+      .#{$tabs}#{$tabs-title}:before,
+      .#{$tabs}#{$tabs-title}:after {
+        background-color: $proc-item-bgc;
+        transition: all .2s ease;
+      }
+
+      &:hover {
+        .#{$tabs}#{$tabs-title},
+        .#{$tabs}#{$tabs-title}:before,
+        .#{$tabs}#{$tabs-title}:after {
+          color: $proc-item-fc-h;
+          background-color: $proc-item-bg-h;
+        }
+      }
+
+    }
+  }
+}
+
+// ----------------------------
+}

@@ -1,0 +1,36 @@
+///////////////////////////////////////////////////////////////////////
+//
+// IMAGE POSITION
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.c-img-pos-right {
+  z-index: 1;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include breakpoint(medium) {
+    @include grid-column-size(4);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    > img {
+      min-width: 419px;
+    }
+
+  }
+
+}
+
+.c-img-pos--right {
+  @include breakpoint(medium) { right: 0; }
+}
+
+.c-img-pos--left {
+  @include breakpoint(medium) { left: 0; }
+}

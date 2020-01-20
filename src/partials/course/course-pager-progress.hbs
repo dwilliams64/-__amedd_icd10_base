@@ -1,0 +1,46 @@
+{{#is type 'lesson'}}
+
+{{#distinct pages 'level1'}}
+  {{#each this}}
+
+    {{#where @root/pages 'level1' this }}
+      {{#each this}}
+
+        {{#is @root/page base}}
+
+          <span class='c-course-pager__btn c-course-pager__btn--page'>
+          {{#where @root/pages 'level1' ../../this }}
+
+          {{#each this}}
+          {{#is @root.page base}}
+
+          {{add @index 1}}
+
+          {{/is}}
+          {{/each}}
+
+          of {{length this}}
+
+        {{/where}}
+        </span>
+
+        {{/is}}
+
+      {{/each}}
+    {{/where}}
+
+  {{/each}}
+{{/distinct}}
+
+{{/is}}
+
+{{#is type 'course'}}
+
+{{#pager pages page type='progress'}}
+<span class="c-course-pager__btn c-course-pager__btn--page">
+  <i class="show-for-sr">Page</i> {{n}}
+</span>
+{{/pager}}
+
+{{/is}}
+

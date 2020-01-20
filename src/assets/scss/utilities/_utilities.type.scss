@@ -1,0 +1,41 @@
+///////////////////////////////////////////////////////////////////////
+//
+// TYPE RELATED
+//
+// ///////////////////////////////////////////////////////////////////
+
+// FONT COLOR UTILITIES
+// -------------------------------------------------------------------
+@include gts-prototype-classes (
+  $property: fc,
+  $map: $course-palette
+);
+
+// FONT TYPE UTILITIES
+// ------------------------------------------------------------------
+@include gts-prototype-classes (
+  $property: fs,
+  $map: $font-size,
+  $allowed-var: huge xxl xl lg base md sm xs,
+  $allowed-dir: null
+);
+
+
+// FONT TYPE WEIGHT
+// -------------------------------------------------------------------
+.u-type {
+  &-bold { font-weight: weight(bold) !important }
+  &-medium { font-weight: weight(medium) !important }
+  &-normal  { font-weight: weight(normal) !important }
+  &-light  { font-weight: weight(light) !important }
+}
+
+
+// TEXT ALIGNMENT UTILITIES
+// -------------------------------------------------------------------
+.u-type {
+  &-center { text-align: center !important; }
+  &-left   { text-align: left !important; }
+  &-right  { text-align: right !important; }
+}
+

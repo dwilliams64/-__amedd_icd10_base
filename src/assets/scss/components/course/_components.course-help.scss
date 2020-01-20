@@ -1,0 +1,229 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE HELP
+//
+// ///////////////////////////////////////////////////////////////////
+
+// ------------------------------------------------------------------
+// variables
+// ------------------------------------------------------------------
+
+// Badge
+$help-badge-mh:     36px;
+
+$help-badge-bg:     find-color(white);
+$help-badge-bg-h: find-color(secondary, lightest);
+
+$help-badge-bw:     3px;
+$help-badge-bc:     find-color(secondary);
+$help-badge-bc-hov: find-color(secondary);
+
+$help-badge-fs:     font-size(sm);
+$help-badge-fc:     find-color(text,dark);
+$help-badge-fc-hov: find-color(text,dark);
+$help-badge-fw:     weight(bold);
+$help-badge-lh:     line-height(1);
+$help-badge-tb:     pad-height($help-badge-mh,$help-badge-lh,$help-badge-bw);
+
+// Body
+
+$help-bg:     find-color(white);
+$help-bw:     $help-badge-bw;
+$help-bc:     $help-badge-bc;
+$help-br:     2px;
+
+// $help-fs:     font-size(md);
+$help-fc:     find-color(text);
+$help-lh:     line-height(21px);
+
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+
+// Help Badge
+// ----------------------------------
+.c-help-badge {
+  display: inline-block;
+  position: relative;
+  padding-top: $help-badge-tb;
+  padding-bottom: $help-badge-tb;
+  min-width: rem($help-badge-mh);
+  font-size: $help-badge-fs;
+  font-weight: $help-badge-fw;
+  line-height: $help-badge-lh;
+  color: $help-badge-fc;
+  text-align: center;
+  border: $help-badge-bw solid $help-badge-bc;
+  background-color: $help-badge-bg;
+  border-radius: $help-badge-mh / 2;
+  z-index: 1004;
+  outline: 0;
+  cursor: pointer;
+
+  @include gts-pulse-dot;
+  @include transition;
+
+  &:after {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: $help-badge-mh / 2;
+    @include get-shadow(4,bottom,$opacity:0.4);
+  }
+
+  &:focus,
+  &:hover {
+    color: $help-badge-fc-hov;
+    border-color: $help-badge-bc-hov;
+    background-color: $help-badge-bg-h;
+    @include get-shadow(5,bottom,$opacity:0.4);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    @include get-shadow(4,bottom,$opacity:0.4);
+    transform: translateY(0);
+  }
+
+  &--close,
+  &--menu,
+  &--help,
+  &--references {
+    bottom: ($help-badge-mh / 2) * -1;
+  }
+
+  &--progress,
+  &--player,
+  &--back,
+  &--page,
+  &--next {
+    top: ($help-badge-mh / 2) * -1;
+  }
+
+  &--player {
+    left: 50%;
+    margin-left: ($help-badge-mh / 2) * -1;
+  }
+
+  &--progress {
+    left: 15%;
+  }
+
+}
+
+
+
+// Help Card
+// ----------------------------------
+.c-help-card {
+  @include gts-box-common(
+    $pb: spacing(2)
+  );
+  position: relative;
+  width: 80%;
+  max-width: 420px;
+  text-align: center;
+  background-color: $help-bg;
+  border-radius: $help-br;
+  outline: 0;
+  @include get-shadow(3, black, 0.4);
+
+  @include gts-box-stripe(
+    $br: 0 0 $help-br $help-br
+  );
+
+  &__title {
+    @include typeset(4);
+    margin-bottom: spacing(.25);
+  }
+
+}
+
+
+// Close Button
+// ----------------------------------
+.c-help-badge--close {
+  padding-right: $help-badge-tb;
+  padding-left: spacing(0.5);
+  font-size: $help-badge-fs;
+  font-weight: weight(normal);
+  color: find-color(alert);
+  background-color: find-color(white);
+  border-color: find-color(alert, lightest);
+
+  &:hover,
+  &:focus {
+    color: find-color(alert,dark);
+    background-color: find-color(alert, lightest);
+    border-color: find-color(alert, lighter);
+  }
+
+  > .o-close-btn {
+    float: right;
+    display: inline-block;
+    position: relative;
+    top:0;
+    right: 0;
+    margin-left: 9px;
+    color: find-color(white);
+    border-radius: 50%;
+    background-color: find-color(alert);
+    vertical-align: middle;
+  }
+
+}
+
+// Example Dots
+.help-dot {
+  &:after {
+    content: '';
+    display: inline-block;
+    margin-right: 2px;
+    margin-left: 4px;
+    margin-bottom: -1px;
+    vertical-align: baseline;
+    height: 12px;
+    width: 12px;
+    background-color: $help-badge-bg;
+    border: $help-badge-bw solid $help-badge-bc;
+    border-radius: 50%;
+  }
+
+  &--close {
+    &:after {
+      border-color: find-color(alert);
+      background: find-color(alert);
+    }
+  }
+
+}
+
+
+// OTHER
+// ----------------------------------
+
+.c-course-help {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: left;
+
+  &--close {
+    left: auto;
+    right: 1.5%;
+    width: 50%;
+    text-align: right;
+  }
+
+  &.is-open {
+    display: block;
+  }
+
+}

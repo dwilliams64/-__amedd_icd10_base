@@ -1,0 +1,149 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE NAV
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$crs-nav-mh: get-height(base);
+$crs-nav-fs: font-size(base);
+$crs-nav-lh: line-height(1);
+
+$crs-nav-item-bg: transparent;
+$crs-nav-item-fc: find-color(white);
+
+$crs-nav-item-bg-h: find-color(primary, darkest);
+$crs-nav-item-fc-h: $crs-nav-item-fc;
+
+$crs-nav-item-bg-a: $crs-nav-item-bg-h;
+$crs-nav-item-fc-a: $crs-nav-item-fc;
+
+$crs-nav-item-tb: pad-height($crs-nav-mh,24px,0);
+$crs-nav-item-lr: spacing(0.5);
+
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.c-course-nav {
+  display: block;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  // overflow: hidden;
+  @include clearfix;
+
+
+  // item - li
+  // ----------------------------
+  &__item {
+    position: relative;
+    display: block;
+    float: left;
+    max-width: 100%;
+    // overflow: hidden;
+
+    &:not(:last-child) {
+      &:after {
+        content:'';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        display: block;
+        width: 1px;
+        background-color: find-color(primary, darkest);
+      }
+    }
+
+  }
+
+
+  // trigger - href
+  // ----------------------------
+  &__trigger {
+    display: block;
+    padding: $crs-nav-item-tb $crs-nav-item-lr;
+    font-size: $crs-nav-fs;
+    color: $crs-nav-item-fc;
+    background-color: $crs-nav-item-bg;
+    white-space: nowrap;
+    @include transition;
+
+
+    &:focus,
+    &:hover {
+      color: $crs-nav-item-fc-h;
+      background-color: $crs-nav-item-bg-h;
+      cursor: pointer;
+      outline: 0;
+    }
+
+
+    // Icons
+    // --------------------------
+    &:before {
+      content:'';
+      display: inline-block;
+      vertical-align: top;
+      margin-right: spacing(0.25);
+      @include sprite-image;
+    }
+
+
+    // Menu
+    // --------------------------
+    &--menu {
+      &:before { @include sprite(menu) }
+      &:focus,
+      &:hover {
+        &:before { @include sprite-position(menu-hov) }
+      }
+    }
+
+
+    @include breakpoint(small only) {
+
+
+      &--resources,
+      &--help {
+        &:before { margin-right: 0; }
+        > span { @include element-invisible; }
+      }
+
+
+      // Help
+      // --------------------------
+      &--help {
+        &:before { @include sprite(help); }
+        &:focus,
+        &:hover {
+          &:before { @include sprite-position(help-hov); }
+        }
+      }
+
+
+      // Resources
+      // --------------------------
+      &--resources {
+        &:before { @include sprite(reference) }
+        &:focus,
+        &:hover {
+          &:before { @include sprite-position(reference-hov) }
+        }
+      }
+
+    }
+
+    &.is-active {
+      background-color: $crs-nav-item-bg-h;
+    }
+
+
+  }
+
+
+}

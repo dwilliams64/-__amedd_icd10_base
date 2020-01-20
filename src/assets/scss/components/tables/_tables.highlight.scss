@@ -1,0 +1,6 @@
+.table-highlight__tr {
+  transition: all .5s ease;
+  &.is-highlight {
+  	background-color: find-color(highlight);
+  }
+}

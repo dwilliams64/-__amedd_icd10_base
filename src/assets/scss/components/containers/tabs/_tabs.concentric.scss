@@ -1,0 +1,144 @@
+///////////////////////////////////////////////////////////////////////
+//
+// TABS CONCENTRIC
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// *Requires _components.tabs.scss
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$circ2-i: 2;
+$circ2-reduce: 24%;
+$circ2-start: find-color(primary,dark);
+$circ2-end: find-color(white);
+$circ2-total: 4;
+$circ2-mix: 100% / $circ2-total;
+$circ2-max: 388px;
+
+$circ2-lbl-mh: 36px;
+$circ2-lbl-fs: font-size(sm);
+$circ2-lbl-fc: find-color(text);
+$circ2-lbl-lh: line-height(0.75);
+
+$circ2-lbl-bg: find-color(white);
+$circ2-lbl-bg-h: find-color(white);
+$circ2-lbl-bg-a: find-color(white);
+
+$circ2-lbl-bw: 2px;
+$circ2-lbl-bc: $circ2-lbl-bg;
+$circ2-lbl-bc-h: $circ2-lbl-bg-h;
+$circ2-lbl-bc-a: find-color(secondary);
+
+$circ2-lbl-tb: pad-height($circ2-lbl-mh,$circ2-lbl-lh,$circ2-lbl-bw);
+$circ2-lbl-lr: spacing(0.75);
+
+$circ2-lbl-br: 3px;
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.c-concentric {
+  @include clearfix;
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: $circ2-max;
+  max-height: $circ2-max;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__place {
+    width: $circ2-max;
+    height: $circ2-max;
+  }
+
+  &__size {
+    position: absolute;
+    width: 100%;
+    display: block;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:not(:first-child) {
+      position: absolute;
+      top:0;
+      left: 0;
+    }
+
+@for $i from ($circ2-i + 1) through $circ2-total + 1 {
+  $color-mix: ($circ2-mix * $circ2-i);
+  &:nth-child(#{$circ2-i}) {
+    top: $circ2-reduce / 2;
+    left: $circ2-reduce / 2;
+    width: 100% - ($circ2-reduce);
+
+    .c-concentric__circle {
+      background-color: mix($circ2-end, $circ2-start, $color-mix);
+    }
+  }
+  $circ2-i: $circ2-i + 1;
+  $circ2-reduce: $circ2-reduce + 20%;
+}
+
+    &:nth-child(even) {
+      .c-tabs__title {
+        left: auto;
+        right: 50%;
+      }
+    }
+
+  }
+
+  &__circle {
+    width: 100%;
+    max-width: $circ2-max;
+    height: 1px;
+    padding-bottom: 100%;
+    background-color: $circ2-start;
+    border-radius: 50%;
+    box-shadow: $base-shadow-common;
+  }
+
+
+  &__label,
+  .c-tabs__title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    min-width: $circ2-max / 2;
+    padding: $circ2-lbl-tb $circ2-lbl-lr;
+    font-size: $circ2-lbl-fs;
+    line-height: $circ2-lbl-lh;
+    color: $circ2-lbl-fc;
+    border: $circ2-lbl-bw solid $circ2-lbl-bc;
+    border-radius: $circ2-lbl-br;
+    background-color: $circ2-lbl-bg;
+    box-shadow: 0 2px 4px 0px rgba(0,0,0,0.3);
+    transition: all .3s ease;
+
+    &:hover {
+      background-color: $circ2-lbl-bg-h;
+      border-color: $circ2-lbl-bc-h;
+      box-shadow:
+        inset 0 -36px 36px -36px rgba(0,0,0,0.2),
+        0 2px 4px 0px rgba(0,0,0,0.3);
+    }
+
+    &[aria-selected="true"] {
+      background-color: $circ2-lbl-bg-a;
+      border-color: $circ2-lbl-bc-a;
+      box-shadow:
+        inset 0 -36px 36px -36px rgba($circ2-lbl-bc-a,0.7),
+        0 16px 8px -8px rgba(0,0,0,0.3);
+    }
+
+  }
+
+}
+

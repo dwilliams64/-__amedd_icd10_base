@@ -1,0 +1,185 @@
+///////////////////////////////////////////////////////////////////////
+//
+// FINAL PAGE
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-final {
+  position: relative;
+
+  // -----------------------------------------------------------------
+  &__body {
+    @include gts-box-common(lg);
+    text-align: center;
+    background-color: find-color(white);
+    @include bg-fade;
+    vertical-align: middle;
+    @include gts-box-stripe(bottom);
+    box-shadow: $base-shadow-common;
+
+
+    @include breakpoint(medium) {
+      @include grid-column-size(9);
+    }
+
+  }
+
+  // -----------------------------------------------------------------
+  &__media {
+    position: inital;
+    text-align: center;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(3);
+    }
+
+  }
+
+
+  &__icon {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: spacing(0.75);
+    @include sprite-common;
+    @include sprite(thumbs-up);
+    display: block;
+  }
+
+
+  // -----------------------------------------------------------------
+  &__heading {
+    @include typeset(cover);
+    margin-bottom: spacing(0.5);
+    font-weight: weight(light);
+    // color: find-color(primary,dark);
+
+    @include breakpoint(medium) {
+      margin-bottom: spacing(0.75);
+    }
+
+  }
+
+
+  // -----------------------------------------------------------------
+  &__text {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    @include typeset(lgp);
+    margin-bottom: spacing(1);
+  }
+
+
+
+
+  // -----------------------------------------------------------------
+  &__img {
+    @include breakpoint(medium) {
+      position: absolute;
+      bottom: -18px;
+      // right: -18px;
+      left: -36%;
+      width: 36%;
+      min-width: 419px;
+      z-index: 100;
+    }
+  }
+
+
+  // -----------------------------------------------------------------
+  &__stats {
+    border: 1px solid find-color(border,light);
+    border-left: 0;
+    border-right: 0;
+    padding: spacing(0.375);
+    margin-bottom: spacing(0.5);
+  }
+
+
+  // -----------------------------------------------------------------
+  &__num {
+    display: inline-block;
+    padding: 0px 9px;
+    margin-left: 3px;
+    margin-right: 3px;
+    color: find-color(primary, dark);
+    background-color: find-color(gray,bg);
+    border-radius: 3px;
+  }
+
+
+  // -----------------------------------------------------------------
+  .l-review {
+    @include clearfix;
+    margin-bottom: spacing(1);
+    background-color: find-color(white);
+    text-align: left;
+    border: 1px solid find-color(border);
+
+    &__module-title {
+      padding: spacing(0.25) spacing(0.5);
+      font-size: font-size(md);
+      font-weight: weight(medium);
+      text-align: center;
+      background-color: find-color(gray,bg);
+      border-bottom: 1px solid find-color(border);
+    }
+
+    &__lesson {
+      padding: spacing(0.25) spacing(0.5);
+    }
+
+    &__lsn-group {
+      text-align: left;
+
+      + .l-review__lsn-group {
+        border-top: 1px solid find-color(border);
+      }
+
+    }
+
+    &__list {
+
+      margin-bottom: 0;
+
+      > li {
+        padding-left: spacing(0.25);
+        padding-right: spacing(0.25);
+
+        &:last-child {
+          border-bottom: 0;
+        }
+
+        &:before {
+          content:'';
+          display: inline-block;
+          height: 6px;
+          width:  6px;
+          margin-right: 9px;
+          margin-left:  6px;
+          line-height: 1;
+          vertical-align: middle;
+          border: 1px solid find-color(secondary);
+          background-color: find-color(secondary);
+          border-radius: 50%;
+        }
+
+      }
+
+    }
+
+
+  }
+
+
+}
+
+
+.l-final--review {
+  .l-final__body {
+    vertical-align: top;
+  }
+}

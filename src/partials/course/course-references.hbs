@@ -1,0 +1,152 @@
+<div
+  class="reveal reveal--references"
+  id="js-ref-open"
+  data-reveal
+  data-v-offset="24px"
+  data-v-in="expandIn"
+  data-v-out="expandOut"
+  aria-labelledby="help-open">
+
+  {{> page-title title="Resources" type="dark" class="u-mb-0"}}
+
+  <div class="c-tabs-content" data-tabs-content="ref-tabs">
+
+  {{!-- tabs --}}
+
+  <ul class="c-tabs c-tabs-lined u-mb-0" data-tabs id="ref-tabs">
+    <li class="c-tabs__item">
+      <a class="c-tabs__title" href="#panel1" aria-selected="true">
+        Glossary List
+      </a>
+    </li>
+
+    <li class="c-tabs__item is-active">
+      <a class="c-tabs__title" href="#panel2">
+        Resources
+      </a>
+    </li>
+
+  </ul>
+
+
+  {{!-- tab panel 1 --}}
+  <div class="c-tabs__panel o-pad is-active" id="panel1">
+    <p class="u-type-text-dark"><b>This Glossary List contains key terms used in this course.</b></p>
+
+    <ul class="c-pagination" role="navigation" aria-label="Pagination">
+      <li class="c-pagination__item">
+        <a href="#ref-a" class="c-pagination__link">A</a>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">B</span>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-c" class="c-pagination__link">C</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-d" class="c-pagination__link">D</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-e" class="c-pagination__link">E</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-f" class="c-pagination__link">F</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-g" class="c-pagination__link">G</a>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">H</span>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-i" class="c-pagination__link">I</a>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">J</span>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">K</span>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">L</span>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-m" class="c-pagination__link">M</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-n" class="c-pagination__link">N</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-o" class="c-pagination__link">O</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-p" class="c-pagination__link">P</a>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">Q</span>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-r" class="c-pagination__link">R</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-s" class="c-pagination__link">S</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-t" class="c-pagination__link">T</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-u" class="c-pagination__link">U</a>
+      </li>
+      <li class="c-pagination__item">
+        <a href="#ref-v" class="c-pagination__link">V</a>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">W</span>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">X</span>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">Y</span>
+      </li>
+      <li class="c-pagination__item is-disabled">
+        <span class="c-pagination__link">Z</span>
+      </li>
+    </ul>
+
+    <ul class="c-list -md">
+      {{#each abbr}}
+      <li class="c-list__item" id="ref-{{lowercase name.[0]}}">
+        <dl class="c-abbr-list">
+          <dt class="c-abbr-list__dt">{{{name}}}: </dt>
+          <dd class="c-abbr-list__dd">{{{value}}}</dd>
+        </dl>
+      </li>
+      {{/each}}
+    </ul>
+
+  </div>
+
+
+  {{!-- tab panel 2 --}}
+
+  <div class="c-tabs__panel o-pad" id="panel2">
+    <p class="u-type-text-dark"><b>Select the links below to view the Documents.</b></p>
+    <ul class="c-list c-list--lined">
+     <li class="c-list__item"><a target="_blank" href="{{root}}assets/docs/DoDI649011FINAL.pdf">DoDI 6490.11</a></li>
+     <li class="c-list__item"><a target="_blank" href="{{root}}assets/docs/DVBIC_ICD-10-Diagnostic-Coding-Guidance-TBI_Training-Slides_v1.0_Oct2015.pdf">DVBIC ICD-10 Diagnostic Coding Guidance</a></li>
+     <li class="c-list__item"><a target="_blank" href="{{root}}assets/docs/Army_ICD-10-CM_Concussion-Coding-Cheat-Sheet_Nov2015x.pdf">ICD-10-CM Concussion Coding Cheat Sheet</a></li>
+    </ul>
+    </ul>
+  </div>
+
+
+  <div class="c-course-version">
+    ICD-10 Course Version: {{@root.global.version}}
+  </div>
+
+</div>
+
+  {{> close-button mod="white" close="js-ref-open" type="white"}}
+
+</div>

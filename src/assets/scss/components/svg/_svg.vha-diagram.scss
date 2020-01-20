@@ -1,0 +1,72 @@
+///////////////////////////////////////////////////////////////////////
+//
+// VHA DIAGRAM
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.cls2-1,
+.cls2-29 { fill: #0f2845; }
+.cls2-2 { fill: #f2f2f2; }
+.cls2-10,
+.cls2-22,
+.cls2-23,
+.cls2-3 { fill: #fff; }
+.cls2-4 { fill: #225da5; }
+.cls2-5 { fill: #d9d9d9; }
+.cls2-6 { fill: #1b4a83; }
+.cls2-7 { fill: #babfc3; }
+.cls2-8 { fill: #141617; }
+.cls2-9 { fill: #dee1e2; }
+.cls2-10,
+.cls2-22,
+.cls2-23,
+.cls2-29 { font-size: 17px; }
+// .cls2-10 {
+// font-family: Roboto-Bold, Roboto;
+// font-weight: 700; }
+.cls2-11 { letter-spacing: -0.04em; }
+.cls2-12 { letter-spacing: 0em; }
+.cls2-13 { letter-spacing: -0.06em; }
+.cls2-14 { letter-spacing: 0.01em; }
+.cls2-15 { letter-spacing: 0em; }
+.cls2-16 { fill: #333; }
+.cls2-17 { fill: #89c348; }
+.cls2-18 { letter-spacing: -0.1em; }
+.cls2-19 { letter-spacing: -0.01em; }
+.cls2-20 { letter-spacing: 0.01em; }
+.cls2-21 { letter-spacing: -0.06em; }
+.cls2-22,
+.cls2-29 {
+        font-family: Roboto-Regular, Roboto; }
+.cls2-23 {
+        font-family: Roboto-Light, Roboto; }
+.cls2-24 { letter-spacing: -0.01em; }
+.cls2-25 { fill: #bfbfbf; }
+.cls2-26 { fill: #5e89bd; }
+.cls2-27 {
+        opacity: 0.1; }
+.cls2-28 { fill: #bc3644; }
+.cls2-30 { letter-spacing: 0.01em; }
+.cls2-31 { fill: #8ec33f; }
+.cls2-32 { letter-spacing: -0.04em; }
+.cls2-33 { letter-spacing: -0.02em; }
+
+.pd-principles {
+  transition: all .2s;
+  &:hover{
+    transform: translateY(-6px);
+    .cls2-31 { fill: find-color(alert); }
+  }
+}
+
+.pd-mission {
+  transition: all .2s;
+  &:hover{
+    transform: translateX(6px);
+    .cls2-31 { fill: find-color(alert); }
+  }
+}

@@ -1,0 +1,334 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SPEECH BUBBLES
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+$sb-class: c-speech-bubble;
+$sb-media: __media;
+$sb-body: __body;
+
+$sb-mh: get-height(lg);
+$sb-lr: spacing(0.75);
+$sb-bg: find-color(gray,bg);
+$sb-bw: 1px;
+$sb-bc: find-color(border);
+$sb-br: 3px;
+$sb-mb: spacing(0.75);
+$sb-tw: 18px;
+$sb-th: 12px;
+
+
+
+// BUBBLE MAPS
+// ------------------------------------------------------------------
+$speech-bubble-col: (
+  note,
+  accent,
+  primary,
+  info,
+  warning,
+  correct,
+  error
+);
+
+$speech-bubble-dir: (
+  top,
+  bottom,
+  left,
+  right
+);
+
+
+// MIXINS
+// ------------------------------------------------------------------
+
+// Base set up
+
+@mixin gts-speech-bubble-base (
+  $dir: null,
+  $triw: $sb-tw,
+  $trih: $sb-th,
+  $mh: $sb-mh,
+  $lr: $sb-lr,
+  $fc: null,
+  $bg: $sb-bg,
+  $bw: $sb-bw,
+  $bc: $sb-bc,
+  $br: $sb-br,
+  $mb: $sb-mb,
+  $sb-scale: 10%
+) {
+
+  $tb: pad-height($mh,1,$bw);
+  $triw: px($triw) + 1px;
+  $trih: px($trih) + 1px;
+
+  position: relative;
+  margin-bottom: $mb;
+  padding: $tb $lr;
+  color: $fc;
+  background-color: $sb-bg;
+  border: $bw solid $bc;
+  border-radius: $br;
+
+  > :last-child { margin-bottom: 0; }
+
+}
+
+
+@mixin gts-speech-bubble-directions (
+  $key: null,
+  $triw: $sb-tw,
+  $trih: $sb-th,
+  $bg: $sb-bg,
+  $bw: $sb-bw,
+  $bc: $sb-bc,
+  $br: $sb-br,
+  $sb-scale: 10%
+) {
+
+  &:before,
+  &:after {
+    content:'';
+    display: block;
+    position: absolute;
+  }
+
+  @if $key == bottom {
+    text-align: center;
+    &:before,
+    &:after {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &:before {
+      @include triangle($triw $trih, $bc, down);
+    }
+    &:after {
+      top: calc(100% - #{$bw});
+      @include triangle($triw $trih, $bg, down);
+    }
+  }
+
+
+  @if $key == top {
+    text-align: center;
+    &:before,
+    &:after {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &:before {
+      @include triangle($triw $trih, $bc, up);
+    }
+    &:after {
+      bottom: calc(100% - #{$bw});
+      @include triangle($triw $trih, $bg, up);
+    }
+  }
+
+
+  @if $key == left {
+    width: calc(100% - #{$trih});
+    margin-left: $trih;
+    text-align: center;
+    &:before,
+    &:after {
+      top: 50%;
+      right: 100%;
+      transform: translateY(-50%);
+    }
+    &:before {
+      @include triangle($triw $trih, $bc, left);
+    }
+    &:after {
+      right: calc(100% - #{$bw});
+      @include triangle($triw $trih, $bg, left);
+    }
+  }
+
+
+  @if $key == right {
+    width: calc(100% - #{$trih});
+    text-align: center;
+    &:before,
+    &:after {
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+    }
+    &:before {
+      @include triangle($triw $trih, $bc, right);
+    }
+    &:after {
+      left: calc(100% - #{$bw});
+      @include triangle($triw $trih, $bg, right);
+    }
+  }
+
+}
+
+
+@mixin gts-speech-bubble-colors (
+  $key: null,
+  $dir: null,
+  $triw: $sb-tw,
+  $trih: $sb-th,
+  $mh: $sb-mh,
+  $lr: $sb-lr,
+  $fc: null,
+  $bg: $sb-bg,
+  $bw: $sb-bw,
+  $bc: $sb-bc,
+  $br: $sb-br,
+  $mb: $sb-mb,
+  $sb-scale: 10%
+) {
+
+  @if $key == note {
+    $fc: find-color(highlight, darker);
+    $bg: find-color(highlight, lightest);
+    $bc: scale-color($bg, $lightness: -($sb-scale + 5%));
+  }
+
+  @if $key == accent {
+    $fc: darken(find-color(accent), 6%);
+    $bg: lighten(find-color(accent, lightest), 11%);
+    $bc: scale-color($bg, $lightness: -($sb-scale + 11%));
+  }
+
+  @if $key == correct {
+    $fc: find-color(secondary,dark);
+    $bg: lighten(find-color(secondary, lightest), 7%);
+    $bc: find-color(secondary,light);
+  }
+
+  @if $key == info {
+    $fc: darken(find-color(info), 6%);
+    $bg: lighten(find-color(info,lightest), 7%);
+    $bc: scale-color($bg, $lightness: -$sb-scale);
+  }
+
+  @if $key == primary {
+    $fc: darken(find-color(primary,dark), 6%);
+    $bg: lighten(find-color(primary,lightest), 9%);
+    $bc: find-color(primary,lighter);
+    // $bc: scale-color(find-color(primary,lightest), $lightness: -$sb-scale);
+  }
+
+  @if $key == error {
+    $fc: find-color(alert);
+    $bg: lighten(find-color(alert,lightest),5%);
+    $bc: scale-color($bg, $lightness: -$sb-scale);
+  }
+
+  @if $key == warning {
+    $fc: darken(find-color(warning), 8%);
+    $bg: find-color(warning,lightest);
+    $bc: scale-color($bg, $lightness: -$sb-scale);
+  }
+
+  color: $fc;
+  border-color: $bc;
+  background-color: $bg;
+
+  @if $dir == left {
+    &:before { border-right-color:$bc; }
+    &:after { border-right-color:$bg; }
+  }
+  @if $dir == right {
+    &:before { border-left-color:$bc; }
+    &:after { border-left-color:$bg; }
+  }
+  @if $dir == top {
+    &:before { border-bottom-color:$bc; }
+    &:after { border-bottom-color:$bg; }
+  }
+  @if $dir == bottom {
+    &:before { border-top-color:$bc; }
+    &:after { border-top-color:$bg; }
+  }
+
+}
+
+
+@mixin gts-speech-bubbles (
+  $key: null,
+  $dir: null,
+  $triw: 24px,
+  $trih: 16px,
+  $mh: $sb-mh,
+  $lr: $sb-lr,
+  $fc: null,
+  $bg: $sb-bg,
+  $bw: $sb-bw,
+  $bc: $sb-bc,
+  $br: $sb-br,
+  $mb: $sb-mb,
+  $sb-scale: 10%
+) {
+
+  // maps
+
+  @include gts-speech-bubble-base();
+
+  @each $dir in $speech-bubble-dir {
+    &.-#{$dir} {
+      @include gts-speech-bubble-directions($dir);
+    }
+  }
+
+  @each $color in $speech-bubble-col {
+    @each $dir in $speech-bubble-dir {
+      &.-#{$color} {
+        @include gts-speech-bubble-colors($color);
+        &.-#{$dir} {
+          @include gts-speech-bubble-colors($color,$dir);
+        }
+      }
+    }
+  }
+
+}
+
+
+
+// STYLES
+// ------------------------------------------------------------------
+.#{$sb-class} {
+  @include gts-speech-bubbles;
+
+  &--space-left {
+
+  }
+
+  &--space-right {
+
+  }
+
+  &__img {
+    width: rem($sb-mh);// + spacing(0.25);
+    height: rem($sb-mh);// + spacing(0.25);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &.-rounded {
+    border-radius: $sb-mh;
+
+    &#{$util-prefix-bp}medium {
+      @include breakpoint(medium) {
+        border-radius: $sb-mh;
+      }
+    }
+
+  }
+
+}

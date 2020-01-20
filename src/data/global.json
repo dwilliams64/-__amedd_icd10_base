@@ -1,0 +1,43 @@
+{
+  "course": "Concussion Coding Training",
+  "courseID": "ICD-10",
+  "client" : "ITMDB",
+  "skill-level": "Refresher",
+  "meshworks": "false",
+  "meshworksID": "116",
+  "columns": 12,
+  "version": "2.0",
+  "module": [
+    {
+      "name" : "ICD-10 Course Introduction",
+      "lesson" : []
+    }, {
+      "name" : "Coding Introduction",
+      "lesson" : [
+      ]
+    }, {
+      "name" : "Code Used for Concussion-Related Encounters",
+      "lesson" : [
+      ]
+    }, {
+      "name" : "Sequence of Coding",
+      "lesson" : [
+      ]
+    }, {
+      "name" : "Practice Exercise",
+      "lesson" : [
+      ]
+    }, {
+      "name" : "Optional Coding Practice",
+      "lesson" : [
+      "Additional Practice - Schmidt",
+      "Additional Practice - Dirickx",
+      "Additional Practice - Sanders"
+      ]
+    }, {
+      "name" : "Course Summary",
+      "lesson" : [
+      ]
+    }
+  ]
+}

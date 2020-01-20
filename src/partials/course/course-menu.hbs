@@ -1,0 +1,24 @@
+<div
+  class='reveal reveal--toc'
+  id='js-menu-open'
+  data-reveal
+  data-v-in='expandIn'
+  data-v-out='expandOut'
+  aria-labelledby='menu-open-trigger'>
+
+  <!-- reveal header -->
+  {{> page-title
+    title='Course Menu'
+    height='base'
+    type='dark'
+    class='' }}
+
+  <!-- reveal body -->
+  <div class='reveal__body'>
+    {{> course-menu-build }}
+  </div>
+
+  {{!-- At the bottom for accessibility reasons --}}
+  {{> close-button mod='white' label='Close course menu' }}
+
+</div>

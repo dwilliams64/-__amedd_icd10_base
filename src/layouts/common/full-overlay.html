@@ -1,0 +1,11 @@
+{{> course-html-head page-hdr='true' }}
+
+<div class="{{wrap}} o-box o-mh-pad-w-title v-intro l-image-overlay" {{~#if fo-src}}style="background-image:url({{root}}assets/img/{{fo-src}})"{{/if}}>
+
+  <div class="o-box__cell l-image-overlay__body {{#if fo-type}}l-image-overlay__body--{{fo-type}}{{/if}}">
+  {{> body}}
+  </div>
+
+</div>
+
+{{> course-html-footer }}

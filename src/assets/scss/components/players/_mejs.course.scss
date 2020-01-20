@@ -1,0 +1,184 @@
+///////////////////////////////////////////////////////////////////////
+//
+// AUDIO PLAYER : REQUIRES VIDEO PLAYER
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Vendor : https://github.com/johndyer/mediaelement
+// Version : see package.json
+// Notes: Only use 'px' when setting units
+
+$mejs-space-after-c:  0; // margin-bottom
+
+// controls
+$mejs-bar-height-c:   36px;
+$mejs-bar-bg-start-c: find-color(white); // top color
+$mejs-bar-bg-end-c:   find-color(gray, lightest); // bottom & fallback color;
+$mejs-radius-c:       $mejs-bar-height-c;
+
+// spacing
+$mejs-space-tb-c:  px(pad-height($mejs-bar-height-c, 1, 0));
+$mejs-space-lr-c:  0.25;
+
+// typography - audio
+$mejs-fs-c: $mejs-fs;
+$mejs-fw-c: $mejs-fw;
+$mejs-ff-c: $mejs-ff; // use 'inherit' if no change is needed
+$mejs-fc-c: $body-font-color;
+
+// buttons
+$mejs-btn-radius-c:         $mejs-btn-height;
+$mejs-btn-bg-c:             transparent;
+$mejs-btn-bg-hov-c:         find-color(secondary, light);
+$mejs-btn-bg-opacity-c:     0; //0;
+$mejs-btn-bg-opacity-hov-c: 0.5;
+
+// icons
+$mejs-icon-play-c:             'play';
+$mejs-icon-pause-c:            'pause';
+$mejs-icon-replay-c:           'replay';
+$mejs-icon-mute-c:             'vol-on';
+$mejs-icon-unmute-c:           'vol-off';
+$mejs-icon-cc-c:               'cc';
+
+// rail
+$mejs-rail-radius-c:  $mejs-rail-height;
+$mejs-rail-bg-c:      find-color(gray,lighter);
+$mejs-rail-bg-buff-c: $mejs-rail-bg-c;
+$mejs-rail-bg-prog-c: $mejs-rail-bg-c;
+$mejs-rail-bg-load-c: $mejs-rail-bg;
+$mejs-rail-bg-cur-c:  find-color(secondary) !default;
+
+// horizontal slider course
+$mejs-slider-radius-hor-c:  $mejs-rail-radius-c;
+$mejs-slider-bg-hor-c:      $mejs-rail-bg-c;
+$mejs-slider-bg-cur-hor-c:  find-color(gray);
+
+// ------------------------------------------------------------------
+
+.mejs-player--course,
+ audio {
+// do not delete above here
+// -------------------------------------------
+
+@if $mejs-space-after-c != $mejs-space-after {
+  &.mejs__player {
+    margin-bottom: $mejs-space-after-c;
+  }
+}
+
+&.mejs__container {
+  @include get-shadow(1);
+
+  @include breakpoint(medium) {
+    border-radius: $mejs-radius-c;
+  }
+
+}
+
+.mejs__controls {
+  min-height: spacing($mejs-bar-height-c);
+  padding:spacing($mejs-space-tb-c) spacing($mejs-space-lr-c);
+  font-size: $mejs-fs-c;
+  font-weight: $mejs-fw-c;
+  color: $mejs-fc-c;
+}
+
+.mejs__controls:not([style*="display: none"]) {
+  background: $mejs-bar-bg-end-c;
+  @if $mejs-bar-bg-start-c != $mejs-bar-bg-end-c {
+    background: linear-gradient(
+      $mejs-bar-bg-start-c 0%,
+      $mejs-bar-bg-end-c 100%
+    );
+  }
+  @include breakpoint(medium) {
+    // border-radius: $mejs-radius-c;
+  }
+}
+
+// audio icons
+.mejs__play > button {
+  @include sprite-position($mejs-icon-play-c);
+}
+.mejs__pause > button {
+  @include sprite-position($mejs-icon-pause-c);
+}
+.mejs__replay > button {
+  @include sprite-position($mejs-icon-replay-c);
+}
+.mejs__mute > button {
+  @include sprite-position($mejs-icon-mute-c);
+}
+.mejs__unmute > button {
+  @include sprite-position($mejs-icon-unmute-c);
+}
+.mejs__captions-button > button {
+  @include sprite-position($mejs-icon-cc-c);
+}
+
+.mejs__button > button {
+  background-color: rgba($mejs-btn-bg-c, $mejs-btn-bg-opacity-c);
+  border-radius: $mejs-btn-radius-c;
+}
+.mejs__button > button:hover {
+  background-color: rgba($mejs-btn-bg-hov-c, $mejs-btn-bg-opacity-hov-c);
+}
+
+// progress
+.mejs__time-total {
+  background: rgba($mejs-rail-bg-c, 0.3);
+  box-shadow: inset 0 1px 1px darken($mejs-rail-bg-c, 1%);
+}
+
+.mejs__time-buffering {
+  background: linear-gradient(
+    -45deg, rgba($mejs-rail-bg-prog-c, 0.15)
+    25%, transparent 25%, transparent 50%,
+    rgba($mejs-rail-bg-buff-c, 0.15) 50%,
+    rgba($mejs-rail-bg-buff-c, 0.15) 75%,
+    transparent 75%, transparent
+  );
+}
+
+.mejs__time-loaded {
+  background: rgba($mejs-rail-bg-load-c, 0.3);
+}
+
+.mejs__time-current {
+  background: rgba($mejs-rail-bg-cur-c, 1.0);
+}
+
+// horizontal slider bar
+.mejs__horizontal-volume-total {
+  border-radius: $mejs-slider-radius-hor-c;
+  background: rgba($mejs-slider-bg-hor-c, 0.3);
+  box-shadow: inset 0 1px 1px darken($mejs-slider-bg-hor-c, 1%);
+}
+
+.mejs__horizontal-volume-current {
+  border-radius: $mejs-slider-radius-hor-c;
+  background: rgba($mejs-slider-bg-cur-hor-c, 1);
+}
+
+.mejs__horizontal-volume-handle { display: none; }
+
+// captions
+.mejs__captions-position-hover {
+  bottom: spacing(px($mejs-bar-height-c) + px($mejs-cc-space));
+}
+
+.mejs__volume-button {
+  position: relative;
+  @include breakpoint(medium down) {
+    // display: initial;
+    // margin: 0;
+    // width: 0;
+  }
+}
+
+
+
+// -------------------------------------------
+// do not delete below here
+}

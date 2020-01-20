@@ -1,0 +1,692 @@
+///////////////////////////////////////////////////////////////////////
+//
+// ACCORDION
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// ACCORDION CLASSES
+// -------------------------------------------------------------------
+$accd: 'c-accordion';
+$accd-item: '__item';
+$accd-title: '__title';
+$accd-content: '__content';
+$accd-active: 'is-active';
+
+
+// ACCORDION SETTINGS
+// -------------------------------------------------------------------
+// http://materializecss.com/collapsible.html
+
+// global
+// ----------------------------
+$accd-bg: transparent;
+$accd-bw: 1px;
+$accd-bc: find-color(border);
+$accd-br: 0;
+$accd-mb: spacing(base);
+
+// separated
+// ----------------------------
+$accd-spacing: spacing(0.5);
+$accd-spacing-br: 3px;//$accd-br;
+
+// title
+// ----------------------------
+$accd-title-mh: get-height(2);
+$accd-title-lr: spacing(base);
+
+$accd-title-fs: null; //font-size(md);
+$accd-title-lh: null;
+
+$accd-title-bg: find-color(white);
+$accd-title-bc: $accd-bc;
+$accd-title-fc: find-color(text);
+
+$accd-title-bg-h: find-color(gray,bg);
+$accd-title-bc-h: transparent;
+$accd-title-fc-h: find-color(accent);
+
+$accd-title-bg-a: find-color(white);
+$accd-title-bc-a: transparent;
+$accd-title-fc-a: $accd-title-fc-h;
+
+// content
+// ----------------------------
+$accd-content-tb: spacing(base);
+$accd-content-lr: spacing(base);
+
+$accd-content-fs: null;
+$accd-content-lh: null;
+
+$accd-content-bg: find-color(gray,bg);
+$accd-content-fc: null;
+
+// indicator
+// ----------------------------
+$accd-ind-type: arrow;
+
+$accd-ind-mh: 1.25em;
+$accd-ind-fs: 120%;
+$accd-ind-br: 50%;
+
+$accd-ind-fc: null;
+$accd-ind-bg: find-color(gray,bg);
+
+$accd-ind-fc-h: null;
+$accd-ind-bg-h: null;
+
+$accd-ind-fc-a: null;
+$accd-ind-bg-a: null;
+
+$accd-ind-icon: arrow-kb-dn;
+$accd-ind-icon-a: arrow-kb-dn;
+$accd-ind-icon-alt: arrow-kb-dn-alt;
+
+
+$allow-accd-sizes: (lg xl xxl xxxl huge);
+
+
+
+// ACCORDION MIXINS
+// -------------------------------------------------------------------
+
+// container
+// -------------------------------------------------------------------
+@mixin gts-accordion-container (
+  $mb: $accd-mb,
+  $bg: $accd-bg
+) {
+  margin-#{$global-left}: 0;
+  margin-bottom: $mb;
+  list-style: none;
+  background-color: $bg;
+}
+
+// item
+// -------------------------------------------------------------------
+@mixin gts-accordion-item (){
+  // border: 1px solid red;
+  // margin-bottom: -1px;
+}
+
+// title
+// -------------------------------------------------------------------
+@mixin gts-accordion-title (
+  $mh: $accd-title-mh,
+  $lr: null, //$accd-title-lr,
+  $fs: $accd-title-fs,
+  $lh: $accd-title-lh,
+  $bw: $accd-bw,
+  $bc: transparent,//$accd-title-bc,
+  $fc: $accd-title-fc,
+  $bg: transparent, //$accd-title-bg,
+  $fc-h: $accd-title-fc-h,
+  $fc-a: $accd-title-fc-a
+) {
+
+  // conversion
+  @if not $lh { $lh: rem($base-line-height); }
+  $tb: pad-height($mh,$lh,$bw);
+
+  position: relative;
+  display: block;
+
+  padding-top: $tb;
+  padding-right: $lr;
+  padding-bottom: $tb;
+  padding-left: $lr;
+
+  font-size: $fs;
+  line-height: $lh;
+  color: $fc;
+
+  @if $bw {
+    margin-bottom: -$bw;
+    border-width: $bw;
+    border-style: solid;
+    border-color: $bc;
+  }
+
+  &:hover { color: $fc-h; }
+
+  &:focus { color:  $fc-a; }
+
+  &[aria-selected='true'] {
+    color: $fc-a;
+  }
+
+  background-color: $bg;
+
+}
+
+// CONTENT
+// -------------------------------------------------------------------
+@mixin gts-accordion-content (
+  $tb: $accd-content-tb,
+  $lr: null, //$accd-content-lr,
+  $bw: $accd-bw,
+  $bc: transparent, //$accd-bc,
+  $bg: transparent, //$accd-content-bg,
+  $fs: $accd-content-fs,
+  $fc: $accd-content-fc,
+  $lh: $accd-content-lh,
+  $br: $accd-br
+) {
+
+  @if not $bw { $bw: 0; }
+  @if $tb { $tb: rem($tb) - rem($bw); }
+
+  position: relative;
+  display: none;
+
+  padding-top: $tb / 4;
+  padding-bottom: $tb / 4;
+  padding-left: $lr;
+  padding-right: $lr;
+
+  font-size: $fs;
+  color: $fc;
+  line-height: $lh;
+
+  @if $bw {
+    margin-bottom: -$bw;
+    border-width: $bw;
+    border-style: solid;
+    border-color: $bc;
+  }
+
+  background-color: $bg;
+  z-index: 1;
+
+}
+
+// ROUNDED
+// -------------------------------------------------------------------
+@mixin gts-accordion-rounded (
+  $type: group,
+  $br: $accd-br
+) {
+  @if $br {
+
+    @if $type == group {
+
+      // first item first title block
+      &:first-child > :first-child {
+        border-top-right-radius: $br;
+        border-top-left-radius: $br;
+      }
+      // last item first title block
+      &:last-child > :first-child {
+        border-bottom-right-radius: $br;
+        border-bottom-left-radius: $br;
+      }
+      // first title block - active
+      &:last-child.#{$accd-active} > :first-child {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius:  0;
+      }
+      // last content block
+      &:last-child > :last-child {
+        border-bottom-right-radius: $br;
+        border-bottom-left-radius: $br;
+      }
+
+    }
+
+    @if $type == separate {
+
+      $br: $accd-spacing-br;
+
+      // All title blocks - inactive
+      &:not(.#{$accd-active}) > :first-child {
+        border-radius: $br;
+      }
+      // title block - active
+      &.#{$accd-active} > :first-child {
+        border-top-right-radius: $br;
+        border-top-left-radius:  $br;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius:  0;
+      }
+      // content - active
+      &.#{$accd-active} > :last-child {
+        border-top-right-radius: 0;
+        border-top-left-radius:  0;
+        border-bottom-right-radius: $br;
+        border-bottom-left-radius:  $br;
+      }
+
+    }
+
+  }
+}
+
+// INDICATOR
+// -------------------------------------------------------------------
+@mixin gts-accordion-indicator (
+  $type: $accd-ind-type,
+  $el: after,
+  $mh: $accd-ind-mh,
+  $fs: $accd-ind-fs,
+  $fc: $accd-ind-fc,
+  $bg: $accd-ind-bg,
+  $fc-h: $accd-ind-fc-h,
+  $bg-h: $accd-ind-bg-h,
+  $fc-a: $accd-ind-bg-a,
+  $bg-a: $accd-ind-bg-a,
+  $br: $accd-ind-br
+) {
+
+  // Inactive
+  &:#{$el} {
+    position: absolute;
+    top: 50%;
+    display: block;
+    #{$global-right}: spacing(.5);
+    text-align: center;
+    line-height: $mh;
+
+    @if $type == plusminus {
+      content:'+';
+      width: $mh;
+      height: $mh;
+      margin-top: -($mh / 2);
+      font-size: $fs;
+      color: inherit;
+      background-color: $bg;
+      border-radius: $br;
+      transition: all .3s ease;
+      &:hover {
+        color: $fc-h;
+        background-color: $bg-h;
+      }
+    }
+
+    @if $type == arrow {
+      content:'';
+      @include sprite-common();
+      @include sprite(#{$accd-ind-icon});
+      margin-top: -($base-icon-size / 2);
+      opacity: 0.6;
+      transition: transform .3s linear;
+    }
+
+  }
+
+  // Active
+  .#{$accd-active} > &:#{$el} {
+
+    @if $type == plusminus {
+      content: '\2013';
+      color: $fc-a;
+      background-color: $bg-a;
+    }
+
+    @if $type == arrow {
+      transform: rotate(180deg);
+      @include sprite(#{$accd-ind-icon-a});
+      opacity: 1;
+    }
+
+  }
+}
+
+// GRADIENT HOVER
+// -------------------------------------------------------------------
+@mixin gts-accordion-gradient (
+  $el: before,
+  $type: arrow,
+  $title: $accd-title
+) {
+
+  $el-n: after;
+  @if $el == after { $el-n: before; }
+
+  .#{$accd}#{$title} {
+
+    @if $type == arrow {
+      &:#{$el-n} {
+        @include sprite(#{$accd-ind-icon-alt});
+      }
+    }
+
+    @if $type == plusminus {}
+
+    &:#{$el} {
+      content:'';
+      position: absolute;
+      top: 0;
+      bottom: 50%;
+      left: 0;
+      width: 100%;
+      display:  block;
+      transform-origin: 50% 100%;
+      transform: scaleY(0);
+      background-image: linear-gradient(to right, find-color(accent,dark) 0%, find-color(accent) 100%);
+      transition: all .25s ease;
+    }
+
+    &:hover {
+      color: find-color(white);
+      background-color: transparent;
+      z-index: 0;
+
+      &:#{$el} {
+        bottom: 0%;
+        transform: scaleY(1);
+        transition-duration: 300ms;
+        z-index: -1;
+      }
+
+    }
+
+  }
+
+}
+
+
+// DEFAULT ACCORDION STYLES
+// -------------------------------------------------------------------
+
+// container
+.#{$accd} {
+  @include gts-accordion-container;
+}
+
+.#{$accd}#{$accd-item} {
+  @include gts-accordion-item;
+}
+
+// title
+.#{$accd}#{$accd-title} {
+  @include gts-accordion-title;
+  @include gts-accordion-indicator(arrow);
+}
+
+// content
+.#{$accd}#{$accd-content} {
+  @include gts-accordion-content;
+}
+
+
+
+// MODIFIED ACCORDION STYLES
+// -------------------------------------------------------------------
+
+// Border
+// -------------------------------------------------------------------
+.#{$accd}.-border,
+.#{$accd}.-big {
+
+  .#{$accd}#{$accd-item} {
+    @include gts-accordion-rounded(group);
+  }
+
+  .#{$accd}#{$accd-title} {
+    padding-left: $accd-title-lr;
+    padding-right: $accd-title-lr;
+    background-color: $accd-title-bg;
+    border-color: $accd-bc;
+
+    &:hover {
+      background-color: $accd-title-bg-h;
+    }
+
+  }
+
+  .#{$accd}#{$accd-content} {
+    padding-top: rem($accd-content-tb) - rem($accd-bw);
+    padding-bottom: rem($accd-content-tb) - rem($accd-bw);
+    padding-left: $accd-content-lr;
+    padding-right: $accd-content-lr;
+    border-color: $accd-bc;
+    background-color: $accd-content-bg;
+    border-bottom-color: transparent;
+  }
+
+  .is-active:last-child > .#{$accd}#{$accd-content} {
+    border-bottom-color: $accd-bc;
+  }
+
+}
+
+// Lined
+// -------------------------------------------------------------------
+.#{$accd}.-lined {
+
+  .#{$accd}#{$accd-title} {
+    background-color: $accd-title-bg;
+    border-color: $accd-bc;
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+
+  .#{$accd}#{$accd-content} {
+    padding-top: rem($accd-content-tb * .75) - rem($accd-bw);
+    padding-bottom: rem($accd-content-tb * .75) - rem($accd-bw);
+    border-color: $accd-bc;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+}
+
+// Divided
+// -------------------------------------------------------------------
+.#{$accd}.-divided {
+
+  .#{$accd}#{$accd-item} {
+    &:first-child > :first-child {
+      border-top-color: transparent;
+    }
+    &:last-child > :first-child {
+      border-bottom-color: transparent;
+    }
+    &:last-child > :last-child {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .#{$accd}#{$accd-title} {
+    background-color: $accd-title-bg;
+    border-color: $accd-bc;
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+
+  .#{$accd}#{$accd-content} {
+    padding-top: rem($accd-content-tb * .75) - rem($accd-bw);
+    padding-bottom: rem($accd-content-tb * .75) - rem($accd-bw);
+    border-color: $accd-bc;
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+
+}
+
+// Separate
+// -------------------------------------------------------------------
+.#{$accd}.-separate {
+
+  .#{$accd}#{$accd-item} {
+    @include gts-accordion-rounded(separate);
+
+    &:not(:last-child) {
+      margin-bottom: $accd-spacing;
+    }
+
+  }
+
+  .#{$accd}#{$accd-title} {
+    padding-left: $accd-title-lr;
+    padding-right: $accd-title-lr;
+    background-color: $accd-title-bg;
+    border-color: $accd-bc;
+
+    &:hover {
+      background-color: $accd-title-bg-h;
+    }
+
+  }
+
+  .#{$accd}#{$accd-content} {
+    padding-top: rem($accd-content-tb) - rem($accd-bw);
+    padding-bottom: rem($accd-content-tb) - rem($accd-bw);
+    padding-left: $accd-content-lr;
+    padding-right: $accd-content-lr;
+    border-color: $accd-bc;
+    background-color: $accd-content-bg;
+  }
+
+}
+
+// Pop-Out
+// -------------------------------------------------------------------
+
+$accd-bx-pop: find-color(black);
+$accd-mt-pop: $accd-spacing;
+$accd-mb-pop: $accd-mt-pop;
+$accd-title-bg-pop: find-color(accent);
+$accd-title-bc-pop: find-color(accent);
+$accd-title-fc-pop: find-color(white);
+$accd-content-bg-pop: find-color(white);
+$accd-content-bc-pop: find-color(white);
+
+// -------------------------------------------------------------------
+.#{$accd}.-popout {
+
+  .#{$accd}#{$accd-item} {
+    @include gts-accordion-rounded(group);
+
+    transition:
+      margin .2s ease 0s,
+      border-color .2s ease 0s,
+      transform .2s cubic-bezier(0.175, 0.885, 0.32, 1) 0s,
+      box-shadow .2s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;
+
+    &.#{$accd-active} {
+      position: relative;
+      margin-top: $accd-mt-pop;
+      margin-bottom: $accd-mb-pop;
+      box-shadow:
+        0 0 4px 0 rgba($accd-bx-pop, 0.05),
+        0 18px 18px -6px rgba($accd-bx-pop, 0.3);
+      transform: scaleX(1.02);
+      z-index: 2;
+
+      transition:
+        margin .2s ease 0s,
+        border-color .2s ease 0s,
+        transform .2s cubic-bezier(0.175, 0.885, 0.32, 1.6) 0.3s,
+        box-shadow .2s cubic-bezier(0.175, 0.885, 0.32, 1.6) 0.3s;
+
+      &:first-child { margin-top: 0; }
+
+      &:last-child { margin-bottom: 0; }
+
+      .#{$accd}#{$accd-title} {
+        color: $accd-title-fc-pop;
+        border-color: $accd-title-bc-pop;
+        background-color: $accd-title-bg-pop;
+        &:after {
+          @include sprite-position(#{$accd-ind-icon-alt});
+        }
+      }
+
+      .#{$accd}#{$accd-content} {
+        background-color: $accd-content-bg-pop;
+        border-color: $accd-content-bg-pop;
+      }
+
+    }
+
+  }
+
+  .#{$accd}#{$accd-title} {
+    padding-left: $accd-title-lr;
+    padding-right: $accd-title-lr;
+    background-color: $accd-title-bg;
+    border-color: $accd-bc;
+
+    &:hover {
+      background-color: $accd-title-bg-h;
+    }
+
+  }
+
+  .#{$accd}#{$accd-content} {
+    padding-top: rem($accd-content-tb) - rem($accd-bw);
+    padding-bottom: rem($accd-content-tb) - rem($accd-bw);
+    padding-left: $accd-content-lr;
+    padding-right: $accd-content-lr;
+    border-color: $accd-bc;
+    background-color: $accd-content-bg;
+  }
+
+}
+
+// Generate sizes. - Keep as last
+// -------------------------------------------------------------------
+.#{$accd} {
+  @include gts-height-mods (
+    $prefix: class,
+    $dir: tb,
+    $nest: #{$accd}#{$accd-title},
+    $allow: $allow-accd-sizes,
+    $bw: $accd-bw,
+    $lh: $accd-title-lh
+  );
+}
+
+// Alt
+// --------------------------------------------------
+
+$accd-title-fc-alt: find-color(white);
+$accd-title-bg-alt: find-color(accent,dark);
+$accd-title-bc-alt: scale-color($accd-title-bg-alt,$lightness: 10%);
+$accd-content-tb-alt: rem($accd-content-tb) - rem($accd-bw);
+
+// -------------------------------------------------------------------
+
+.#{$accd}.-alt {
+
+  .#{$accd}#{$accd-item} {
+    @include gts-accordion-rounded(group);
+  }
+
+  .#{$accd}#{$accd-title} {
+    padding-left: $accd-title-lr;
+    padding-right: $accd-title-lr;
+    color: $accd-title-fc-alt;
+    background-color: $accd-title-bg-alt;
+    border-color: $accd-title-bc-alt;
+
+    &:hover {
+      background-color: $accd-title-bc-alt;
+    }
+
+    &:after {
+      @include sprite-position(#{$accd-ind-icon-alt});
+    }
+
+  }
+
+  .#{$accd}#{$accd-content} {
+    padding-top: $accd-content-tb-alt;
+    padding-bottom: $accd-content-tb-alt;
+    padding-left: $accd-content-lr;
+    padding-right: $accd-content-lr;
+    border-color: transparent;
+    background-color: $accd-content-bg;
+  }
+
+}
+
+
+// Gradient
+// -------------------------------------------------------------------
+.-gradient-hover {
+  @include gts-accordion-gradient;
+}

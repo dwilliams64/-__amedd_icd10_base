@@ -1,0 +1,132 @@
+///////////////////////////////////////////////////////////////////////
+//
+// ACCORDION
+//
+// ///////////////////////////////////////////////////////////////////
+
+// TEMPORARY SOLUTION!!!!
+
+$arrbox-mh: rem(180px);
+$arrbox-lh: null;
+$arrbox-fs: font-size(md);
+$arrbox-bg: find-color(primary,darkest);
+$arrbox-br: 9px;
+$arrbox-bg-end: find-color(info,dark);
+$arrbox-tb: spacing(0.75);
+$arrbox-lr: spacing(0.75);
+
+$arrbox-aw: 40px;
+$arrbox-space: $arrbox-aw + 6px;
+
+$arrbox-is: rem(48px);
+$arrbox-is-mh: rem(48px);
+$arrbox-is-fs: rem(36px);
+$arrbox-is-lh: $arrbox-is-fs;
+$arrbox-is-tb: pad-height($arrbox-is-mh,$arrbox-is-lh,0);
+$arrbox-is-lr: $arrbox-is-tb;
+
+// STYLES
+// -------------------------------------------------------------------
+.c-arrow-box {
+  @include clearfix;
+  counter-reset: arrbox;
+  // transform: translateY(-50%);
+
+  &__col {
+    position: relative;
+    display: block;
+    margin-bottom: spacing(0.5);
+
+    @include breakpoint(850px) {
+      @include grid-column-size(6);
+      float: left;
+      margin-bottom: spacing(1);
+    }
+
+    @include breakpoint(960px) {
+      @include grid-column-size(4);
+      float:left;
+    }
+
+    &:nth-child(1) > div {
+      background-color: mix($arrbox-bg, $arrbox-bg-end, $weight:0%);
+      &:before { color: mix($arrbox-bg, $arrbox-bg-end, $weight:0%); }
+      &:after { border-left-color: mix($arrbox-bg, $arrbox-bg-end, $weight:0%); }
+    }
+
+    &:nth-child(2) > div {
+      background-color: mix($arrbox-bg, $arrbox-bg-end, $weight:20%);
+      &:before { color: mix($arrbox-bg, $arrbox-bg-end, $weight:20%); }
+      &:after { border-left-color: mix($arrbox-bg, $arrbox-bg-end, $weight:20%); }
+    }
+
+    &:nth-child(3) > div {
+      background-color: mix($arrbox-bg, $arrbox-bg-end, $weight:50%);
+      &:before { color: mix($arrbox-bg, $arrbox-bg-end, $weight:50%); }
+      &:after { border-left-color: mix($arrbox-bg, $arrbox-bg-end, $weight:50%); }
+    }
+
+    &:nth-child(4) > div {
+      background-color: mix($arrbox-bg, $arrbox-bg-end, $weight:70%);
+      &:before { color: mix($arrbox-bg, $arrbox-bg-end, $weight:70%); }
+      &:after { border-left-color: mix($arrbox-bg, $arrbox-bg-end, $weight:70%); }
+    }
+
+    &:nth-child(5) > div {
+      background-color: mix($arrbox-bg, $arrbox-bg-end, $weight:100%);
+      &:before { color: mix($arrbox-bg, $arrbox-bg-end, $weight:100%); }
+      &:after { border-left-color: mix($arrbox-bg, $arrbox-bg-end, $weight:100%); }
+    }
+
+  }
+
+  &__item {
+    color: find-color(white);
+    position: relative;
+    display: block;
+    height: $arrbox-mh / 2;
+    @include typeset(lgp);
+    background-color: $arrbox-bg;
+    padding: $arrbox-tb ($arrbox-lr / 2) $arrbox-tb ($arrbox-is-mh + ($arrbox-lr * 1.75));
+    vertical-align: middle;
+    box-shadow: $base-shadow-common;
+
+    @include breakpoint(850px) {
+      width: calc(100% - #{$arrbox-space});
+      height: $arrbox-mh;
+      border-radius: $arrbox-br 0 0 $arrbox-br;
+
+      &:before {
+        counter-increment:arrbox;
+        content:counter(arrbox);
+        position: absolute;
+        top: $arrbox-lr;
+        left: $arrbox-lr;
+        display: block;
+        text-align: center;
+        min-width: $arrbox-is-mh;
+        min-height: $arrbox-is-mh;
+        padding-top: $arrbox-is-tb;
+        padding-bottom: $arrbox-is-tb;
+        border-radius: 50%;
+        font-size: $arrbox-is-fs;
+        font-weight: weight(medium);
+        line-height: 1;
+        overflow: hidden;
+        background-color: rgba(find-color(white),0.5);
+      }
+
+      &:after {
+        content:'';
+        position: absolute;
+        left: calc(100% - 1px);
+        top: 0;
+        @include triangle($arrbox-mh $arrbox-aw, $arrbox-bg, right);
+      }
+
+    }
+
+  }
+
+
+}

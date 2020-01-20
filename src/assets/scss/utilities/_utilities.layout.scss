@@ -1,0 +1,50 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Layout Utilities
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// CLEARFIX
+// -------------------------------------------------------------------------
+.u-cf {
+  @include clearfix;
+}
+
+
+// FLOATS
+// -------------------------------------------------------------------------
+.u-float {
+  -left   { float: left  !important; }
+  -right  { float: right !important; }
+  -center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+
+// VERTICAL ALIGN
+// -------------------------------------------------------------------------
+.u {
+  &-vt { vertical-align: top !important; }
+  &-vm { vertical-align: middle !important; }
+  &-vb { vertical-align: bottom !important; }
+}
+
+
+// MINIMUM HEIGHT
+// -------------------------------------------------------------------------
+.u-mh {
+  min-height: $base-mh;
+  &-w-title {
+    min-height: $base-mh-w-title;
+  }
+  &-pad {
+    min-height: $base-mh-pad;
+  }
+  &-pad-w-title {
+    min-height: $base-mh-pad-w-title;
+  }
+}

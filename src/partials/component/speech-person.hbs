@@ -1,0 +1,24 @@
+<div class='o-mo {{class}}'>
+
+  {{#is dir 'left'}}
+  <div class='o-mo__media'>
+    <div class='c-speech-bubble__img {{src-class}}'>
+      <img alt='alt' src='{{root}}assets/img/{{src}}'>
+    </div>
+  </div>
+  {{/is}}
+  <div class='o-mo__body'>
+    <div class='c-speech-bubble {{bubble}}'>
+      {{#if @partial-block}}
+        {{> @partial-block}}
+      {{/if}}
+    </div>
+  </div>
+  {{#is dir 'right'}}
+  <div class='o-mo__media'>
+    <div class='c-speech-bubble__img {{src-class}}'>
+      <img alt='alt' src='{{root}}assets/img/{{src}}'>
+    </div>
+  </div>
+  {{/is}}
+</div>

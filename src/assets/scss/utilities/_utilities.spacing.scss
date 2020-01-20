@@ -1,0 +1,23 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SPACING MIXIN
+//
+// ///////////////////////////////////////////////////////////////////
+
+// MARGIN UTILITIES
+// -------------------------------------------------------------------
+@include gts-prototype-classes (
+  $property: m,
+  $map: $base-spacing,
+  $allowed-dir: t r l b tb lr all,
+  $allowed-var: 0 xs sm md base lg xl xxl xxxl
+);
+
+// PADDING UTILITIES
+// -------------------------------------------------------------------
+@include gts-prototype-classes (
+  $property: p,
+  $map: $base-spacing,
+  $allowed-dir: t r l b tb lr all,
+  $allowed-var: 0 xs sm md base lg xl xxl xxxl
+);

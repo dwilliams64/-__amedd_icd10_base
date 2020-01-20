@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1110 416">
+  <title>budget-diagram</title>
+  <g id="paths">
+    <g>
+      <polygon class="cls-1" points="466.03 206.72 475 206.72 475 368 481 368 481 206.72 489.97 206.72 478 186 466.03 206.72"/>
+      <polygon class="cls-1" points="396.24 122 288 122 288 128 396.24 128 396.24 137.57 418 125 396.24 112.43 396.24 122"/>
+      <polygon class="cls-1" points="574.24 122 560.76 122 560.76 112.43 539 125 560.76 137.57 560.76 128 574.24 128 574.24 137.57 596 125 574.24 112.43 574.24 122"/>
+      <polygon class="cls-1" points="396.24 152 358 152 358 199 273 199 249 199 127 199 127 78 121 78 121 326 127 326 127 205 249 205 273 205 297 205 297 326 303 326 303 205 364 205 364 158 396.24 158 396.24 167.57 418 155 396.24 142.43 396.24 152"/>
+      <polygon class="cls-1" points="396.24 92 364 92 364 45 281 45 281 51 358 51 358 98 396.24 98 396.24 107.57 418 95 396.24 82.43 396.24 92"/>
+      <polygon class="cls-1" points="748.24 122 713 122 713 128 748.24 128 748.24 137.57 770 125 748.24 112.43 748.24 122"/>
+      <polygon class="cls-1" points="952 125 930.24 112.43 930.24 122 895 122 895 128 930.24 128 930.24 137.57 952 125"/>
+    </g>
+  </g>
+  <g id="all-visns">
+    <g>
+      <rect class="cls-2" x="55.5" y="19.5" width="137" height="57" rx="1.5" ry="1.5"/>
+      <path class="cls-3" d="M191,21V75H57V21H191m0-3H57a3,3,0,0,0-3,3V75a3,3,0,0,0,3,3H191a3,3,0,0,0,3-3V21a3,3,0,0,0-3-3Z"/>
+    </g>
+    <text class="cls-4" transform="translate(67.61 53.97)">All VISNs Budget</text>
+  </g>
+  <g id="visn-budget">
+    <g>
+      <rect class="cls-2" x="55.5" y="96.5" width="137" height="57" rx="1.5" ry="1.5"/>
+      <path class="cls-3" d="M191,98v54H57V98H191m0-3H57a3,3,0,0,0-3,3v54a3,3,0,0,0,3,3H191a3,3,0,0,0,3-3V98a3,3,0,0,0-3-3Z"/>
+    </g>
+    <text class="cls-4" transform="translate(81.87 130.97)">VISN Budget</text>
+  </g>
+  <g id="vamc-budget">
+    <g>
+      <rect class="cls-2" x="55.5" y="250.5" width="137" height="57" rx="4.5" ry="4.5"/>
+      <path class="cls-3" d="M188,252a3,3,0,0,1,3,3v48a3,3,0,0,1-3,3H60a3,3,0,0,1-3-3V255a3,3,0,0,1,3-3H188m0-3H60a6,6,0,0,0-6,6v48a6,6,0,0,0,6,6H188a6,6,0,0,0,6-6V255a6,6,0,0,0-6-6Z"/>
+    </g>
+    <text class="cls-4" transform="translate(77.66 284.97)"><tspan class="cls-5">V</tspan><tspan x="8.99" y="0">AMC Budget</tspan></text>
+  </g>
+  <g id="slb">
+    <g>
+      <rect class="cls-2" x="231.5" y="327.5" width="137" height="57" rx="1.5" ry="1.5"/>
+      <path class="cls-3" d="M367,329v54H233V329H367m0-3H233a3,3,0,0,0-3,3v54a3,3,0,0,0,3,3H367a3,3,0,0,0,3-3V329a3,3,0,0,0-3-3Z"/>
+    </g>
+    <text class="cls-4" transform="translate(252.48 349.97)">V<tspan class="cls-6" x="9.54" y="0">H</tspan><tspan x="20.37" y="0">A P</tspan><tspan class="cls-7" x="43.33" y="0">r</tspan><tspan x="48.26" y="0">og</tspan><tspan class="cls-8" x="65.23" y="0">r</tspan><tspan x="70.01" y="0">am </tspan><tspan x="-1.96" y="21">Office Budgets</tspan></text>
+    <g>
+      <rect class="cls-2" x="55.5" y="327.5" width="137" height="57" rx="1.5" ry="1.5"/>
+      <path class="cls-3" d="M191,329v54H57V329H191m0-3H57a3,3,0,0,0-3,3v54a3,3,0,0,0,3,3H191a3,3,0,0,0,3-3V329a3,3,0,0,0-3-3Z"/>
+    </g>
+    <text class="cls-4" transform="translate(83.8 349.97)">Se<tspan class="cls-6" x="16.85" y="0">r</tspan><tspan x="22.05" y="0">vice Line</tspan><tspan x="12.67" y="21">Budgets</tspan></text>
+  </g>
+  <g id="vaco-budget">
+    <g>
+      <rect class="cls-2" x="231.5" y="250.5" width="137" height="57" rx="1.5" ry="1.5"/>
+      <path class="cls-3" d="M367,252v54H233V252H367m0-3H233a3,3,0,0,0-3,3v54a3,3,0,0,0,3,3H367a3,3,0,0,0,3-3V252a3,3,0,0,0-3-3Z"/>
+    </g>
+    <text class="cls-4" transform="translate(255.05 284.97)"><tspan class="cls-5">V</tspan><tspan x="8.99" y="0">ACO Budget</tspan></text>
+  </g>
+  <g id="vha">
+    <g>
+      <path class="cls-2" d="M300,232.5A30.5,30.5,0,1,1,330.5,202,30.53,30.53,0,0,1,300,232.5Z"/>
+      <path class="cls-3" d="M300,173a29,29,0,1,1-29,29,29,29,0,0,1,29-29m0-3a32,32,0,1,0,32,32,32,32,0,0,0-32-32Z"/>
+    </g>
+    <text class="cls-4" transform="translate(284.92 207.97)">V<tspan class="cls-6" x="9.54" y="0">H</tspan><tspan x="20.37" y="0">A</tspan></text>
+  </g>
+  <g id="vba">
+    <g>
+      <path class="cls-2" d="M300,155.5A30.5,30.5,0,1,1,330.5,125,30.53,30.53,0,0,1,300,155.5Z"/>
+      <path class="cls-9" d="M300,96a29,29,0,1,1-29,29,29,29,0,0,1,29-29m0-3a32,32,0,1,0,32,32,32,32,0,0,0-32-32Z"/>
+    </g>
+    <text class="cls-4" transform="translate(285.67 130.97)">VBA</text>
+  </g>
+  <g id="nca">
+    <g>
+      <path class="cls-2" d="M300,78.5A30.5,30.5,0,1,1,330.5,48,30.53,30.53,0,0,1,300,78.5Z"/>
+      <path class="cls-10" d="M300,19a29,29,0,1,1-29,29,29,29,0,0,1,29-29m0-3a32,32,0,1,0,32,32,32,32,0,0,0-32-32Z"/>
+    </g>
+    <text class="cls-4" transform="translate(284.88 53.97)">NCA</text>
+  </g>
+  <g id="dpo">
+    <g>
+      <rect class="cls-2" x="399.5" y="327.5" width="157" height="57" rx="1.5" ry="1.5"/>
+      <path class="cls-11" d="M555,329v54H401V329H555m0-3H401a3,3,0,0,0-3,3v54a3,3,0,0,0,3,3H555a3,3,0,0,0,3-3V329a3,3,0,0,0-3-3Z"/>
+    </g>
+    <text class="cls-4" transform="translate(432.61 350.97)">Depa<tspan class="cls-12" x="34.36" y="0">r</tspan><tspan x="39.8" y="0">tmental</tspan><tspan x="-19.53" y="21">P</tspan><tspan class="cls-7" x="-10.07" y="21">r</tspan><tspan x="-5.14" y="21">og</tspan><tspan class="cls-8" x="11.83" y="21">r</tspan><tspan x="16.61" y="21">ams &amp; Offices</tspan></text>
+  </g>
+  <g id="secva">
+    <g>
+      <rect class="cls-2" x="409.5" y="250.5" width="137" height="57" rx="1.5" ry="1.5"/>
+      <path class="cls-11" d="M545,252v54H411V252H545m0-3H411a3,3,0,0,0-3,3v54a3,3,0,0,0,3,3H545a3,3,0,0,0,3-3V252a3,3,0,0,0-3-3Z"/>
+    </g>
+    <text class="cls-4" transform="translate(424.7 273.97)">SEC<tspan class="cls-5" x="27.19" y="0">V</tspan><tspan x="36.18" y="0">A &amp; Office </tspan><tspan x="0.4" y="21">of Management</tspan></text>
+  </g>
+  <g id="omb">
+    <g>
+      <rect class="cls-2" x="577.5" y="250.5" width="157" height="57" rx="1.5" ry="1.5"/>
+      <path class="cls-13" d="M733,252v54H579V252H733m0-3H579a3,3,0,0,0-3,3v54a3,3,0,0,0,3,3H733a3,3,0,0,0,3-3V252a3,3,0,0,0-3-3Z"/>
+    </g>
+    <text class="cls-4" transform="translate(596.23 273.97)">Office of Manage-<tspan x="10.6" y="21">ment &amp; Budget</tspan></text>
+  </g>
+  <g id="va-seal">
+    <image id="image" width="96" height="96" transform="translate(430 78.25)" xlink:href="../img/va.png"/>
+  </g>
+  <g id="exec-seal">
+    <image width="96" height="96" transform="translate(608 75.75)" xlink:href="../img/executive.png"/>
+  </g>
+  <g id="wh-seal">
+    <image width="114" height="79" transform="translate(775 86.75)" xlink:href="../img/whitehouse.png"/>
+  </g>
+  <g id="uc-seal">
+    <image id="image" width="96" height="96" transform="translate(960 78.25)" xlink:href="../img/uc.png"/>
+  </g>
+</svg>

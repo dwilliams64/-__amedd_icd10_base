@@ -1,0 +1,400 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MULTI-STEPS
+//
+// ///////////////////////////////////////////////////////////////////
+
+// -------------------------------------------------------------------
+// Step variables
+// -------------------------------------------------------------------
+
+$steps-mh:         60px;
+
+$steps-bg:         find-color(gray, bg);
+$steps-bg-hov:     $steps-bg;
+$steps-bg-act:     find-color(secondary, dark);
+
+// if gradient
+$steps-grad:       false;
+$steps-grad-s:     lighten($steps-bg, 8%);
+$steps-grad-e:     $steps-bg;
+$steps-grad-s-h:   lighten($steps-bg-hov, 8%);
+$steps-grad-e-h:   $steps-bg-hov;
+$steps-grad-s-a:   lighten($steps-bg-act, 8%);
+$steps-grad-e-a:   $steps-bg-act;
+
+$steps-bw:         1px;
+$steps-bc:         find-color(gray, border);
+$steps-bc-hov:     $steps-bc;
+$steps-bc-act:     $steps-bg-act;
+
+$steps-fs:         null; //font-size();
+$steps-lh:         $base-line-height;
+
+$steps-fc:         find-color(gray, text);
+$steps-fc-hov:     $steps-fc;
+$steps-fc-act:     find-color(white);
+
+$steps-fw:         weight(light);
+$steps-fw-hov:     $steps-fw;
+$steps-fw-act:     null;//weight(medium);
+
+$steps-uc:         uppercase;
+$steps-ls:         1px;
+
+$steps-tri-h-vert: 12px;
+$steps-tri-w-vert: 36px;
+
+$steps-bp:         640px;
+
+$steps-deg:        25deg;
+
+$steps-tb: pad-height($steps-mh, $steps-lh, $steps-bw);
+$steps-lr: spacing(lg);
+
+$steps-grad-mix:   mix($steps-grad-s, $steps-grad-e, 50%); // dont touch
+$steps-grad-mix-a: mix($steps-grad-s-a, $steps-grad-e-a, 50%); // dont touch
+$steps-grad-mix-h: mix($steps-grad-s-h, $steps-grad-e-h, 50%); // dont touch
+
+// -------------------------------------------------------------------
+// Step styles
+// -------------------------------------------------------------------
+
+// Single step
+// -------------------------------------------------------------------
+@mixin step-arrow (
+  $bg:   $steps-bg,
+  $bg-h: $steps-bg-hov,
+  $bg-a: $steps-bg-act,
+  $fs:   $steps-fs,
+  $fc:   $steps-fc,
+  $fc-h: $steps-fc-hov,
+  $fc-a: $steps-fc-act,
+  $fw:   $steps-fw,
+  $fw-h: $steps-fw-hov,
+  $fw-a: $steps-fw-act,
+  $bw:   $steps-bw,
+  $bc:   $steps-bc,
+  $bc-h: $steps-bc-hov,
+  $bc-a: $steps-bc-act,
+  $deg:  $steps-deg,
+  $uc:   $steps-uc,
+  $bp:   $steps-bp
+) {
+  position: relative;
+  display: block;
+  margin-right: $steps-bw * -1;
+  @if $fs != inherit {
+    font-size: $fs;
+  }
+  @if $fc != $body-font-color {
+    color: $fc;
+  }
+  @if $fw != $global-weight-normal {
+    font-weight: $fw;
+  }
+  @if $uc == 'uppercase' {
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+  text-align: center;
+  background-color: transparent;
+  z-index: 1;
+
+  // before after arrow
+  // -------------------------
+  &:before,
+  &:after {
+    content:'';
+    position: absolute;
+    left:0;
+    width: 100%;
+    height: 50%;
+    background-color: $bg;
+    border-width: $bw;
+    border-style: solid;
+    border-color: $bc;
+    border-radius: 1px;
+    z-index: -1;
+  }
+
+  &:before {
+    top: 0;
+    transform: skewX($deg);
+    border-bottom-width: 0;
+    @if $steps-grad {
+      background-image: linear-gradient( to bottom, $steps-grad-s, $steps-grad-mix);
+    }
+  }
+
+  &:after {
+    top: 50%;
+    transform: skewX($deg * -1);
+    border-top-width: 0;
+    @if $steps-grad {
+      background-image: linear-gradient( to bottom, $steps-grad-mix, $steps-grad-e);
+    }
+  }
+
+
+  // BREAKPOINT
+  @include breakpoint($bp down) {
+
+    &:before,
+    &:after {
+      transform: skewX(0);
+    }
+  }
+
+  // Hover and focus
+  // -------------------------
+  &:hover,
+  &:focus {
+    outline: 0;
+    @if $fc-h != $fc {
+      color: $fc-h;
+    }
+    @if $fw-h != $fw {
+      font-weight: $fw-h;
+    }
+    z-index: 2;
+
+    &:before,
+    &:after {
+      @if $bg-h != $bg {
+        background-color: $bg-h;
+      }
+      @if $bc-h != $bc {
+        border-color: $bc-h;
+      }
+    }
+
+    @if $steps-grad {
+      &:before {
+        background-image: linear-gradient( to bottom, $steps-grad-s-h, $steps-grad-mix-h);
+      }
+    }
+
+    @if $steps-grad {
+      &:after {
+        background-image: linear-gradient( to bottom, $steps-grad-mix-h, $steps-grad-e-h);
+      }
+    }
+
+  }
+
+  // Active state
+  // -------------------------
+  &[aria-selected="true"] {
+    @if $fc-a != $fc {
+      color: $fc-a;
+    }
+    @if $fw-a != $fw {
+      font-weight: $fw-a;
+    }
+
+    &:before,
+    &:after {
+      @if $bg-a != $bg {
+        background-color: $bg-a;
+      }
+      @if $bc-a != $bc {
+        border-color: $bc-a;
+      }
+    }
+
+    @if $steps-grad {
+      &:before {
+        background-image: linear-gradient( to bottom, $steps-grad-s-a, $steps-grad-mix-a);
+      }
+    }
+
+    @if $steps-grad {
+      &:after {
+        background-image: linear-gradient( to bottom, $steps-grad-mix-a, $steps-grad-e-a);
+      }
+    }
+
+    z-index: 3;
+
+  }
+}
+
+// single step content
+@mixin step-arrow-text (
+  $pt: $steps-tb,
+  $pb: $steps-tb,
+  $pl: $steps-lr,
+  $pr: $steps-lr
+) {
+  position: relative;
+  display: block;
+  padding: $pt $pr $pb $pl;
+  z-index: 2;
+}
+
+@mixin step-arrow-sizes (
+  $mh: $steps-mh,
+  $lh: $steps-lh,
+  $parent: 'c-step-arrow',
+  $child:  'c-step-arrow__text'
+) {
+  // generate sizes
+  @each $size, $key in $base-height {
+    $pad-variant: pad-height($size, $lh, 0);
+
+    .#{$parent}--#{$size} > .#{$child} {
+      padding-top: $pad-variant;
+      padding-bottom: $pad-variant;
+    }
+
+  } // /@each
+}
+
+// Multi-step wrap
+// -------------------------------------------------------------------
+
+@mixin multi-step-base (
+  $bp: $steps-bp
+) {
+  position: relative;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+  list-style: none;
+  overflow: hidden;
+
+  @include breakpoint($bp down) {
+    display: block;
+  }
+}
+
+@mixin multi-step-child (
+  $bw:     $steps-bw,
+  $bc:     $steps-bc,
+  $bc-h:   $steps-bc-hov,
+  $bc-a:   $steps-bc-act,
+  $bg:     $steps-bg,
+  $bg-h:   $steps-bg-hov,
+  $bg-a:   $steps-bg-act,
+  $bp:     $steps-bp,
+  $target: c-step-arrow__text
+) {
+  position: relative;
+  display: table-cell;
+
+  &:first-child .#{$target},
+  &:last-child .#{$target} {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background-color: $bg;
+      border-width: $bw;
+      border-style: solid;
+      border-color: $bc;
+      z-index: -1;
+    }
+  }
+
+  &:first-child .#{$target} {
+    &:before {
+      left: 0;
+      border-right-width: 0;
+      @if $steps-grad {
+        background-image: linear-gradient( to bottom, $steps-grad-s, $steps-grad-mix, $steps-grad-e);
+      }
+    }
+  }
+
+  &:last-child .#{$target} {
+    &:before {
+      right: $bw;
+      border-left-width: 0;
+      @if $steps-grad {
+        background-image: linear-gradient( to bottom, $steps-grad-s, $steps-grad-mix, $steps-grad-e);
+      }
+    }
+  }
+
+  &.is-active {
+    z-index: 4;
+  }
+
+  > *:hover .#{$target},
+  > *:focus .#{$target} {
+    z-index: 2;
+    &:before {
+      @if $bg-h != $bg {
+        background-color: $bg-h;
+      }
+      @if $bc-h != $bc {
+        border-color: $bc-h;
+      }
+      @if $steps-grad {
+        background-image: linear-gradient( to bottom, $steps-grad-s-h, $steps-grad-mix-h, $steps-grad-e-h);
+      }
+
+    }
+  }
+
+  [aria-selected="true"] .#{$target} {
+    &:before {
+      @if $bg-a != $bg {
+        background-color: $bg-a;
+      }
+      @if $bc-a != $bc {
+        border-color: $bc-a;
+      }
+      @if $steps-grad {
+        background-image: linear-gradient( to bottom, $steps-grad-s-a, $steps-grad-mix-a, $steps-grad-e-a);
+      }
+    }
+  }
+
+  // BREAKPOINT
+  @include breakpoint($bp down) {
+    display: block;
+
+    &:not(:last-child) {
+      margin-bottom: $bw * -1;
+    }
+
+  }
+
+}
+
+// -------------------------------------------------------------------
+// Step classes
+// -------------------------------------------------------------------
+
+// generate size classes
+@include step-arrow-sizes;
+
+// Multi step
+.c-multi-step {
+  @include multi-step-base;
+
+  &__col {
+    @include multi-step-child;
+  }
+
+}
+
+// Single arrow
+.c-step-arrow {
+  @include step-arrow;
+
+  &__text {
+    @include step-arrow-text;
+  }
+
+}
+
+
+.c-multi-step--bar {
+  border-top: 6px solid $steps-bg-act;
+}

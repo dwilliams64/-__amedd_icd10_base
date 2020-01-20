@@ -1,0 +1,104 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COMMON SHADOW DEPTHS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+@mixin get-shadow (
+  $level: 1,
+  $inset: false,
+  $dir: null,
+  $bg: $base-shadow-color,
+  $opacity: null,
+  $map: $base-shadow,
+  $state: ''
+) {
+
+  $state: null;
+  $map-opacity: null;
+
+  $map-level: map-get($map, $level);
+  $map-opacity: map-get($map-level, opacity);
+  $map-depth: map-get($map-level, depth);
+  $map-inset: null;
+
+  @if $opacity { $map-opacity: $opacity; }
+
+
+
+  @if $inset == true {
+    $map-inset: 'inset';
+    $map-opacity: map-get($map-level, opacity) * 0.875;
+  }
+
+  // @if $dir {
+  //   $map-opacity: map-get($map-level, opacity) * 1.1;
+  // }
+
+  @if $dir == top or $dir == t {
+
+  box-shadow:
+    #{$map-inset}
+    nth($map-depth, 1)
+    nth($map-depth, 2) * -1.5
+    nth($map-depth, 3)
+    nth($map-depth, 2) * -1
+    rgba($bg, $map-opacity) $state;
+
+  } @else if $dir == right or $dir == r {
+
+  box-shadow:
+    #{$map-inset}
+    nth($map-depth, 3)
+    nth($map-depth, 1)
+    nth($map-depth, 3)
+    nth($map-depth, 2) * -1
+    rgba($bg, $map-opacity) $state;
+
+  } @else if $dir == bottom or $dir == b {
+
+  box-shadow:
+    #{$map-inset}
+    nth($map-depth, 1)
+    nth($map-depth, 3)
+    nth($map-depth, 2)
+    nth($map-depth, 2) * -1
+    rgba($bg, $map-opacity) $state;
+
+  } @else if $dir == left or $dir == l {
+
+  box-shadow:
+    #{$map-inset}
+    nth($map-depth, 3)  * -1
+    nth($map-depth, 1)
+    nth($map-depth, 3)
+    nth($map-depth, 2) * -1
+    rgba($bg, $map-opacity) $state;
+
+  } @else if $dir == 'all' {
+
+  box-shadow:
+    #{$map-inset}
+    nth($map-depth, 1)
+    nth($map-depth, 2)
+    nth($map-depth, 3)
+    nth($map-depth, 4)
+    rgba($bg, $map-opacity) $state;
+
+  } @else {
+
+  box-shadow:
+    #{$map-inset}
+    nth($map-depth, 1)
+    nth($map-depth, 2)
+    nth($map-depth, 3)
+    nth($map-depth, 4)
+    rgba($bg, $map-opacity) $state;
+
+  }
+
+}
+
+
+// 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3)

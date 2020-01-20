@@ -1,0 +1,18 @@
+<video 
+  class='mejs__player mejs-player mejs-player--video {{class}}'
+  data-mejsoptions='{
+    "showPosterWhenEnded": "true",
+    "stretching": "responsive",
+    "toggleCaptionsButtonWhenOnlyOne": "false"
+  }'
+
+    poster='{{root}}assets/img/{{poster}}'
+ >
+
+    <source src='{{root}}assets/media/video/{{page}}'_'{{data-vid-id}}.mp4' type='video/mp4'>
+
+    <track src='{{root}}assets/media/cc/{{page}}'_'{{data-vid-id}}.vtt' srclang='en' label='English' kind='subtitles' type='text/vtt'>
+</video>
+
+
+

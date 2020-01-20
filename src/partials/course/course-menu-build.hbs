@@ -1,0 +1,88 @@
+{{!-- Outputs nav list based on directory structure --}}
+<ul class='c-course-menu'
+  data-accordion-menu
+  {{!-- data-multi-open="true" --}}
+  data-allow-all-closed='true'
+  data-slide-speed='150'>
+
+{{#each (apr (readdir 'src/pages'))}}
+{{#contains this 'styleguide'}}{{else}}
+
+
+  {{!-- Get Module Folder Names --}}
+  <li class='c-course-menu__item'>
+  {{~#with (lookup @root.global.module @index)}}
+    <a class='c-course-menu__title' href='#'>
+      {{~#isnt @index 0}}Module {{@index}}: {{/isnt}}{{name}}
+    </a>
+  {{/with}}
+
+  {{#each (readdir this)}}
+
+    <ul class='c-course-menu c-course-menu--nest'>
+    {{#compare (extname this) '===' '.html'}}
+
+      {{!-- Module File Names --}}
+      {{#each @root.pages}}
+       {{#is (stem ../this) base}}
+           <li class='c-course-menu__item'>
+            <a
+              class='c-course-menu__title' href="javascript:parent.setFrm('{{path}}'); javascript:window.top.strCurrentPage='{{path}}';">
+              {{title}}
+            </a>
+          </li>
+        {{/is}}
+      {{/each}}
+
+    {{else}}
+
+      {{!-- contain to one result --}}
+      {{#contains this '_01'}}
+       {{#each (apr (pluck (readdir ../this)))}}
+
+          {{!-- Lesson Folder Names --}}
+          {{#with (lookup @root.global.module @../../index)}}
+            <li class='c-course-menu__item'>
+              <a class='c-course-menu__title' href='#'>
+              Lesson {{add @index 1}}: {{#lookup this.lesson @index}} {{this}} {{/lookup}}
+              </a>
+          {{/with}}
+
+              {{!-- Lesson File Names --}}
+              <ul class='c-course-menu c-course-menu--nest-1'>
+              {{#each (readdir this)}}
+                {{#each @root.pages}}
+                  {{#is (stem ../this) base }}
+                  <li class='c-course-menu__item'>
+                    <a
+                      class='c-course-menu__title c-course-menu__title--sub u-pl-lg' href="javascript:parent.setFrm('{{path}}'); javascript:window.top.strCurrentPage='{{path}}';">
+                      {{title}}
+                    </a>
+                  </li>
+                  {{/is}}
+                {{/each}}
+              {{/each}}
+              </ul>
+            </li>
+
+        {{/each}}
+
+      {{/contains}}
+
+    {{/compare}}
+    </ul>
+
+  {{/each}}
+
+{{/contains}}
+{{/each}}
+  </li>
+  <li class='c-course-menu__item c-course-menu__item--settings'>
+    <a href='#' data-open='settings-reveal' class='c-course-menu__title c-course-menu__title--settings'>
+      Course Settings
+    </a>
+  </li>
+</ul>
+
+
+{{> course-settings }}

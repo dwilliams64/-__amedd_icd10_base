@@ -1,0 +1,144 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE MODULE
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+
+$pager-mh:          36px; // use pixels only. Can't be smaller than baseline height
+$pager-lr:          spacing(md); // Vertical padding is auto generated
+
+$pager-bg-start:    find-color(primary, darker); // use colors from foundation palette
+$pager-bg-end:      darken(find-color(primary, darker), 3%); // use colors from foundation palette
+$pager-bg-hover:    find-color(primary);
+
+$pager-fs:          font-size(15px); // use the sizes found in the $font-size map
+$pager-lh:          $pager-mh;
+$pager-fc:          find-color(white); // use colors from foundation palette
+$pager-fc-h:        $pager-fc; // use colors from foundation palette
+
+$pager-tb:          pad-height($pager-mh, $pager-lh, .5px);
+
+$pager-num-fs:      font-size(sm); // use the sizes found in the $font-size map
+
+$pager-radius:      $pager-mh; // Set 0 if not radius is needed
+
+$pager-group:       true; //create a button group (true) or separate buttons (false).
+$pager-group-space: 9px; // amount of space bewteen buttons
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+// main wrap
+// -------------------------------------------------------------------
+.c-course-pager {
+  display: table;
+  width: 100%;
+  border-radius: $pager-radius;
+  background-color: $pager-bg-end;
+
+  @include breakpoint(medium) {
+    float: right;
+  }
+
+}
+
+// Pager items
+// -------------------------------------------------------------------
+.c-course-pager__item {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 35%;
+
+  @if $pager-group == false {
+    &:not(:first-child) {
+      padding-left: $pager-group-space;
+    }
+  }
+
+}
+
+// Pager current page
+// -------------------------------------------------------------------
+.c-course-pager__item--page {
+  width: 30%;
+}
+
+// Pager buttons
+// -------------------------------------------------------------------
+.c-course-pager__btn {
+  display: block;
+  padding: 0 rem($pager-lr);
+  font-size: $pager-fs;
+  line-height: rem($pager-mh);
+  color: $pager-fc;
+  letter-spacing: 0.05em;
+  background-color: $pager-bg-end;
+  white-space: nowrap;
+  text-decoration: none;
+  @include transition;
+
+  @include breakpoint(medium) {
+    // @if $pager-group == false {
+    //   border-radius: spacing($pager-radius);
+    // }
+    border-radius: spacing($pager-radius);
+  }
+
+
+  .icon { vertical-align: top; }
+
+  &:focus,
+  &:hover {
+    background-color: $pager-bg-hover;
+    color: $pager-fc-h;
+    outline: 0;
+  }
+
+}
+
+.c-course-pager__btn--back {
+  .icon { margin-left: -6px; }
+}
+
+.c-course-pager__btn--page {
+  font-size: $pager-num-fs;
+  // line-height: unitless-calc($pager-mh, $pager-num-fs);
+  color: $pager-fc;
+  background-color: darken($pager-bg-end, 0%);
+
+  &:focus,
+  &:hover {
+    background-color: darken($pager-bg-start, 3%);
+  }
+
+}
+
+.c-course-pager__btn.is-disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  display: none;
+
+  &:focus,
+  &:hover {
+    color: rgba(find-color(white), 0.5);
+    background-color: darken($pager-bg-end, 3%);
+  }
+
+}
+
+.c-course-pager__btn--next {
+  @include gts-pulse-dot;
+  .icon { margin-right: -6px; }
+}
+
+.c-course-pager__btn--start {
+  background-color: find-color(secondary);
+  color: find-color(primary, darkest);
+}

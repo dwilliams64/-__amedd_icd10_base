@@ -1,0 +1,21 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Shadow Utitlity Classes
+//
+// ///////////////////////////////////////////////////////////////////
+
+// BOX SHADOW UTILITIES
+// -------------------------------------------------------------------
+@include gts-prototype-classes (
+  $property: bs,
+  $map: $base-shadow,
+  $allowed-dir: t r l b all,
+  $allowed-var: 0 1 2 3 4 5 6,
+  $allowed-alt: true false
+);
+
+.u-bs-common {
+  box-shadow:
+    0px 30px 24px -18px rgba(0,0,0,0.2),
+    0px 20px 48px -12px rgba(0,0,0,0.43);
+}

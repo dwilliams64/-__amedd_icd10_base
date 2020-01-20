@@ -1,0 +1,19 @@
+<div class="c-callout
+  {{~#if type}} c-callout--{{type}}{{/if}}
+  {{~#is mod 'block'}} c-callout--{{mod}}{{/is}}
+  {{~#is mod 'action'}} c-callout--{{mod}}{{/is}}
+  {{~#is mod 'post'}} c-callout--{{mod}}{{/is}}
+  {{~#isnt class ''}} {{class}}{{/isnt}}">
+  {{~#isnt mod ''}}{{~#isnt mod 'post'}}
+  <div class="c-callout__media">
+    <span class="c-callout__icon">
+      <i class="o-icon" aria-role="presentation"></i>
+    </span>
+  </div>
+  {{~/isnt}}{{~/isnt}}
+  <div class="c-callout__body">
+  {{#if @partial-block}}
+  {{> @partial-block}}
+  {{/if}}
+  </div>
+</div>

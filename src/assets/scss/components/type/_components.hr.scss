@@ -1,0 +1,27 @@
+///////////////////////////////////////////////////////////////////////
+//
+// HR Modifications
+//
+// ///////////////////////////////////////////////////////////////////
+
+.c-hr {
+
+  &-dark {
+    border-color: find-color(border, dark);
+  }
+
+  &-light {
+    border-color: find-color(border, light);
+  }
+
+  &-alt {
+    border-color: find-color(secondary);
+  }
+
+  &-thick {
+    border-width: spacing(0.25);
+    border-color: find-color(border, light);
+  }
+
+
+} // c-hr

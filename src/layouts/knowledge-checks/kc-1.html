@@ -1,0 +1,36 @@
+{{> course-html-head page-hdr='true' }}
+
+<div class="l-kc1 {{kc-class}} v-intro">
+
+  {{!-- SECTION --}}
+  <div data-q class="l-kc1__section">
+
+  {{> body }}
+
+  </div> {{!-- section --}}
+
+  {{!-- FOOTER --}}
+  <div class="l-kc1__footer">
+
+    <div class="l-kc1__buttons c-btn-toolbar u-mb-0">
+      <button data-q-submit
+        class="l-kc1__btn l-kc1__btn--next c-btn c-btn--accent -md"
+        name="form_submit" id="form_submit" value="Submit">
+          Submit
+      </button>
+    </div>
+
+    <div class="l-kc1__count">
+      <span data-q-num>1 &nbsp;</span>
+      <span data-q-bind>of</span>
+      <span data-q-amt>1</span>
+    </div>
+
+  </div> {{!-- footer --}}
+
+  {{!-- Use this to position in center and show/hide with no animation. Use inner div to animate --}}
+  <div class="c-feedback-wrap" id="feedback"></div>
+
+</div> {{!-- l-kc1 --}}
+
+{{> course-html-footer }}

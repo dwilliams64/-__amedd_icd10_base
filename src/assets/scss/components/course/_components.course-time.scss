@@ -1,0 +1,54 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE TIME
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+.c-course-time {
+  margin-top: spacing(2);
+  margin-bottom: 0;
+  margin-left: spacing(.75);
+  margin-right: spacing(.75);
+  color: find-color(white);
+  border-top: 1px solid find-color(primary, dark);
+
+  @include breakpoint(medium) {
+    position: absolute;
+    bottom: spacing(.75);
+    left: 0;
+    right: 0;
+  }
+
+  &__desc {
+    padding: spacing(xxs);
+    color: find-color(primary, lighter);
+    font-size: font-size(sm);
+  }
+
+  &__estimate {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  &__txt {
+    display: table-cell;
+    width: 50%;
+    padding: spacing(sm);
+    font-size: font-size(xl);
+
+    > small  {
+      display: block;
+      font-size: font-size(sm);
+      color: find-color(primary, lighter);
+    }
+
+    &:last-child {
+      border-left: 1px solid find-color(primary, dark);
+    }
+
+  }
+
+}

@@ -1,0 +1,16 @@
+<div
+  class="c-feedback is-fb-directions reveal small"
+  data-reveal
+  data-reveal-load
+  data-v-in="expandIn"
+  data-v-out="expandOut"
+  data-v-display="table"
+  data-close-on-click="false">
+  <div class='c-feedback__inner'>
+    <h4 class='c-feedback__heading'>{{dnd-title}}</h4>
+    {{~#if @partial-block~}}
+      {{> @partial-block}}
+    {{/if}}
+    <button data-close class="c-btn -md -outline -rounded u-mb-base js-dnd-start">Let's Begin</button>
+  </div>
+</div>

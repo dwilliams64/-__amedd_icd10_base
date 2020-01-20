@@ -1,0 +1,174 @@
+///////////////////////////////////////////////////////////////////////
+//
+// PAGE SORT
+//
+// ///////////////////////////////////////////////////////////////////
+
+$tsort-mh: 40px;
+$tsort-bw: 1px;
+$tsort-bc: find-color(primary,lightest);
+$tsort-br: 0px;
+$tsort-fs: font-size(sm);
+$tsort-lh: spacing(21px);
+$tsort-tb: pad-height($tsort-mh,$tsort-lh,$tsort-bw);
+$tsort-lr: spacing(0.5);
+
+// STYLES
+// -------------------------------------------------------------------
+
+.is-highlight
+{
+  border: solid 3px red;
+}
+
+.l-tsort {
+  height: 100%;
+
+  // columns
+  &__col {
+    @include gts-box-common(sm);
+
+    &--terms {
+      background-color: find-color(primary,darker);
+    }
+
+    &--targets {
+
+      ul {
+        margin: 2px 0 0 0;
+        padding: 0;
+        list-style: none;
+        // background-color: find-color(gray,lightest);
+        // padding: spacing(6px);
+        // min-height: spacing(10);
+        @include get-shadow(2);
+      }
+
+    }
+
+  }
+
+  // instructions
+  &__instruct {
+    text-align: center;
+    font-size: $tsort-fs;
+    color: find-color(primary,dark);
+    margin-bottom: spacing(xs);
+  }
+
+  // List
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: $tsort-fs;
+    line-height: $tsort-lh;
+  }
+
+
+  // list items
+  &__item {
+    position: relative;
+    padding: $tsort-tb $tsort-lr;
+    margin-top: -$tsort-bw;
+    background-color: find-color(white);
+    border: $tsort-bw solid $tsort-bc;
+
+    &.is-empty {
+      border-color: find-color(border);
+      background-color: find-color(white);
+      color: find-color(text,light);
+      font-size: font-size(sm);
+      line-height: spacing(1);
+      font-style: italic;
+    }
+
+  }
+
+  &__title {
+    text-align: center;
+    margin-top: spacing(sm);
+    margin-bottom: spacing(sm);
+    padding-bottom: spacing(sm);
+    @include typeset(3);
+    color: find-color(primary,dark);
+    border-bottom: 3px solid find-color(primary,lightest);
+
+  }
+
+  //cards
+  &__card-wrap {
+    display: table;
+    width: 100%;
+    border: 1px solid find-color(primary,lightest);
+    border-bottom: 0;
+    border-right: 0
+  }
+
+  //cards
+  &__card {
+    display: table-cell;
+    height: 100%;
+    // @include grid-column-size(4);
+    float: left;
+    border-right: 1px solid find-color(primary,lightest);
+    border-bottom: 1px solid find-color(primary,lightest);
+    background-color: find-color(white);
+    @include gts-box-common(sm);
+
+    &:not(:first-child) {
+      border-left: 0;
+    }
+
+    @include breakpoint(medium) {
+      min-height: spacing(8);
+    }
+
+  }
+
+}
+
+
+.l-tsort__list--terms {
+
+  background-color: transparent;
+  padding-bottom: 0;
+  box-shadow: 0 0 0 transparent;
+
+  > .is-empty {
+    color: find-color(white);
+    text-align: center;
+    font-size: font-size(lg);
+  }
+
+  .l-tsort__item {
+    padding-left: rem(28px);
+    color: find-color(white);
+    background-color: find-color(primary,darker);
+    border-color: find-color(primary,dark);
+    border-left: 0;
+    border-right: 0;
+
+
+    &:hover,
+    &:focus {
+      background-color: find-color(warning);
+      border-color: find-color(warning);
+      z-index: 1;
+    }
+
+    &:before {
+      content:'';
+      position: absolute;
+      top: 8px;
+      left: 4px;
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      background-image: url(../img/drag-handle.png);
+      background-repeat: no-repeat;
+    }
+
+  }
+
+}

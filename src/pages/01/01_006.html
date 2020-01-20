@@ -1,0 +1,32 @@
+---
+layout: kc-1
+title: Chapter 2 - Check Your Knowledge
+video: no
+kc: true
+wrap: u-bs-common
+---
+
+{{#> question type="ms" id="01" attempts="2" answer="1,2,3,4" text="large"}}
+    The data derived from accurate coding is used for which of the following?
+        {{#* inline 'question-directions'}}
+          Select an answer.
+      {{/inline}}
+      
+ {{#* inline 'question-choice-wrap'}}
+
+    {{> question-choice choice-text="A. Surveillance" }}
+    {{> question-choice choice-text="B. Accessing Care" }}
+    {{> question-choice choice-text="C. Reimbursement or credit for services" }}
+    {{> question-choice choice-text="D. Determining issues related to disability or Purple Heart eligibility" }}
+
+      {{/inline}}
+
+  {{#* inline 'question-correct'}}
+    Yes, this is the correct answer!
+<p class='c-feedback__next-msg'>Select 'Next' to continue.</p>  {{/inline}}
+
+  {{#* inline 'question-incorrect'}}
+    No, this is not correct.
+<p class='c-feedback__next-msg'>Select 'Next' to continue.</p>  {{/inline}}
+
+{{/question}}

@@ -1,0 +1,123 @@
+///////////////////////////////////////////////////////////////////////
+//
+// TABS ICARE
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// *Requires _components.tabs.scss
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$circ1-space: 6px;
+
+
+.#{$tabs}-circle1 {
+
+  .#{$tabs} {
+    position: relative;
+    display: inline-block;
+    max-width: 388px;
+    max-height: 388px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: $base-shadow-common;
+  }
+
+  .#{$tabs}__item {
+    position: relative;
+
+    &:not(:nth-child(1)) {
+      float:left;
+      max-width: 50%;
+    }
+
+    &:nth-child(1) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 1;
+      > .#{$tabs}__title {
+        color: find-color(white);
+        background-color: find-color(primary,darkest);
+        border-radius: 50%;
+        box-shadow: $base-shadow-common;
+
+        &:hover {
+          background-color: find-color(primary,darker);
+        }
+
+      }
+    }
+
+    &:nth-child(2) {
+      > .#{$tabs}__title {
+        color: find-color(secondary,darkest);
+        background-color: find-color(secondary);
+        border-radius: 100% 0 0 0;
+        &:hover {
+          background-color: lighten(find-color(secondary),7%);
+          transform: translateX(-$circ1-space) translateY(-$circ1-space);
+        }
+      }
+    }
+    &:nth-child(3) {
+      > .#{$tabs}__title {
+        color: find-color(warning,darkest);
+        background-color: find-color(warning);
+        border-radius: 0 100% 0 0;
+        &:hover {
+          background-color: lighten(find-color(warning),7%);
+          transform: translateX($circ1-space) translateY(-$circ1-space);
+        }
+      }
+    }
+    &:nth-child(4) {
+      > .#{$tabs}__title {
+        color: find-color(white);
+        background-color: find-color(primary);
+        border-radius: 0 0 0 100%;
+        &:hover {
+          background-color: darken(find-color(primary),7%);
+          transform: translateX(-$circ1-space) translateY($circ1-space);
+        }
+      }
+    }
+    &:nth-child(5) {
+      > .#{$tabs}__title {
+        color: find-color(white);
+        background-color: find-color(info,dark);
+        border-radius: 0 0 100% 0 ;
+        &:hover {
+          background-color: darken(find-color(info,dark),7%);
+          transform: translateX($circ1-space) translateY($circ1-space);
+        }
+      }
+
+
+    }
+
+
+  }
+
+  .#{$tabs}__title {
+    padding: 0;
+  }
+
+
+  .#{$tabs}__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .#{$tabs}__content {
+    vertical-align: middle;
+  }
+
+}

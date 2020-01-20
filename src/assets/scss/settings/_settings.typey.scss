@@ -1,0 +1,138 @@
+///////////////////////////////////////////////////////////////////////
+//
+// TYPEY SETTINGS
+//
+// ///////////////////////////////////////////////////////////////////
+
+// import from bower
+// @import '../../../typey/stylesheets/typey';
+
+// ///////////////////////////////////////////////////////////////////////
+// Typey settings and description
+// https://github.com/jptaranto/typey
+// ///////////////////////////////////////////////////////////////////////
+/*
+    (1) Pixel Fallbacks
+        Set 'true' for '$base-unit' and pixel fallbacks. Set 'false' for only '$base-unit'
+
+    (2) Debug Grid
+        This turns on the debug grid for individual element using 'typeset' or 'type-layout' mixins
+
+    (3) Baseline Grid
+        Set as 'true' to turn on baseline grid
+
+    (4) Typey Base Values
+        Used throughout typey. Required
+
+    (5) Define Typesizes
+        You can use typey's built in font-size() function to call these values in an easy and readable way.
+        ex. @include font-size(lg);
+
+    (6) Define Font Weights
+        You can use typey's built in weight() function to call these values in an easy and readable way.
+        ex. font-weight: weight(bold)
+
+    (7) Define Font Families
+        [a] Name and Define the font-families you would like to use
+        [b] Set typeface defaults
+        The typefaces gets defined using the info from [a], plus any properties you add.
+        all font family choices should be defined here. Typey depends on this. The '$typefaces' map will
+        accept the following: [font-family],[weight],[case]
+
+    (8) Define Typestyles
+        This allows us to create a style to be used throughout the course
+        is one place.
+
+*/ ///////////////////////////////////////////////////////////////////////
+
+// (1)
+$rem-fallback:           false;
+
+// (2)
+$typey-debug:            false;
+$typey-debug-color:      orange;
+
+// (3)
+$debug-baseline-grid:    false;
+$debug-baseline-color:   #4affff;
+
+// (4)
+$base-unit:         rem;  // can be rem, em or px caution you'll have to find all the foundation instances
+
+// (5)
+// Defined in settings
+
+// (6)
+$font-weight: (
+  thin:       100,
+  extralight: 200,
+  light:      300,
+  normal:     400,
+  medium:     500,
+  semibold:   600,
+  bold:       700,
+  extrabold:  900,
+);
+
+// (7a)
+$system-serif:'georgia', serif; //default
+$system-mono: 'consolas','courier new','courier','lucida typewriter', monospace; //default
+$system-sans: 'arial', sans-serif; //default
+
+$robotoslab:  'roboto-slab','georgia', serif;
+$opensans:    'open sans',sans-serif;
+$roboto:      'roboto', sans-serif;
+$nunitosans:  'nunito sans',sans-serif;
+$lato:        'lato',sans-serif;
+
+// (7b)
+// Defined in settings
+// example
+// $typefaces: (
+//   sans-serif: (
+//     font-family: $helvetica,
+//     letter-spacing: -.5px,
+//   ),
+//   serif: $garamond,
+//   monospace: (
+//     font-family: $monaco,
+//     letter-spacing: .5px,
+//     weight: bold,
+//     style: normal,
+//     case: uppercase,
+//   )
+// );
+
+// (8)
+// Defined in settings
+
+
+// ///////////////////////////////////////////////////////////////////////
+// Additional functionality from typey
+// ///////////////////////////////////////////////////////////////////////
+/*
+  use the following mixins and functions with almost any type of unit they
+  will automatically be converted to rem or rem w/ px fallback depending on
+  '$rem-fallback' settings
+
+  https://github.com/jptaranto/typey
+
+  @include padding(1rem 2px 3em 4); -- !!!accepts unitless or px!!!
+  -or-
+  @include padding-[top,bottom,left,right](4); -- (4 x $base-line-height)
+
+  @include margin(1rem 2px 3em 4); -- !!!accepts unitless or px!!!
+  -or-
+  @include margin-[top,bottom,left,right](2); -- (2 x $base-line-height)
+
+  @include line-height(50px) -- !!!accepts unitless or px!!!
+  -or-
+  line-height: line-height(50px);
+
+  @include font-size(50px); -- !!!px only!!!
+  -or-
+  font-size: font-size(50)px;
+
+  spacing(50px); -- Used so px fallbacks can be used when needed.
+
+*/ ///////////////////////////////////////////////////////////////////////

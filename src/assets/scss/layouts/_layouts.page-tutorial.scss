@@ -1,0 +1,19 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE TUTORIAL LAYOUT
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-course-tutorial {
+
+   box-shadow: 0px 20px 48px -9px rgba(0,0,0,0.43);
+
+  @include breakpoint(medium) {
+    @include grid-column-size(7);
+    @include grid-column-position(center);
+  }
+
+}

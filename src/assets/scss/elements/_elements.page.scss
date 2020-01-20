@@ -1,0 +1,40 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Page Elements
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+html {
+  @include debug-baseline-grid;
+  background-color: #6a3773;
+  // background-color: find-color(primary, default);
+  background-image: url(../img/bg-course-pattern.png);
+
+  @include breakpoint(medium) {
+    // padding-left: spacing(.25);
+    // padding-right: spacing(.25);
+    padding: 0;
+    // padding: 0 spacing(.25) spacing(.25);
+  }
+
+}
+
+body {
+  background-color: transparent;
+  overflow-y: scroll;
+
+  &.is-reveal-open {
+    @include breakpoint(medium) {
+      padding-right: 17px; // to deal with the shift from losing the scrollbar
+    }
+  }
+
+}
+
+
+img[src*="svg"] {
+  width: 100%;
+}
+

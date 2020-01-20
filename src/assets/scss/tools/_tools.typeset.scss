@@ -1,0 +1,113 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Typeset
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// -------------------------------------------------------------------------
+// Summary:   A mixin to pull
+// Map used:  $typestyles in _gts
+// -------------------------------------------------------------------------
+
+@mixin typeset( $x ) {
+  @each $size, $headers in $typestyles {
+    @include breakpoint($size) {
+      @each $header, $header-defs in $headers {
+
+        // get styles for each $header type
+        @if $header == quote($x) {
+
+          // Allowed properties
+          $font-size: $base-font-size;
+          $line-height: $base-line-height;
+          $font-weight: false;
+          $font-style: false;
+          $text-transform: false;
+          $letter-spacing: false;
+          $margin-top: false;
+          $margin-bottom: false;
+
+          // font size
+          // --------------
+          @if map-has-key($header-defs, font-size) {
+            $font-size: map-get($header-defs, font-size);
+            font-size: font-size($font-size);
+          } @else if map-has-key($header-defs, fs) {
+            $font-size: map-get($header-defs, fs);
+            font-size: font-size($font-size);
+          }
+
+          // line-height
+          // --------------
+          @if map-has-key($header-defs,line-height) {
+            $clean-lh: map-get($header-defs,line-height);
+            $line-height: line-height( $clean-lh,font-size($font-size),unitless );
+            line-height: $line-height;
+          } @else if map-has-key($header-defs, lh) {
+            $clean-lh: map-get($header-defs, lh);
+            $line-height: line-height( $clean-lh,font-size($font-size),unitless );
+            line-height: $line-height;
+          }
+
+          // font-weight
+          // --------------
+          @if map-has-key($header-defs, font-weight) {
+            $font-weight: map-get($header-defs, font-weight);
+            font-weight: weight($font-weight);
+          } @else if map-has-key($header-defs, fw) {
+            $font-weight: map-get($header-defs, fw);
+            font-weight: weight($font-weight);
+          }
+
+          // font-style
+          // --------------
+          @if map-has-key($header-defs, font-style) {
+            $font-style: map-get($header-defs, font-style);
+            font-style: $font-style;
+          } @else if map-has-key($header-defs, ft) {
+            $font-style: map-get($header-defs, ft);
+            font-style: $font-style;
+          }
+
+          // text-transform
+          // --------------
+          @if map-has-key($header-defs, text-transform) {
+            $text-transform: map-get($header-defs, text-transform);
+            text-transform: $text-transform;
+          } @else if map-has-key($header-defs, tt) {
+            $text-transform: map-get($header-defs, tt);
+            text-transform: $text-transform;
+          }
+
+          // letter-spacing
+          // --------------
+          @if map-has-key($header-defs, letter-spacing) {
+            $letter-spacing: map-get($header-defs, letter-spacing);
+            letter-spacing: $letter-spacing;
+          } @else if map-has-key($header-defs, ls) {
+            $letter-spacing: map-get($header-defs, ls);
+            letter-spacing: $letter-spacing;
+          }
+
+          // Get margin top
+          @if map-has-key($header-defs, margin-top) {
+            margin-top: spacing(map-get($header-defs, margin-top));
+          } @else if map-has-key($header-defs, mt) {
+            margin-top: spacing(map-get($header-defs, mt));
+          }
+
+          // Get margin bottom
+          @if map-has-key($header-defs, margin-bottom) {
+            margin-bottom: spacing(map-get($header-defs, margin-bottom));
+          } @else if map-has-key($header-defs, mb) {
+            margin-bottom: spacing(map-get($header-defs, mb));
+          }
+
+        }
+
+      }
+    }
+  }
+}

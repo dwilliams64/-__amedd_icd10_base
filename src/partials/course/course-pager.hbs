@@ -1,0 +1,45 @@
+<nav class="c-course-pager">
+
+  <div class="c-course-pager__item">
+    {{> course-help type='back'}}
+    {{#pager pages page type='previous'}}
+    <a id="pager-back"
+      class='c-course-pager__btn c-course-pager__btn--back {{#if disabled}}is-disabled{{/if}} js-pager-back' 
+      href="javascript:parent.setFrm('{{n}}');javascript:window.top.strCurrentPage='{{n}}';" >
+
+      {{#unless disabled}}
+        <i class="o-icon o-icon-arrow-back"></i> Back
+      {{else}}
+        <span class="show-for-sr">First Page</span>&nbsp;
+      {{/unless}}
+    </a>
+    {{/pager}}
+  </div>
+
+  <div class="c-course-pager__item c-course-pager__item--page">
+    {{> course-help type='page'}}
+    {{> course-pager-progress type='lesson'}}
+  </div>
+
+  <div class="c-course-pager__item">
+    {{> course-help type='next'}}
+    {{#pager pages page type='next'}}
+    <a
+      rel="prefetch"
+      id="pager-next"
+      class='c-course-pager__btn c-course-pager__btn--next {{#if disabled}}is-disabled{{/if}}{{#is @root/page '00_000'}}is-disabled{{/is}} js-pager-next'
+
+        href="javascript:parent.setFrm('{{n}}');javascript:window.top.strCurrentPage='{{n}}';">
+
+      {{#unless disabled}}
+        {{#is @root/page '00_000'}}Start {{else}}
+        Next {{/is}}<i class="o-icon o-icon-arrow-fwd"></i>
+      {{else}}
+        <span class="show-for-sr">Last Page</span>&nbsp;
+      {{/unless}}
+    </a>
+    {{/pager}}
+  </div>
+
+
+</nav>

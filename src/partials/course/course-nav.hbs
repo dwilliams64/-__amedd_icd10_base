@@ -1,0 +1,34 @@
+<ul class='c-course-nav'>
+  <li class='c-course-nav__item'>
+    {{> course-help type='menu' }}
+    <a
+      href='#'
+      role='button'
+      class='c-course-nav__trigger c-course-nav__trigger--menu'
+      data-open='js-menu-open'>
+      <span>Menu</span>
+    </a>
+  </li>
+  <li class='c-course-nav__item'>
+    {{> course-help type='help' }}
+    <a
+      role='button'
+      href='#'
+      data-help-toggle
+      class='c-course-nav__trigger c-course-nav__trigger--help'>
+      <span>Help</span>
+    </a>
+  </li>
+  <li class='c-course-nav__item'>
+    {{> course-help type='references' }}
+    <a
+      role='button'
+      href='#'
+      class='c-course-nav__trigger c-course-nav__trigger--resources'
+      data-open='js-ref-open'>
+      <span>Resources</span>
+    </a>
+  </li>
+</ul>
+
+{{> course-menu }}

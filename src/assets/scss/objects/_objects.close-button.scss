@@ -1,0 +1,55 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Close button
+//
+// ///////////////////////////////////////////////////////////////////
+
+// @include foundation-close-button;
+// foundation button included in styles below
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+
+$closebutton-lineheight: 1;
+$closebutton-color: find-color(text,dark);
+$closebutton-color-hover: find-color(white);
+/* custom */
+$closebutton-bg-color: transparent;
+$closebutton-bg-color-hover: find-color(alert);
+$closebutton-radius: 2px;
+
+
+
+// STYLES
+// ------------------------------------------------------------------
+.o-close-btn {
+
+  right: spacing(6px);
+  top: spacing(6px);
+  font-size: font-size(xl);
+  // line-height: 1;
+  position: absolute;
+  color: $closebutton-color;
+  cursor: pointer;
+
+  background-color: transparent;
+  width: spacing($closebutton-lineheight);
+  height: spacing($closebutton-lineheight);
+  text-align: center;
+  line-height: spacing($closebutton-lineheight);
+  border-radius: $closebutton-radius;
+  @include transition;
+
+  &:focus,
+  &:hover {
+    background-color: $closebutton-bg-color-hover;
+    color: find-color(white);
+  }
+
+  // Modifiers
+  &--white {
+    color: find-color(white);
+  }
+
+}

@@ -1,0 +1,10 @@
+{{> course-help type='player' }}
+{{#isnt video 'no' }}
+<video poster='{{root}}assets/img/poster_icd10_01.png'
+  class='mejs-player mejs-player--course mejs-player--video {{class}}'>
+  <source src='{{root}}assets/media/video/{{page}}.mp4' type='video/mp4'>
+  <track src='{{root}}assets/media/cc/{{page}}.vtt' srclang='en' label='English' kind='subtitles' type='text/vtt'>
+</video>
+{{else}}
+  <div class='mejs-placeholder'>&nbsp;</div>
+{{/isnt}}

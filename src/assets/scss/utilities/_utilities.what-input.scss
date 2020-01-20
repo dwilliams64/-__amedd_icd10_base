@@ -1,0 +1,36 @@
+//////////////////////////////////////////////////////////////////////
+//
+// WHAT-INPUT STYLES
+//
+// ///////////////////////////////////////////////////////////////////
+// defines :hov, :foc etc... for styles based on device input
+[data-whatinput="keyboard"] {
+  a,
+  button,
+  input,
+  select,
+  .tabs-link,
+  .c-help-badge,
+  .c-fce-card__media,
+  .l-kc1__control,
+  .c-switch__input  {
+    &:focus,
+    &:focus ~ .l-kc1__control,
+    &:focus + .c-switch__paddle {
+      // outline: $base-outline-width $base-outline-style $base-outline-color !important;
+    }
+  }
+
+  svg a:focus {
+    // stroke: $base-outline-color;
+    // stroke-width: $base-outline-width;
+  }
+
+}
+[data-whatinput="mouse"] {
+  * {
+    &:focus {
+      outline: 0;
+    }
+  }
+}

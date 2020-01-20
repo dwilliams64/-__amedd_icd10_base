@@ -1,0 +1,27 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Line Height
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// -------------------------------------------------------------------------
+// Summary:   Takes a sizing from the $font-size map (m, xl, xxl, etc) or converts unit to rem
+// -------------------------------------------------------------------------
+
+@function line-height($lh:$base-line-height, $fs:$base-font-size, $unit:rem ) {
+
+  $clean-lh: spacing($lh,$unit);
+  $clean-fs: spacing($fs,$unit);
+
+
+  @if $unit == unitless {
+    // use 'unitless' if you can provide line-height and font-size
+    @return strip-unit($clean-lh/$clean-fs);
+
+  } @else {
+    // use rem when you only provide line-height
+    @return rem($clean-lh/$clean-fs);
+  }
+
+}

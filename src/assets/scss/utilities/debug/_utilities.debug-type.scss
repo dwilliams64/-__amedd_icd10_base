@@ -1,0 +1,33 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Debug Type
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+.u-debug-baseline {
+  @include debug-baseline-grid($visible:true);
+}
+
+.u-debug-type {
+  position: relative;
+  background-color: rgba($debug-type-bg-color, 0.3) !important;
+
+  &:before,
+  &:after {
+    // content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: $debug-type-bg-color;
+  }
+
+  &:after {
+    top: auto;
+    bottom: -1px;
+  }
+}

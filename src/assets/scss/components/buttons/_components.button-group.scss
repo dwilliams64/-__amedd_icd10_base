@@ -1,0 +1,223 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Button Groups
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Calls in foundation Button groups
+// -------------------------------------------------------------------
+// @include foundation-button-group;
+
+
+
+// Variables
+// -------------------------------------------------------------------
+$buttongroup-toolbar-space: 6px;
+$buttongroup-spacing: 0;
+$buttongroup-expand-max: 6;
+
+
+
+// -------------------------------------------------------------------
+// Button Group Radius
+// -------------------------------------------------------------------
+
+@mixin btn-group-radius (
+  $dir: horizontal,
+  $br: $btn-br,
+  $br: 20px//$btn-br
+) {
+  @if $buttongroup-spacing == 0  {
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0 !important;
+    }
+
+    &:first-child:not(:last-child) {
+      @if $dir == horizontal {
+        border-top-#{$global-right}-radius: 0 !important;
+        border-bottom-#{$global-right}-radius: 0 !important;
+      }
+      @if $dir == vertical {
+        border-radius: $br $br 0 0 !important;
+      }
+    }
+
+    &:last-child {
+      @if $dir == horizontal {
+        border-top-#{$global-left}-radius: 0 !important;
+        border-bottom-#{$global-left}-radius: 0 !important;
+      }
+      @if $dir == vertical {
+        border-radius: 0 0 $br $br !important;
+      }
+    }
+
+  }
+}
+
+
+
+// Button Group
+// -------------------------------------------------------------------
+
+@mixin btn-group (
+  $child: $btn-class,
+  $mb: $btn-mb,
+  $bw: $btn-bw,
+  $fs: $btn-fs,
+  $br: $btn-br
+) {
+
+  @include clearfix;
+  margin-bottom: $mb;
+  font-size: 0; //hack
+
+  .#{$btn-class} {
+    margin-bottom: 0;
+    @include btn-group-radius();
+    @if not $fs {
+      font-size: font-size();
+    }
+
+    &:not(:first-child) {
+      margin-left: $bw * -1;
+      margin-right: 0;
+    }
+
+    &:focus,
+    &:hover {
+      z-index: 1;
+    }
+  }
+
+}
+
+
+
+// Button Expand
+// -------------------------------------------------------------------
+
+@mixin btn-group-expand (
+  $child: $btn-class,
+  $spacing: $buttongroup-spacing,
+  $count: null
+) {
+
+  margin-#{$global-right}: -$spacing;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  .#{$child} {
+
+    // One child
+    &:first-child:last-child {
+      width: 100%;
+    }
+
+    // Two or more childreen
+    @for $i from 2 through $buttongroup-expand-max {
+      $pxspacing: px($spacing);
+      &:first-child:nth-last-child(#{$i}) {
+        &, &:first-child:nth-last-child(#{$i}) ~ .#{$child} {
+          display: inline-block;
+          width: calc(#{percentage(1 / $i)} - #{$pxspacing});
+          margin-#{$global-right}: $spacing;
+
+          &:last-child {
+            margin-#{$global-right}: $spacing * -$buttongroup-expand-max;
+          }
+        }
+      }
+    }
+
+    &:not(:first-child) {
+      margin-left: 0;
+    }
+
+    &.-outline {
+      &:not(:first-child) {
+        border-left: 0;
+      }
+    }
+
+  }
+}
+
+
+
+// Button Stack
+// -------------------------------------------------------------------
+@mixin btn-group-stack (
+  $child: $btn-class,
+  $mb: $buttongroup-spacing,
+  $bw: $btn-bw
+) {
+
+  .#{$btn-class} {
+    display: block;
+    @if $buttongroup-spacing == 0 {
+      margin-bottom: $bw * -1;
+      margin-left: 0;
+    } @else {
+      margin-bottom: $mb;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include btn-group-radius(vertical);
+
+  }
+
+}
+
+// Button Classes
+// -------------------------------------------------------------------
+
+.#{$btn-class}-group {
+  @include btn-group;
+
+  .#{$btn-class} {
+    margin-bottom: 0;
+  }
+
+  &.-expand {
+    @include btn-group-expand;
+  }
+
+  &.-stacked {
+    @include btn-group-stack;
+
+    @each $bp in $breakpoint-classes {
+      @if map-has-key($breakpoints, $bp) {
+        $mq: $util-prefix-bp;
+        &#{$mq}#{$bp} {
+          @include breakpoint($bp only) {
+            @include btn-group-stack;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.#{$btn-class}-toolbar {
+  margin-bottom: $btn-mb;
+
+  .#{$btn-class}-group {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left: $buttongroup-toolbar-space;
+  }
+
+  .#{$btn-class} {
+    margin-bottom: 0;
+  }
+
+}

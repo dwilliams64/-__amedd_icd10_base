@@ -1,0 +1,38 @@
+{
+  "slide0" : {
+    "title": "A Quick Primer",
+    "img": "tuts-begin.png",
+    "alt": "Female avatar smiling.",
+    "body": "<p>Before we begin, let's take a moment to familiarize ourselves with the course interface. If you've completed previous courses, feel free to use the <strong>'Skip Tutorial'</strong> button below.</p><button class='c-btn c-btn--secondary -outline -rounded u-mb-sm' data-start-course>Skip Tutorial</button>"
+  },
+  "slide1" : {
+    "title": "Course Interface",
+    "img": "tuts-gui.png",
+    "alt": "Image of a browser interface.",
+    "body": "<p>Select the '<strong>Open Help</strong>' button below to explore the interface.</p><button class='c-btn c-btn--secondary -outline -rounded u-mb-sm' data-help-toggle data-open='js-help-open'>Open Help</button>"
+  },
+  "slide2" : {
+    "title": "Resources",
+    "img": "tuts-ref.png",
+    "alt": "Stylized illustration of a web page.",
+    "body": "<p>As mentioned on the previous slide. Resources to websites and documents can be viewed by selecting '<strong>Resources</strong>' in course navigation. Select '<strong>Resources</strong>' now to view them.</p>"
+  },
+  "slide3" : {
+    "title": "Course Settings",
+    "img": "tuts-settings.png",
+    "alt": "Graphical representation of auto play button.",
+    "body": "<p>You can set the course audio to auto-play or turn on captions below. To stop auto-play or turn off captions, open the 'menu' and go to 'course settings'.</p><button class='c-btn c-btn--secondary -outline -rounded u-mb-sm' data-open='settings-reveal'>Course Settings</button>"
+  },
+  "slide4" : {
+    "title": "Requirements",
+    "img": "tuts-view.png",
+    "alt": "Graphical representation viewing all pages in the course.",
+    "body": "<p><b>An important reminder.</b> You must view all pages and attempt each knowledge check before the course can be marked as complete.</p>"
+  },
+  "slide5" : {
+    "title": "You're All Set",
+    "img": "tuts-exit.png",
+    "alt": "Stylized illustration of a gold medal.",
+    "body": "<p>You have everything you need to begin the course. Select the '<strong>Start</strong>' button in the lower right to begin.</p>"
+  }
+}

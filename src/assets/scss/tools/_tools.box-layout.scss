@@ -1,0 +1,106 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Box Layout
+//
+// ///////////////////////////////////////////////////////////////////
+
+$box-pad-sm: spacing(0.5);
+$box-pad-base: spacing(0.75) spacing(1);
+$box-pad-lg: spacing(0.75) spacing(1.5);
+$box-pad-xl: pacing(2) spacing(2);
+
+// Box Padding Mixin
+// provides a common padding size to be used on inner body elements
+// ----------------------------------------------------------------
+@mixin gts-box-common (
+  $type: base,
+  $pt: $box-pad-base,
+  $pr: $box-pad-base,
+  $pb: $box-pad-base,
+  $pl: $box-pad-base,
+  $dir: all,
+  $bg: null
+) {
+
+  // common large padding
+  @if $type == lg {
+    $pt: $box-pad-lg;
+    $pr: $box-pad-lg;
+    $pb: $box-pad-lg;
+    $pl: $box-pad-lg;
+  }
+
+  // common small padding
+  @if $type == sm {
+    $pt: $box-pad-sm;
+    $pr: $box-pad-sm;
+    $pb: $box-pad-sm;
+    $pl: $box-pad-sm;
+  }
+
+    // common xl padding
+  @if $type == xl {
+    $pt: $box-pad-xl;
+    $pr: $box-pad-xl;
+    $pb: $box-pad-xl;
+    $pl: $box-pad-xl;
+  }
+
+  // Declared
+  $pt-m: null;
+  $pr-m: null;
+  $pb-m: null;
+  $pl-m: null;
+
+  // Small breakpoint
+  $pt-s: nth($pt, 1);
+  $pr-s: nth($pr, 1);
+  $pb-s: nth($pb, 1);
+  $pl-s: nth($pl, 1);
+
+  // Medium breakpoint
+  @if length($pt) == 2 {
+    $pt-m: nth($pt, 2);
+  }
+  @if length($pr) == 2 {
+    $pr-m: nth($pr, 2);
+  }
+  @if length($pb) == 2 {
+    $pb-m: nth($pb, 2);
+  }
+  @if length($pl) == 2 {
+    $pl-m: nth($pl, 2);
+  }
+
+  @if $dir == tb {
+    padding-top: $pt-s;
+    padding-bottom: $pr-s;
+  } @else if $dir == lr {
+    padding-left: $pb-s;
+    padding-right: $pl-s;
+  } @else {
+    padding-top: $pt-s;
+    padding-right: $pr-s;
+    padding-bottom: $pb-s;
+    padding-left: $pl-s;
+  }
+  background-color: $bg;
+
+  @include breakpoint(medium) {
+    @if $dir == tb {
+      padding-top: $pt-m;
+      padding-bottom: $pr-m;
+    } @else if $dir == lr {
+      padding-left: $pb-m;
+      padding-right: $pl-m;
+    } @else {
+      padding-top: $pt-m;
+      padding-right: $pr-m;
+      padding-bottom: $pb-m;
+      padding-left: $pl-m;
+    }
+  }
+
+  > :last-child { margin-bottom: 0; }
+
+}

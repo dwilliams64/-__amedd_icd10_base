@@ -1,0 +1,34 @@
+///////////////////////////////////////////////////////////////////////
+//
+// BOX STRIPE
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// ------------------------------------------------------------------
+// Box Common Stripe : add stripe to box
+// ------------------------------------------------------------------
+@mixin gts-box-stripe (
+  $pos: bottom,
+  $bg: find-color(gray, lightest),
+  $bw: 6px,
+  $bc: find-color(secondary),
+  $mh: get-height(1.5),
+  $br: 0
+) {
+  &:after {
+    content:'';
+    position: absolute;
+    #{$pos}: 0;
+    left:0;
+    right: 0;
+    height: $mh;
+    background-color: $bg;
+    @if $bw != 0 {
+      border-#{$pos}: $bw solid $bc;
+    }
+    @if $br != 0 {
+      border-radius: $br;
+    }
+  }
+}

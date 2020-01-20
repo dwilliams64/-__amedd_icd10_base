@@ -1,0 +1,141 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Typography
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// Headers
+// -------------------------------------------------------------------
+$typestyles-prefix: c-typeset;
+
+// Build typestyles classes
+@mixin generate-typestyles {
+
+  $header-list: ();
+  @each $size, $headers in $typestyles {
+    @each $header, $header-defs in $headers {
+      $header-list: join($header-list, $header);
+    }
+  }
+
+  $header-list-new: remove-duplicates($header-list);
+  @each $hdr in $header-list-new {
+    .#{$typestyles-prefix}-#{$hdr} {
+      @include typeset(#{$hdr});
+      max-width: $max-type-width;
+    }
+  }
+
+}
+
+
+
+// Generate typestyles classes
+// -------------------------------------------------------------------
+@include generate-typestyles;
+
+
+
+// Modifications to type
+// -------------------------------------------------------------------
+.c-type {
+
+  // divider line on bottom
+  &-divider {
+    padding-bottom: spacing(0.5);
+    margin-bottom: spacing(0.75);
+    border-bottom: 1px solid find-color(border);
+
+    &.-top {
+      border-bottom: 0;
+      padding-bottom: 0;
+      padding-top: spacing(0.625);
+      margin-bottom: spacing(0.75);
+      border-top: 1px solid find-color(border);
+    }
+
+    &.-alt { border-color: find-color(secondary); }
+    &.-thick { border-width: spacing(0.125); }
+
+  }
+
+  &-lead {
+    @include typeset(3);
+    color: $body-font-color;
+  }
+
+} // c-type
+
+
+.c-large-paragraph {
+  @include typeset(lgp);
+}
+
+
+// Separator Bar
+
+.c-type-bar,
+.c-type-bar-center {
+  margin-bottom: spacing(1.25) !important;
+
+  &:after {
+    content:'';
+    position: relative;
+    display: block;
+    top: spacing(0.75) - rem(3px / 2);
+    height: 3px;
+    max-width: 40px;
+    background-color: find-color(secondary);
+  }
+
+}
+
+.c-type-bar-center {
+
+  &:after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+
+.c-type-max {
+  max-width: rem(600px);
+}
+
+.c-type-max-lg {
+  max-width: 80%;
+
+  @include breakpoint(medium) {
+    max-width: 60%;
+  }
+
+}
+
+.c-type-max-center {
+  max-width: rem(600px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c-type-max-center-lg {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include breakpoint(medium) {
+    max-width: 60%;
+  }
+}
+
+.c-type-max-center-xl {
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include breakpoint(medium) {
+    max-width: 80%;
+  }
+}

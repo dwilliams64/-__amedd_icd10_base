@@ -1,0 +1,245 @@
+///////////////////////////////////////////////////////////////////////
+//
+// DO DO NOT
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+  $dnd-ques-mh: 42px;
+  $dnd-ques-fc: find-color(text);
+  $dnd-ques-lh: $base-line-height;
+  $dnd-ques-fs: font-size(sm);
+  $dnd-ques-bw: 3px;
+  $dnd-ques-bc: find-color(gray,lightest);
+  $dnd-ques-bg: find-color(white);
+  $dnd-ques-tb: pad-height($dnd-ques-mh,$dnd-ques-lh,$dnd-ques-bw);
+  $dnd-ques-lr: spacing(0.5);
+
+  $dnd-ques-bc-h: find-color(secondary);
+
+// TEMPORARY FIX !!!
+
+// STYLES
+// ------------------------------------------------------------------
+
+.c-dnd {
+
+  // target areas
+  &__target {
+    display: none;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(3);
+      // background-color: rgba(find-color(accent,dark), 0.9);
+      display: table-cell;
+      vertical-align: middle;
+      background-image: url(../img/box.png);
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      text-align: center;
+    }
+
+  }
+
+  &__target-text {
+    display: inline-block;
+    background-color: find-color(white);
+    padding: pad-height(81px,1.5,3px) rem(10px);
+    min-width: rem(96px);
+    font-size: font-size(md);
+    line-height: 1.5;
+    font-weight: weight(medium);
+    border-radius:rem(6px);
+    border: 3px solid find-color(secondary);
+    box-shadow: 0 15px 20px -5px rgba(0,0,0,0.5);
+    margin: 0 auto;
+  }
+
+
+  // Contains all the choices
+  &__choice-wrap {
+    background-color: rgba(find-color(accent,darkest), 0.7);
+    font-size: font-size(base);
+    vertical-align: middle;
+    padding: spacing(xs);
+    border-radius: rem(6px);
+
+    @include breakpoint(medium) {
+      @include grid-column-size(6);
+      display: table-cell;
+    }
+
+  }
+
+  // Drag area
+  &__choice {
+    display: block;
+    width: 100%;
+    // max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+    text-align: center;
+    position: relative;
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+
+    &[aria-disabled="true"] {
+      cursor: not-allowed !important;
+      background-color: find-color(gray, bg);
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+  }
+
+  // btn wrap
+  &__do,
+  &__dont {
+    position: absolute;
+    top: 50%;
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    transform: translateY(-9px);
+  }
+
+  &__do { left: 6px; }
+  &__dont { right: 6px; }
+
+
+  // Drag Buttons
+  &__btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px find-color(secondary);
+
+    @include breakpoint(medium) {
+      opacity: 0;
+      &:focus { opacity: 1; }
+    }
+
+  }
+
+  &__ques {
+    display: block;
+    width: 100%;
+    padding: $dnd-ques-tb $dnd-ques-lr*2;
+    font-size: $dnd-ques-fs;
+    line-height: $dnd-ques-lh;
+    color: $dnd-ques-fc;
+    border: $dnd-ques-bw solid $dnd-ques-bc;
+    border-radius: $dnd-ques-mh / 2;
+    background-color: $dnd-ques-bg;
+    box-shadow:
+      inset 0 -36px 36px -36px rgba(find-color(black),0.25),
+      0 2px 4px 0 rgba(find-color(black),0.5);
+    transition: all .3s ease;
+
+    &:hover {
+      border-color: $dnd-ques-bc-h;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    @include breakpoint(medium) {
+      padding: $dnd-ques-tb $dnd-ques-lr;
+    }
+
+  }
+
+  &__feedback {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    max-width: rem(600px);
+    transform: translateX(-50%) translateY(-50%);
+
+    .c-dnd__ques {
+      margin-bottom: spacing(0.5);
+    }
+
+    .c-dnd__do,
+    .c-dnd__dont {
+      display: none;
+    }
+
+    .c-dnd__ques {
+      margin-top: spacing(0.75);
+      margin-bottom: spacing(0.75);
+    }
+
+  }
+
+  &__fb-hdr {
+    @include typeset(type-md);
+    color: find-color(white);
+    font-weight: weight(light);
+
+    > span {
+      display: block;
+      @include typeset(type-xxl);
+      margin-bottom: spacing(md);
+    }
+  }
+
+  &__fb-text {
+    margin-bottom: spacing(0.75);
+  }
+
+  &__heading {
+    text-align: center;
+    padding: spacing(0.25) 0;
+    @include typeset(6);
+    font-weight: weight(light);
+    color: find-color(secondary,lighter);
+
+  }
+
+}
+
+.ui-droppable {
+  border: 3px solid transparent;
+  // @include transition;
+
+  &.is-hovered {
+    border-color: find-color(secondary);
+
+    .dnd__target-text {
+      border-color: find-color(white);
+    }
+  }
+}
+
+
+.ui-draggable-disabled {
+
+  .js-drag-choice-p,
+  .c-dnd__btn,
+  .c-dnd__do,
+  .c-dnd__dont {
+    opacity: 0;
+    display: none;
+  }
+
+  > .c-dnd__ques,
+  > .c-dnd__btn {
+    border-color: transparent;
+    background-color: rgba(find-color(accent,darkest), 0.7);
+    text-decoration: line-through;
+    box-shadow: 0 0 0 transparent;
+    min-height: spacing(36px);
+    &:hover {
+      cursor: default;
+    }
+  }
+
+}

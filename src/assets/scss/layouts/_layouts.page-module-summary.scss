@@ -1,0 +1,130 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MODULE SUMMARY
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-module-summary {
+  box-shadow: $base-shadow-common;
+
+  // Media Area
+  &__media {
+    @include gts-box-common(lg);
+    vertical-align: middle;
+    text-align: center;
+    background-color: rgba(find-color(primary,darkest),1);
+
+    @include breakpoint(medium) {
+      @include grid-column-size(5);
+      &:after {
+        @include stripe-edge(left);
+      }
+    }
+
+  }
+
+
+  // Body Area
+  &__body {
+    // @include gts-box-common();
+    background-color: $box-background;
+    vertical-align: top;
+
+    @include breakpoint(medium) { @include grid-column-size(7); }
+
+  }
+
+
+  // Module Number
+  &__sub {
+    position: relative;
+    display: inline-block;
+    margin-top: spacing(0.5);
+    margin-bottom: spacing(0.5);
+    padding: $crs-mod-sub-tb $crs-mod-sub-lr;
+    border-radius: $crs-mod-sub-br;
+    color: $crs-mod-sub-fc;
+    border: $crs-mod-sub-bw solid $crs-mod-sub-bc;
+    z-index: 1;
+  }
+
+
+  // Module Summary Heading
+  &__heading {
+    margin-bottom: spacing(1);
+    @include typeset(2);
+    font-weight: weight(normal);
+    color: find-color(white);
+
+    > small {
+    display: block;
+    margin-top: spacing(.25);
+    margin-bottom: spacing(1);
+    font-size: font-size(md);
+    line-height: line-height(1);
+    color: find-color(white);
+    font-weight: weight(light);
+    letter-spacing: 0.5px;
+    }
+
+  }
+
+  &__title {
+    font-size: font-size(md);
+    font-weight: weight(normal);
+    color: find-color(primary,dark);
+    padding: pad-height(base,1,0) spacing(1);
+    text-align: center;
+    background-color: find-color(gray,lightest);
+  }
+
+
+}
+
+
+// AVATAR SUMMARY STYLES
+// -------------------------------------------------------------------
+
+.l-module-summary--avatar {
+
+  .l-module-summary__heading {
+    padding-top: spacing(0.75);
+    padding-bottom: spacing(0.75);
+    background-color: find-color(primary,darker);
+    text-align: center;
+    font-weight: weight(light);
+    margin-bottom: 0;
+  }
+
+  .l-module-summary__media {
+    // position: static;
+    &:after { display: none; }
+    @include breakpoint(medium) { @include grid-column-size(4); }
+  }
+
+  .l-module-summary__img {
+    @include breakpoint(medium) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 1;
+
+      > img {
+        min-width: 400px
+      }
+    }
+  }
+
+  .l-module-summary__body {
+    @include breakpoint(medium) {
+      @include grid-column-size(8);
+    }
+  }
+
+}

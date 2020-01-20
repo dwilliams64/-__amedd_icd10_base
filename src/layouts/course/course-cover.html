@@ -1,0 +1,26 @@
+{{> course-html-head main="u-bg-dark-blue" lesson="Course Introduction" }}
+
+<article class="o-box o-mh-pad l-cover">
+  <aside class="o-box__cell l-cover__media">
+    {{> body}}
+  </aside>
+  <section class="o-box__cell l-cover__body">
+
+    <div class="l-cover__sub">
+      {{ global.courseID }}
+    </div>
+    <h3 class="l-cover__heading">
+      {{ global.course }}
+    </h3>
+    <div class="l-cover__school">
+      {{ global.client }}
+    </div>
+
+    {{#> callout type="cover" mod="action"}}
+      This course is targeted for ICD-10 Concussion Coding Training
+    {{/callout}}
+
+  </section>
+</article>
+
+{{> course-html-footer }}

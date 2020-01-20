@@ -1,0 +1,167 @@
+///////////////////////////////////////////////////////////////////////
+//
+// INSTRUCT
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+$inst-pad: spacing(0.75);
+$inst-mh-lg: spacing(9);
+
+
+
+// STYLES
+// ------------------------------------------------------------------
+.c-instruct {
+  @include clearfix;
+
+  &__media {
+    text-align: center;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(5.5);
+      float: left;
+    }
+
+  }
+
+  &__body {
+    padding: $inst-pad;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(6.5);
+      float: right;
+    }
+
+  }
+
+  &__bubble {
+    position: relative;
+    padding: $inst-pad;
+    background-color: find-color(white);
+    @include get-shadow(2);
+
+    > :last-child { margin-bottom: 0; }
+
+    &:before {
+      content:'';
+      position: absolute;
+    }
+
+    @include breakpoint(medium) {
+      min-height: $inst-mh-lg;
+      &:before {
+        right: 100%;
+        bottom: 0;
+        @include triangle(18px,find-color(white),down-right);
+      }
+    }
+
+    @include breakpoint(small only) {
+      &:before {
+        top: 100%;
+        bottom: auto;
+        left: 50%;
+        margin-left: -12px;
+        @include triangle(24px,find-color(white),down);
+      }
+    }
+
+  }
+
+  &__title {
+    @include typeset(3);
+    color: find-color(accent);
+    margin-bottom: spacing(0.5);
+  }
+
+  &__directions {
+    color: find-color(text,light);
+  }
+
+  &__img {
+    max-width: 294px;
+    max-height: 436px;
+    width: 100%;
+
+    @include breakpoint(medium) {
+      position: absolute;
+      bottom: 0;
+      left: 2.5%;
+    }
+
+  }
+
+}
+
+
+.c-instruct--expand {
+
+  .c-instruct__media {
+    @include breakpoint(medium) {
+      @include grid-column-size(4);
+    }
+  }
+
+  .c-instruct__body {
+    @include breakpoint(medium) {
+      @include grid-column-size(8);
+    }
+  }
+
+  .c-instruct__img {
+    max-width: 238px;
+
+    @include breakpoint(medium) {
+      position: static;
+    }
+  }
+
+}
+
+
+.c-instruct--short {
+  .c-instruct__img { max-width: 238px; }
+}
+
+
+.c-instruct--full {
+
+  .c-instruct__media {
+    display: none;
+  }
+
+  .c-instruct__body {
+    @include breakpoint(medium) {
+      @include grid-column-size(12);
+    }
+  }
+
+}
+
+
+
+
+.c-directions-absolute {
+  padding: pad-height(36px,null,0) spacing(0.75);
+
+  @include breakpoint(medium) {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 3;
+    background-color: find-color(white);
+    // border:1px solid find-color(secondary);
+    border-radius: 36px;
+    box-shadow: $base-shadow-common;
+    transform: translateX(-50%) translateY(-24%);
+
+    .o-icon {
+      vertical-align: middle;
+    }
+
+  }
+}

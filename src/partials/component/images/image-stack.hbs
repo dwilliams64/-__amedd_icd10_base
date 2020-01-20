@@ -1,0 +1,45 @@
+<figure class='c-img-stack {{#if class}}{{class}}{{/if}} {{#if type}}c-img-stack--{{type}}{{/if}}'>
+  <div class='c-img-stack__inner'>
+    {{#isnt frame 'false'}}<div class='c-img-stack__frame'>{{/isnt}}
+
+    {{#if (and alt src)}}
+
+      <img src='{{root}}assets/img/{{src}}' alt='{{alt}}'>
+
+    {{else if src}}
+
+      <div class='u-missing-img u-missing--alt'>
+        <img src='{{root}}assets/img/{{src}}' alt='{{alt}}'>
+      </div>
+
+    {{else if alt}}
+
+      <div class='u-missing-img'>
+
+      {{#is layout 'title-side'}}
+        <img src='{{root}}assets/img/placeholders/ph-ts-col-{{col}}.png' alt='Needs Alt Text'>
+      {{else}}
+        <img src='{{root}}assets/img/placeholders/ph-tt-col-{{col}}.png' alt='Needs Alt Text'>
+      {{/is}}
+
+      </div>
+
+    {{else}}
+
+      <div class='u-missing-img u-missing--both'>
+
+      {{#is layout 'title-side'}}
+        <img src='{{root}}assets/img/placeholders/ph-ts-col-{{col}}.png' alt='Needs Alt Text'>
+      {{else}}
+        <img src='{{root}}assets/img/placeholders/ph-tt-col-{{col}}.png' alt='Needs Alt Text'>
+      {{/is}}
+
+      </div>
+
+    {{/if}}
+
+    {{#isnt frame 'false'}}</div>{{/isnt}}
+  </div>
+</figure>
+
+

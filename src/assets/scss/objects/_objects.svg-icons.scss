@@ -1,0 +1,1301 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SVG ICONS
+//
+// ///////////////////////////////////////////////////////////////////
+
+// sprite variables
+// ----------------------
+$sprite-source:  '../img/sprite.svg';
+$sprite-width:   348px;
+$sprite-height:  324px;
+
+// sprite map
+// ----------------------
+$sprite-map: (
+  'app': (
+    offset-x: -228px,
+    offset-y: -192px,
+    width:   24px,
+    height:  24px,
+  ),
+  'app-alt': (
+    offset-x: -192px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-back': (
+    offset-x: -276px,
+    offset-y: -192px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-back-hov': (
+    offset-x: -72px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-dd-dn': (
+    offset-x: -144px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-dd-dn-alt': (
+    offset-x: -168px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-dd-up': (
+    offset-x: -300px,
+    offset-y: -120px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-dd-up-alt': (
+    offset-x: -300px,
+    offset-y: -144px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-fwd': (
+    offset-x: -324px,
+    offset-y: 0px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-fwd-hov': (
+    offset-x: -144px,
+    offset-y: -156px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-kb-back': (
+    offset-x: -168px,
+    offset-y: -156px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-kb-back-alt': (
+    offset-x: -192px,
+    offset-y: -156px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-kb-dn': (
+    offset-x: -120px,
+    offset-y: -180px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-kb-dn-alt': (
+    offset-x: -144px,
+    offset-y: -180px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-kb-fwd': (
+    offset-x: -168px,
+    offset-y: -180px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-kb-fwd-alt': (
+    offset-x: -192px,
+    offset-y: -180px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-kb-up': (
+    offset-x: -72px,
+    offset-y: -204px,
+    width:   24px,
+    height:  24px,
+  ),
+  'arrow-kb-up-alt': (
+    offset-x: -96px,
+    offset-y: -204px,
+    width:   24px,
+    height:  24px,
+  ),
+  'bulb': (
+    offset-x: -120px,
+    offset-y: -204px,
+    width:   24px,
+    height:  24px,
+  ),
+  'bulb-light': (
+    offset-x: -144px,
+    offset-y: -204px,
+    width:   24px,
+    height:  24px,
+  ),
+  'cancel': (
+    offset-x: -168px,
+    offset-y: -204px,
+    width:   24px,
+    height:  24px,
+  ),
+  'cancel-alt': (
+    offset-x: -192px,
+    offset-y: -204px,
+    width:   24px,
+    height:  24px,
+  ),
+  'cancel-dark': (
+    offset-x: -228px,
+    offset-y: 0px,
+    width:   24px,
+    height:  24px,
+  ),
+  'cancel-light': (
+    offset-x: -228px,
+    offset-y: -24px,
+    width:   24px,
+    height:  24px,
+  ),
+  'cc': (
+    offset-x: -228px,
+    offset-y: -48px,
+    width:   24px,
+    height:  24px,
+  ),
+  'cc-alt': (
+    offset-x: -228px,
+    offset-y: -72px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check': (
+    offset-x: -228px,
+    offset-y: -96px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-correct': (
+    offset-x: -228px,
+    offset-y: -120px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-dark': (
+    offset-x: -228px,
+    offset-y: -144px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-dis': (
+    offset-x: -228px,
+    offset-y: -168px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-lg': (
+    offset-x: 0px,
+    offset-y: 0px,
+    width:   84px,
+    height:  84px,
+  ),
+  'check-light': (
+    offset-x: 0px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-ol': (
+    offset-x: -24px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-ol-dark': (
+    offset-x: -48px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-ol-dis': (
+    offset-x: -72px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-ol-empty': (
+    offset-x: -96px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-ol-light': (
+    offset-x: -120px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'check-small': (
+    offset-x: -324px,
+    offset-y: -138px,
+    width:   18px,
+    height:  18px,
+  ),
+  'check-small-dark': (
+    offset-x: -324px,
+    offset-y: -120px,
+    width:   18px,
+    height:  18px,
+  ),
+  'check-small-light': (
+    offset-x: -324px,
+    offset-y: -102px,
+    width:   18px,
+    height:  18px,
+  ),
+  'checkbox': (
+    offset-x: -216px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'checkbox-alt': (
+    offset-x: -252px,
+    offset-y: 0px,
+    width:   24px,
+    height:  24px,
+  ),
+  'checkbox-chk': (
+    offset-x: -252px,
+    offset-y: -24px,
+    width:   24px,
+    height:  24px,
+  ),
+  'checkbox-chk-alt': (
+    offset-x: -252px,
+    offset-y: -48px,
+    width:   24px,
+    height:  24px,
+  ),
+  'checkbox-chk-dis': (
+    offset-x: -252px,
+    offset-y: -72px,
+    width:   24px,
+    height:  24px,
+  ),
+  'checkbox-dis': (
+    offset-x: -252px,
+    offset-y: -96px,
+    width:   24px,
+    height:  24px,
+  ),
+  'close': (
+    offset-x: -252px,
+    offset-y: -120px,
+    width:   24px,
+    height:  24px,
+  ),
+  'close-alt': (
+    offset-x: -252px,
+    offset-y: -144px,
+    width:   24px,
+    height:  24px,
+  ),
+  'copy': (
+    offset-x: -324px,
+    offset-y: -84px,
+    width:   18px,
+    height:  18px,
+  ),
+  'copy-light': (
+    offset-x: -324px,
+    offset-y: -66px,
+    width:   18px,
+    height:  18px,
+  ),
+  'correct': (
+    offset-x: -252px,
+    offset-y: -216px,
+    width:   24px,
+    height:  24px,
+  ),
+  'edit-alt': (
+    offset-x: 0px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'error': (
+    offset-x: -24px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'error-alt': (
+    offset-x: -48px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'error-light': (
+    offset-x: -72px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'flip': (
+    offset-x: -96px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'flip-dark': (
+    offset-x: -120px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'flip-light': (
+    offset-x: -144px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'fullscreen': (
+    offset-x: -168px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'fullscreen-alt': (
+    offset-x: -120px,
+    offset-y: -156px,
+    width:   24px,
+    height:  24px,
+  ),
+  'fullscreen-exit': (
+    offset-x: -216px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'fullscreen-exit-alt': (
+    offset-x: -240px,
+    offset-y: -252px,
+    width:   24px,
+    height:  24px,
+  ),
+  'help': (
+    offset-x: -276px,
+    offset-y: 0px,
+    width:   24px,
+    height:  24px,
+  ),
+  'help-hov': (
+    offset-x: -276px,
+    offset-y: -24px,
+    width:   24px,
+    height:  24px,
+  ),
+  'info': (
+    offset-x: -276px,
+    offset-y: -48px,
+    width:   24px,
+    height:  24px,
+  ),
+  'info-alt': (
+    offset-x: -276px,
+    offset-y: -72px,
+    width:   24px,
+    height:  24px,
+  ),
+  'info-dark': (
+    offset-x: -276px,
+    offset-y: -96px,
+    width:   24px,
+    height:  24px,
+  ),
+  'info-ol': (
+    offset-x: -276px,
+    offset-y: -120px,
+    width:   24px,
+    height:  24px,
+  ),
+  'info-ol-light': (
+    offset-x: -276px,
+    offset-y: -144px,
+    width:   24px,
+    height:  24px,
+  ),
+  'instruct': (
+    offset-x: -276px,
+    offset-y: -168px,
+    width:   24px,
+    height:  24px,
+  ),
+  'instruct-lg': (
+    offset-x: -72px,
+    offset-y: -156px,
+    width:   48px,
+    height:  48px,
+  ),
+  'key-alt': (
+    offset-x: -276px,
+    offset-y: -216px,
+    width:   24px,
+    height:  24px,
+  ),
+  'label': (
+    offset-x: -276px,
+    offset-y: -240px,
+    width:   24px,
+    height:  24px,
+  ),
+  'launch': (
+    offset-x: 0px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'launch-alt': (
+    offset-x: -24px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'launch-dark': (
+    offset-x: -48px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'launch-small': (
+    offset-x: -324px,
+    offset-y: -48px,
+    width:   18px,
+    height:  18px,
+  ),
+  'link': (
+    offset-x: -96px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'link-alt': (
+    offset-x: -120px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'loading': (
+    offset-x: 0px,
+    offset-y: -84px,
+    width:   72px,
+    height:  72px,
+  ),
+  'loading-alt': (
+    offset-x: -72px,
+    offset-y: -84px,
+    width:   72px,
+    height:  72px,
+  ),
+  'loop': (
+    offset-x: -192px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'loop-alt': (
+    offset-x: -216px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'menu': (
+    offset-x: -240px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'menu-hov': (
+    offset-x: -264px,
+    offset-y: -276px,
+    width:   24px,
+    height:  24px,
+  ),
+  'note-alt': (
+    offset-x: -300px,
+    offset-y: 0px,
+    width:   24px,
+    height:  24px,
+  ),
+  'pause': (
+    offset-x: -300px,
+    offset-y: -24px,
+    width:   24px,
+    height:  24px,
+  ),
+  'pause-alt': (
+    offset-x: -300px,
+    offset-y: -48px,
+    width:   24px,
+    height:  24px,
+  ),
+  'play': (
+    offset-x: -300px,
+    offset-y: -72px,
+    width:   24px,
+    height:  24px,
+  ),
+  'play-alt': (
+    offset-x: -300px,
+    offset-y: -96px,
+    width:   24px,
+    height:  24px,
+  ),
+  'play-lg': (
+    offset-x: -156px,
+    offset-y: 0px,
+    width:   72px,
+    height:  72px,
+  ),
+  'play-lg-alt': (
+    offset-x: -156px,
+    offset-y: -72px,
+    width:   72px,
+    height:  72px,
+  ),
+  'radio': (
+    offset-x: -300px,
+    offset-y: -168px,
+    width:   24px,
+    height:  24px,
+  ),
+  'radio-chk': (
+    offset-x: -300px,
+    offset-y: -192px,
+    width:   24px,
+    height:  24px,
+  ),
+  'reference': (
+    offset-x: -300px,
+    offset-y: -216px,
+    width:   24px,
+    height:  24px,
+  ),
+  'reference-hov': (
+    offset-x: -300px,
+    offset-y: -240px,
+    width:   24px,
+    height:  24px,
+  ),
+  'refresh': (
+    offset-x: -300px,
+    offset-y: -264px,
+    width:   24px,
+    height:  24px,
+  ),
+  'refresh-alt': (
+    offset-x: 0px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'replay': (
+    offset-x: -24px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'replay-alt': (
+    offset-x: -48px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'settings': (
+    offset-x: -72px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'settings-alt': (
+    offset-x: -96px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'skip-back-alt': (
+    offset-x: -120px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'skip-fwd': (
+    offset-x: -144px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'skip-fwd-alt': (
+    offset-x: -168px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'skip_back': (
+    offset-x: -192px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'star': (
+    offset-x: -216px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'star-alt': (
+    offset-x: -240px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'stop': (
+    offset-x: -264px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'stop-alt': (
+    offset-x: -288px,
+    offset-y: -300px,
+    width:   24px,
+    height:  24px,
+  ),
+  'thumbs-down': (
+    offset-x: 0px,
+    offset-y: -156px,
+    width:   72px,
+    height:  72px,
+  ),
+  'thumbs-up': (
+    offset-x: -84px,
+    offset-y: 0px,
+    width:   72px,
+    height:  72px,
+  ),
+  'vol-off': (
+    offset-x: -252px,
+    offset-y: -192px,
+    width:   24px,
+    height:  24px,
+  ),
+  'vol-off-alt': (
+    offset-x: -252px,
+    offset-y: -168px,
+    width:   24px,
+    height:  24px,
+  ),
+  'vol-on': (
+    offset-x: -192px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'vol-on-alt': (
+    offset-x: -168px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'warning': (
+    offset-x: -144px,
+    offset-y: -228px,
+    width:   24px,
+    height:  24px,
+  ),
+  'warning-alt': (
+    offset-x: -324px,
+    offset-y: -24px,
+    width:   24px,
+    height:  24px,
+  ),
+);
+
+// mixins
+// ----------------------
+@mixin sprite-common {
+  display: inline-block;
+  @include sprite-image;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+@mixin sprite-width($sprite) {
+  width: map-deep-get($sprite-map, $sprite, width);
+}
+
+@mixin sprite-height($sprite) {
+  height: map-deep-get($sprite-map, $sprite, height);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: map-deep-get($sprite-map, $sprite, offset-x);
+  $sprite-offset-y: map-deep-get($sprite-map, $sprite, offset-y);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image {
+  background-image: url($sprite-source);
+}
+
+@mixin sprite($sprite) {
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+@mixin sprite-center($sprite) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: (map-deep-get($sprite-map, $sprite, width) / 2) * -1;
+  margin-top:  (map-deep-get($sprite-map, $sprite, height) / 2) * -1;
+}
+
+// Classes
+// ----------------------
+.o-icon-set {
+  @include clearfix;
+  > .o-icon {
+    float: left;
+  }
+}
+
+.o-icon-set__text {
+  float: left;
+  padding-left: spacing(0.5);
+}
+
+.o-icon--stack {
+  display: block !important;
+  margin: 0 auto spacing(xs);
+}
+
+.o-icon { @include sprite-common; }
+
+.o-icon-app {
+  @include sprite(app);
+}
+
+.o-icon-app-alt {
+  @include sprite(app-alt);
+}
+
+.o-icon-arrow-back {
+  @include sprite(arrow-back);
+}
+
+.o-icon-arrow-back-hov {
+  @include sprite(arrow-back-hov);
+}
+
+.o-icon-arrow-dd-dn {
+  @include sprite(arrow-dd-dn);
+}
+
+.o-icon-arrow-dd-dn-alt {
+  @include sprite(arrow-dd-dn-alt);
+}
+
+.o-icon-arrow-dd-up {
+  @include sprite(arrow-dd-up);
+}
+
+.o-icon-arrow-dd-up-alt {
+  @include sprite(arrow-dd-up-alt);
+}
+
+.o-icon-arrow-fwd {
+  @include sprite(arrow-fwd);
+}
+
+.o-icon-arrow-fwd-hov {
+  @include sprite(arrow-fwd-hov);
+}
+
+.o-icon-arrow-kb-back {
+  @include sprite(arrow-kb-back);
+}
+
+.o-icon-arrow-kb-back-alt {
+  @include sprite(arrow-kb-back-alt);
+}
+
+.o-icon-arrow-kb-dn {
+  @include sprite(arrow-kb-dn);
+}
+
+.o-icon-arrow-kb-dn-alt {
+  @include sprite(arrow-kb-dn-alt);
+}
+
+.o-icon-arrow-kb-fwd {
+  @include sprite(arrow-kb-fwd);
+}
+
+.o-icon-arrow-kb-fwd-alt {
+  @include sprite(arrow-kb-fwd-alt);
+}
+
+.o-icon-arrow-kb-up {
+  @include sprite(arrow-kb-up);
+}
+
+.o-icon-arrow-kb-up-alt {
+  @include sprite(arrow-kb-up-alt);
+}
+
+.o-icon-bulb {
+  @include sprite(bulb);
+}
+
+.o-icon-bulb-light {
+  @include sprite(bulb-light);
+}
+
+.o-icon-cancel {
+  @include sprite(cancel);
+}
+
+.o-icon-cancel-alt {
+  @include sprite(cancel-alt);
+}
+
+.o-icon-cancel-dark {
+  @include sprite(cancel-dark);
+}
+
+.o-icon-cancel-light {
+  @include sprite(cancel-light);
+}
+
+.o-icon-cc {
+  @include sprite(cc);
+}
+
+.o-icon-cc-alt {
+  @include sprite(cc-alt);
+}
+
+.o-icon-check {
+  @include sprite(check);
+}
+
+.o-icon-check-correct {
+  @include sprite(check-correct);
+}
+
+.o-icon-check-dark {
+  @include sprite(check-dark);
+}
+
+.o-icon-check-dis {
+  @include sprite(check-dis);
+}
+
+.o-icon-check-lg {
+  @include sprite(check-lg);
+}
+
+.o-icon-check-light {
+  @include sprite(check-light);
+}
+
+.o-icon-check-ol {
+  @include sprite(check-ol);
+}
+
+.o-icon-check-ol-dark {
+  @include sprite(check-ol-dark);
+}
+
+.o-icon-check-ol-dis {
+  @include sprite(check-ol-dis);
+}
+
+.o-icon-check-ol-empty {
+  @include sprite(check-ol-empty);
+}
+
+.o-icon-check-ol-light {
+  @include sprite(check-ol-light);
+}
+
+.o-icon-check-small {
+  @include sprite(check-small);
+}
+
+.o-icon-check-small-dark {
+  @include sprite(check-small-dark);
+}
+
+.o-icon-check-small-light {
+  @include sprite(check-small-light);
+}
+
+.o-icon-checkbox {
+  @include sprite(checkbox);
+}
+
+.o-icon-checkbox-alt {
+  @include sprite(checkbox-alt);
+}
+
+.o-icon-checkbox-chk {
+  @include sprite(checkbox-chk);
+}
+
+.o-icon-checkbox-chk-alt {
+  @include sprite(checkbox-chk-alt);
+}
+
+.o-icon-checkbox-chk-dis {
+  @include sprite(checkbox-chk-dis);
+}
+
+.o-icon-checkbox-dis {
+  @include sprite(checkbox-dis);
+}
+
+.o-icon-close {
+  @include sprite(close);
+}
+
+.o-icon-close-alt {
+  @include sprite(close-alt);
+}
+
+.o-icon-copy {
+  @include sprite(copy);
+}
+
+.o-icon-copy-light {
+  @include sprite(copy-light);
+}
+
+.o-icon-correct {
+  @include sprite(correct);
+}
+
+.o-icon-edit-alt {
+  @include sprite(edit-alt);
+}
+
+.o-icon-error {
+  @include sprite(error);
+}
+
+.o-icon-error-alt {
+  @include sprite(error-alt);
+}
+
+.o-icon-error-light {
+  @include sprite(error-light);
+}
+
+.o-icon-flip {
+  @include sprite(flip);
+}
+
+.o-icon-flip-dark {
+  @include sprite(flip-dark);
+}
+
+.o-icon-flip-light {
+  @include sprite(flip-light);
+}
+
+.o-icon-fullscreen {
+  @include sprite(fullscreen);
+}
+
+.o-icon-fullscreen-alt {
+  @include sprite(fullscreen-alt);
+}
+
+.o-icon-fullscreen-exit {
+  @include sprite(fullscreen-exit);
+}
+
+.o-icon-fullscreen-exit-alt {
+  @include sprite(fullscreen-exit-alt);
+}
+
+.o-icon-help {
+  @include sprite(help);
+}
+
+.o-icon-help-hov {
+  @include sprite(help-hov);
+}
+
+.o-icon-info {
+  @include sprite(info);
+}
+
+.o-icon-info-alt {
+  @include sprite(info-alt);
+}
+
+.o-icon-info-dark {
+  @include sprite(info-dark);
+}
+
+.o-icon-info-ol {
+  @include sprite(info-ol);
+}
+
+.o-icon-info-ol-light {
+  @include sprite(info-ol-light);
+}
+
+.o-icon-instruct {
+  @include sprite(instruct);
+}
+
+.o-icon-instruct-lg {
+  @include sprite(instruct-lg);
+}
+
+.o-icon-key-alt {
+  @include sprite(key-alt);
+}
+
+.o-icon-label {
+  @include sprite(label);
+}
+
+.o-icon-launch {
+  @include sprite(launch);
+}
+
+.o-icon-launch-alt {
+  @include sprite(launch-alt);
+}
+
+.o-icon-launch-dark {
+  @include sprite(launch-dark);
+}
+
+.o-icon-launch-small {
+  @include sprite(launch-small);
+}
+
+.o-icon-link {
+  @include sprite(link);
+}
+
+.o-icon-link-alt {
+  @include sprite(link-alt);
+}
+
+.o-icon-loading {
+  @include sprite(loading);
+}
+
+.o-icon-loading-alt {
+  @include sprite(loading-alt);
+}
+
+.o-icon-loop {
+  @include sprite(loop);
+}
+
+.o-icon-loop-alt {
+  @include sprite(loop-alt);
+}
+
+.o-icon-menu {
+  @include sprite(menu);
+}
+
+.o-icon-menu-hov {
+  @include sprite(menu-hov);
+}
+
+.o-icon-note-alt {
+  @include sprite(note-alt);
+}
+
+.o-icon-pause {
+  @include sprite(pause);
+}
+
+.o-icon-pause-alt {
+  @include sprite(pause-alt);
+}
+
+.o-icon-play {
+  @include sprite(play);
+}
+
+.o-icon-play-alt {
+  @include sprite(play-alt);
+}
+
+.o-icon-play-lg {
+  @include sprite(play-lg);
+}
+
+.o-icon-play-lg-alt {
+  @include sprite(play-lg-alt);
+}
+
+.o-icon-radio {
+  @include sprite(radio);
+}
+
+.o-icon-radio-chk {
+  @include sprite(radio-chk);
+}
+
+.o-icon-reference {
+  @include sprite(reference);
+}
+
+.o-icon-reference-hov {
+  @include sprite(reference-hov);
+}
+
+.o-icon-refresh {
+  @include sprite(refresh);
+}
+
+.o-icon-refresh-alt {
+  @include sprite(refresh-alt);
+}
+
+.o-icon-replay {
+  @include sprite(replay);
+}
+
+.o-icon-replay-alt {
+  @include sprite(replay-alt);
+}
+
+.o-icon-settings {
+  @include sprite(settings);
+}
+
+.o-icon-settings-alt {
+  @include sprite(settings-alt);
+}
+
+.o-icon-skip-back-alt {
+  @include sprite(skip-back-alt);
+}
+
+.o-icon-skip-fwd {
+  @include sprite(skip-fwd);
+}
+
+.o-icon-skip-fwd-alt {
+  @include sprite(skip-fwd-alt);
+}
+
+.o-icon-skip_back {
+  @include sprite(skip_back);
+}
+
+.o-icon-star {
+  @include sprite(star);
+}
+
+.o-icon-star-alt {
+  @include sprite(star-alt);
+}
+
+.o-icon-stop {
+  @include sprite(stop);
+}
+
+.o-icon-stop-alt {
+  @include sprite(stop-alt);
+}
+
+.o-icon-thumbs-down {
+  @include sprite(thumbs-down);
+}
+
+.o-icon-thumbs-up {
+  @include sprite(thumbs-up);
+}
+
+.o-icon-vol-off {
+  @include sprite(vol-off);
+}
+
+.o-icon-vol-off-alt {
+  @include sprite(vol-off-alt);
+}
+
+.o-icon-vol-on {
+  @include sprite(vol-on);
+}
+
+.o-icon-vol-on-alt {
+  @include sprite(vol-on-alt);
+}
+
+.o-icon-warning {
+  @include sprite(warning);
+}
+
+.o-icon-warning-alt {
+  @include sprite(warning-alt);
+}
+
+
+
+// ------------------------------------------------------------------
+// Icon wraps
+// wraps the icon
+// ------------------------------------------------------------------
+
+@mixin icon-circle (
+  $mh: 36px,
+  $is: 24px,
+  $bg: find-color(secondary),
+  $br: 50%,
+  $ib: inline-block
+) {
+  display: $ib;
+  padding: rem(($mh - $is) / 2);
+  background-color: $bg;
+  border-radius: $br;
+}
+
+.o-icon-circle {
+  @include icon-circle;
+
+  &--lg {
+    @include icon-circle(48px,24px,null,null,null);
+  }
+
+  &--xl {
+    @include icon-circle(60px,24px,null,null,null);
+  }
+
+  // generate colors
+  // @each $name, $color in $button-palette {
+  //   &-#{$name} {
+  //     background-color: $color;
+  //   }
+  // }
+
+}

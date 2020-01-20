@@ -1,0 +1,55 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SIMPLE BRANCH
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-branch1 {
+
+  > .o-box { height: 100%; }
+
+  &__target {
+    display: block;
+    @include gts-box-common;
+    margin-bottom: spacing(0.5);
+    @include typeset(lgp);
+    color: find-color(accent);
+    text-align: center;
+    background-color: find-color(white);
+    border: 2px solid lighten(find-color(primary, lighter),9%);
+    box-shadow: $base-shadow-common;
+    transition: all .2s ease;
+    border-radius: 3px;
+
+    &:hover,
+    &:focus {
+      color: find-color(primary,dark);
+      background-color: lighten(find-color(primary,lightest),6%);
+      border-color: find-color(primary,light);
+      cursor: pointer;
+    }
+
+    &--sm {
+      @include typeset(base);
+    }
+
+  }
+
+  &__directions {
+    position: relative;
+    padding-bottom: spacing(1);
+  }
+
+  &--june {
+    background-image: url(../img/asian-woman-holding-coffee.jpg);
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-color: find-color(gray,darker);
+
+  }
+
+}

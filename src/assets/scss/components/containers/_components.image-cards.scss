@@ -1,0 +1,146 @@
+///////////////////////////////////////////////////////////////////////
+//
+// IMAGE CARDS
+//
+// ///////////////////////////////////////////////////////////////////
+// https://codepen.io/tyrellrummage/pen/wqGgLO
+
+// CLASSES
+// ------------------------------------------------------------------
+
+$img-card: 'c-card-overlay';
+$img-card-media: '__media';
+$img-card-pos:   '__pos';
+$img-card-body:  '__body';
+$img-card-inner: '__inner';
+$img-card-back: '__back';
+$img-card-title: '__title';
+$img-card-small: '__small';
+
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+
+// Set-up
+$img-card-br:        6px;
+$img-card-bg:        find-color(black);
+$img-card-bg-o:      0.6;
+$img-card-bs-o:      0.65;
+$img-card-bs-dis:    40em;
+$img-card-bs-bg:     find-color(black);
+
+
+
+// PLACEHOLDERS
+// ------------------------------------------------------------------
+
+%img-card-overlay {
+  content:'';
+  position: absolute;
+  top:0;
+  right: 0;
+  bottom: 0;
+  left:0;
+}
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.#{$img-card} {
+  position: relative;
+  display: inline-block;
+  margin-bottom: spacing(1);
+  // border: 6px solid find-color(white);
+
+  &#{$img-card-media} {
+    overflow: hidden;
+    > img { transition: transform .25s ease-in-out; }
+  }
+
+  &#{$img-card-pos} {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    &:before {
+      @extend %img-card-overlay;
+      box-shadow: inset 0 ($img-card-bs-dis * -1) $img-card-bs-dis (($img-card-bs-dis / 2 ) * -1) rgba($img-card-bs-bg,$img-card-bs-o);
+    }
+
+  }
+
+  &#{$img-card-body} {
+    display: table;
+    width: 100%;
+    height: 100%;
+    color: find-color(white);
+  }
+
+  &#{$img-card-back} {
+    display: table;
+    width: 100%;
+    height: 100%;
+    background-color: find-color(white);
+    color: find-color(text);
+  }
+
+  &#{$img-card-inner} {
+    position: relative;
+    display: table-cell;
+    @include gts-box-common;
+    vertical-align: bottom;
+    text-align: left;
+    z-index: 1;
+  }
+
+  &#{$img-card-title} {
+    @include typeset(2);
+    font-weight: weight(light);
+    color: find-color(white);
+    margin-bottom: spacing(0.5);
+  }
+
+  &#{$img-card-small} {
+    font-size: font-size(xs);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: weight(light);
+  }
+
+  &:hover,
+  &:focus {
+    .#{$img-card}#{$img-card-media} {
+      > img { transform: scale(1.05); }
+    }
+  }
+
+
+  // Modifiers
+  // ---------------------------------------------------------------
+
+  &--top {
+    .#{$img-card}#{$img-card-pos} {
+      &:before {
+        box-shadow: inset 0 $img-card-bs-dis $img-card-bs-dis (($img-card-bs-dis / 2.75) * -1) rgba($img-card-bs-bg,$img-card-bs-o);
+      }
+    }
+    .#{$img-card}#{$img-card-inner} { vertical-align: top; }
+  }
+
+  &--middle {
+    .#{$img-card}#{$img-card-pos} {
+      &:before {
+        box-shadow: 0 0 0 0 rgba($img-card-bs-bg,0);
+        background-color: rgba($img-card-bs-bg,$img-card-bg-o);
+      }
+    }
+    .#{$img-card}#{$img-card-inner} { vertical-align: middle; }
+  }
+
+}
+

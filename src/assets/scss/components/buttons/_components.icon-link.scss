@@ -1,0 +1,35 @@
+///////////////////////////////////////////////////////////////////////
+//
+// ICON LINK
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.c-icon-link {
+  padding: rem(3px) spacing(1) rem(3px) rem(3px);
+  color: find-color(text);
+  background-color: find-color(white);
+  border: 2px solid find-color(border);
+  border-radius: spacing(2);
+  transition: all .4s ease;
+
+  &__circle {
+    @include icon-circle(32px,$bg:find-color(secondary));
+  }
+
+  &__text {
+    font-weight: weight(light);
+    padding-left: rem(6px);
+  }
+
+  &:hover,
+  &:focus {
+    color: find-color(secondary,dark);
+    border-color: find-color(secondary);
+    box-shadow: $base-shadow-common;
+    cursor: pointer;
+  }
+
+}

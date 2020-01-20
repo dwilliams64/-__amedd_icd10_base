@@ -1,0 +1,83 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE FOOTER
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.c-course-footer {
+  @include clearfix;
+  // background-color: find-color(primary,darkest);
+
+  @include breakpoint(medium) {
+    // border-bottom-right-radius: 9px;
+    // overflow: hidden;
+  }
+
+  &__progress {
+    padding-top: spacing(0.25);
+    padding-bottom: spacing(0.25);
+    text-align: center;
+  }
+
+  &__controls {
+    @include grid-row($size:null);
+    padding: spacing(0.25);
+    background-color: find-color(primary, dark);
+  }
+
+  @include breakpoint(medium) {
+
+    &__progress {
+      @include grid-column-size(4);
+      float: left;
+      text-align:left;
+    }
+
+    &__controls {
+      @include grid-column-size(8);
+      float: right;
+      border-bottom-right-radius: 24px;
+      border-bottom-left-radius: 9px;
+    }
+
+  }
+
+}
+
+  // Player wrapper
+  .c-course-player-wrap {
+    position: relative;
+    @include breakpoint(small) {
+      @include grid-column-size(12);
+      float: left;
+      padding-right: spacing(sm);
+    }
+
+    @include breakpoint(medium) {
+      @include grid-column-size(12);
+      float: left;
+      padding-right: spacing(sm);
+    }
+
+    @include breakpoint(large) {
+      @include grid-column-size(12);
+      float: left;
+      padding-right: spacing(sm);
+    }
+
+  }
+
+
+  // Pager wrapper
+  .c-course-pager-wrap {
+    @include breakpoint(medium) {
+      @include grid-column-size(5);
+      float: right;
+    }
+  }
+
+

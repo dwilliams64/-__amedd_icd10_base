@@ -1,0 +1,454 @@
+///////////////////////////////////////////////////////////////////////
+//
+// GTS Maps and Imports
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// Imports
+// ------------------------------------------------------------------
+@import 'settings/settings';
+
+
+
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// Base Units
+// ------------------------------------------------------------------
+$base-font-size:    15px; // use px
+$base-line-height:  24px; // use px
+$print-font-size:   12pt; // use pt
+$base-icon-size:    24px; // Based on most common svg files in svg/icons. Used for calculations
+
+$max-type-width:    100%; //40.625rem;
+
+// focus outline
+$base-outline-width: 1px;
+$base-outline-style: solid;
+$base-outline-color: #3399ff;
+
+// transitions
+$base-duration: 0.2s;
+$base-timing:   ease-in-out;
+
+$debug-baseline-grid:  false;
+$debug-baseline-color: rgba(#4affff,0.3);
+$debug-type-bg-color:  yellow;
+
+
+// relative gutters
+$base-gutter: ($base-line-height * 0.75) / $base-font-size * 1rem; //1.4vw;
+$base-gutter-md: ($base-line-height)/ $base-font-size * 1rem; //1.8vw;
+$base-gutter-lg: ($base-line-height * 1.5)/ $base-font-size * 1rem; //2.7vw;
+$base-gutter-pct: 1.507537688442211%;
+
+// focus outline
+$base-outline-width: 1px;
+$base-outline-style: solid;
+$base-outline-color: #3399ff;
+
+// $gutter-sm: map-get($grid-column-gutter, small) / 2;
+// $gutter-md: map-get($grid-column-gutter, medium) / 2;
+
+
+
+
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// ------------------------------------------------------------------
+// T Y P O G R A P H Y  M A P S
+// ------------------------------------------------------------------
+
+
+// Font Stacks
+// ------------------------------------------------------------------
+$system-serif:'georgia', serif;
+$system-mono: 'consolas','courier new','courier','lucida typewriter', monospace; //default
+$system-sans: 'arial', sans-serif;
+$robotoslab:  'roboto-slab','georgia', serif;
+$opensans:    'open sans',sans-serif;
+$roboto:      'roboto', 'segoe ui', sans-serif;
+$nunitosans:  'nunito sans',sans-serif;
+$lato:        'lato',sans-serif;
+
+
+// Typefaces
+// ------------------------------------------------------------------
+$typefaces: (
+  serif: $system-serif,
+  sans-serif: $roboto,
+  monospace: $system-mono,
+);
+
+
+// Font Sizes
+// ------------------------------------------------------------------
+$font-size: (
+huge: 48px,
+xxxl: 40px,
+ xxl: 30px,
+  xl: 22px,
+  lg: 20px,
+  md: 17px,
+base: $base-font-size,
+  sm: 13px,
+  xs: 11px,
+ xxs: 9px
+);
+
+
+// Font Weights
+// ------------------------------------------------------------------
+$font-weight: (
+  thin:       100,
+  extralight: 200,
+  light:      300,
+  normal:     400,
+  medium:     500,
+  semibold:   600,
+  bold:       700,
+  extrabold:  900,
+);
+
+
+// Common type combinations :: typeset($value)
+// ------------------------------------------------------------------
+//  Accepted Values
+//  $fs: font-size,
+//  $lh: line-height,
+//  $fw: font-weight,
+//  $ft: font-style,
+//  $tt: text-transform
+//  $ls: letter-spacing
+//  $mt: margin-top
+//  $mb: margin-bottom
+// ------------------------------------------------------------------
+$typestyles: (
+  small: (
+    'cover': (
+      fs: xxxl,
+      fw: normal,
+      lh: 48px,
+      mb: 0.5,
+    ),
+    '1': (
+      fs: xxxl,
+      lh: 48px,
+      mb: .75,
+    ),
+    '2': (
+      fs: xxl,
+      lh: 36px,
+      mb: 0.75,
+    ),
+    '3': (
+      fs: xl,
+      lh: 30px,
+      // fw: normal,
+      mb: 0.5,
+    ),
+    '4': (
+      fs: lg,
+      lh: 31px,
+      mb: 0.5,
+    ),
+    '5': (
+      fs: md,
+      fw: medium,
+      lh: 25px,
+      mb: 0.5,
+    ),
+    '6': (
+      fs: xs,
+      lh: 24px,
+      fw: bold,
+      tt: uppercase,
+      ls: 0.32em,
+      mb: 0.4rem,
+    ),
+   base: (
+     fs: base,
+     lh: 24px,
+    ),
+   small: (
+      fs: sm,
+      lh: 24px,
+    ),
+     lgp: (
+      fs: md,
+      lh: 27px,
+    ),
+    caption: (
+      fs: sm,
+      lh: 18px,
+    ),
+  ),
+  medium: (
+    'cover': (
+      fs: huge,
+      lh: 48px,
+      mb: 1,
+      ),
+  )
+);
+
+
+
+// ------------------------------------------------------------------
+// S P A C I N G  M A P S
+// ------------------------------------------------------------------
+
+
+// Common spacings :: Multiples of $base-line-height
+// ------------------------------------------------------------------
+$base-spacing: (
+ xxxl: 2.5,
+  xxl: 2,
+   xl: 1.5,
+   lg: 1.25,
+ base: 1,
+   md: 0.75,
+   sm: 0.5,
+   xs: 0.375,
+  xxs: 0.25,
+   xx: 0,
+    0: 0
+);
+
+
+// Common Heights :: Multiples of $base-line-height
+// ------------------------------------------------------------------
+$base-height: (
+ xxxl: 3,
+  xxl: 2.5,
+   xl: 2.25,
+   lg: 2,
+ base: 1.75,
+   md: 1.5,
+   sm: 1.25,
+   xs: 1,
+  xxs: 0.75,
+);
+
+
+
+// ------------------------------------------------------------------
+// C O L O R  M A P
+// ------------------------------------------------------------------
+
+
+// Color Palette :: find-color($key, $value);
+// ------------------------------------------------------------------
+$course-palette: (
+  primary:(
+    lightest: #efabfb,
+    lighter:  #d68ee2,
+    light:    #671d73,
+    default:  #42134a,
+    dark:     #37103e,
+    darker:   #300e36,
+    darkest:  #2a0c2f,
+  ),
+  secondary:(
+    lightest: #e9f4dd,
+    lighter:  #c9e3ab,
+    light:    #a9d379,
+    default:  #616161,
+    dark:     #4e7a4e,
+    darker:   #395939,
+    darkest:  #223622,
+  ),
+  accent:(
+    lightest: #d6e7e7,
+    lighter:  #99c3c4,
+    light:    #5c9fa1,
+    default:  #e491f2,
+    dark:     #154f51,
+    darker:   #0f393a,
+    darkest:  #092223,
+  ),
+  success:(
+    lightest: #e9f4dd,
+    lighter:  #c9e3ab,
+    light:    #a9d379,
+    default:  #89c348,
+    dark:     #587d2e,
+    darker:   #3f5921,
+    darkest:  #263614,
+  ),
+  warning:(
+    lightest: #fcefec,
+    lighter:  #fae0da,
+    light:    #ec866b,
+    default:  #d4441c, //#e55934,
+    dark:     #923922,
+    darker:   #3f190f,
+    darkest:  #3f190f,
+  ),
+  alert:(
+    lightest: #f2dadd,
+    lighter:  #e0a3aa,
+    light:    #ce6c77,
+    default:  #bc3644,
+    dark:     #78232c,
+    darker:   #56191f,
+    darkest:  #340f13,
+  ),
+  info:(
+    lightest: #e6dbf1,
+    lighter:  #c0a6de,
+    light:    #9b71ca,
+    default:  #763cb7,
+    dark:     #4c2775,
+    darker:   #361c54,
+    darkest:  #211132,
+  ),
+  highlight:(
+    lightest: #fdf5dc,
+    lighter:  #fce7a8,
+    light:    #fad974,
+    default:  #f9cb40,
+    dark:     #9f8229,
+    darker:   #725d1e,
+    darkest:  #443812,
+  ),
+  gray:(
+    bg:       #f5f6f6, //#f8f8f9,
+    lightest: #f0f1f2,
+    lighter:  #babfc3,
+    light:    #91999f,
+    default:  #69747c,
+    dark:     #434a4f,
+    darker:   #303539,
+    darkest:  #141617,
+  ),
+  text: (
+    default: #434a4f,
+    light: #69747c,
+    dark: #141617,
+  ),
+  border:(
+    default: #dee1e2,
+    light:   lighten(#dee1e2, 5%),
+    dark:    darken(#dee1e2, 10%),
+  ),
+  white:(
+    default: #fefefe,
+  ),
+  black:(
+    default: #0a0a0a,
+  )
+);
+
+
+// ------------------------------------------------------------------
+// S H A D O W  M A P
+// ------------------------------------------------------------------
+
+
+// Common Shadow Depths
+// ------------------------------------------------------------------
+$base-shadow-color: black;
+$base-shadow-opacity: 0.15;
+$base-shadow: (
+ 0: (
+    depth:   0 0 0 0,
+    opacity: 0,
+  ),
+ 1: (
+    depth:   0 2px 4px 0,
+    opacity: $base-shadow-opacity,
+  ),
+ 2: (
+    depth:   0 4px 8px 0,
+    opacity: $base-shadow-opacity,
+  ),
+ 3: (
+    depth:   0 8px 18px 0,
+    opacity: $base-shadow-opacity,
+  ),
+ 4: (
+    depth:   0 12px 32px 0,
+    opacity: $base-shadow-opacity,
+  ),
+ 5: (
+    depth:   0 24px 64px 0,
+    opacity: $base-shadow-opacity,
+  ),
+ 6: (
+    depth: 0px 20px 48px -9px,
+    opacity: 0.43
+  )
+);
+$base-shadow-common: 0px 20px 48px -9px rgba(0,0,0,0.43);
+
+
+// ------------------------------------------------------------------
+// U T I L I T Y  M A P S
+// ------------------------------------------------------------------
+
+
+// Directions
+// ------------------------------------------------------------------
+
+$util-directions: (
+  null:  null,
+  't':  'top',
+  'r':  'right',
+  'b':  'bottom',
+  'l':  'left',
+  'lr': 'left' 'right',
+  'tb': 'top' 'bottom',
+ 'all': 'top' 'right' 'bottom' 'left',
+);
+
+
+// Properties
+// ------------------------------------------------------------------
+
+$util-properties: (
+  'bg': 'background-color',
+  'bs': 'box-shadow',
+  'fc': 'color',
+  'fs': 'font-size',
+  'm':  'margin',
+  'p':  'padding',
+);
+
+
+// Breakpoints
+// ------------------------------------------------------------------
+// See settings file
+
+
+// Prefixes
+// ------------------------------------------------------------------
+
+$util-prefix: (
+  class: '.-',
+  chain: '&-',
+    mod: '&--',
+   util: '.u-',
+);
+
+$util-prefix-bp: \@;
+
+
+// Min-Heights
+// ------------------------------------------------------------------
+$base-title-height: (54px / $base-font-size) * 1rem;
+$base-title-bw: (6px / $base-font-size) * 1rem;
+
+// full content area
+$base-mh: (532px / $base-font-size) * 1rem;
+// full content minue page title
+$base-mh-w-title: $base-mh - ($base-title-height + $base-title-bw);
+
+// content area with margins
+$base-mh-pad: (496px / $base-font-size) * 1rem;
+// content area with margins minus page title
+$base-mh-pad-w-title: $base-mh-pad - ($base-title-height + $base-title-bw);

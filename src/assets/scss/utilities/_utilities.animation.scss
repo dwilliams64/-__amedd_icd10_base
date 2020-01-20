@@ -1,0 +1,18 @@
+///////////////////////////////////////////////////////////////////////
+//
+// ANIMATION CLASSES
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VELOCITY JS
+// -------------------------------------------------------------------
+
+.v-enter { opacity: 0; display: none; }
+.v-exit  { opacity: 1; }
+.v-intro { opacity: 0; z-index: 0; }
+.v-hide  { opacity: 0; z-index: 0; }
+.v-seq   { > * { opacity: 0; } }
+.v-stagger-list,
+.v-stagger-flip { opacity: 0; }
+.v-anim-initial {opacity: 1; display: block; }

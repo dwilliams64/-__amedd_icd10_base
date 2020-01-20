@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #606009;
+      }
+
+      .cls-2 {
+        fill: #603d60;
+      }
+
+      .cls-3 {
+        fill: #60ba60;
+      }
+
+      .cls-4 {
+        fill: #b36060;
+      }
+
+      .cls-5 {
+        fill: #ff72ff;
+      }
+    </style>
+  </defs>
+  <title>circle-diagram</title>
+  <g id="cdq1">
+    <path class="cls-1" d="M306,172C182.29,172,82,272.29,82,396H306Z"/>
+  </g>
+  <g id="cdq2">
+    <path class="cls-2" d="M306,172V396H530C530,272.29,429.71,172,306,172Z"/>
+  </g>
+  <g id="cdq3">
+    <path class="cls-3" d="M306,620c123.71,0,224-100.29,224-224H306Z"/>
+  </g>
+  <g id="cdq4">
+    <path class="cls-4" d="M82,396c0,123.71,100.29,224,224,224V396Z"/>
+  </g>
+  <g id="cdq5">
+    <circle class="cls-5" cx="306" cy="396" r="112"/>
+  </g>
+</svg>

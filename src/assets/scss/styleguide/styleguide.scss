@@ -1,0 +1,540 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Styleguide
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// Imports
+// ------------------------------------------------------------------
+@import '../gts';
+@import '../tools/tools';
+@import '../settings';
+@import '../objects/objects';
+@import '../utilities/utilities';
+
+
+
+// Debug
+// ------------------------------------------------------------------
+@if $debug-baseline-grid == true {
+  p,ul,ol,dl,h1,h2,h3,h4,h5,h6,blockquote,q {
+    background-color: rgba($debug-type-bg-color, 0.3) !important;
+  }
+}
+
+
+
+// Styleguide
+// ------------------------------------------------------------------
+
+$ss-pad: 2.01vw;
+
+html { padding: 0; margin:0; }
+
+// Layout
+// ------------------------------------------------------------------
+
+.ss-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  background-color: find-color(white);
+  overflow: hidden;
+}
+
+.ss-docs {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+
+  &__hdr {
+    flex: 0 48px;
+    display: flex;
+    z-index: 100;
+    margin-top: 0;
+    align-items: center;
+    jusitfy-content: center;
+    background-color: find-color(white);
+    border-bottom: 1px solid find-color(border,light);
+    // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  }
+
+  &__toggle {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    display: flex;
+    align-items: center;
+    jusitfy-content: center;
+    width: 36px;
+    height: 36px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 10px;
+      width: 20px;
+      height: 3px;
+      background: black;
+      box-shadow:
+        0 6px 0 0 black,
+        0 12px 0 0 black;
+    }
+
+    @include breakpoint(medium) {
+      display: none;
+    }
+
+  }
+
+  &__title {
+    overflow: hidden;
+    display: block;
+    @include typeset(3);
+    line-height: 48px;
+    text-align: center;
+    margin: 0 auto;
+    text-transform: capitalize;
+  }
+
+  &__nav {
+    display: none;
+    flex: 0 0 256px;
+    overflow: auto;
+    order: 0;
+    background-color: find-color(gray,bg);
+
+    @include breakpoint(small only) {
+      position: absolute;
+      top: 0;
+      left: -256px;
+      width: 256px;
+      height: 100%;
+      display: block;
+      z-index: 200;
+      border-right: 0;
+      transition: all 0.2s ease;
+    }
+
+    &.is-open {
+      left: 0;
+      box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.24);
+    }
+
+    @include breakpoint(medium) {
+      display: block;
+      border-right: 1px solid find-color(border,light);
+    }
+
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    order: 1;
+    overflow: auto;
+    padding: 0 spacing(1);
+  }
+
+  .ss-docs-expand {
+    width: 90%;
+    max-width: 90%;
+    margin-top: spacing(1);
+  }
+
+  &__inner {
+    @include breakpoint(medium) {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &__menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 1.25vw;
+    border-top: 1px solid find-color(border,light);
+
+    > li > a {
+      display: block;
+      padding: 3px 0;
+      font-weight: weight(bold);
+      color: find-color(text,dark);
+      border-bottom: 1px solid find-color(border,light);
+      text-transform: capitalize;
+    }
+
+    .ss-docs__menu {
+      border-top: 0;
+      margin:0;
+
+      > li > a {
+        color: find-color(text,light);
+        font-weight: weight(light);
+        text-transform: lowercase;
+
+        &:hover {
+          transform: translateX(5px);
+          color: find-color(primary);
+        }
+
+
+      }
+
+    }
+
+  }
+
+
+}
+
+
+// ------------------------------------------------------------------
+
+.ss-code {
+  position: relative;
+  margin-bottom: spacing(1);
+}
+
+.ss-code__working {
+  position: relative;
+  padding: $ss-pad;
+  border: 1px solid find-color(border);
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  @include clearfix;
+  // min-height: 200px;
+
+  > * {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+
+  .o-flip  {
+    max-width: 400px;
+  }
+
+}
+
+.ss-code__example {
+  position: relative;
+  margin: 0;
+  color: find-color(gray,text);
+  background-color: white; //#f8f8f8;
+  border: 1px solid find-color(border);
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+
+  > summary {
+    padding: spacing(0.25) $ss-pad spacing(0.25) ($ss-pad / 2);
+    outline: none;
+  }
+
+  pre {
+    border-top: 1px solid find-color(border);
+    white-space:normal;
+  }
+
+  code {
+    padding: $ss-pad;
+    border: 0;
+    margin-bottom: 0;
+    border-radius: 0 0 5px 5px;
+    overflow-x: auto;
+    white-space:pre;
+  }
+
+}
+
+
+pre {
+  position: relative;
+  overflow: auto;
+
+  > code {
+    display: block;
+    padding: $ss-pad;
+    border: 0;
+    margin-bottom: 0;
+    border-radius: 0 0 5px 5px;
+    overflow-x: auto;
+  }
+
+}
+
+// hides code that is copied
+.ss-code__hidden,
+.ss-hide-code {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+.ss-clip {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 10;
+  background-color: find-color(gray,bg);
+  border: 2px solid find-color(gray,bg);
+  font-size: font-size(xs);
+  padding: spacing(0.375);
+  border-radius: 24px;
+  transition: all .5s ease;
+
+  &:hover {
+    border-color: green;
+    cursor: pointer;
+  }
+
+  &.is-copied {
+    color: find-color(white);
+    background-color: green;
+    border-color: green;
+    .o-icon { @include sprite-position(check-small-light); }
+  }
+
+}
+
+#ss-clip-full {
+  position: fixed;
+  top: 2%;
+  right: 2%;
+}
+
+
+.c-list__item .ss-clip {
+  padding: spacing(.125);
+  top: 6px;
+}
+
+.ss-section:not(:last-child) {
+  padding-bottom: 4rem;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 4rem;
+}
+
+
+// colors
+.ss-cc-row {
+  @include clearfix;
+}
+
+.ss-cc {
+  position: relative;
+  display: block;
+  float: left;
+  width: 31%;
+  margin-left: 0%;
+  margin-right: 2%;
+  margin-bottom: spacing(1);
+  overflow: auto;
+  background-color: find-color(white);
+}
+
+
+
+// Set color blocks within container
+// ------------------------------------------------------------------
+
+.ss-cc__item {
+  position: relative;
+  display: block; //table-cell;
+  height: 100%;
+}
+
+// Generate classes for each variant
+@each $color-name, $names in $course-palette {
+  .ss-cc--#{$color-name} {
+
+    &:before {
+      content:'#{$color-name}';
+      display: block;
+      width: 100%;
+      text-align: center;
+      @include typeset(6);
+      font-weight: weight(normal);
+      background-color: find-color(white);
+    }
+
+    @each $color-variant, $variant in $names {
+      .ss-cc__item--#{$color-variant} {
+        background-color: find-color($color-name, $color-variant);
+
+        &:after {
+          content:'#{$color-variant}';
+          bottom: 0;
+          left: 0;
+          right: 0;
+          text-align: center;
+          display: block;
+          font-size: font-size(xs);
+          line-height: line-height(1.5);
+          color: color-pick-contrast(find-color($color-name, $color-variant));
+        }
+
+      }
+    }
+
+  }
+}
+
+
+
+// typography intro
+// ------------------------------------------------------------------
+
+.ss-type {
+  border: 1px solid find-color(border);
+  width: 100%;
+  margin-bottom: spacing(1);
+  text-align: center;
+
+  @include breakpoint(medium) {
+    display: table;
+    text-align: left;
+  }
+
+  &--headings { font-family:$header-font-family; color: $header-color; }
+  &--body { font-family:$body-font-family;  color: $body-font-color }
+  &--code { font-family:$font-family-monospace; color: $body-font-color; }
+
+  &__letter {
+    padding: $ss-pad;
+    font-size: spacing(3);
+    line-height: 1;
+    vertical-align: middle;
+    min-width: 120px;
+
+    @include breakpoint(medium) {
+      text-align: center;
+      display: table-cell;
+    }
+
+  }
+
+  &__example {
+    padding: $ss-pad;
+    border-top: 1px solid find-color(border);
+
+    @include breakpoint(medium) {
+      display: table-cell;
+      height: 100%;
+      width: 80%;
+      vertical-align: middle;
+      border-top: 0;
+      border-left: 1px solid find-color(border);
+    }
+
+  }
+
+}
+
+.ss-type-label {
+  padding: spacing(.25) spacing(.5);
+  border: 1px solid find-color(border);
+  border-bottom: 0;
+  text-align: center;
+
+  &:after {
+    // content:'';
+    font-weight: weight(bold);
+  }
+
+  &--headings:after { content: ' #{$header-font-family}' }
+  &--body:after { content: ' #{$body-font-family}' }
+  &--code:after { content: ' #{$font-family-monospace}' }
+
+  @include breakpoint(medium) { text-align: left; }
+
+}
+
+
+.ss-type__row {
+  position: relative;
+  width: 100%;
+  // text-align: center;
+  border-bottom: 1px solid find-color(border);
+  margin-bottom: spacing(1);
+
+  .ss-label {
+    @include typeset(6);
+    margin: 0;
+    width: 100%;
+    &:after {
+      content: '#{$body-font-family}';
+    }
+  }
+
+}
+
+.ss-type__alpha {
+  vertical-align: middle;
+  @include pad(0.5);
+  letter-spacing: 0.06em;
+
+  @include breakpoint(medium) {
+    display: table-cell;
+    text-align: left;
+  }
+
+}
+
+
+// Set blocks to illustrate utilities
+// ------------------------------------------------------------------
+
+.ss-block {
+  @include clearfix;
+  display: block;
+  margin: 0;
+  margin-bottom: spacing(1) !important;
+  padding: 0;
+  text-align: center;
+  background-color: find-color(gray,lightest); //show margin
+
+  &__inner {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__text {
+    display: block;
+    margin: 0;
+    padding: 4px 12px;
+    overflow: hidden;
+  }
+
+  &--bs {
+    .ss-block__text {
+      padding: 24px;
+    }
+  }
+
+  &--mb {
+    background-color: #f7ca9c; //show margin
+
+    .ss-block__inner {
+    background-color: #c3dfb7; //show padding
+    }
+
+    .ss-block__text {
+      background-color: #9fc5e7; // selected area
+    }
+
+  }
+
+}

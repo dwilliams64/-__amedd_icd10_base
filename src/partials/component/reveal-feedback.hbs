@@ -1,0 +1,16 @@
+<div data-closable class='reveal tiny c-feedback {{#if fbType}}is-fb-{{fbType}}{{else}}reveal--basic{{/if}} {{fbClass}}'
+  data-reveal
+  id='{{fbID}}'
+  data-v-in='{{#if fbIn}}{{fbIn}}{{else}}expandIn{{/if}}'
+  data-v-out='{{#if fbOut}}{{fbOut}}{{else}}expandOut{{/if}}'
+  data-v-display='{{#if fbDisplay}}{{fbDisplay}}{{else}}table{{/if}}'
+  aria-labelledby='{{fbID}}'>
+
+  <div class='c-feedback__inner'>
+    <h4 class='c-feedback__heading'>{{fbTitle}}</h4>
+    {{#if @partial-block}}
+    {{> @partial-block}}
+    {{/if}}
+  </div>
+
+</div>

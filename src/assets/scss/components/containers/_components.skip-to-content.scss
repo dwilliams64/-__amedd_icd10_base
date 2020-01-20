@@ -1,0 +1,20 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Skip to Content
+//
+// ///////////////////////////////////////////////////////////////////
+
+.skip-to-content {
+  @include element-invisible;
+  display: block;
+  padding: spacing(0.25);
+  text-align: center;
+  background-color: white;
+}
+
+.skip-to-content:focus {
+  @include element-invisible-off;
+  z-index: 10000;
+}
+
+

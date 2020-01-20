@@ -1,0 +1,47 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Debug Images
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// ------------------------------------------------------------------
+// Missing image/alt
+// ------------------------------------------------------------------
+
+.u-missing-img {
+  position: relative;
+  display: inline-block;
+
+  &:after {
+    content: 'Img Missing';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 90%;
+    margin: 0;
+    display: block;
+    padding: 4px 16px;
+    background-color: find-color(alert);
+    font-size: font-size(sm);
+    color: #fff;
+    text-align: center;
+    border-radius: 16px;
+    transform: translateY(-52%) translateX(-50%);
+  }
+
+}
+
+.u-missing--both {
+  &:after {
+    content: 'Img & Alt Text Missing';
+  }
+}
+
+.u-missing--alt {
+
+  &:after {
+    content: 'Alt Text Missing';
+  }
+
+}

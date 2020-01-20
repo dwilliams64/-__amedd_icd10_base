@@ -1,0 +1,66 @@
+///////////////////////////////////////////////////////////////////////
+//
+// BASELINE DEBUG GRID
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+@mixin debug-baseline-grid($line-height: $base-line-height, $context: $base-font-size, $color: $debug-baseline-color, $visible: $debug-baseline-grid) {
+  @if $visible == true {
+    // $allowed-types: "multiplier", "px";
+    // $type: typey-validator($line-height, $allowed-types);
+    $grid-height: 0;
+    // @if $line-height-method == "rhythm" {
+    //   $grid-height: line-height($line-height, $context);
+    // }
+    // @if $line-height-method == "ratio" {
+    //   @if $line-height == $base-line-height {
+    //     $grid-height: line-height($base-line-height-ratio, $context) * 1em;
+    //   }
+    //   @else {
+        $grid-height: rem($base-line-height); //line-height($line-height, $context) * 1em;
+      // }
+    // }
+
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-image:
+        // Baseline height
+        repeating-linear-gradient(
+            180deg,
+            $color,
+            $color 1px,
+            transparent 1px,
+            transparent ($grid-height)
+          ),
+          // Half of baseline height
+          repeating-linear-gradient(
+            180deg,
+            lighten($color, 10%),
+            lighten($color, 10%) 1px,
+            transparent 1px,
+            transparent ($grid-height / 2)
+            ),
+          // quarter of baseline height
+          repeating-linear-gradient(
+            180deg,
+            lighten($color, 20%),
+            lighten($color, 20%) 1px,
+            transparent 1px,
+            transparent ($grid-height / 4)
+          );
+      // z-index: -1;
+    }
+
+  }
+}
+

@@ -1,0 +1,420 @@
+///////////////////////////////////////////////////////////////////////
+//
+// HEADERS
+//
+// ///////////////////////////////////////////////////////////////////
+
+// These are containers that wrap headings and headers themselves follow BEM
+
+// ------------------------------------------------------------------
+// heading variables
+// ------------------------------------------------------------------
+$pg-hdr-class: 'c-header';
+$pg-hdr-mh: get-height($base-title-height);
+
+$pg-hdr-fs: font-size(xl);
+$pg-hdr-fw: weight(normal);
+$pg-hdr-lh: 1.25;
+$pg-hdr-fc: find-color(gray, darker);
+
+$pg-hdr-pad-lr: spacing(base);
+$pg-hdr-pad-tb: pad-height($pg-hdr-mh,$pg-hdr-lh,0);
+
+// dark
+$pg-hdr-dark-bg: find-color(primary, darkest);
+$pg-hdr-dark-bc: find-color(secondary);
+$pg-hdr-dark-bw: $base-title-bw;
+$pg-hdr-dark-fc: find-color(white);
+$pg-hdr-dark-fs: $pg-hdr-fs;
+$pg-hdr-dark-fw: weight(light);
+$pg-hdr-dark-lh: $pg-hdr-lh;
+
+// alt
+$pg-hdr-alt-bg: find-color(secondary, dark);
+$pg-hdr-alt-bc: find-color(secondary);
+$pg-hdr-alt-bw: $pg-hdr-dark-bw;
+$pg-hdr-alt-fc: find-color(white);
+$pg-hdr-alt-fs: $pg-hdr-fs;
+$pg-hdr-alt-fw: $pg-hdr-dark-fw;
+$pg-hdr-alt-lh: $pg-hdr-lh;
+
+// light
+$pg-hdr-light-bg: find-color(gray, lightest);
+$pg-hdr-light-bc: find-color(secondary);
+$pg-hdr-light-bw: $pg-hdr-dark-bw;
+$pg-hdr-light-fc: $pg-hdr-fc;
+$pg-hdr-light-fs: $pg-hdr-fs;
+$pg-hdr-light-fw: $pg-hdr-dark-fw;
+$pg-hdr-light-lh: $pg-hdr-lh;
+
+// page
+$pg-hdr-page-bg: find-color(white);
+$pg-hdr-page-bc: find-color(border);
+$pg-hdr-page-bw: $pg-hdr-dark-bw;
+$pg-hdr-page-fc: $pg-hdr-fc;
+$pg-hdr-page-fs: $pg-hdr-fs; //font-size(xxl);
+$pg-hdr-page-fw: weight(light); //$pg-hdr-dark-fw;
+$pg-hdr-page-lh: $pg-hdr-lh;
+
+// lsn
+$pg-hdr-lsn-bg: find-color(primary, dark);
+$pg-hdr-lsn-bc: find-color(secondary);
+$pg-hdr-lsn-bw: $pg-hdr-dark-bw;
+$pg-hdr-lsn-fc: find-color(white);
+$pg-hdr-lsn-fs: $pg-hdr-fs;
+$pg-hdr-lsn-fw: weight(light);
+$pg-hdr-lsn-lh: $pg-hdr-lh;
+
+
+// Simple
+$pg-hdr-smp-bg: null; //find-color(gray,lightest);
+$pg-hdr-smp-bc: find-color(gray,lightest);
+$pg-hdr-smp-bw: $pg-hdr-dark-bw;
+$pg-hdr-smp-fc: find-color(text, dark);
+$pg-hdr-smp-fs: null;
+$pg-hdr-smp-fw: weight(normal);
+$pg-hdr-smp-lh: $pg-hdr-lh;
+
+
+// ------------------------------------------------------------------
+// heading styles
+// ------------------------------------------------------------------
+
+// base styles
+@mixin header-base(
+  $mh:   $pg-hdr-mh,
+  $lh:   $pg-hdr-lh,
+  $bw:   1px,
+  $bc:   transparent,
+  $plr:  $pg-hdr-pad-lr
+) {
+
+  position: relative;
+  margin: 0;
+  padding-top: spacing(px($pg-hdr-pad-tb)) + spacing(1px);
+  padding-bottom: spacing(px($pg-hdr-pad-tb)) - spacing(1px);
+  padding-left: $plr;
+  padding-right: $plr;
+
+  @if $bw >= 0 {
+    border-bottom-width: $bw;
+    border-bottom-style: solid;
+    border-bottom-color: $bc;
+  }
+}
+
+// header styles
+@mixin header-style (
+  $type: 'default',
+  $mh:   $pg-hdr-mh,
+  $lh:   $pg-hdr-lh,
+  $bw:   1px
+) {
+
+  @if $type == dark {
+    border-bottom-width: $pg-hdr-dark-bw;
+    border-bottom-color: $pg-hdr-dark-bc;
+    @include bg-dark-blue;
+    // background-color: $pg-hdr-dark-bg;
+    // background-image: url(../img/bg-content-blue.png);
+    // background-repeat: no-repeat;
+    // background-position: top right;
+  }
+
+  @if $type == alt {
+    border-bottom-width: $pg-hdr-alt-bw;
+    border-bottom-color: $pg-hdr-alt-bc;
+    background-color: $pg-hdr-alt-bg;
+    background-image: url(../img/bg-header-alt.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+  }
+
+  @if $type == light {
+    border-bottom-width: $pg-hdr-light-bw;
+    border-bottom-color: $pg-hdr-light-bc;
+    background-color: $pg-hdr-light-bg;
+  }
+
+  @if $type == page {
+    border-bottom: 0;
+    padding-top: spacing(px($pg-hdr-pad-tb * 2.4));
+    padding-bottom: 0;
+    margin-bottom: spacing(px($pg-hdr-pad-tb * 0.325)) * -1;
+  }
+
+    @if $type == simple {
+    // border-top-width: $pg-hdr-smp-bw;
+    // border-top-color: $pg-hdr-smp-bc;
+    // border-top-style: solid;
+    border-bottom-style: none;
+    padding-top: spacing(1.25);
+    padding-bottom: 0;
+    // padding-top: spacing(1.25);
+    // padding-bottom:0;
+    // border-bottom-width: $pg-hdr-smp-bw;
+    // border-bottom-color: $pg-hdr-smp-bc;
+    // background-color: $pg-hdr-smp-bg;
+    // &:after {
+    //   content:'';
+    //   display: block;
+    //   height: $pg-hdr-smp-bw / 2;
+    //   width: 100%;
+    //   margin-top: spacing(0.875);
+    //   background-color: find-color(border);
+    // }
+  }
+
+  @if $type == lsn {
+    border-bottom-width: $pg-hdr-lsn-bw;
+    border-bottom-color: $pg-hdr-lsn-bc;
+    background-color: $pg-hdr-lsn-bg;
+    background-image: url(../img/bg-content-purple.png);
+    background-position: center -6px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+}
+
+// Styles the heading text
+@mixin heading-style(
+  $type: default,
+  $fs:   $pg-hdr-fs,
+  $lh:   $pg-hdr-lh,
+  $fc:   $pg-hdr-fc,
+  $fw:   $pg-hdr-fw
+) {
+
+ @if $type == default {
+    margin: 0;
+    color: $fc;
+    font-size: $fs;
+    font-weight: $fw;
+    line-height: line-height($lh);
+  }
+
+  @if $type == dark {
+    @if $pg-hdr-dark-fc != $pg-hdr-fc {
+      color: $pg-hdr-dark-fc;
+    }
+    @if $pg-hdr-dark-fs != $pg-hdr-fs {
+      font-size: $pg-hdr-dark-fs;
+    }
+    @if $pg-hdr-dark-fw != $pg-hdr-fw {
+      font-weight: $pg-hdr-dark-fw;
+    }
+    @if $pg-hdr-dark-lh != $pg-hdr-lh {
+      font-weight: $pg-hdr-dark-lh;
+    }
+  }
+
+  @if $type == alt {
+    @if $pg-hdr-alt-fc != $pg-hdr-fc {
+      color: $pg-hdr-alt-fc;
+    }
+    @if $pg-hdr-alt-fs != $pg-hdr-fs {
+      font-size: $pg-hdr-alt-fs;
+    }
+    @if $pg-hdr-alt-fw != $pg-hdr-fw {
+      font-weight: $pg-hdr-alt-fw;
+    }
+    @if $pg-hdr-alt-lh != $pg-hdr-lh {
+      font-weight: $pg-hdr-alt-lh;
+    }
+  }
+
+  @if $type == light {
+    @if $pg-hdr-light-fc != $pg-hdr-fc {
+      color: $pg-hdr-light-fc;
+    }
+    @if $pg-hdr-light-fs != $pg-hdr-fs {
+      font-size: $pg-hdr-light-fs;
+    }
+    @if $pg-hdr-light-fw != $pg-hdr-fw {
+      font-weight: $pg-hdr-light-fw;
+    }
+    @if $pg-hdr-light-lh != $pg-hdr-lh {
+      font-weight: $pg-hdr-light-lh;
+    }
+  }
+
+  @if $type == lsn {
+    @if $pg-hdr-lsn-fc != $pg-hdr-fc {
+      color: $pg-hdr-lsn-fc;
+    }
+    @if $pg-hdr-lsn-fs != $pg-hdr-fs {
+      font-size: $pg-hdr-lsn-fs;
+    }
+    @if $pg-hdr-lsn-fw != $pg-hdr-fw {
+      font-weight: $pg-hdr-lsn-fw;
+    }
+    @if $pg-hdr-lsn-lh != $pg-hdr-lh {
+      font-weight: $pg-hdr-lsn-lh;
+    }
+  }
+
+  @if $type == simple {
+    @if $pg-hdr-smp-fc != $pg-hdr-fc {
+      color: $pg-hdr-smp-fc;
+    }
+    @if $pg-hdr-smp-fs != $pg-hdr-fs {
+      font-size: $pg-hdr-smp-fs;
+    }
+    @if $pg-hdr-smp-fw != $pg-hdr-fw {
+      font-weight: $pg-hdr-smp-fw;
+    }
+    @if $pg-hdr-smp-lh != $pg-hdr-lh {
+      font-weight: $pg-hdr-smp-lh;
+    }
+
+  }
+
+  @if $type == page {
+    @if $pg-hdr-page-fc != $pg-hdr-fc {
+      color: $pg-hdr-page-fc;
+    }
+    @if $pg-hdr-page-fs != $pg-hdr-fs {
+      font-size: $pg-hdr-page-fs;
+    }
+    @if $pg-hdr-page-fw != $pg-hdr-fw {
+      font-weight: $pg-hdr-page-fw;
+    }
+    @if $pg-hdr-page-lh != $pg-hdr-lh {
+      font-weight: $pg-hdr-page-lh;
+    }
+
+    &:before {
+      content:'';
+      position: absolute;
+      top: spacing(px($pg-hdr-pad-tb * 2.25));
+      bottom: 1px;
+      left: 0;
+      display: block;
+      width: 3px;
+      background-color: find-color(secondary);
+    }
+
+  }
+
+}
+
+// header mixins combined
+@mixin header (
+  $mh:   $pg-hdr-mh,
+  $lh:   $pg-hdr-lh,
+  $bg:   transparent,
+  $bw:   1px,
+  $bc:   find-color(border,light),
+  $plr:  $pg-hdr-pad-lr
+) {
+  .#{$pg-hdr-class} {
+    @include header-base($mh,$lh,$bw);
+
+    &__title {
+      @include heading-style(default);
+    }
+
+    &__lsn {
+      color: find-color(secondary);
+    }
+
+    // sizes
+    @each $size, $key in $base-height {
+      $pad-variant: pad-height($size, $lh, $bw);
+
+      &.-#{$size},
+      &--#{$size} {
+        padding-top: spacing($pad-variant);
+        padding-bottom: spacing($pad-variant);
+      }
+    }
+
+    // dark
+    &--dark {
+      @include header-style(dark);
+
+      .#{$pg-hdr-class}__title {
+        @include heading-style(dark);
+      }
+
+    }
+
+    // light
+    &--light {
+      @include header-style(light);
+
+      .#{$pg-hdr-class}__title {
+        @include heading-style(light);
+      }
+
+    }
+
+    // light
+    &--lsn {
+      @include header-style(lsn);
+
+      .#{$pg-hdr-class}__title {
+        @include heading-style(lsn);
+      }
+
+    }
+
+    // alt
+    &--alt {
+      @include header-style(alt);
+
+      .#{$pg-hdr-class}__title {
+        @include heading-style(alt);
+      }
+
+    }
+
+    // page
+    // &--page {
+      // @include header-style(page);
+
+      // .#{$pg-hdr-class}__title {
+        // @include heading-style(page);
+    // }
+
+    // simple
+    &--simple {
+      @include header-style(simple);
+
+      .#{$pg-hdr-class}__title {
+        @include heading-style(simple);
+      }
+
+    }
+
+  }
+
+}
+
+@include header;
+
+
+.c-page-title {
+  position: relative;
+  font-size: font-size(24px);
+  font-weight: weight(light);
+  line-height: $pg-hdr-lh;
+  color: $pg-hdr-fc;
+  margin-top: spacing(0.5);
+  margin-bottom: spacing(0.75);
+  padding-left: spacing(1);
+  margin-left: spacing(1) * -1;
+
+  &:before {
+    content:'';
+    width: 5px;
+    position: absolute;
+    left: 0;
+    top: spacing(0.125);
+    height: spacing(1);
+    display: block;
+    background-color: find-color(secondary,light);
+  }
+
+}

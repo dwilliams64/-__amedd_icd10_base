@@ -1,0 +1,77 @@
+///////////////////////////////////////////////////////////////////////
+//
+// OUTPUTTER
+//
+// ///////////////////////////////////////////////////////////////////
+
+// -------------------------------------------------------------------------
+// Returns everything as a rem unit to play nice with others
+// -------------------------------------------------------------------------
+@function output-rem ($x: 1, $lh: $base-line-height, $unit: rem, $map: $base-spacing, $context: $base-font-size) {
+
+  // is it a string or number?
+  $type: type_of($x);
+
+  $n: $x;
+
+  @if $type == 'null' {
+    @return null;
+  }
+
+  // it's a string!!
+  @if $type == string {
+
+    // check if value is in the selected map?
+    @if map-has-key($map, $x) {
+
+      $n: map-get($map, $x);
+
+      @if unitless($n) {
+
+        // if unitless act as a multiplier
+        @return rem($n * ($lh / $context))
+
+      } @else if $unit == em {
+
+          @return (rem($n) / rem($context)) * 1em;
+
+      } @else {
+
+        // convert to rem
+        @return rem($n);
+
+      }
+
+    } @else if $n == auto {
+
+      @return auto;
+
+    }
+
+    @error "Key not found in map #{$map}";
+
+  }
+
+  // it's a number!!
+  @if $type == number {
+
+    @if $unit == em {
+
+      // convert to em unit
+      @return (rem($n) / rem($context)) * 1em;
+
+    } @else if unitless($n) {
+
+      // if unitless act as multiplier
+      @return rem($n * ($lh / $context))
+
+    } @else { //if $unit == rem {
+
+      // convert to rem
+      @return rem($n);
+
+    }
+
+  }
+
+} // output-rem

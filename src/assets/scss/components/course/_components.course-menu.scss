@@ -1,0 +1,236 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE MENU
+//
+// ///////////////////////////////////////////////////////////////////
+
+$crs-menu-bw:           1px;
+$crs-menu-tri-w:        10px;
+$crs-menu-tri-h:        5px;
+
+// General
+$crs-menu-bg:           find-color(white);
+$crs-menu-bc:           find-color(border,light);
+$crs-menu-fc:           find-color(text);
+$crs-menu-lh:           line-height(1);
+$crs-menu-tri-color:    find-color(primary,light);
+
+$crs-menu-bg-h:         find-color(primary, dark);
+$crs-menu-bc-h:         $crs-menu-bg-h;
+$crs-menu-fc-h:         find-color(white);
+$crs-menu-tri-color-h:  find-color(white);
+
+$crs-menu-bg-a:         find-color(primary, darkest);
+$crs-menu-bc-a:         $crs-menu-bg-a;
+$crs-menu-fc-a:         find-color(white);
+$crs-menu-tri-color-a:  find-color(white);
+
+// title
+$crs-menu-title-mh:     get-height(lg);
+$crs-menu-title-lr:     spacing(md);
+$crs-menu-title-tb:     pad-height($crs-menu-title-mh,$crs-menu-lh,$crs-menu-bw);
+
+// sub
+$crs-menu-sub-bg:       find-color(gray, lightest);
+$crs-menu-sub-bc:       darken($crs-menu-sub-bg, 8%);
+$crs-menu-sub-fc:       find-color(text);
+
+$crs-menu-sub-bg-h:     find-color(primary); //darken($crs-menu-sub-bg, 8%);
+$crs-menu-sub-bc-h:     darken($crs-menu-sub-bg-h, 4%);
+$crs-menu-sub-fc-h:     find-color(white);
+
+$crs-menu-sub-bg-a:     find-color(gray, lightest);
+$crs-menu-sub-bc-a:     darken($crs-menu-sub-bg-a, 4%);
+$crs-menu-sub-fc-a:     find-color(white);
+
+
+$crs-menu-sub2-bg:      find-color(primary);
+$crs-menu-sub2-bc:      darken($crs-menu-sub2-bg, 4%);
+$crs-menu-sub2-fc:      find-color(white);
+
+$crs-menu-sub2-bg-h:    darken($crs-menu-sub2-bg, 8%);
+$crs-menu-sub2-bc-h:    darken($crs-menu-sub2-bg, 8%);
+$crs-menu-sub2-fc-h:    find-color(primary, darkest);
+
+
+
+.no-js [data-accordion-menu] ul { display: none; } // prevents flash of opened panels
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.c-course-menu {
+  background-color: $crs-menu-bg;
+  margin: 0;
+  list-style-type: none;
+
+  &:first-child > li:first-child > a  {
+    border-top: 0;//$crs-menu-bw;
+  }
+
+  // li
+  &__item {
+
+    // margin-top: $crs-menu-bw * -1;
+
+    &[aria-expanded='true'] > .c-course-menu__title {
+      color: $crs-menu-fc-a;
+      background-color: $crs-menu-bg-a;
+      border-color: $crs-menu-bg-a;
+    }
+
+    &:first-child > a {
+      // border-top: 0;
+    }
+
+  }
+
+
+  // link
+  &__title {
+    position: relative;
+    display: block;
+    padding: $crs-menu-title-tb $crs-menu-title-lr;
+    color: $crs-menu-fc;
+    text-decoration: none;
+    border-top: $crs-menu-bw solid $crs-menu-bc;
+    // border-left: 0;
+    // border-right: 0;
+    // border-bottom: 0;
+    @include transition;
+
+    &:hover,
+    &:focus {
+      background-color: $crs-menu-bg-h;
+      color: $crs-menu-fc-h;
+      border-color: $crs-menu-bg-h;
+
+      &:after {
+        border-color: $crs-menu-tri-color-h transparent transparent !important;
+        opacity: 1 !important;
+      }
+
+    }
+
+    &--settings {
+      border-top: 6px solid darken($crs-menu-bc,4%);
+      background-color: $crs-menu-bc;
+      font-size: font-size(sm);
+      padding-top: spacing(14px);
+      padding-bottom: spacing(14px);
+      // text-transform: uppercase;
+      // letter-spacing: 0.1em;
+    }
+
+  }
+
+
+}
+
+
+// Add arrow if its a submenu parent
+// ------------------------------------------------------------------
+.is-accordion-submenu-parent {
+
+  > .c-course-menu__title {
+    &:after {
+      content:'';
+      display: block;
+      width: 0;
+      height:0;
+      position: absolute;
+      top: 50%;
+      margin-top: ($crs-menu-tri-h / 2) * -1;
+      right: 1rem;
+      @include triangle($crs-menu-tri-w $crs-menu-tri-h, $crs-menu-tri-color, down);
+      @include transition;
+    }
+  }
+
+  &[aria-expanded='true'] > .c-course-menu__title {
+    &:after {
+      transform: rotate(180deg);
+      transform-origin: 50% 50%;
+      border-color: $crs-menu-tri-color-a transparent transparent !important;
+    }
+  }
+
+}
+
+
+.c-course-menu--nest {
+  // border-top: 0;
+
+  .c-course-menu__item {
+    &[aria-expanded='true'] > a {
+      color: white;
+      background-color: find-color(primary, dark);
+      border-color: find-color(primary, dark);
+
+      &:after {
+        border-color: $crs-menu-tri-color-a transparent transparent !important;
+      }
+    }
+  }
+
+
+  .c-course-menu__title {
+    color: $crs-menu-fc;
+    border-color: $crs-menu-sub-bc;
+    background-color: $crs-menu-sub-bg;
+
+    &:hover,
+    &:focus {
+      background-color: $crs-menu-sub-bg-h;
+      color: $crs-menu-sub-fc-h;
+      border-color: $crs-menu-sub-bc-h;
+      z-index: 2;
+
+       &:after {
+        border-color: $crs-menu-tri-color-h transparent transparent !important;
+      }
+
+    }
+
+    &--sub {
+      color: $crs-menu-sub2-fc;
+      background-color: $crs-menu-sub2-bg;
+      border-color: $crs-menu-sub2-bc;
+    }
+
+  }
+}
+
+
+.c-course-settings {
+  @include gts-box-common(
+    $pb: spacing(2)
+  );
+  position: relative;
+  width: 80%;
+  max-width: 420px;
+  text-align: center;
+  background-color: find-color(white);
+  border-radius: 2px;
+  outline: 0;
+  @include get-shadow(3, black, 0.4);
+
+  @include gts-box-stripe(
+    $br: 0 0 2px 2px
+  );
+
+  .c-switch-wrap {
+    margin: spacing(12px) auto spacing(12px);
+  }
+
+  &__title {
+    @include typeset(4);
+    margin-bottom: spacing(.25);
+  }
+
+  &__text {
+    text-align: left;
+  }
+
+}

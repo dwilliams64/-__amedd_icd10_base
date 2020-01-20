@@ -1,0 +1,48 @@
+[
+  {
+  "name" : "AOC",
+  "value": "Alteration of Consciousness"
+  }, {
+  "name" : "Concussion",
+  "value":"A temporary disruption of brain function resulting from a blow or jolt to the head also known as mTBI."
+  }, {
+  "name" : "CPO",
+  "value": "Chief Petty Officer"
+  }, {
+  "name" : "DoD",
+  "value": "Department of Defense"
+  }, {
+  "name" : "DodI",
+  "value": "Department of Defense Instruction"
+  }, {
+  "name" : "DVBIC",
+  "value": "Defense and Veterans Brain Injury Center"
+  }, {
+  "name" : "ICD",
+  "value": "International Classification of Diseases"
+  }, {
+  "name" : "IED",
+  "value": "Improvised Explosive Device"
+  }, {
+  "name" : "LOC",
+  "value": "Loss of Consciousness"
+  }, {
+  "name" : "MACE",
+  "value": "Military Acute Concussion Evaluation"
+  }, {
+  "name" : "mTBI",
+  "value": "Mild Traumatic Brain Injury"
+  }, {
+  "name" : "PTA",
+  "value": "Post Traumatic Amnesia"
+  }, {
+  "name" : "PVT",
+  "value": "Private"
+  }, {
+  "name" : "Sequela",
+  "value": "A chronic condition that is the consequence of a previous disease or infection. For example, a persistent headache as a result of a concussion."
+  }, {
+  "name" : "SSgt",
+  "value": "Staff Sergeant"
+  }
+]

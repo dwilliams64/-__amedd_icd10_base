@@ -1,0 +1,79 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Labels
+//
+// ///////////////////////////////////////////////////////////////////
+
+// no need to call foundation badges we are using the mixins instead
+// @include foundation-badge;
+
+
+// get types from $course-palette
+$allow-label-colors: (secondary accent alert warning success info note);
+
+@mixin label-base(
+  $mh: $label-minheight,
+  $lp: $label-padding,
+  $bg: $label-background,
+  $fc: $label-color,
+  $fc-alt: $label-color-alt,
+  $fs: $label-font-size,
+  $lh: 1,
+  $tt: uppercase,
+  $br: $label-radius
+) {
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  padding: $lp;
+  font-size: $fs;
+  line-height: $lh;
+  letter-spacing: 0.1em;
+  color: color-pick-contrast($bg, ($fc, $fc-alt));
+  text-transform: uppercase;
+  text-align: center;
+  background-color: $bg;
+  vertical-align: middle;
+  white-space: nowrap;
+  border-radius: $br;
+}
+
+@mixin label-color (
+  $fc: $label-color,
+  $fc-alt: $label-color-alt
+) {
+  @each $key, $value in $label-palette {
+    @if index($allow-label-colors, $key) {
+      @if map-has-key($label-palette, $key) {
+        &--#{$key} {
+          background-color: $value;
+          color: color-pick-contrast($value, ($fc, $fc-alt));
+        }
+      }
+    }
+  }
+}
+
+.c-label {
+  @include label-base;
+  @include label-color;
+}
+
+
+.c-underline {
+  position: relative;
+  z-index: 0;
+
+  &:before {
+    content:'';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    display: inline-block;
+    height: 4px;
+    width: 100%;
+    background-color: find-color(secondary,lighter);
+    z-index: -1;
+    transition: all .4s ease-in-out;
+  }
+}

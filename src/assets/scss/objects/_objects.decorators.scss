@@ -1,0 +1,32 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Decorators
+//
+// ///////////////////////////////////////////////////////////////////
+
+.o-fancy-border {
+  &:after {
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: spacing(0.5);
+    display: block;
+    background-color: find-color(gray,lightest);
+    background-image: url(../../../assets/img/bg-course-pattern-white.png);
+    @include get-shadow(1,true,bottom)
+
+  }
+}
+
+.o-arrow-icon {
+  background-color: find-color(secondary);
+  fill: find-color(white);
+  display: inline-block;
+  float: left;
+  padding: rem(6px);
+  line-height: 1;
+  vertical-align: middle;
+  border-radius: 3px;
+}

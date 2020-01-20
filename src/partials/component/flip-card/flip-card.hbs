@@ -1,0 +1,25 @@
+<div class='o-flip'>
+
+  <div class='o-flip__front'>
+    <div class='c-flip-card c-flip-card--front {{#if type}}c-flip-card--{{type}}{{/if}} {{fclass}}'>
+      <div class='c-flip-card__body' tabindex='0'>
+        {{> flip-card-front }}
+        <span class='c-flip-card__icon'>
+          <i class='o-icon o-icon-flip'>Flip Card Over</i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class='o-flip__back'>
+    <div class='c-flip-card c-flip-card--back {{#if type}}c-flip-card--{{type}}{{/if}} {{bclass}}'>
+      <div class='c-flip-card__body'>
+        {{> flip-card-back }}
+        <span class='c-flip-card__icon'>
+          <i class='o-icon o-icon-flip'>Flip Card Over</i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>

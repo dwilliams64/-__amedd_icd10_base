@@ -1,0 +1,181 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Components of Implementation
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// Variables
+// ------------------------------------------------------------------
+
+$coi-mh: 81px;
+$coi-sp: $base-line-height;
+
+$coi-fc: find-color(secondary,dark);
+$coi-fs: font-size(md);
+$coi-lh: line-height(1.5);
+
+// content box
+$coi-bw: 0;
+$coi-bg: find-color(white);
+$coi-bc: find-color(accent,lighter);
+$coi-br: 60px;//$coi-bw;
+
+// padding
+$coi-tb: pad-height($coi-mh,$coi-lh,$coi-bw);
+$coi-lr: spacing(0);
+
+// connector line
+$coi-cc: $coi-bc;
+$coi-cw: 6px;
+$coi-ch: $coi-sp;
+
+
+// Styles
+// ------------------------------------------------------------------
+
+.l-coi-wrap {
+  margin: 0 auto;
+  @include gts-box-common(lg);
+  width: 100%;
+  background-color: find-color(white);
+  border-radius: 9px;
+
+  @include breakpoint(medium) {
+    width: 80%;
+  }
+
+}
+
+.l-coi {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+  @include clearfix;
+}
+
+
+.l-coi__item {
+  text-align: center;
+}
+
+.l-coi__text {
+  position: relative;
+  padding: $coi-sp;
+  z-index: 2;
+
+  &:before {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: calc(50% - #{$coi-cw / 2});
+    display: block;
+    width: $coi-cw;
+    height: $coi-ch + $coi-bw;
+    background-color: $coi-cc;
+  }
+
+  &--level1 {
+    @include grid-column-size(7);
+    margin-left: auto;
+    margin-right: auto;
+
+    &:before {
+      top: auto;
+      bottom: 0;
+      box-shadow:
+        inset 0 16px 16px -8px rgba(black,0.3);
+    }
+
+  }
+
+}
+
+.l-coi__inner {
+  position: relative;
+  padding: $coi-tb $coi-lr;
+  font-size: $coi-fs;
+  line-height: $coi-lh;
+  color: $coi-fc;
+  text-align: center;
+  border: $coi-bw solid $coi-bc;
+  background-color: $coi-bg;
+  border-radius: $coi-br;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all .5s ease;
+  box-shadow:
+    inset 0 0 0 6px rgba($coi-bc, 1),
+    inset 0 -1px 0 6px rgba(white, 1),
+    inset 0 -48px 36px -24px rgba(find-color(accent), 0.1);
+
+  &.is-active {
+    box-shadow:
+      inset 0 0 0 6px rgba(find-color(secondary), 1),
+      inset 0 -1px 0 6px rgba(white, 0.5),
+      inset 0 -48px 36px -24px rgba(find-color(secondary), 0.3);
+  }
+
+}
+
+
+.l-coi--level2 {
+  width: 100%;
+
+  .l-coi__item {
+    position: relative;
+    @include grid-column-size(4)
+    float: left;
+
+    &:after {
+      content:'';
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: $coi-cw;
+      background-color: $coi-cc;
+      z-index: 2;
+    }
+
+    &:first-child {
+      &:after {
+        left: 50%; //calc(50% - #{$coi-cw / 2});
+        width: calc(50% + #{$coi-cw / 2});
+      }
+    }
+
+    &:last-child {
+      &:after {
+        right: calc(50% - #{$coi-cw / 2});
+        width: calc(50% + #{$coi-cw / 2});
+      }
+
+      .l-coi__inner:before { display: none; }
+
+    }
+
+    .l-coi__inner {
+      position: relative;
+
+      &:before {
+        content:'';
+        position: absolute;
+        left: 100%;
+        top: calc(50% - #{$coi-cw / 2};
+        height: $coi-cw;
+        width: ($coi-ch * 2) + ($coi-bw * 2);
+        display: block;
+        background-color: $coi-cc;
+        z-index: -1;
+      }
+    }
+
+  }
+
+  // .l-coi__text {}
+
+}

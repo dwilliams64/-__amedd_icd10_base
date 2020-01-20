@@ -1,0 +1,217 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COMMON HEIGHTS
+//
+// ///////////////////////////////////////////////////////////////////
+// Requires tools.output-rem and tools.spacing
+
+// -------------------------------------------------------------------------
+// Gets height based on $base-height map or multiplier of base-line-height
+// -------------------------------------------------------------------------
+
+@function get-height(
+  $x: md,
+  $lh: $base-line-height,
+  $unit: rem,
+  $map: $base-height,
+  $fs: $base-font-size
+) {
+
+  $output: output-rem($x,$lh,$unit,$map);
+
+  @return $output;
+
+  // @return spacing($x,$lh,$unit,$map)
+
+}
+
+
+// -------------------------------------------------------------------------
+// Sets desired height, border, and line-height to calculate vertical padding
+// -------------------------------------------------------------------------
+@function pad-height (
+  $mh: $base-line-height * 2,
+  $lh: $base-line-height,
+  $bw: 1px
+) {
+
+  @if $lh == null {
+    $lh: line-height(1);
+  }
+
+  @if $bw == null {
+    $bw: 1px;
+  }
+
+  @if $mh == null {
+
+    @return null
+
+  } @else {
+
+    $clean-mh: get-height($mh);
+    $clean-lh: line-height($lh);
+    $clean-bw: spacing($bw * 2);
+
+    $pad: clamp(( ( ($clean-mh - $clean-bw) - $clean-lh) / 2),0,10);
+
+    @return $pad;
+
+  }
+
+}
+
+
+// -------------------------------------------------------------------------
+// Set properties for setting desired height
+// -------------------------------------------------------------------------
+@mixin set-height (
+  $mh:   md,
+  $lh:   $base-line-height,
+  $bw:   0,
+  $prop: 'padding'
+) {
+
+  $n: $mh;
+
+  @if $n == null {
+
+    // @return null
+
+  } @else {
+
+    $safe-lh: get-height($lh);
+
+    @if $safe-lh >= get-height($mh) {
+      $safe-lh: get-height(1);
+    };
+
+    $pad: pad-height($mh, $lh, $bw);
+
+    #{$prop}-top: $pad;
+    #{$prop}-bottom: $pad;
+    @if $safe-lh != rem($base-line-height) {
+      line-height: get-height($safe-lh);
+    }
+    @if $bw != 0 { border-width: $bw; }
+
+  }
+
+}
+
+
+// -------------------------------------------------------------------------
+// Generate classes for padding height
+// -------------------------------------------------------------------------
+@mixin gts-height-mods (
+  $attr: padding,
+  $prefix: 'chain',
+  $dir: all,
+  $nest: false,
+  $allow: null,
+  $bw: 0,
+  $lh: $base-line-height
+) {
+
+  $state: '';
+  @if $prefix == 'class' { $prefix: '&.-';  }
+  @if $prefix == 'chain' { $prefix: '&-'; }
+  @if $prefix == 'mod'   { $prefix: '&--'; }
+  @if $prefix == 'util'  {
+    $prefix: '&-';
+    $state: '!important';
+  }
+
+  $amt:null;
+
+  @each $size, $key in $base-height {
+    @if( index($allow, $size) ) {
+      $amt: pad-height($size,$lh,$bw);
+    }
+    #{$prefix}#{$size} {
+
+      @if $nest {
+
+        .#{$nest} {
+          @if $dir == tb {
+            #{$attr}-top: $amt;
+            #{$attr}-bottom: $amt;
+          } @else if $dir == lr {
+            #{$attr}-left: $amt;
+            #{$attr}-right: $amt;
+          } @else {
+            #{$attr}: $amt;
+          }
+        }
+
+        // @debug $prefix $size $nest;
+
+      } @else {
+
+        @if $dir == tb {
+          #{$attr}-top: $amt;
+          #{$attr}-bottom: $amt;
+        } @else if $dir == lr {
+          #{$attr}-left: $amt;
+          #{$attr}-right: $amt;
+        } @else {
+          #{$attr}: $amt;
+        }
+
+      }
+
+    }
+  }
+}
+
+
+
+// // generate classes for padding height
+// @mixin gts-height-mods ($attr: padding, $prefix: 'chain', $dir: tb, $nest: false, $bw: 0, $lh: $base-line-height) {
+//   $state: '';
+//   @if $prefix == 'class' { $prefix: '&.-';  }
+//   @if $prefix == 'chain' { $prefix: '&-'; }
+//   @if $prefix == 'mod'   { $prefix: '&--'; }
+//   @if $prefix == 'util'  {
+//     $prefix: '&-';
+//     $state: '!important';
+//   }
+//   @each $size, $key in $base-height {
+
+//     $amt: pad-height($size,$lh,$bw);
+
+//     #{$prefix}#{$size} {
+
+//       @if $nest {
+
+//         .#{$nest} {
+//           @if $dir == tb {
+//             #{$attr}-top: $amt;
+//             #{$attr}-bottom: $amt;
+//           } @else if $dir == lr {
+//             #{$attr}-left: $amt;
+//             #{$attr}-right: $amt;
+//           } @else {
+//             #{$attr}: $amt;
+//           }
+//         }
+
+//       // @debug $prefix $size $nest;
+
+//       } @else {
+
+//         @if $dir == tb {
+//           #{$attr}-top: $amt;
+//           #{$attr}-bottom: $amt;
+//         } @else if $dir == lr {
+//           #{$attr}-left: $amt;
+//           #{$attr}-right: $amt;
+//         } @else {
+//           #{$attr}: $amt;
+//         }
+
+//       }
+
+//     }
+//   }
+// }

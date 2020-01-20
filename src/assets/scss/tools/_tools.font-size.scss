@@ -1,0 +1,18 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Font Size
+//
+// ///////////////////////////////////////////////////////////////////
+// Requires tools.spacing
+
+
+// -------------------------------------------------------------------
+// Summary:   Takes a sizing from the $font-size map (m, xl, xxl, etc) or converts unit to rem
+// Map used:  $font-size in _gts
+// -------------------------------------------------------------------
+
+@function font-size($x: base, $map: $font-size) {
+
+  @return spacing($x,$base-font-size,$map:$map);
+
+}

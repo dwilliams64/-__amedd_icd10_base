@@ -1,0 +1,78 @@
+///////////////////////////////////////////////////////////////////////
+//
+// DIRECTIONS
+//
+// ///////////////////////////////////////////////////////////////////
+
+$dir-mh: 36px;
+$dir-bw: 2px;
+$dir-bc: find-color(secondary,light);
+$dir-tb: pad-height($dir-mh);
+$dir-lr: spacing(0.75);
+$dir-sp: spacing(9px);
+
+// Styles
+// ------------------------------------------------------------------
+
+.c-dir {
+  position: absolute;
+  padding: $dir-tb $dir-lr;
+  margin: $dir-sp;
+  background-color: find-color(white);
+  border: $dir-bw solid $dir-bc;
+  border-radius: $dir-mh;
+  z-index: 100;
+  @include get-shadow(2);
+
+  &--tl {
+    top: 0;
+    left: 0;
+  }
+
+  &--tc {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--tr {
+    top: 0;
+    right: 0;
+  }
+
+  &--bl {
+    bottom: 0;
+    left: 0;
+  }
+
+  &--bc {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--br {
+    bottom: 0;
+    right: 0;
+  }
+
+  &--ml {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &--mr {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+
+  &--mc {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+
+}

@@ -1,0 +1,62 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE COVER
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-cover {
+  background-color: find-color(gray, lightest);
+  box-shadow: 0px 20px 48px -9px rgba(0,0,0,0.43);
+
+
+  &__media {
+    background-color: find-color(primary,darkest);
+    vertical-align: top;
+    text-align: center;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(5);
+      &:after { @include stripe-edge(right); }
+    }
+
+  }
+
+  &__body {
+    @include gts-box-common(lg);
+    @include bg-dark-blue;
+    vertical-align: middle;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(7);
+    }
+  }
+
+  &__sub {
+    font-size: font-size(18px);
+    color: find-color(secondary);
+
+    @include breakpoint(medium) {
+      margin-top: get-spacing(1);
+    }
+  }
+
+  &__heading {
+    margin-top: spacing(0.125);
+    @include typeset(cover);
+    color: find-color(white);
+  }
+
+  &__school {
+    margin-top: -2px;
+    margin-bottom: spacing(1);
+    padding-left: 12px;
+    font-size: font-size(18px);
+    color: find-color(white);
+    border-left: 4px solid find-color(secondary);
+  }
+
+
+}

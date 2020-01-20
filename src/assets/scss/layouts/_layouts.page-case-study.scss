@@ -1,0 +1,118 @@
+///////////////////////////////////////////////////////////////////////
+//
+// CASE STUDY
+//
+// ///////////////////////////////////////////////////////////////////
+
+$cs-class: l-case-study;
+$cs-body: __body;
+$cs-media: __media;
+$cs-page: __page;
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.#{$cs-class} {
+  @include clearfix;
+  z-index: 0;
+  min-height: $base-mh-pad-w-title;
+}
+
+
+.#{$cs-class}#{$cs-body} {
+  position: relative;
+  vertical-align: top;
+  z-index: 2;
+}
+
+
+.#{$cs-class}#{$cs-media} {
+  position: relative;
+  @include gts-box-common;
+  // vertical-align: middle;
+  z-index: 1;
+}
+
+
+.#{$cs-class}#{$cs-page}-wrap {
+  @include gts-paper-stack(wrap);
+}
+
+
+.#{$cs-class}#{$cs-page} {
+  position: relative;
+  margin-bottom: spacing(0.75);
+  @include gts-box-common;
+  min-height: rem(430px);
+
+  &--stack {
+    @include gts-paper-stack(base);
+    @include gts-paper-stack(up);
+  }
+
+  &--results {
+    background-color: find-color(white);
+    box-shadow:
+      inset 0 -1px 0 0 rgba(find-color(white), 0.8),
+      0 1px 1px 0 rgba(0, 0, 0, 0.12),
+      0 6px 8px -6px rgba(0, 0, 0, 0);
+    z-index: 3;
+    // transition: box-shadow .5s ease-out .5s;
+  }
+}
+
+
+.#{$cs-class} .c-page-marker {
+  margin-bottom: spacing(1);
+  transform: translateX(-25%) translateY(0px);
+  backface-visibility: hidden;
+  @include get-shadow(3);
+}
+
+
+.#{$cs-class} .c-icon-link {
+  display: none;
+}
+
+.#{$cs-class}__deco {
+  display: none;
+}
+
+
+
+
+// MEDIA BREAKPOINT
+@include breakpoint(medium) {
+
+  .#{$cs-class}#{$cs-body} {
+    @include grid-column-size(7);
+  }
+
+  .#{$cs-class}#{$cs-media} {
+    @include grid-column-size(5);
+  }
+
+  .#{$cs-class}__img {
+    img { max-width: 422px; }
+  }
+
+  .#{$cs-class}#{$cs-page} {
+    margin-bottom: 0;
+
+    &--results {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      box-shadow: $base-shadow-common;
+      display: none;
+    }
+  }
+
+  .#{$cs-class} .c-icon-link {
+    margin-top: spacing(1);
+    display: block;
+  }
+
+}

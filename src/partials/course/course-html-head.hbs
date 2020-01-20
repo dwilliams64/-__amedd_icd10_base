@@ -1,0 +1,31 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>{{@root.global.course}}  {{title}}</title>
+
+  {{~#if sg }}
+    {{> sg-styles}}
+  {{/if}}
+
+  {{#unlesspage 'index'}}
+    <link rel="stylesheet" href='{{root}}assets/css/app.css'>
+  {{/unlesspage}}
+
+</head>
+
+<body class='{{body}}'>
+{{#unlesspage 'index'}}
+{{> preload }}
+  {{> skip-nav }}
+ {{> course-header }}
+{{/unlesspage}}
+<div class="l-course-wrap o-wrapper">
+
+{{#is page-hdr 'true'}}
+  {{> page-title type="lsn"}}
+{{/is}}
+
+<main id="main" class='l-course-content o-wrapper {{~#if flush}} u-p-0{{/if}} {{~#is page-hdr 'true'}} u-mh-w-title{{/is}} {{main}}' role="main">

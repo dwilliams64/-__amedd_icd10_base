@@ -1,0 +1,135 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SVG ICONS
+//
+// ///////////////////////////////////////////////////////////////////
+
+// sprite variables
+// ----------------------
+$sprite-source:  '../{{{sprite}}}';
+$sprite-width:   {{{spriteWidth}}}px;
+$sprite-height:  {{{spriteHeight}}}px;
+
+// sprite map
+// ----------------------
+$sprite-map: (
+  {{#shapes}}
+  '{{{name}}}': (
+    offset-x: {{{position.absolute.x}}}px,
+    offset-y: {{{position.absolute.y}}}px,
+    width:   {{{width.outer}}}px,
+    height:  {{{width.inner}}}px,
+  ),
+  {{/shapes}}
+);
+
+// mixins
+// ----------------------
+@mixin sprite-common {
+  display: inline-block;
+  @include sprite-image;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+@mixin sprite-width($sprite) {
+  width: map-deep-get($sprite-map, $sprite, width);
+}
+
+@mixin sprite-height($sprite) {
+  height: map-deep-get($sprite-map, $sprite, height);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: map-deep-get($sprite-map, $sprite, offset-x);
+  $sprite-offset-y: map-deep-get($sprite-map, $sprite, offset-y);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image {
+  background-image: url($sprite-source);
+}
+
+@mixin sprite($sprite) {
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+@mixin sprite-center($sprite) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: (map-deep-get($sprite-map, $sprite, width) / 2) * -1;
+  margin-top:  (map-deep-get($sprite-map, $sprite, height) / 2) * -1;
+}
+
+// Classes
+// ----------------------
+.{{commonName}}-set {
+  @include clearfix;
+  > .{{commonName}} {
+    float: left;
+  }
+}
+
+.{{commonName}}-set__text {
+  float: left;
+  padding-left: spacing(0.5);
+}
+
+.{{commonName}}--stack {
+  display: block !important;
+  margin: 0 auto spacing(xs);
+}
+
+.{{commonName}} { @include sprite-common; }
+
+{{#shapes}}
+.{{#selector.shape}}{{expression}}{{^last}},{{/last}}{{/selector.shape}} {
+  @include sprite({{name}});
+}
+
+{{/shapes}}
+
+
+// ------------------------------------------------------------------
+// Icon wraps
+// wraps the icon
+// ------------------------------------------------------------------
+
+@mixin icon-circle (
+  $mh: 36px,
+  $is: 24px,
+  $bg: find-color(secondary),
+  $br: 50%,
+  $ib: inline-block
+) {
+  display: $ib;
+  padding: rem(($mh - $is) / 2);
+  background-color: $bg;
+  border-radius: $br;
+}
+
+.o-icon-circle {
+  @include icon-circle;
+
+  &--lg {
+    @include icon-circle(48px,24px,null,null,null);
+  }
+
+  &--xl {
+    @include icon-circle(60px,24px,null,null,null);
+  }
+
+  // generate colors
+  @each $name, $color in $button-palette {
+    &-#{$name} {
+      background-color: $color;
+    }
+  }
+
+}

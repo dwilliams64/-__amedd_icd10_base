@@ -1,0 +1,53 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE LESSON
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$lsn-hdr-mh: get-height(base);
+$lsh-hdr-fs: font-size(md);
+$lsn-hdr-lh: $base-line-height;
+
+$lsn-hdr-tb: pad-height($lsn-hdr-mh,$lsn-hdr-lh,0);
+
+
+// STYLES
+// -------------------------------------------------------------------
+.c-course-lesson {
+  @include grid-row($size:null);
+  background-color: find-color(white);
+  z-index: 1;
+  @include gts-box-common(
+    $pl: $lsn-hdr-tb*2,
+    $pb: $lsn-hdr-tb,
+    $pt: $lsn-hdr-tb + rem(1px)
+  );
+
+  @include breakpoint(medium) {
+    border-top-left-radius: 9px;
+  }
+
+  &__heading {
+    font-size: $lsh-hdr-fs;
+    line-height: line-height($lsn-hdr-lh,$lsh-hdr-fs,unitless);
+    color: find-color(text);
+
+    &:before {
+      position: relative;
+      top: -1px;
+      content:'';
+      display: inline-block;
+      width: 8px;
+      height:8px;
+      // background-color: find-color(secondary);
+      margin-right: 6px;
+      border-radius: 9px;
+      border: 2px solid find-color(secondary);
+    }
+
+  }
+
+}

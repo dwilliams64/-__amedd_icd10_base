@@ -1,0 +1,24 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Function Helpers
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// Clamp
+// Clamping a number means restricting it between min and max values.
+@function clamp($value, $min, $max) {
+  @return if($value > $max, $max, if($value < $min, $min, $value));
+}
+
+
+
+// Strip Unit
+// Remove the unit from a number.
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}

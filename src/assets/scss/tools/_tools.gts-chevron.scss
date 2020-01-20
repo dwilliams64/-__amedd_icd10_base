@@ -1,0 +1,360 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MULTI-STEP ARROW
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// CHEVRON VARIABLES
+// -------------------------------------------------------------------
+$chev-mh: get-height(xxl);
+$chev-bw: 1px;
+$chev-bg: find-color(gray,bg);
+$chev-bc: find-color(border);
+$chev-fc: null;
+$chev-fs: null;
+$chev-lh: null;
+
+$chev-bg-h: find-color(gray,lightest);
+$chev-bc-h: null;
+$chev-fc-h: null;
+
+$chev-bg-a: find-color(white);
+$chev-bc-a: find-color(secondary);
+$chev-fc-a: null;
+
+$chev-mb: spacing(0.25);
+
+$chev-deg: 25deg;
+$chev-cap-w: 15px;
+$chev-child: '*';
+$chev-active: is-active;
+$chev-trans: all .2s ease-in-out;
+
+$chev-tb: pad-height($chev-mh,$chev-lh,$chev-bw);
+$chev-lr: spacing(1);
+
+
+
+// CHEVRON MIXINS
+// -------------------------------------------------------------------
+
+@mixin gts-chevron-wrap (
+  $bw: $chev-bw
+) {
+  display: block;
+  height: 100%;
+  padding: $bw;
+  overflow: hidden;
+  z-index: 0;
+
+  @include breakpoint(medium) {
+    display: table;
+    width: 100%;
+  }
+
+}
+
+@mixin gts-chevron-arrow (
+  $bw: $chev-bw,
+  $bg: $chev-bg,
+  $bc: $chev-bc,
+  $bg-h: $chev-bg-h,
+  $bc-h: $chev-bc-h,
+  $bg-a: $chev-bg-a,
+  $bc-a: $chev-bc-a,
+  $deg: $chev-deg,
+  $cw: $chev-cap-w,
+  $mb: $chev-mb,
+  $trans: $chev-trans,
+  $child: $chev-child,
+  $active: $chev-active
+) {
+  position: relative;
+  display: block;
+  margin-bottom: $mb;
+  height: auto;
+  float: none;
+  z-index: 1;
+
+  &:before,
+  &:after {
+    content:'';
+    position: absolute;
+    left: -$bw;
+    height: calc(50% + #{$bw});
+    width: calc(100% + #{$bw});
+    border: $bw solid $bc;
+    background-color: $bg;
+    z-index: -1;
+    transition: $trans;
+  }
+  &:before {
+    top: -$bw;
+    border-bottom: 0;
+    transform: translateX(-11px) skewX($deg);
+  }
+  &:after {
+    bottom: -$bw;
+    border-top: 0;
+    transform: translateX(-11px) skewX(-$deg);
+  }
+
+  // end caps
+  > #{$child}:before {
+    content:'';
+    position: absolute;
+    top: -$bw;
+    bottom: -$bw;
+    left: -$bw;
+    width: $cw;
+    background-color: $bg;
+    border: $bw solid $bc;
+    border-right: 0;
+    z-index: 4;
+    transition: $trans;
+  }
+
+  &:hover {
+    &:before,
+    &:after {
+      border-color: $bc-h;
+      background-color: $bg-h;
+    }
+
+    > #{$child}:before {
+      border-color: $bc-h;
+      background-color: $bg-h;
+    }
+
+  }
+
+  &.#{$chev-active} {
+    z-index: 3;
+    &:before,
+    &:after {
+      border-color: $bc-a;
+      background-color: $bg-a;
+      z-index: 3;
+    }
+
+    > #{$child}:before {
+      border-color: $bc-a;
+      background-color: $bg-a;
+    }
+
+  }
+
+
+  @include breakpoint(medium) {
+    display: table-cell;
+    height: 100%;
+
+    &:before { transform: translateX(0) skewX($deg); }
+    &:after { transform: translateX(0) skewX(-$deg); }
+
+    &:not(:first-child):not(:last-child) {
+      > #{$child}:before { display: none; }
+    }
+
+    &:last-child {
+      > #{$child}:before {
+        left: auto;
+        right: -$bw;
+        border-left: 0;
+        border-right: $bw solid $bc;
+      }
+    }
+
+  }
+
+}
+
+@mixin gts-chevron-link (
+  $tb: $chev-tb,
+  $lr: $chev-lr,
+  $fs: $chev-fs,
+  $fc: $chev-fc,
+  $fc-h: $chev-fc-h,
+  $fc-a: $chev-fc-a,
+  $lh: $chev-lh
+) {
+  position: static;
+  padding-top: $tb;
+  padding-right: $lr;
+  padding-bottom: $tb;
+  padding-left: $lr;
+
+  font-size: $fs;
+  line-height: $lh;
+  color: $fc;
+
+  &:hover {
+    color: $fc-h;
+  }
+
+  &[aria-selected='true'] {
+    color: $fc-a;
+  }
+
+}
+
+
+@mixin gts-chevron-text () {
+  position: relative;
+  z-index: 4;
+}
+
+
+
+
+
+
+@mixin gts-chevron(
+  $type: wrap,
+  $state: hover,
+  $bw: 1px,
+  $bc: find-color(border),
+  $bg: find-color(gray,bg),
+  $fc: null,
+  $bc-h: null,
+  $bg-h: find-color(gray,lightest),
+  $fc-h: null,
+  $bc-a: find-color(secondary),
+  $bg-a: find-color(white),
+  // $fc-h: find-color(white),
+  $tb: spacing(0.25),
+  $lr: spacing(1),
+  $arw: 15px,
+  $deg: 25deg
+) {
+
+  // wraps the arrow group
+  @if $type == wrap {
+    display: table;
+    height: 100%;
+    width: 100%;
+    padding: $bw;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  // where the arrow sits
+  @if $type == arrow-base {
+    position: relative;
+    display: table-cell;
+    height: 100%;
+    float: none;
+    z-index: -1;
+  }
+
+  // build the arrow
+  @if $type == arrow {
+    &:before,
+    &:after {
+      content:'';
+      position: absolute;
+      left: -$bw;
+      height: calc(50% + #{$bw});
+      width: calc(100% + #{$bw});
+      border: $bw solid $bc;
+      background-color: $bg;
+      z-index: -1;
+      transition: all .3s;
+    }
+    &:before {
+      top: -$bw;
+      border-bottom: 0;
+      transform: skewX(25deg);
+    }
+    &:after {
+      bottom: -$bw;
+      border-top: 0;
+      transform: skewX(-25deg);
+    }
+
+    @if $state == hover {
+      &:hover {
+        z-index: 2;
+        &:before,
+        &:after {
+          border-color: $bc-h;
+          background-color: $bg-h;
+        }
+      }
+
+      &.is-active {
+        z-index: 3;
+        &:before,
+        &:after {
+          border-color: $bc-a;
+          background-color: $bg-a;
+        }
+      }
+    }
+
+
+  }
+
+  // link
+  @if $type == arrow-link {
+    position: static;
+    padding-top: $tb;
+    padding-right: $lr;
+    padding-bottom: $tb;
+    padding-left: $lr;
+  }
+
+  // end caps
+  @if $type == arrow-caps {
+    &:first-child,
+    &:last-child {
+      > *:before {
+        content:'';
+        position: absolute;
+        top: -$bw;
+        bottom: -$bw;
+        width: $arw;
+        background-color: $bg;
+        border: $bw solid $bc;
+        z-index: 3;
+        transition: all .3s;
+      }
+    }
+    &:first-child {
+      > *:before {
+        left: -$bw;
+        border-right: 0;
+      }
+    }
+    &:last-child {
+      > *:before {
+        right: -$bw;
+        border-left: 0;
+      }
+    }
+
+    @if $state == hover {
+      &:hover {
+        > *:before {
+          border-color: $bc-h;
+          background-color: $bg-h;
+        }
+      }
+      &.is-active {
+        > *:before {
+          border-color: $bc-a;
+          background-color: $bg-a;
+        }
+      }
+    }
+
+  }
+
+  // text
+  @if $type == arrow-text {
+    position: relative;
+    z-index: 4;
+  }
+
+}

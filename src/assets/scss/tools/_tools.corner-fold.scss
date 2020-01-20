@@ -1,0 +1,144 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Corner fold
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// Callout Type Map
+// ------------------------------------------------------------------
+
+@mixin gts-corner-fold (
+  $dir: up-left,
+  $size: 16px,
+  $bg: find-color(gray,bg),
+  $corner: $bg,
+  $scale: 20%,
+  $mod: false
+) {
+
+  $corner: scale-color($corner, $lightness: -$scale);
+  $bar-mw: calc(100% - #{$size};
+  $bar-shift: $size * -1;
+  $space: rem($size);
+  $allowed-dir: (up-left:true, up-right:true, down-left:true, down-right:true);
+
+  @if map-has-key($allowed-dir, $dir) {
+    $dir: $dir;
+  } @else {
+    $dir: up-left;
+  }
+
+  // variables
+    $b-top:    null;
+    $b-right:  null;
+    $b-bottom: null;
+    $b-left:   null;
+
+    $a-top:    null;
+    $a-right:  null;
+    $a-bottom: null;
+    $a-left:   null;
+
+    $prop: margin-bottom;
+
+  // Direction of corner
+  @if $dir == 'up-left' {
+    $b-top:    100%;
+    $b-right:  null;
+    $b-bottom: null;
+    $b-left:   0;
+
+    $a-top:    100%;
+    $a-right:  0;
+    $a-bottom: null;
+    $a-left:   null;
+
+    $prop: margin-bottom;
+  }
+
+  @if $dir == 'up-right' {
+    $b-top:    100%;
+    $b-right:  0;
+    $b-bottom: null;
+    $b-left:   null;
+
+    $a-top:    100%;
+    $a-right:  null;
+    $a-bottom: null;
+    $a-left:   0;
+
+    $prop: margin-bottom;
+  }
+
+  @if $dir == 'down-left' {
+    $b-top:    $bar-shift;
+    $b-right:  null;
+    $b-bottom: null;
+    $b-left:   0;
+
+    $a-top:    $bar-shift;
+    $a-right:  0;
+    $a-bottom: null;
+    $a-left:   null;
+
+    &:after {
+      border-top-color: transparent;
+      border-left-color: transparent;
+    }
+
+    $prop: margin-top;
+  }
+
+  @if $dir == 'down-right' {
+    $b-top:    $bar-shift;
+    $b-right:  0;
+    $b-bottom: null;
+    $b-left:   null;
+
+    $a-top:    $bar-shift;
+    $a-right:  null;
+    $a-bottom: null;
+    $a-left:   0;
+
+    &:after {
+      border-color: transparent;
+      border-color: transparent;
+    }
+
+    $prop: margin-top;
+  }
+
+
+  // Styles
+  &:before {
+    @if $mod == false {
+      content:'';
+      position: absolute;
+      top: $b-top;
+      right: $b-right;
+      bottom: $b-bottom;
+      left: $b-left;
+      display: block;
+      height: $size;
+      width:  $bar-mw;
+    }
+    background-color: $bg;
+  }
+
+  &:after {
+    @if $mod == false {
+      content:'';
+      position: absolute;
+      top: $a-top;
+      right: $a-right;
+      bottom: $a-bottom;
+      left: $a-left;
+    }
+    @include triangle($size, $corner transparent, $dir);
+  }
+
+  @if $mod == false {
+    @include padmar(#{$prop}, $space);
+  }
+}

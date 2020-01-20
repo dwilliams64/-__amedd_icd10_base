@@ -1,0 +1,129 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE CALLOUTS
+//
+// ///////////////////////////////////////////////////////////////////
+
+$pg-mark-mh: get-height(sm);
+$pg-mark-bg: find-color(highlight,light);
+$pg-mark-fs: font-size(sm);
+$pg-mark-fw: weight(normal);
+$pg-mark-fc: find-color(text,dark);
+$pg-mark-lh: $base-line-height;
+$pg-mark-bc: find-color(highlight);
+$pg-mark-bw: 1px;
+$pg-mark-br: 1px;
+$pg-mark-tb: pad-height($pg-mark-mh,$pg-mark-lh,$pg-mark-bw);
+$pg-mark-lr: spacing(1);
+$pg-mark-mb: spacing(0.75);
+$pg-mark-skew: 39deg;
+$pg-mark-rotate: 0deg;
+
+// STYLES
+// ------------------------------------------------------------------
+
+.c-page-marker {
+  position: relative;
+  display: inline-block;
+  padding: $pg-mark-tb ($pg-mark-lr / 1) $pg-mark-tb $pg-mark-lr;
+  margin-bottom: $pg-mark-mb;
+  font-size: $pg-mark-fs;
+  font-weight: $pg-mark-fw;
+  line-height: $pg-mark-lh;
+  text-transform: uppercase;
+  text-align: center;
+  min-width: 148px;
+  letter-spacing: 0.14em;
+  color: $pg-mark-fc;
+  background-color: $pg-mark-bg;
+  border: $pg-mark-bw solid $pg-mark-bc;
+  border-radius: $pg-mark-br;
+  // transform: translateX(-25%) translateY(0px) rotate($pg-mark-rotate);
+  transform-origin: 50% 50%;
+  z-index: 1;
+  // box-shadow: -1px 2px 3px -2px rgba($pg-mark-fc,0.5);
+
+  &:after,
+  &:before {
+    content:'';
+    position: absolute;
+    left: 9px;
+    background-color: $pg-mark-bg;
+    border: $pg-mark-bw solid $pg-mark-bc;
+    border-left: 0;
+    width: 100%;
+    height: ($pg-mark-mh / 2);
+    z-index: -1;
+  }
+
+  &:before {
+    top: -1px;
+    border-bottom: 0;
+    transform: skewX($pg-mark-skew);
+  }
+
+  &:after {
+    bottom: -1px;
+    border-top: 0;
+    transform: skewX(-$pg-mark-skew);
+  }
+
+}
+
+
+// MODIFIERS
+// ------------------------------------------------------------------
+// info
+$pg-mark-bg-1: find-color(info,lighter);
+$pg-mark-bc-1: find-color(info,light);
+$pg-mark-fc-1: find-color(info,darkest);
+
+.c-page-marker--info {
+  color: $pg-mark-fc-1;
+  background-color: $pg-mark-bg-1;
+  border-color: $pg-mark-bc-1;
+
+  &:after,
+  &:before {
+  background-color: $pg-mark-bg-1;
+  border-color: $pg-mark-bc-1;
+  }
+
+}
+
+// accent
+$pg-mark-bg-1: find-color(accent,lightest);
+$pg-mark-bc-1: find-color(accent,lighter);
+$pg-mark-fc-1: find-color(accent,dark);
+
+.c-page-marker--accent {
+  color: $pg-mark-fc-1;
+  background-color: $pg-mark-bg-1;
+  border-color: $pg-mark-bc-1;
+
+  &:after,
+  &:before {
+  background-color: $pg-mark-bg-1;
+  border-color: $pg-mark-bc-1;
+  }
+
+}
+
+
+// tip
+$pg-mark-bg-2: find-color(secondary,lightest);
+$pg-mark-bc-2: find-color(secondary,light);
+$pg-mark-fc-2: find-color(secondary,darker);
+
+.c-page-marker--tip {
+  color: $pg-mark-fc-2;
+  background-color: $pg-mark-bg-2;
+  border-color: $pg-mark-bc-2;
+
+  &:after,
+  &:before {
+  background-color: $pg-mark-bg-2;
+  border-color: $pg-mark-bc-2;
+  }
+
+}

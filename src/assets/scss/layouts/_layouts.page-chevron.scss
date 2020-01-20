@@ -1,0 +1,135 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MODULE COVER
+//
+// ///////////////////////////////////////////////////////////////////
+
+$chev-space: spacing(0.5);
+$chev-i: 0;
+$chev-reduce: 24%;
+$chev-start: find-color(primary,darkest);
+$chev-end: find-color(accent);
+$chev-total: 3;
+$chev-mix: 100% / $chev-total;
+$chev-deg: 45deg;
+
+// STYLES
+// -------------------------------------------------------------------
+
+.c-chev-dn {
+  @include typeset(3);
+  text-align: center;
+  border: 6px solid find-color(white);
+  background-color: find-color(white);
+  box-shadow: $base-shadow-common;
+  overflow: hidden;
+
+  &:before {
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(find-color(primary,darkest),0.5);
+    z-index: -1;
+  }
+
+  &__instruct {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: inline-block;
+    margin: 0 auto spacing(sm);
+    text-align: center;
+    padding: pad-height(36px,1,0) rem(18px);
+    background-color: find-color(white);
+    border-radius: 24px;
+    transform: translateX(-50%) translateY(-25%);
+  }
+
+
+  &__item {
+    display: block;
+    position: relative;
+    padding: spacing(1.5) spacing(0.5);
+    background-color: $chev-start;
+    transition: all .2s ease;
+
+    &:last-child {
+
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+
+    &:before,
+    &:after {
+      content:'';
+      position: absolute;
+      bottom: 10px;
+      height: 40px;
+      width: 15.5%;
+      background: red;
+      z-index: 1;
+      overflow: visible;
+      transition: all .2s ease;
+    }
+
+    &:before {
+      right: 50%;
+      transform: skew(0deg, $chev-deg);
+    }
+
+    &:after {
+      left: 50%;
+      width: 15%;
+      background: red;
+      transform: skew(0deg, -$chev-deg);
+    }
+
+    &--disable {
+      background-color: find-color(border) !important;
+      &:before, &:after { background-color: find-color(border) !important;  }
+
+      .c-chev-dn__text {
+        color: find-color(text) !important;
+      }
+    }
+
+  }
+
+  &__text {
+    position: relative;
+    z-index: 2;
+  }
+
+}
+
+// Generate Colors
+@for $i from $chev-i to $chev-total {
+  $chev-mix: mix($chev-start, $chev-end, percentage($i / ($chev-total - 1)));
+  .c-chev-dn__item {
+    &:nth-child(#{$i + 1}) {
+      background-color: $chev-mix;
+
+      &:before, &:after {
+        background-color: $chev-mix;
+      }
+
+      &:hover, &:focus {
+        background-color: find-color(warning);
+        &:before, &:after {
+          background-color: find-color(warning);
+        }
+      }
+
+      > .c-chev-dn__text { color: color-pick-contrast($chev-mix, (find-color(white), find-color(text,dark))); }
+
+    }
+
+  }
+}

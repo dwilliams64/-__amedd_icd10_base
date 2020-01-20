@@ -1,0 +1,117 @@
+///////////////////////////////////////////////////////////////////////
+//
+// MODULE COVER
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$crs-mod-sub-mh: 36px;
+$crs-mod-sub-bw: 3px;
+$crs-mod-sub-bc: find-color(secondary);
+$crs-mod-sub-br: $crs-mod-sub-mh / 2;
+$crs-mod-sub-fc: find-color(white);
+
+$crs-mod-sub-tb: pad-height($crs-mod-sub-mh,1,$crs-mod-sub-bw);
+$crs-mod-sub-lr: spacing(0.75);
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-module-cover {
+  background-color: find-color(gray, lightest);
+  box-shadow: $base-shadow-common;
+
+
+  &__media {
+    background-color: find-color(primary,darkest);
+    vertical-align: top;
+    text-align: center;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(7);
+      &:after { @include stripe-edge(right); }
+    }
+
+  }
+
+
+  &__body {
+    @include gts-box-common(lg);
+    @include bg-dark-blue;
+    text-align: center;
+
+    @include breakpoint(medium) {
+      @include grid-column-size(5);
+      vertical-align: middle;
+    }
+
+  }
+
+
+  &__sub {
+    position: relative;
+    display: inline-block;
+    // margin-top: spacing(0.5);
+    margin-bottom: spacing(0.5);
+    padding: $crs-mod-sub-tb $crs-mod-sub-lr;
+    border-radius: $crs-mod-sub-br;
+    color: $crs-mod-sub-fc;
+    border: $crs-mod-sub-bw solid $crs-mod-sub-bc;
+    z-index: 1;
+  }
+
+  &__heading {
+    margin-bottom: spacing(1);
+    @include typeset(2);
+    color: find-color(white);
+
+    > small {
+      display: block;
+      margin-top: spacing(.75);
+      margin-bottom: spacing(1);
+      font-size: font-size(md);
+      color: find-color(white);
+      font-weight: weight(light);
+      letter-spacing: 0.5px;
+    }
+
+  }
+
+
+  &__tip {
+    margin: 0;
+
+    .c-callout__media {
+      border: 0 !important;
+      padding: spacing(3px);
+    }
+
+    .c-callout__body {
+      padding: rem(8px);
+      border: 0 !important;
+      padding-right: spacing(0.75);
+    }
+
+    @include breakpoint(medium) {
+      position: absolute;
+      bottom: spacing(0.5);
+      left:  spacing(0.5);
+      right:  spacing(0.5);
+      width: auto;
+      z-index: 1;
+    }
+
+    @include breakpoint(small down) {
+      .c-callout__media,
+      .c-callout__body {
+        border-radius: 0;
+      }
+    }
+
+  }
+
+
+
+}

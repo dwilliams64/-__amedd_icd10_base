@@ -1,0 +1,181 @@
+///////////////////////////////////////////////////////////////////////
+//
+// TABS SIGNS 2
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// *Requires _components.tabs.scss
+
+
+// VARIABLES
+// -------------------------------------------------------------------
+$sign2-mh: spacing(2.5);
+
+$sign2-fc: find-color(white);
+$sign2-fs: font-size(md);
+$sign2-fw: weight(light);
+$sign2-lh: $base-line-height;
+
+$sign2-bg: find-color(secondary,dark);
+$sign2-bw: 3px;
+$sign2-bc: $sign2-bg;
+$sign2-br: 9px;
+
+$sign2-ew: 2px;
+$sign2-ec: rgba(find-color(white),0.6);
+
+$sign2-tb: pad-height($sign2-mh,$sign2-lh,$sign2-bw);
+$sign2-lr: spacing(0.75);
+$sign2-mb: spacing(0.25);
+
+$sign2-fc-h: find-color(highlight);
+$sign2-bg-h: rgba(find-color(gray,darker),0.8);
+$sign2-fc-a: $sign2-fc-h;
+
+
+// STYLES
+// -------------------------------------------------------------------
+
+.#{$tabs}-sign2-pole {
+  overflow: hidden;
+
+  // used to place the pole
+  &:before {
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    width: 17px;
+    height: 90%;
+    // min-height: 466px;
+    background-color: blue;
+    background-image: url(../img/bg-pole.png);
+    background-repeat: repeat-y;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+
+}
+
+
+.#{$tabs}-sign2 {
+
+  .#{$tabs} {
+    display: block;
+    height: 90%;
+
+    @include breakpoint(medium) {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+  }
+
+  .#{$tabs}#{$tabs-item} {
+    float: none;
+    margin-bottom: $sign2-mb;
+
+    &:last-child {}
+
+  }
+
+  // title
+  .#{$tabs}#{$tabs-title} {
+    position: relative;
+    display: block;
+    padding: $sign2-tb $sign2-lr;
+    font-size: $sign2-fs;
+    font-weight: $sign2-fw;
+    line-height: $sign2-lh;
+    color: $sign2-fc;
+    border: $sign2-bw solid $sign2-bc;
+    background-image: url(../img/bg-dust.png);
+    background-color: $sign2-bg;
+    border-radius: $sign2-br;
+    transition: all .3s ease;
+
+    &:hover {
+      border-color: find-color(secondary,darker);
+      background-color: find-color(secondary,darker);
+
+       > .o-arrow-icon {
+          fill: find-color(white);
+       }
+
+    }
+
+    > .o-arrow-icon {
+      position: absolute;
+      top: 50%;
+      right: 9px;
+      padding: rem(3px);
+      background-color: transparent;
+      fill: rgba(find-color(white),0.4);
+      transform: translateY(-50%);
+    }
+
+    &:before {
+      content:'';
+      position: absolute;
+      top: calc(100% + #{$sign2-bw};
+      left: 50%;
+      display: block;
+      width: 17px;
+      height: $sign2-mb;
+      transform: translateX(-50%);
+    }
+
+    &:after {
+      content:'';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      border: $sign2-ew solid $sign2-ec;
+      border-radius: px($sign2-br) - px($sign2-bw);
+    }
+
+
+    &[aria-selected='true'] {
+      border-color: find-color(secondary,darkest);
+      background-color: find-color(secondary,darkest);
+
+      > .o-arrow-icon {
+        fill: find-color(white);
+      }
+
+      &:after {
+        border-color: find-color(secondary);
+      }
+
+    }
+
+  }
+
+  // content
+  .#{$tabs}#{$tabs-content} {
+    width: 100%;
+    display: block;
+    background-color: find-color(white);
+
+
+    @include breakpoint(medium) {
+      min-height: $base-mh-pad-w-title;
+    }
+
+  }
+
+
+  // panel
+  .#{$tabs}#{$tabs-panel} {
+    width: 100%;
+    height: 100%;
+  }
+
+
+}

@@ -1,0 +1,28 @@
+///////////////////////////////////////////////////////////////////////
+//
+// SIDE TAB 1
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+$lvt1-pad: spacing(0.75);
+$lvt1-panel-m: spacing(0.5);
+
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+.l-vtabs1 {
+  @include get-shadow(2);
+
+  &__panel {
+    border-left: 1px solid find-color(border,light);
+    background-color: find-color(white);
+    min-height: rem($base-mh-pad-w-title);// - rem($lvt1-pad * 2);
+  }
+
+}

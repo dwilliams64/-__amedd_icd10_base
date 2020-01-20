@@ -1,0 +1,32 @@
+///////////////////////////////////////////////////////////////////////
+//
+// REVEAL MENU
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// ------------------------------------------------------------------
+.reveal--toc {
+  background-color: rgba(find-color(primary, darkest), 0.85);
+  border-radius: 0;
+  max-width: 800px;
+
+  .reveal__hdr {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .c-header__title {
+    margin-bottom: 0;
+    font-size: font-size(sm);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .reveal__body {
+    padding: 0;
+    // border-top: spacing(0.125) solid find-color(secondary);
+   }
+
+}

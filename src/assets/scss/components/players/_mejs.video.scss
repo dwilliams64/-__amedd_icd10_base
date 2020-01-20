@@ -1,0 +1,444 @@
+///////////////////////////////////////////////////////////////////////
+//
+// VIDEO PLAYER
+//
+// ///////////////////////////////////////////////////////////////////
+
+// Vendor : https://github.com/johndyer/mediaelement
+// Version : see package.json
+// Notes: Only use 'px' when setting units
+
+// settings in components/media-players.scss
+
+// Global
+// ------------------------------------------------------------------
+.mejs__player {
+  margin-bottom: $mejs-space-after;
+}
+
+// IMPORTS -- important do not remove
+// ------------------------------------------------------------------
+
+/* Accessibility: hide screen reader texts (and prefer "top" for RTL languages).
+Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-how/ */
+.mejs__offscreen { @include element-invisible; }
+
+.mejs__container {
+  position: relative;
+  // background: #000;
+  @if 'inherit' != $mejs-ff {
+    font-family: $mejs-ff;
+}
+  text-align: left;
+  vertical-align: top;
+  text-indent: 0;
+  border-radius: $mejs-radius;
+}
+
+// .mejs__container * { box-sizing: border-box; }
+
+/* Hide native play button from iOS to favor plugin button */
+.mejs__container video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
+.mejs__fill-container,
+.mejs__fill-container .mejs__container {
+  width: 100%;
+  height: 100%;
+}
+
+.mejs__fill-container {
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.mejs__container:focus { outline: none; }
+
+.mejs__iframe-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.mejs__embed,
+.mejs__embed body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: $mejs-bar-bg-end;
+  overflow: hidden;
+}
+
+.mejs__fullscreen {
+  overflow: hidden !important;
+}
+
+.mejs__container-fullscreen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.mejs__container-fullscreen .mejs__mediaelement,
+.mejs__container-fullscreen video {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.mejs__clear {
+  clear: both;
+}
+
+/* Start: LAYERS */
+.mejs__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mejs__mediaelement {
+  position: absolute;
+  top: 0;
+  left: 0;
+  // width: 100%;
+  // height: 100%;
+  z-index: 0;
+}
+
+.mejs__poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+:root .mejs__poster-img {
+  display: none;
+}
+
+.mejs__poster-img {
+  border: 0;
+  padding: 0;
+}
+
+// Overlay styles in media-players/mp.overlay
+
+/* End: LAYERS */
+
+/* Start: CONTROL BAR */
+.mejs__controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  min-height: spacing($mejs-bar-height);
+  width: 100%;
+  padding:spacing($mejs-space-tb) spacing($mejs-space-lr);
+  font-size: $mejs-fs;
+  font-weight: $mejs-fw;
+  color: $mejs-fc;
+  list-style-type: none;
+  z-index: 1;
+}
+
+.mejs__controls:not([style*="display: none"]) {
+  background: $mejs-bar-bg-end;
+  background: linear-gradient(
+    $mejs-bar-bg-start 0%,
+    $mejs-bar-bg-end 100%
+  );
+}
+
+.mejs__button,
+.mejs__time,
+.mejs__time-rail {
+    float: left;
+    margin: 0;
+    margin-right: spacing($mejs-space-lr);
+    min-height: spacing($mejs-btn-height);
+    &:first-child {
+      margin-left: spacing($mejs-space-lr);
+    }
+}
+
+.mejs__button {
+  // &:first-child {
+  //   margin-left: $mejs-space-lr;
+  // }
+}
+
+.mejs__button > button {
+    display: block;
+    height: spacing($mejs-btn-height);
+    width:  spacing($mejs-btn-width);
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    background-color: rgba($mejs-btn-bg, $mejs-btn-bg-opacity);
+    border-radius: $mejs-btn-radius;
+    @include sprite-image;
+    overflow: hidden;
+    cursor: pointer;
+    @include transition(background-color);
+}
+
+
+/* :focus for accessibility */
+// .mejs__button > button:focus,
+.mejs__button > button:hover {
+  background-color: rgba($mejs-btn-bg-hov, $mejs-btn-bg-opacity-hov);
+}
+
+.mejs__container-keyboard-inactive a,
+.mejs__container-keyboard-inactive a:focus,
+.mejs__container-keyboard-inactive button,
+.mejs__container-keyboard-inactive button:focus,
+.mejs__container-keyboard-inactive [role=slider],
+.mejs__container-keyboard-inactive [role=slider]:focus {
+  outline: 0;
+}
+
+/* End: CONTROL BAR */
+
+/* Start: Time (Current / Duration) */
+.mejs__time {
+  width: auto;
+  height: $mejs-btn-height;
+  padding: 0;
+  line-height: px($mejs-btn-height) + px(1px);
+  // @include line-height(px($mejs-btn-height) + px(1px));
+  text-align: center;
+  vertical-align: text-bottom;
+  overflow: hidden;
+}
+/* End: Time (Current / Duration) */
+
+/* Start: Play/Pause/Stop */
+.mejs__play > button {
+  @include sprite-position($mejs-icon-play);
+}
+
+.mejs__pause > button {
+  @include sprite-position($mejs-icon-pause);
+}
+
+.mejs__replay > button {
+  @include sprite-position($mejs-icon-replay);
+}
+
+/* End: Play/Pause/Stop */
+
+/* Start: Progress Bar */
+.mejs__time-rail {
+  direction: ltr;
+  width: 200px;
+  padding-top: spacing(($mejs-btn-height - $mejs-rail-height) / 2);
+  position: relative;
+}
+
+.mejs__time-total,
+.mejs__time-buffering,
+.mejs__time-loaded,
+.mejs__time-current,
+.mejs__time-handle,
+// .mejs__time-float,
+// .mejs__time-float-current,
+// .mejs__time-float-corner,
+.mejs__time-marker {
+  position: absolute;
+  cursor: pointer;
+  display: block;
+  height: $mejs-rail-height;
+  border-radius: $mejs-rail-radius;
+}
+
+.mejs__time-total {
+  background: rgba($mejs-rail-bg, 0.3);
+  width: 100%;
+}
+
+.mejs__time-buffering {
+  width: 100%;
+  background: linear-gradient(
+    -45deg, rgba($mejs-rail-bg-prog, 0.15)
+    25%, transparent 25%, transparent 50%,
+    rgba($mejs-rail-bg-buff, 0.15) 50%,
+    rgba($mejs-rail-bg-buff, 0.15) 75%,
+    transparent 75%, transparent
+  );
+  background-size: 15px 15px;
+  animation: buffering-stripes 2s linear infinite;
+}
+
+@keyframes buffering-stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 30px 0;
+  }
+}
+
+.mejs__time-loaded {
+  background: rgba($mejs-rail-bg-load, .3);
+  width: 0;
+}
+
+.mejs__time-current {
+  background: rgba($mejs-rail-bg-cur, 1.0);
+  width: 0;
+}
+
+.mejs__time-handle {
+  position: absolute;
+  top: -4px;
+  display: none;
+  margin: 0;
+  width: spacing($mejs-rail-height + 8);
+  height: spacing($mejs-rail-height + 8);
+  background: $mejs-rail-bg;
+  border-radius: 50%;
+  cursor: pointer;
+  border: solid 2px darken($mejs-rail-bg, 15%);
+  text-align: center;
+}
+
+// Time float is in  break out
+
+.mejs__broadcast {
+  color: $mejs-fc;
+  position: absolute;
+  width: 100%;
+  height: $mejs-rail-height;
+  top: 15px;
+}
+
+/* End: Progress Bar */
+
+/* Start: Fullscreen */
+.mejs__fullscreen-button > button {
+  @include sprite-position($mejs-icon-fullscreen);
+}
+
+.mejs__unfullscreen > button {
+  @include sprite-position($mejs-icon-fullscreen-exit);
+}
+
+/* End: Fullscreen */
+
+/* Start: Mute/Volume */
+.mejs__mute > button {
+  @include sprite-position($mejs-icon-mute);
+}
+
+.mejs__unmute > button {
+  @include sprite-position($mejs-icon-unmute);
+}
+
+.mejs__volume-button {
+  position: relative;
+  @include breakpoint(medium down) {
+    // display: none;
+    // margin: 0;
+    // width: 0;
+  }
+}
+
+.mejs__volume-button > .mejs__volume-slider {
+  display: none;
+  position: absolute;
+  top: $mejs-slider-height * -1;
+  left: 0;
+  height: $mejs-slider-height;
+  width: $mejs-slider-width;
+  background: rgba($mejs-slider-bg, $mejs-slider-opacity);
+  border-radius: $mejs-idx-radius;
+  z-index: 1;
+  margin: 0;
+  @include transition;
+}
+
+.mejs__volume-button:hover {
+  border-radius: 0 0 $mejs-btn-radius $mejs-btn-radius
+}
+
+.mejs__volume-total {
+  position: absolute;
+  left: ($mejs-slider-width - $mejs-slider-rail-width) / 2;
+  top: $mejs-slider-rail-mar;
+  width: $mejs-slider-rail-width;
+  height: $mejs-slider-rail-height;
+  background: rgba($mejs-slider-rail-bg, 0.3);
+  margin: 0;
+}
+
+.mejs__volume-current {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($mejs-slider-rail-bg-cur, 0.9);
+  margin: 0;
+}
+
+.mejs__volume-handle {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    width: $mejs-slider-handle-width;
+    height: $mejs-slider-handle-height;
+    margin-bottom: ($mejs-slider-handle-height / 2) * -1;
+    margin-left: ($mejs-slider-handle-width / 2) * -1;
+    background: rgba($mejs-slider-handle-bg, 1);
+    cursor: ns-resize;
+    border-radius: $mejs-slider-handle-radius;
+    @include get-shadow(1);
+}
+
+// horizontal
+
+.mejs__horizontal-volume-slider {
+    position: relative;
+    float: left;
+    margin-right: spacing($mejs-space-lr);
+    height: $mejs-btn-height;
+    width: $mejs-slider-width-hor;
+    vertical-align: middle;
+}
+
+.mejs__horizontal-volume-total {
+    position: absolute;
+    top: ($mejs-btn-height - $mejs-slider-height-hor) / 2;
+    width: $mejs-slider-width-hor;
+    height: $mejs-slider-height-hor;
+    border-radius: $mejs-slider-radius-hor;
+    background: rgba($mejs-slider-bg-hor, 0.3);
+}
+
+.mejs__horizontal-volume-current {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: $mejs-slider-radius-hor;
+    background: rgba($mejs-slider-bg-hor, 1);
+}
+
+.mejs__horizontal-volume-handle {
+    display: none;
+}
+
+/* End: Mute/Volume */

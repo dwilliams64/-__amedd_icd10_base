@@ -1,0 +1,160 @@
+///////////////////////////////////////////////////////////////////////
+//
+// Layout
+//
+//////////////////////////////////////////////////////////////////////
+
+
+// COURSE WRAPPER
+// ----------------------------------------------------------------
+@mixin wrapper($width: $global-width) {
+  max-width: $global-width;
+  margin: 0 auto;
+  @include clearfix;
+}
+
+.o-wrapper { @include wrapper; }
+
+@include breakpoint(medium) {
+  .column,
+  .columns {
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+
+// COMMON PATTERN
+// ----------------------------------------------------------------
+.o-box {
+  // @include clearfix;
+  display: block;
+  vertical-align: top;
+  width: 100%;
+
+
+  @include breakpoint(medium) {
+    display: table;
+    height: 1px;
+  }
+
+  &__cell {
+    @include breakpoint(medium) {
+      position: relative;
+      display: table-cell;
+      height: 100%;
+      vertical-align: top;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+  }
+
+  &--float {
+    @include clearfix;
+    display: block;
+    height: auto;
+    overflow: hidden;
+
+
+    > .o-box__cell {
+      display: block;
+      @include breakpoint(medium) { float: left; }
+    }
+  }
+
+
+  &__row {
+
+    @include breakpoint(medium) {
+      display: table-row;
+      width: 100%;
+    }
+
+  }
+
+  // @include breakpoint(medium) {
+  //   min-height: $base-mh-pad;
+  // }
+
+}
+
+
+// BOX PADDING
+// ----------------------------------------------------------------
+
+.o-pad-box,
+.o-pad {
+  @include gts-box-common;
+}
+
+.o-pad-lr {
+  @include gts-box-common($dir:lr);
+}
+
+.o-pad-tb {
+  @include gts-box-common($dir:tb);
+}
+
+.o-pad-box-sm,
+.o-pad-sm {
+  @include gts-box-common(sm);
+}
+
+.o-pad-lr-sm {
+  @include gts-box-common(sm, $dir:lr);
+}
+
+.o-pad-tb-sm {
+  @include gts-box-common(sm, $dir:tb);
+}
+
+.o-pad-box-lg,
+.o-pad-lg {
+  @include gts-box-common(lg);
+}
+
+.o-pad-lr-lg {
+  @include gts-box-common(lg, $dir:lr);
+}
+
+.o-pad-tb-lg {
+  @include gts-box-common(lg, $dir:tb);
+}
+
+.o-pad-box-xl,
+.o-pad-xl {
+  @include gts-box-common(xl);
+}
+
+.o-pad-lr-xl {
+  @include gts-box-common(xl, $dir:lr);
+}
+
+.o-pad-tb-xl {
+  @include gts-box-common(xl, $dir:tb);
+}
+
+.o-box-common {
+  @include gts-box-common($bg:$box-background);
+}
+
+
+// MINIMUM HEIGHT
+// -------------------------------------------------------------------------
+.o-mh {
+  min-height: $base-mh;
+  &-w-title {
+    min-height: $base-mh-w-title;
+  }
+  &-pad {
+    min-height: $base-mh-pad;
+  }
+  &-pad-w-title {
+    min-height: $base-mh-pad-w-title;
+  }
+}

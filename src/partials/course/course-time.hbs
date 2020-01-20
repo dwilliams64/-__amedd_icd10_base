@@ -1,0 +1,18 @@
+<div class="c-course-time {{class}}">
+  <div class="c-course-time__estimate">
+    <span class="c-course-time__txt">
+      {{#if hrs}}
+        {{hrs}}
+      {{/if}}
+      <small>estimated course time</small>
+    </span>
+    <span class="c-course-time__txt">
+      {{#if level}}
+        {{level}}
+      {{else}}
+        {{@root.global.skill-level}}
+      {{/if}}
+      <small>technical level</small>
+    </span>
+  </div>
+</div>

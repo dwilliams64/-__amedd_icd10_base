@@ -1,0 +1,31 @@
+///////////////////////////////////////////////////////////////////////
+//
+// LIST OBJECTIVES
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-list-obj__item {
+  transition: all .5s ease;
+
+  &.is-active {
+    position: relative;
+    z-index: 0;
+
+    &:before {
+      content:'';
+      position: absolute;
+      top: 50%;
+      left: -9px;
+      width: 100%;
+      height: 12px;
+      background-color:  find-color(highlight,lighter);
+      transform: translateY(-50%);
+      z-index: -1;
+    }
+
+  }
+
+}

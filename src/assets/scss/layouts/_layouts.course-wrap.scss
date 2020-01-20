@@ -1,0 +1,36 @@
+///////////////////////////////////////////////////////////////////////
+//
+// COURSE WRAPS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+// STYLES
+// -------------------------------------------------------------------
+.l-course-wrap {
+  position: relative;
+  // overflow: hidden;
+  background-color: find-color(border);
+  @include bg-content;
+}
+
+.l-course-content {
+  position: relative;
+  padding: $base-gutter / 2;
+
+  @include breakpoint(medium) {
+    min-height: $base-mh;
+    padding: $base-gutter;
+
+    > .l-course-content {
+      min-height: auto;
+      background-color: transparent;
+      background-image: none;
+    }
+
+  }
+
+
+}
+
+

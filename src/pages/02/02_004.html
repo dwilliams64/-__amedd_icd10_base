@@ -1,0 +1,26 @@
+---
+layout: kc-1
+title: Chapter 1 - Check Your Knowledge
+video: no
+kc: true
+wrap: u-bs-common
+---
+
+{{#> question type="ms" id="01" attempts="1" answer="3,4" text="large"}}
+Which of the following would you use to code this encounter? Select an answer.
+	{{#* inline 'question-directions'}}A Service member with no history of concussion screening presents with a headache. During the course of the visit you decide to screen concussion using the MACE. The results of the screening are positive because the Service member reports hitting his head while playing football while off duty a week earlier. He also reports that he felt dazed and confused at the time, although he did not lose consciousness.
+	{{/inline}}
+	{{#* inline 'question-choice-wrap'}}
+		{{> question-choice choice-text="A. DOD0122 (Concussion screening, Positive)" }}
+		{{> question-choice choice-text="B. 506.0X1D (Concussion, LOC &lte; 30 minutes, subsequent encounter)" }}
+		{{> question-choice choice-text="C. 506.0X0A Concussion, no LOC" }}
+		{{> question-choice choice-text="D. R51 Headache" }}
+	{{/inline}}
+	{{#* inline 'question-correct'}}
+		Yes, this is the correct answer!
+		<p class='c-feedback__next-msg'>Select 'Next' to continue.</p> {{/inline}}
+		{{#* inline 'question-incorrect'}}
+		No, this is not correct.
+		<p class='c-feedback__next-msg'>Select 'Next' to continue.</p> 
+	{{/inline}}
+{{/question}}

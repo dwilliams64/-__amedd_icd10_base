@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Guide</title>
+
+    {{> sg-styles}}
+
+</head>
+<body class="ss-body">
+
+{{!--  --}}
+
+<header class="ss-docs__hdr">
+  <span class="ss-docs__toggle nav"></span>
+  <h1 class="ss-docs__title">{{page}}</h1>
+</header>
+<app class="ss-docs">
+  <nav class="ss-docs__nav">
+    <ul data-accordion-menu class="ss-docs__menu">
+    {{#each (readdir './src/pages/styleguide') }}
+      <li><a href="{{basename this}}">{{stem this}}</a>
+        {{#is (stem this) 'layouts'}}
+        <ul class="ss-docs__menu">
+        {{#each (readdir './src/pages/styleguide/layouts') }}
+          <li>
+            <a href="{{stem ../this}}/{{basename this}}"  style="padding-left:12px;">
+              {{stem this}}
+          </a>
+          </li>
+        {{/each}}
+        </ul>
+        {{/is}}
+      </li>
+    {{/each}}
+    </ul>
+  </nav>
+  <article class="ss-docs__content">
+    <div class="ss-docs__inner {{#if expand}}ss-docs-expand{{/if}}">
+      {{> body}}
+    </div>
+  </article>
+</app>
+
+{{> sg-scripts}}
+
+  </body>
+</html>
+

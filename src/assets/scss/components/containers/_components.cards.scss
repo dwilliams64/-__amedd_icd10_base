@@ -1,0 +1,361 @@
+///////////////////////////////////////////////////////////////////////
+//
+// CARDS
+//
+// ///////////////////////////////////////////////////////////////////
+
+
+
+// CLASSES
+// ------------------------------------------------------------------
+$card: 'c-card';
+$card-header:  '__header';
+$card-media:   '__media';
+$card-body:    '__body';
+$card-footer:  '__footer';
+$card-section: '__section';
+$card-action:  '__action';
+$card-title:   '__title';
+$card-meta:    '__meta';
+
+
+
+// VARIABLES
+// ------------------------------------------------------------------
+
+// Set-up
+$card-bg:                 find-color(white);
+$card-bc:                 find-color(border,light);
+$card-bw:                 1px;
+$card-br:                 0px;
+$card-mb:                 spacing(1);
+$card-rise:               -3px;
+
+// Sections (header footer mostly)
+$card-sect-tb:            spacing(0.5);
+$card-sect-bw:            $card-bw;
+$card-sect-bc:            find-color(border,light);
+
+// Media
+$card-media-bg:           find-color(gray,lightest);
+
+// Title
+$card-title-mb:            spacing(0.25);
+$card-title-fc:            $header-color;
+$card-title-fw:            weight(normal);
+
+// Meta
+$card-meta-fc:           find-color(text,light);
+$card-meta-fs:           font-size(sm);
+$card-meta-fw:           $global-weight-normal;
+$card-meta-lh:           line-height(0.75);
+$card-meta-mb:           spacing(0.25);
+
+// Dark
+$card-dark-bg:           find-color(gray,darkest);
+$card-dark-bc:           lighten($card-dark-bg,10%);
+$card-dark-fc:           find-color(white);
+
+// Alt
+$card-alt-bg:           find-color(accent, darker);
+$card-alt-bc:           lighten($card-alt-bg,10%);
+$card-alt-fc:           find-color(white);
+
+// Warning
+$card-warning-bg:           find-color(warning);
+$card-warning-bc:           lighten($card-warning-bg,10%);
+$card-warning-fc:           find-color(white);
+
+// Alt
+$card-alert-bg:           find-color(alert);
+$card-alert-bc:           lighten($card-alert-bg,10%);
+$card-alert-fc:           find-color(white);
+
+
+
+// STYLES
+// ------------------------------------------------------------------
+
+
+// Add divider line to element not connected to media
+// ------------------------------------------------------------------
+div[class^="#{$card}__"] + :not(.#{$card}#{$card-media}) {
+  @if $card-sect-bw {
+    border-top: $card-sect-bw solid $card-sect-bc;
+  }
+}
+
+
+// Remove divider line from elements following media
+// ------------------------------------------------------------------
+.#{$card}#{$card-media} + div[class^="#{$card}__"] {
+  border-top: 0;
+}
+
+
+// Card Container
+// ------------------------------------------------------------------
+.#{$card} {
+  position: relative;
+  display: block;
+  margin-bottom: $card-mb;
+  background-color: $card-bg;
+  border-radius: $card-br;
+  > :first-child { border-radius: $card-br $card-br 0 0; }
+  > :last-child { border-radius: 0 0 $card-br $card-br;}
+
+  > #{$card} { border-radius:0; }
+
+
+  // Section
+  // -------------------------------
+  &#{$card-section} {
+    position: relative;
+    @include gts-box-common (
+      $pt: $card-sect-tb,
+      $pb: $card-sect-tb
+    );
+  }
+
+
+  // Body
+  // -------------------------------
+  &#{$card-body} {
+    @include gts-box-common;
+  }
+
+
+  // Media
+  // -------------------------------
+  &#{$card-media} {
+    text-align: center;
+    overflow: hidden;
+    background-color: $card-media-bg;
+  }
+
+
+  // Action Bar
+  // -------------------------------
+  &#{$card-action} {
+    @include gts-box-common(sm);
+    > :last-child { margin-bottom: 0; }
+  }
+
+
+  // Title
+  // -------------------------------
+  &#{$card-title} {
+    @include typeset(3);
+    font-weight: $card-title-fw;
+    margin-bottom: $card-title-mb;
+    color: $card-title-fc;
+  }
+
+
+  // Meta
+  // -------------------------------
+  &#{$card-meta} {
+    font-size: $card-meta-fs;
+    font-weight: $card-meta-fw;
+    line-height: $card-meta-lh;
+    color: $card-meta-fc;
+    margin-bottom: $card-meta-mb;
+  }
+
+
+  // DECORATORS
+  // ----------------------------------------------------------------
+
+  // Base
+  // -------------------------------
+  &.-shadow {
+    @include get-shadow(1);
+  }
+
+  // Border
+  // -------------------------------
+  &.-border {
+    @if $card-bw {
+      border: $card-bw solid $card-bc;
+    }
+  }
+
+  // Hover
+  // -------------------------------
+  &.-hover {
+    transition:
+    transform 0.2s ease,
+    box-shadow 0.1s ease;
+
+    &:hover,
+    &:focus {
+      @include get-shadow(4, $opacity:0.2);
+      transform: translateY(#{$card-rise});
+    }
+
+  }
+
+}
+
+
+
+// COLOR MODIFIERS
+// ------------------------------------------------------------------
+
+
+// Dark
+// -------------------------------
+.#{$card}--dark > [class^="#{$card}__"] + :not(.#{$card}#{$card-media}) {
+  @if $card-sect-bw {
+    border-top-color: $card-dark-bc;
+  }
+}
+
+.#{$card}--dark {
+  background-color: $card-dark-bg;
+  color: $card-dark-fc;
+  .#{$card}#{$card-title} { color: $card-dark-fc; }
+  .#{$card}#{$card-meta} { color: $card-dark-fc; }
+}
+
+
+// Alt
+// -------------------------------
+.#{$card}--alt > [class^="#{$card}__"] + :not(.#{$card}#{$card-media}) {
+  @if $card-sect-bw { border-top-color: $card-alt-bc; }
+}
+
+.#{$card}--alt {
+  background-color: $card-alt-bg;
+  color: $card-alt-fc;
+  .#{$card}#{$card-title} { color: $card-alt-fc; }
+  .#{$card}#{$card-meta} { color: $card-alt-fc; }
+}
+
+
+// Warning
+// -------------------------------
+.#{$card}--warning > [class^="#{$card}__"] + :not(.#{$card}#{$card-media}) {
+  @if $card-sect-bw { border-top-color: $card-warning-bc; }
+}
+
+.#{$card}--warning {
+  background-color: $card-warning-bg;
+  color: $card-warning-fc;
+  .#{$card}#{$card-title} { color: $card-warning-fc; }
+  .#{$card}#{$card-meta} { color: $card-warning-fc; }
+}
+
+
+// Alert
+// -------------------------------
+.#{$card}--alert > [class^="#{$card}__"] + :not(.#{$card}#{$card-media}) {
+  @if $card-sect-bw { border-top-color: $card-alert-bc; }
+}
+
+.#{$card}--alert {
+  background-color: $card-alert-bg;
+  color: $card-alert-fc;
+  .#{$card}#{$card-title} { color: $card-alert-fc; }
+  .#{$card}#{$card-meta} { color: $card-alert-fc; }
+}
+
+
+
+// HORIZONTAL MODIFIER
+// ------------------------------------------------------------------
+.#{$card}--horizontal {
+
+  @include breakpoint(medium) {
+    display: table;
+    width: 100%;
+    > :first-child { border-radius: $card-br 0 0 $card-br; }
+    > :last-child  { border-radius:0 $card-br $card-br 0; }
+  }
+
+  > .#{$card}#{$card-body},
+  > .#{$card}#{$card-media} {
+    display: table-cell;
+  }
+
+  .#{$card}__cell {
+    @include breakpoint(medium) {
+      display: table-cell;
+    }
+  }
+
+}
+
+// MEDIA CARD STYLE
+// ------------------------------------------------------------------
+
+.#{$card}-media {
+  @include media-object-container();
+  margin-bottom: 0;
+  > :last-child { margin-bottom: 0; }
+
+  &__body {
+    @include media-object-body(middle);
+  }
+
+  &__media {
+    @include media-object-sections;
+    @include media-object-media(18px);
+  }
+
+  &__title {
+    @include typeset(5);
+    line-height: 21px;
+    color: $header-color;
+    margin-bottom: 0;
+  }
+
+  &__meta {
+    @include typeset(small);
+    line-height: 21px;
+    color: find-color(text,light);
+  }
+
+}
+
+
+
+
+// ICON CARDS
+// ------------------------------------------------------------------
+.#{$card}--icon {
+  @include gts-box-common(sm);
+  position: relative;
+  min-height: spacing(9);
+  text-align: center;
+  background-color: find-color(white);
+  border-radius: 6px;
+}
+
+
+.#{$card}--process {
+  &:after {
+    content:'';
+    position: absolute;
+    top:100%;
+    left: 50%;
+    box-sizing: content-box;
+    display: block;
+    @include sprite-common;
+    @include sprite(arrow-fwd-hov);
+    border: 3px solid find-color(secondary);
+    background-color: find-color(secondary);
+    border-radius: 50%;
+    z-index: 1;
+    transform: translateY(-50%) translateX(-50%) rotate(90deg);
+  }
+
+  @include breakpoint(medium) {
+    &:after {
+      top:50%;
+      left: 100%;
+      transform: translateY(-50%) translateX(-50%) rotate(0);
+    }
+  }
+
+}

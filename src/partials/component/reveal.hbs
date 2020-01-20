@@ -1,0 +1,25 @@
+<div class='reveal {{#if rType}}reveal--{{rType}}{{else}}reveal--basic{{/if}} {{rClass}}'
+  data-reveal
+  id='{{rID}}'
+  data-v-in="{{#if rIn}}{{rIn}}{{else}}expandIn{{/if}}"
+  data-v-out="{{#if rOut}}{{rOut}}{{else}}expandOut{{/if}}"
+  aria-labelledby='{{rID}}'>
+
+  {{#if rTitle}}
+  {{> page-title
+    title= rTitle
+    height='lg'
+    type='lsn'
+    class='reveal__header'
+  }}
+  {{/if}}
+
+  <div class="reveal__body">
+    {{#if @partial-block}}
+    {{> @partial-block}}
+    {{/if}}
+  </div>
+
+  {{> close-button mod='white' label='Close course menu' }}
+
+</div>

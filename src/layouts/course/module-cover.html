@@ -1,0 +1,35 @@
+{{> course-html-head main="u-bg-dark-blue" lesson="Welcome" }}
+
+<article class="o-box o-mh-pad l-module-cover v-hide">
+
+  <aside class="o-box__cell l-module-cover__media v-hide">
+
+    {{#if tip}}
+      {{#> callout type="tip" mod="action" class="l-module-cover__tip" }}
+        <p>{{{tip}}}</p>
+      {{/callout}}
+    {{/if}}
+
+    {{> body}}
+  </aside>
+
+  <section class="o-box__cell l-module-cover__body">
+
+    <span class="l-module-cover__sub v-hide">
+      Module {{> course-titles type="module-number"}}
+    </span>
+    <h3 class="l-module-cover__heading v-hide">
+      {{> course-titles type="module"}}
+      {{#if small-title}}<small>{{{small-title}}}</small>{{/if}}
+    </h3>
+    {{> course-time hrs=time lvl=level class="v-hide" }}
+
+  </section>
+
+</article>
+
+{{> course-html-footer }}
+
+
+
+

@@ -1,0 +1,49 @@
+///////////////////////////////////////////////////////////////////////
+//
+// TABLES
+//
+// ///////////////////////////////////////////////////////////////////
+// STYLES
+// ------------------------------------------------------------------
+.c-table {
+  &__hdr {
+      font-weight: weight(normal);
+      color: find-color(accent,dark);
+      border: 1px solid darken(find-color(accent,lightest),8%);
+      border-top: 6px solid find-color(accent,lighter);
+      background-color: find-color(accent,lightest);
+    &--tt {
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: font-size(sm);
+    }
+  }
+  &__row-hdr {
+    border: 1px solid darken(find-color(accent,lightest),0%);
+    border-bottom: 1px solid darken(find-color(accent,lightest),4%);
+    background-color: lighten(find-color(accent,lightest),8%) !important;
+    &--sub {
+      background-color: lighten(find-color(accent,lightest),10%) !important;
+      font-style: italic;
+    }
+  }
+}
+
+table thead th {
+  border: 1px solid find-color(border);
+  font-weight: weight(normal);
+}
+tbody th {
+  border: 1px solid find-color(border);
+  background-color: find-color(gray,bg);
+  font-weight: weight(normal);
+}
+
+td {
+  border-top: 1px solid find-color(border);
+  border-bottom: 1px solid find-color(border);
+  border-left: 1px solid find-color(border,light);
+  border-right: 1px solid find-color(border,light);
+}
+.c-table--lsn {
+}
